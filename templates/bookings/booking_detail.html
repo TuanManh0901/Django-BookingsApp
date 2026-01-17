@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load formatting %}
+{% block title %}
+Chi tiết đặt chỗ #{{ booking.id }}
+{% endblock %}
+
+{% block content %}
+<!-- Threeland Hero - Booking Detail -->
+<div class="threeland-hero hero-short">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">Booking</p>
+    <h1 class="hero-main-title">Chi tiết đặt chỗ #{{ booking.id }}</h1>
+  </div>
+</div>
+
+<div class="container mt-5"> <div class="row"> <div class="col-md-8">
+ <div class="card"> <div class="card-body"> <h5 class="card-title">{{ booking.tour.name }}</h5>
+ <div class="row"> <div class="col-md-6">
+              <p>
+                <strong>Ngày khởi hành:</strong> {{ booking.booking_date|vn_date }}
+              </p>
+              <p><strong>Số người lớn:</strong> {{ booking.num_adults }}</p>
+              <p><strong>Số trẻ em:</strong> {{ booking.num_children }}</p>
+              <p>
+                <strong>Tổng giá:</strong> {{ booking.total_price|vn_intcomma }} VND
+              </p>
+              {% if booking.deposit_paid and booking.payment_status != 'paid' %}
+              <p>
+                <strong>Đã cọc:</strong> <span class="text-success">{{ booking.deposit_amount|vn_intcomma }} VND</span>
+              </p>
+              <p>
+                <strong>Còn lại:</strong> <span class="text-danger fw-bold">{{ booking.get_remaining_amount|vn_intcomma }} VND</span>
+              </p>
+              {% endif %}
+            </div> <div class="col-md-6">
+              <p>
+                <strong>Trạng thái:</strong>
+                {% if booking.deposit_required and booking.deposit_paid and booking.payment_status != 'paid' %}
+                  <span class="badge bg-info text-dark">{{ booking.get_overall_status_display|upper }}</span>
+                {% elif booking.get_overall_status == 'paid' %}
+                  <span class="badge bg-success">{{ booking.get_overall_status_display }}</span>
+                {% elif booking.get_overall_status == 'cancelled' %}
+                  <span class="badge bg-danger">{{ booking.get_overall_status_display }}</span>
+                {% else %}
+                  <span class="badge bg-warning">{{ booking.get_overall_status_display }}</span>
+                {% endif %}
+              </p>
+              <p>
+                <strong>Ngày tạo:</strong> {{ booking.created_at|vn_datetime }}
+              </p>
+              <p>
+                <strong>Ngày cập nhật:</strong> {{ booking.updated_at|vn_datetime }}
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <a href="{% url 'my_bookings' %}" class="btn btn-secondary">Quay lại Đặt chỗ của tôi</a>
+            {% if booking.get_overall_status == 'pending' or booking.get_overall_status == 'partial_paid' %}
+              <a id="pay-now-btn" href="{% url 'payments:select_payment_method' booking.pk %}" class="btn btn-success">Thanh toán ngay</a>
+            {% endif %}
+            {% if booking.get_overall_status == 'pending' %}
+              <a id="cancel-booking-btn" href="{% url 'cancel_booking' booking.pk %}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn hủy đặt chỗ này không?')">Hủy đặt chỗ</a>
+            {% endif %}
+          </div>
+
+          {% if booking.get_overall_status == 'pending' and not booking.deposit_paid and not has_receipt_uploaded %}
+          <div class="warning-box mt-3" id="countdown-wrapper" style="background: #fff4d8; border: 1px solid #f6d98f !important; padding: 1rem; border-radius: 0.5rem; color:#000;">
+            <div><strong style="color:#000;">Thời gian còn lại để thanh toán/cọc:</strong> <span id="countdown-timer" style="color:#000; font-weight:700;">--:--</span></div>
+            <small class="text-muted">Sau 15 phút chưa thanh toán hoặc cọc, đặt chỗ sẽ tự huỷ.</small>
+          </div>
+          <script>
+            (function() {
+              const createdAtIso = "{{ booking.created_at|date:'c' }}";
+              const graceMs = 15 * 60 * 1000; // 15 minutes
+              const targetTs = new Date(createdAtIso).getTime() + graceMs;
+              const timerEl = document.getElementById('countdown-timer');
+              const payBtn = document.getElementById('pay-now-btn');
+
+              function disablePay() {
+                if (!payBtn) return;
+                payBtn.classList.add('disabled');
+                payBtn.setAttribute('aria-disabled', 'true');
+                payBtn.addEventListener('click', function(evt) { evt.preventDefault(); });
+              }
+
+              function tick() {
+                const now = Date.now();
+                const diff = targetTs - now;
+
+                if (diff <= 0) {
+                    timerEl.textContent = '00:00';
+                    disablePay();
+                    
+                    // Show loading message
+                    const wrapperEl = document.getElementById('countdown-wrapper');
+                    if (wrapperEl) {
+                      wrapperEl.innerHTML = '<div style="text-align:center; padding:1rem;"><strong style="color:#000;">⏳ Đang tự động hủy đặt chỗ...</strong></div>';
+                    }
+                    
+                    // Try to tell server to cancel this booking immediately
+                    fetch("{% url 'cancel_booking_ajax' booking.pk %}", {
+                      method: 'POST',
+                      headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': (function(){
+                          const name = 'csrftoken=';
+                          const cookies = document.cookie.split(';');
+                          for (let c of cookies) {
+                            c = c.trim(); if (c.indexOf(name) === 0) return c.substring(name.length);
+                          }
+                          return '';
+                        })()
+                      }
+                    }).then(r => r.json()).then(data => {
+                      if (data && data.success) {
+                        // Show success then reload
+                        if (wrapperEl) {
+                          wrapperEl.innerHTML = '<div style="text-align:center; padding:1rem;"><strong style="color:#d9534f;">✓ Đặt chỗ đã tự động hủy!</strong></div>';
+                        }
+                        setTimeout(() => window.location.reload(), 1500);
+                      } else {
+                        // Force reload anyway
+                        setTimeout(() => window.location.reload(), 2000);
+                      }
+                    }).catch(() => {
+                      // Force reload on error
+                      if (wrapperEl) {
+                        wrapperEl.innerHTML = '<div style="text-align:center; padding:1rem;"><strong style="color:#000;">Đang tải lại...</strong></div>';
+                      }
+                      setTimeout(() => window.location.reload(), 2000);
+                    });
+
+                    return;
+                  }
+
+                const mins = Math.floor(diff / 60000);
+                const secs = Math.floor((diff % 60000) / 1000);
+                const mm = String(mins).padStart(2, '0');
+                const ss = String(secs).padStart(2, '0');
+                timerEl.textContent = `${mm}:${ss}`;
+              }
+
+              tick();
+              setInterval(tick, 1000);
+            })();
+          </script>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+ <div class="col-md-4"> <div class="card"> <div class="card-header">
+          <h5>Thông tin Tour</h5>
+        </div> <div class="card-body">
+          <p><strong>Địa điểm:</strong> {{ booking.tour.location }}</p>
+          <p><strong>Thời gian:</strong> {{ booking.tour.duration }} ngày</p>
+          <p><strong>Số người tối đa:</strong> {{ booking.tour.max_people }}</p>
+          <p> <strong>Mô tả:</strong> {{ booking.tour.description|default:"Đang cập nhật"|truncatechars:100 }}
+          </p> <a href="{% url 'tour_detail' booking.tour.pk %}" class="btn btn-primary">Xem Tour</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

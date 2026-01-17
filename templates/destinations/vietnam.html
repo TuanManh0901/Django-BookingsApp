@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load custom_filters %}
+
+{% block title %}Tours Việt Nam - VN Travel{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="threeland-hero hero-tall">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <div class="container text-center">
+      <p class="hero-subtitle">KHÁM PHÁ VIỆT NAM</p>
+      <h1 class="hero-main-title">Tours & Điểm Đến Việt Nam</h1>
+      <p class="text-white" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem;">
+        Từ những con phố cổ kính Hà Nội đến vịnh Hạ Long kỳ vĩ, từ bãi biển Phú Quốc đến thành phố Hồ Chí Minh sôi động
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Tours Section -->
+<section class="py-5">
+  <div class="container">
+    <!-- Stats Bar -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="destination-stats-bar">
+          <div class="stat-item">
+            <h3>{{ total_tours }}</h3>
+            <p>Tours Khả Dụng</p>
+          </div>
+          <div class="stat-item">
+            <h3>{{ locations|length }}</h3>
+            <p>Điểm Đến</p>
+          </div>
+          <div class="stat-item">
+            <h3>15+</h3>
+            <p>Năm Kinh Nghiệm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popular Destinations Quick Links -->
+    <div class="mb-5">
+      <h3 class="mb-4">Điểm Đến Phổ Biến</h3>
+      <div class="destination-chips">
+        <a href="{% url 'search_tours' %}?location=Hà Nội" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Hà Nội
+        </a>
+        <a href="{% url 'search_tours' %}?location=Hạ Long" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Hạ Long
+        </a>
+        <a href="{% url 'search_tours' %}?location=Sapa" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Sapa
+        </a>
+        <a href="{% url 'search_tours' %}?location=Hội An" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Hội An
+        </a>
+        <a href="{% url 'search_tours' %}?location=Huế" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Huế
+        </a>
+        <a href="{% url 'search_tours' %}?location=Đà Lạt" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Đà Lạt
+        </a>
+        <a href="{% url 'search_tours' %}?location=Nha Trang" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Nha Trang
+        </a>
+        <a href="{% url 'search_tours' %}?location=Phú Quốc" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Phú Quốc
+        </a>
+        <a href="{% url 'search_tours' %}?location=Hồ Chí Minh" class="destination-chip">
+          <i class="ni ni-pin-3"></i> Hồ Chí Minh
+        </a>
+      </div>
+    </div>
+
+    <!-- Tour Grid -->
+    <h3 class="mb-4">Tất Cả Tours Việt Nam ({{ total_tours }})</h3>
+    {% if tours %}
+      <div class="row g-4">
+        {% for tour in tours %}
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
+          <div class="tour-card-premium">
+            <div class="tour-image-wrapper">
+              {% if tour.images.all %}
+                <img src="{{ tour.images.first.image.url }}" alt="{{ tour.name }}">
+              {% else %}
+                {% load static %}
+                <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}">
+              {% endif %}
+              <div class="tour-badge">{{ tour.duration }} ngày</div>
+            </div>
+            
+            <div class="tour-card-body">
+              <div class="tour-location-tag">
+                <i class="ni ni-pin-3"></i> {{ tour.location }}
+              </div>
+              
+              <h4 class="tour-card-title">
+                <a href="{% url 'tour_detail' tour.pk %}">{{ tour.name }}</a>
+              </h4>
+              
+              <p class="tour-card-description">
+                {{ tour.description|truncatewords:20 }}
+              </p>
+              
+              <div class="tour-card-footer">
+                <div class="tour-price">
+                  <span class="price-label">Từ</span>
+                  <span class="price-value">{{ tour.price|currency_vnd }}</span>
+                </div>
+                <a href="{% url 'tour_detail' tour.pk %}" class="btn btn-sm btn-primary">
+                  Chi Tiết <i class="ni ni-bold-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center py-5">
+        <i class="ni ni-archive-2" style="font-size: 4rem; color: #ddd;"></i>
+        <p class="text-muted mt-3">Chưa có tour nào.</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Why Visit Vietnam Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+        <h2 class="mb-4">Tại Sao Nên Du Lịch Việt Nam?</h2>
+        <p class="lead mb-4">
+          Việt Nam là điểm đến hoàn hảo với sự kết hợp giữa văn hóa truyền thống và hiện đại, từ cảnh quan thiên nhiên tuyệt đẹp đến ẩm thực phong phú.
+        </p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon-small">
+              <i class="ni ni-world-2"></i>
+            </div>
+            <div>
+              <h5>Di Sản UNESCO</h5>
+              <p>8 di sản thế giới được UNESCO công nhận</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-small">
+              <i class="ni ni-satisfied"></i>
+            </div>
+            <div>
+              <h5>Ẩm Thực Đa Dạng</h5>
+              <p>Từ phở Hà Nội đến bún bò Huế, bánh mì Sài Gòn</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-small">
+              <i class="ni ni-money-coins"></i>
+            </div>
+            <div>
+              <h5>Chi Phí Hợp Lý</h5>
+              <p>Trải nghiệm cao cấp với giá cả phải chăng</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800&q=80" 
+             alt="Vietnam destinations" 
+             class="img-fluid rounded shadow">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Stats Bar */
+.destination-stats-bar {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.stat-item {
+  text-align: center;
+  color: white;
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.stat-item p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* Destination Chips */
+.destination-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.destination-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #2d3436;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.destination-chip:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.destination-chip i {
+  font-size: 0.9rem;
+}
+
+/* Premium Tour Cards */
+.tour-card-premium {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-card-premium:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.tour-image-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.tour-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.tour-card-premium:hover .tour-image-wrapper img {
+  transform: scale(1.1);
+}
+
+.tour-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(102, 126, 234, 0.95);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.tour-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-location-tag {
+  color: #667eea;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.tour-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.tour-card-title a {
+  color: #2d3436;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.tour-card-title a:hover {
+  color: #667eea;
+}
+
+.tour-card-description {
+  color: #636e72;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.tour-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.tour-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.75rem;
+  color: #95a5a6;
+  text-transform: uppercase;
+}
+
+.price-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+/* Feature List */
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.feature-icon-small {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.feature-item h5 {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #2d3436;
+}
+
+.feature-item p {
+  color: #636e72;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .destination-stats-bar {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .stat-item h3 {
+    font-size: 2rem;
+  }
+}
+</style>
+
+<!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 600,
+    easing: 'ease-out',
+    once: true
+  });
+</script>
+{% endblock %}

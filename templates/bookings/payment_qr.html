@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load formatting %}
+{% block title %}Payment QR Code{% endblock %}
+
+{% block content %}
+<div class="container mt-5"> <div class="row justify-content-center"> <div class="col-md-6"> <div class="card"> <div class="card-header">
+          <h2>Scan QR Code to Pay</h2>
+        </div> <div class="card-body text-center">
+          <p>Booking: {{ booking.id }} - {{ booking.tour.name }}</p>
+          {% load formatting %}
+          <p>Amount: {{ booking.total_price|vn_intcomma }} VND</p>
+
+          {% if qr_code_url %}
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ qr_code_url|urlencode }}" alt="Payment QR Code" class="img-fluid"
+          /> <p class="mt-3">
+            Scan the QR code with Momo app to complete payment.
+          </p>
+          <p> Or <a href="{{ qr_code_url }}" target="_blank">open in Momo app</a>
+          </p>
+          {% else %}
+          <p>QR Code not available. Please try again.</p>
+          {% endif %}
+ <div class="mt-4">
+            <a href="{% url 'booking_detail' booking.pk %}" class="btn btn-secondary">Back to Booking</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

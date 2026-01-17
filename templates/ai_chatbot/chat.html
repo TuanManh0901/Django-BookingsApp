@@ -1,0 +1,529 @@
+{% extends 'base.html' %}
+{% block title %}AI Travel Advisor - VN Travel{% endblock %}
+{% block page_title %}AI Travel Advisor{% endblock %}
+{% block breadcrumb %}AI Chat{% endblock %}
+
+{% block content %}
+<!-- Close base.html container to go full width -->
+</div>
+
+<!-- Threeland Hero - AI Travel Advisor -->
+<div class="threeland-hero">
+  {% load static %}
+  <div class="hero-background-image" style="background-image: url('{% static 'images/phu_quoc_resort.png' %}');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">NHẬN LỜI KHUYÊN CÁ NHÂN</p>
+    <h1 class="hero-main-title">AI Travel Advisor</h1>
+    <p class="hero-description" style="color: white;">Trò chuyện với AI của chúng tôi để nhận các đề xuất du lịch được cá nhân hóa</p>
+  </div>
+</div>
+
+<!-- AI Chat Container -->
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: calc(100vh - 200px);">
+  <div class="container">
+    <div class="row">
+      <!-- Chat Sidebar - Conversations List -->
+      <div class="col-md-3 mb-4">
+        <div class="card shadow-lg border-0" style="border-radius: 20px; height: 600px; overflow: hidden; position: relative;">
+          <div class="card-header bg-primary text-white" style="border-radius: 20px 20px 0 0; padding-right: 60px;">
+            <h5 class="mb-0"><i class="fas fa-comments me-2"></i>Conversations</h5>
+          </div>
+          
+          <!-- Floating New Chat Button -->
+          <button 
+            onclick="startNewConversation()" 
+            class="new-chat-btn"
+            title="Tạo đoạn hội thoại mới"
+            aria-label="New Chat"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
+          
+          <div class="card-body p-0" style="overflow-y: auto;">
+            <div id="chat-sessions-list">
+              <!-- Sessions will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Chat Interface -->
+      <div class="col-md-9">
+        <div class="card shadow-lg border-0" style="border-radius: 20px; height: 600px; display: flex; flex-direction: column;">
+          <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px 20px 0 0;">
+            <h5 class="mb-0">
+              <i class="fas fa-robot me-2"></i>AI Travel Advisor
+              <span class="badge bg-success ms-2">Online</span>
+            </h5>
+          </div>
+          
+          <div class="card-body flex-grow-1" style="overflow-y: auto; background: #f8f9fa;" id="chat-messages">
+            <!-- Messages will appear here -->
+          </div>
+          
+          <div class="card-footer border-0 bg-white" style="border-radius: 0 0 20px 20px;">
+            <form id="chat-form" class="d-flex gap-2">
+              <input 
+                type="text" 
+                id="user-input" 
+                class="form-control form-control-lg" 
+                placeholder="Ask me about tours, destinations, bookings..."
+                style="border-radius: 25px; border: 2px solid #667eea;"
+                autocomplete="off"
+              >
+              <button type="submit" class="btn btn-primary btn-lg px-4" style="border-radius: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Chat Message Styles */
+  .message {
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .message.user {
+    text-align: right;
+  }
+  
+  .message.bot {
+    text-align: left;
+  }
+  
+  .message-content {
+    display: inline-block;
+    max-width: 70%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    white-space: pre-line; /* Preserve line breaks from AI response */
+  }
+  
+  .message.user .message-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .message.bot .message-content {
+    background: white;
+    color: #333;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .timestamp {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 4px;
+  }
+  
+  .typing-indicator {
+    display: inline-block;
+    padding: 12px 18px;
+    background: white;
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+  }
+  
+  .typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background: #667eea;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px;
+    animation: typing 1.4s infinite;
+  }
+  
+  .typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+  }
+  
+  /* Conversation Item Styles */
+  .conversation-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .conversation-item:hover {
+    background: #f8f9fa;
+  }
+  
+  .conversation-item.active {
+    background: #e7f1ff;
+    border-left: 4px solid #667eea;
+  }
+  
+  .conversation-item .meta {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 4px;
+  }
+  
+  #chat-sessions-list {
+    max-height: 540px;
+    overflow-y: auto;
+  }
+  
+  /* New Chat Floating Button */
+  .new-chat-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+  }
+  
+  .new-chat-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  }
+  
+  .new-chat-btn:active {
+    transform: scale(0.95) rotate(90deg);
+  }
+  
+  .new-chat-btn i {
+    transition: transform 0.3s ease;
+  }
+
+</style>
+
+<script>
+  // Session Management
+  let sessionId = localStorage.getItem("chat_session_id") || generateSessionId();
+  localStorage.setItem("chat_session_id", sessionId);
+
+  // Generate unique session ID
+  function generateSessionId() {
+    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  // Get CSRF token
+  function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]')?.value || 
+           document.cookie.match(/csrftoken=([^;]+)/)?.[1] || '';
+  }
+
+  // Add message to chat
+  function addMessage(text, type) {
+    const messagesDiv = document.getElementById("chat-messages");
+    const messageDiv = document.createElement("div");
+    messageDiv.className = `message ${type}`;
+    
+    const now = new Date();
+    const timestamp = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    
+    messageDiv.innerHTML = `
+      <div class="message-content">
+        ${text}
+      </div>
+      <div class="timestamp">${timestamp}</div>
+    `;
+    
+    messagesDiv.appendChild(messageDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  // Show typing indicator
+  function showTypingIndicator() {
+    const messagesDiv = document.getElementById("chat-messages");
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "message bot";
+    typingDiv.id = "typing-indicator";
+    typingDiv.innerHTML = `
+      <div class="typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    `;
+    messagesDiv.appendChild(typingDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  // Remove typing indicator
+  function removeTypingIndicator() {
+    const typingIndicator = document.getElementById("typing-indicator");
+    if (typingIndicator) {
+      typingIndicator.remove();
+    }
+  }
+
+  // Handle form submission
+  document.getElementById("chat-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message
+    addMessage(message, "user");
+    input.value = "";
+    
+    // Show typing indicator
+    showTypingIndicator();
+    
+    try {
+      const response = await fetch("/ai-chat/api/chat/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCSRFToken(),
+        },
+        body: JSON.stringify({
+          message: message,
+          session_id: sessionId,
+        }),
+      });
+      
+      const data = await response.json();
+      
+      // Remove typing indicator
+      removeTypingIndicator();
+      
+      if (response.ok) {
+        addMessage(data.response, "bot");
+        // Update sessions list to reflect new message
+        loadSessions();
+      } else {
+        addMessage("Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại.", "bot");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      removeTypingIndicator();
+      addMessage("Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.", "bot");
+    }
+  });
+
+  // Load chat history
+  async function loadChatHistory() {
+    try {
+      const response = await fetch(`/ai-chat/api/chat/history/?session_id=${sessionId}`);
+      const data = await response.json();
+      
+      if (response.ok && data.history && data.history.length > 0) {
+        const messagesDiv = document.getElementById("chat-messages");
+        messagesDiv.innerHTML = ""; // Clear existing messages
+        
+        data.history.forEach(msg => {
+          addMessage(msg.text, msg.type);
+        });
+        
+        console.log(`Loaded ${data.history.length} messages`);
+        return true; // Has history
+      }
+      
+      return false; // No history
+    } catch (error) {
+      console.error("Error loading history:", error);
+      return false;
+    }
+  }
+
+  // Load sessions list
+  async function loadSessions() {
+    try {
+      const response = await fetch('/ai-chat/api/sessions/');
+      const data = await response.json();
+      
+      const sessionsDiv = document.getElementById('chat-sessions-list');
+      sessionsDiv.innerHTML = '';
+      
+      // Always show current session first
+      const currentSessionInList = data.sessions?.some(s => s.session_id === sessionId);
+      
+      if (!currentSessionInList) {
+        const item = document.createElement('div');
+        item.className = 'conversation-item active';
+        item.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div style="flex: 1;">
+              <div class="fw-bold">Current Session</div>
+              <div class="meta">New conversation</div>
+            </div>
+          </div>
+        `;
+        sessionsDiv.appendChild(item);
+      }
+      
+      // Add sessions from database
+      if (response.ok && data.sessions && data.sessions.length > 0) {
+        data.sessions.forEach(session => {
+          const isActive = session.session_id === sessionId;
+          const item = document.createElement('div');
+          item.className = `conversation-item ${isActive ? 'active' : ''}`;
+          
+          item.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+              <div style="flex: 1; cursor: pointer;" onclick="switchSession('${session.session_id}')">
+                <div class="fw-bold">${session.preview}</div>
+                <div class="meta">${session.created_at} • ${session.message_count} msgs</div>
+              </div>
+              <button 
+                onclick="event.stopPropagation(); deleteSession('${session.session_id}')" 
+                class="btn btn-sm btn-link text-danger p-0 ms-2"
+                title="Xóa cuộc hội thoại"
+                style="font-size: 0.9rem;">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          `;
+          
+          sessionsDiv.appendChild(item);
+        });
+        
+        console.log(`Loaded ${data.sessions.length} conversations`);
+      } else if (!currentSessionInList) {
+        console.log('No conversation history');
+      }
+    } catch (error) {
+      console.error('Error loading sessions:', error);
+    }
+  }
+
+  // Delete a conversation
+  async function deleteSession(deleteSessionId) {
+    if (!confirm('Bạn có chắc muốn xóa cuộc hội thoại này không?')) {
+      return;
+    }
+    
+    try {
+      const response = await fetch('/ai-chat/api/sessions/delete/', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCSRFToken(),
+        },
+        body: JSON.stringify({
+          session_id: deleteSessionId
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        console.log('Session deleted:', data.message);
+        
+        // If deleted current session, create new one
+        if (deleteSessionId === sessionId) {
+          sessionId = generateSessionId();
+          localStorage.setItem("chat_session_id", sessionId);
+          
+          const messagesDiv = document.getElementById("chat-messages");
+          messagesDiv.innerHTML = "";
+          
+          setTimeout(() => {
+            addMessage(
+              "Xin chào! Tôi là AI Travel Advisor của VN Travel. Tôi có thể giúp bạn tìm tour du lịch phù hợp, trả lời câu hỏi về điểm đến, hoặc hướng dẫn đặt tour. Bạn muốn hỏi gì nào?",
+              "bot"
+            );
+          }, 300);
+        }
+        
+        loadSessions();
+      } else {
+        alert('Không thể xóa cuộc hội thoại: ' + (data.error || 'Lỗi không xác định'));
+      }
+    } catch (error) {
+      console.error('Error deleting session:', error);
+      alert('Có lỗi xảy ra khi xóa cuộc hội thoại');
+    }
+  }
+
+  // Switch to a different conversation
+  async function switchSession(newSessionId) {
+    if (newSessionId === sessionId) return;
+    
+    sessionId = newSessionId;
+    localStorage.setItem('chat_session_id', sessionId);
+    
+    const messagesDiv = document.getElementById('chat-messages');
+    messagesDiv.innerHTML = '';
+    
+    await loadChatHistory();
+    loadSessions();
+    
+    console.log('Switched to session:', sessionId);
+  }
+
+  // Start new conversation
+  function startNewConversation() {
+    sessionId = generateSessionId();
+    localStorage.setItem('chat_session_id', sessionId);
+    
+    const messagesDiv = document.getElementById('chat-messages');
+    messagesDiv.innerHTML = '';
+    
+    setTimeout(() => {
+      addMessage(
+        "Xin chào! Tôi là AI Travel Advisor của VN Travel. Tôi có thể giúp bạn tìm tour du lịch phù hợp, trả lời câu hỏi về điểm đến, hoặc hướng dẫn đặt tour. Bạn muốn hỏi gì nào?",
+        "bot"
+      );
+    }, 300);
+    
+    loadSessions();
+    
+    console.log('Started new conversation:', sessionId);
+  }
+
+  // Initialize
+  document.addEventListener("DOMContentLoaded", async function () {
+    await loadSessions();
+    const hasHistory = await loadChatHistory();
+    
+    if (!hasHistory) {
+      setTimeout(() => {
+        addMessage(
+          "Xin chào! Tôi là AI Travel Advisor của VN Travel. Tôi có thể giúp bạn tìm tour du lịch phù hợp, trả lời câu hỏi về điểm đến, hoặc hướng dẫn đặt tour. Bạn muốn hỏi gì nào?",
+          "bot"
+        );
+      }, 1000);
+    }
+  });
+</script>
+
+<!-- Reopen base.html container -->
+<div class="container mt-4">
+{% endblock %}

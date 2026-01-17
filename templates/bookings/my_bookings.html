@@ -1,0 +1,438 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load formatting %}
+{% block title %}
+Đặt chỗ của tôi
+{% endblock %}
+
+{% block extra_head %}
+<!-- FORCE BROWSER TO NEVER CACHE THIS PAGE -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+{% endblock %}
+
+{% block messages %}
+{% if messages %}
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999; margin-top: 80px;">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-lg" role="alert" style="min-width: 350px;">
+    <strong>
+      {% if message.tags == 'success' %}
+        <i class="ni ni-check-bold"></i> Thành công!
+      {% elif message.tags == 'error' %}
+        <i class="ni ni-fat-remove"></i> Lỗi!
+      {% elif message.tags == 'warning' %}
+        <i class="ni ni-bell-55"></i> Cảnh báo!
+      {% else %}
+        <i class="ni ni-bulb-61"></i> Thông báo!
+      {% endif %}
+    </strong>
+    <br>
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock messages %}
+
+{% block content %}
+<!-- Threeland Hero - My Bookings -->
+<div class="threeland-hero hero-short">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">Travel Dashboard</p>
+    <h1 class="hero-main-title">Đặt chỗ của tôi</h1>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+
+  {% if bookings %} <div class="table-responsive"> <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tour</th>
+          <th>Ngày khởi hành</th>
+          <th>Người lớn</th>
+          <th>Trẻ em</th>
+          <th>Tổng giá</th>
+          <th>Trạng thái</th>
+          <th>Ngày tạo</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in bookings %}
+        <tr data-booking-id="{{ booking.id }}" 
+            data-booking-created="{{ booking.created_at.timestamp }}" 
+            data-booking-status="{{ booking.payment_status }}"
+            data-booking-deposit-paid="{{ booking.deposit_paid|lower }}">
+          <td>{{ forloop.counter }}</td>
+          <td> <a href="{% url 'tour_detail' booking.tour.pk %}">{{ booking.tour.name }}</a>
+          </td>
+          <td>{{ booking.booking_date|vn_date }}</td>
+          <td>{{ booking.num_adults }}</td>
+          <td>{{ booking.num_children }}</td>
+          <td>
+            {% if booking.deposit_paid and booking.payment_status != 'paid' %}
+              <span class="text-muted text-decoration-line-through">{{ booking.total_price|vn_intcomma }}</span><br>
+              <strong class="text-danger">{{ booking.get_remaining_amount|vn_intcomma }} VND</strong>
+              <small class="text-success d-block">(Đã cọc: {{ booking.deposit_amount|vn_intcomma }})</small>
+            {% else %}
+              {{ booking.total_price|vn_intcomma }} VND
+            {% endif %}
+          </td>
+          <td>
+            {% if booking.deposit_required and booking.deposit_paid and booking.payment_status != 'paid' %}
+              <span class="badge bg-info text-dark booking-status-badge">{{ booking.get_overall_status_display|upper }}</span>
+            {% elif booking.get_effective_status == 'paid' %}
+              <span class="badge bg-success booking-status-badge">{{ booking.get_overall_status_display|upper }}</span>
+            {% elif booking.get_effective_status == 'cancelled' %}
+              <span class="badge bg-danger booking-status-badge">{{ booking.get_overall_status_display|upper }}</span>
+            {% else %}
+              <span class="badge bg-warning booking-status-badge">{{ booking.get_overall_status_display|upper }}</span>
+            {% endif %}
+          </td>
+          <td>{{ booking.created_at|vn_datetime }}</td>
+          <td>
+            <a href="{% url 'booking_detail' booking.pk %}" class="btn btn-sm btn-outline-primary">Xem</a>
+            {% if booking.get_effective_status == 'pending' or booking.get_effective_status == 'partial_paid' %}
+            <a href="{% url 'payments:select_payment_method' booking.pk %}" class="btn btn-sm btn-outline-success">Thanh toán</a>
+            {% endif %}
+            {% if booking.get_effective_status == 'pending' %}
+            <a href="{% url 'cancel_booking' booking.pk %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bạn có chắc muốn hủy đặt chỗ này không?')">Hủy</a>
+            {% endif %}
+            
+            <!-- Review button or status (only for fully paid bookings) -->
+            {% if booking.payment_status == 'paid' %}
+              {% if booking.user_review %}
+                <!-- Already reviewed - show stars and view button -->
+                <div class="mt-2">
+                  <div class="d-flex align-items-center mb-1 flex-nowrap">
+                    <small class="text-success m-0 text-nowrap me-2">
+                      <i class="ni ni-check-bold"></i> Đã đánh giá:
+                    </small>
+                    <button type="button" class="btn btn-sm btn-link p-0" data-bs-toggle="modal" data-bs-target="#viewReviewModal{{ booking.pk }}" title="Xem lại đánh giá" style="color: #000 !important;">
+                      <i class="fas fa-eye" style="font-size: 1rem;"></i>
+                    </button>
+                  </div>
+                  <span class="review-stars text-nowrap d-block">
+                    {% for i in "12345" %}
+                      {% if forloop.counter <= booking.user_review.rating %}
+                        <span class="star-filled">★</span>
+                      {% else %}
+                        <span class="star-empty">☆</span>
+                      {% endif %}
+                    {% endfor %}
+                  </span>
+                </div>
+                
+                <!-- View Review Modal -->
+                <div class="modal fade" id="viewReviewModal{{ booking.pk }}" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Đánh giá của bạn</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="text-center mb-3">
+                          <div class="review-stars" style="font-size: 2rem;">
+                            {% for i in "12345" %}
+                              {% if forloop.counter <= booking.user_review.rating %}
+                                <span class="star-filled">★</span>
+                              {% else %}
+                                <span class="star-empty">☆</span>
+                              {% endif %}
+                            {% endfor %}
+                          </div>
+                          <p class="text-muted small mt-1">Đăng ngày: {{ booking.user_review.created_at|date:"d/m/Y H:i" }}</p>
+                        </div>
+                        <div class="p-3 bg-light rounded">
+                          <p class="mb-0 fw-bold text-dark">"{{ booking.user_review.comment }}"</p>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              {% else %}
+                <!-- Not yet reviewed - show button -->
+                <button class="btn btn-sm btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#reviewModal{{ booking.pk }}">
+                  <i class="ni ni-chat-round"></i> Đánh Giá
+                </button>
+              {% endif %}
+            {% endif %}
+          </td>
+        </tr>
+        
+        <!-- Review Modal for this booking -->
+        <div class="modal fade" id="reviewModal{{ booking.pk }}" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Đánh Giá Tour: {{ booking.tour.name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form method="POST" action="{% url 'submit_review' booking.pk %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <!-- Star Rating -->
+                  <div class="mb-3">
+                    <label class="form-label">Đánh giá của bạn:</label>
+                    <div class="star-rating" data-booking-id="{{ booking.pk }}">
+                      <input type="radio" name="rating" value="5" id="star5-{{ booking.pk }}" required>
+                      <label for="star5-{{ booking.pk }}">★</label>
+                      <input type="radio" name="rating" value="4" id="star4-{{ booking.pk }}">
+                      <label for="star4-{{ booking.pk }}">★</label>
+                      <input type="radio" name="rating" value="3" id="star3-{{ booking.pk }}">
+                      <label for="star3-{{ booking.pk }}">★</label>
+                      <input type="radio" name="rating" value="2" id="star2-{{ booking.pk }}">
+                      <label for="star2-{{ booking.pk }}">★</label>
+                      <input type="radio" name="rating" value="1" id="star1-{{ booking.pk }}">
+                      <label for="star1-{{ booking.pk }}">★</label>
+                    </div>
+                  </div>
+                  
+                  <!-- Comment -->
+                  <div class="mb-3">
+                    <label for="comment{{ booking.pk }}" class="form-label">Nhận xét:</label>
+                    <textarea class="form-control" id="comment{{ booking.pk }}" name="comment" rows="4" required 
+                              placeholder="Chia sẻ trải nghiệm của bạn về tour này..."></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                  <button type="submit" class="btn btn-primary">Gửi Đánh Giá</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% if is_paginated %} <nav aria-label="Page navigation"> <ul class="pagination">
+      {% if page_obj.has_previous %} <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Trước</a>
+      </li>
+      {% endif %}
+{% for num in page_obj.paginator.page_range %}
+{% if page_obj.number == num %} <li class="page-item active"> <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% else %} <li class="page-item"> <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endif %}
+{% endfor %}
+{% if page_obj.has_next %} <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Tiếp</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+{% else %}
+  <p>
+    Bạn chưa có đặt chỗ nào. <a href="{% url 'tour_list' %}">Duyệt tours</a> để đặt chỗ đầu tiên.
+  </p>
+  {% endif %}
+</div>
+
+<style>
+/* Star Rating Styles - Improved for better visibility */
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 2.5rem;
+  gap: 8px;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  justify-content: center;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  color: #dfe6e9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #FDB241;
+  transform: scale(1.1);
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+  color: #FDB241;
+}
+
+/* Review stars display in table */
+.review-stars {
+  font-size: 1.2rem;
+  color: #FDB241;
+  display: inline-flex !important;
+  align-items: center;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.review-stars .star-filled {
+  color: #FDB241;
+}
+
+.review-stars .star-empty {
+  color: #dfe6e9;
+}
+
+/* Modal improvements */
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-body label.form-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-body textarea {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.modal-body textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+</style>
+
+<script>
+// AUTO-UPDATE EXPIRED BOOKINGS ON MY BOOKINGS PAGE
+// This solves browser cache issues by updating status dynamically on client-side
+(function() {
+  console.log('MY BOOKINGS: Expiration checker loaded');
+  
+  const GRACE_PERIOD_MS = 15 * 60 * 1000; // 15 minutes in milliseconds
+  
+  // Function to check and update expired bookings
+  function checkAndUpdateExpiredBookings() {
+    const now = Date.now() / 1000; // Current time in seconds (to match Django timestamp)
+    const rows = document.querySelectorAll('tr[data-booking-id]');
+    let updatedCount = 0;
+    
+    rows.forEach(row => {
+      const bookingId = row.dataset.bookingId;
+      const createdTimestamp = parseFloat(row.dataset.bookingCreated);
+      const currentStatus = row.dataset.bookingStatus;
+      const depositPaid = row.dataset.bookingDepositPaid === 'true';
+      
+      // Calculate age in milliseconds
+      const ageMs = (now - createdTimestamp) * 1000;
+      const isExpired = ageMs > GRACE_PERIOD_MS;
+      
+      // Check if booking should be cancelled
+      if (currentStatus === 'pending' && !depositPaid && isExpired) {
+        console.log(`Booking #${bookingId} is expired (${(ageMs/60000).toFixed(1)} minutes old), updating UI...`);
+        
+        // Find and update status badge
+        const badge = row.querySelector('.booking-status-badge');
+        if (badge) {
+          // Change badge to cancelled style
+          badge.className = 'badge bg-danger booking-status-badge';
+          badge.textContent = 'ĐÃ HỦY';
+          
+          // Update row data attribute
+          row.dataset.bookingStatus = 'cancelled';
+          
+          // Hide payment button if exists
+          const paymentBtn = row.querySelector('a[href*="select_payment_method"]');
+          if (paymentBtn) {
+            paymentBtn.remove();
+          }
+          
+          // Hide cancel button if exists
+          const cancelBtn = row.querySelector('a[href*="cancel_booking"]');
+          if (cancelBtn) {
+            cancelBtn.remove();
+          }
+          
+          updatedCount++;
+          
+          // Make AJAX call to server to actually cancel the booking
+          fetch(`/booking/${bookingId}/cancel-ajax/`, {
+            method: 'POST',
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest',
+              'X-CSRFToken': getCsrfToken()
+            }
+          }).then(r => r.json()).then(data => {
+            if (data.success) {
+              console.log(`Booking #${bookingId} cancelled on server ✓`);
+            }
+          }).catch(err => {
+            console.log(`Failed to cancel booking #${bookingId} on server (UI already updated)`);
+          });
+        }
+      }
+    });
+    
+    if (updatedCount > 0) {
+      console.log(`Updated ${updatedCount} expired booking(s) to CANCELLED`);
+    }
+    
+    return updatedCount;
+  }
+  
+  // Function to get CSRF token
+  function getCsrfToken() {
+    const name = 'csrftoken=';
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.indexOf(name) === 0) {
+        return cookie.substring(name.length);
+      }
+    }
+    return '';
+  }
+  
+  // Run check immediately when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('MY BOOKINGS: Running initial expiration check...');
+    const count = checkAndUpdateExpiredBookings();
+    
+    if (count > 0) {
+      console.log(`✅ Updated ${count} expired bookings on page load`);
+    } else {
+      console.log('✅ No expired bookings found');
+    }
+    
+    // Set up interval to check every 30 seconds
+    setInterval(function() {
+      checkAndUpdateExpiredBookings();
+    }, 30000); // Check every 30 seconds
+  });
+  
+  console.log('MY BOOKINGS: Auto-update script initialized');
+})();
+</script>
+
+{% endblock %}

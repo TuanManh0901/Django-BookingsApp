@@ -1,0 +1,79 @@
+{% extends "admin/change_list.html" %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+  .fab-delete-all {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    background: #d9534f; /* bootstrap danger */
+    color: #fff;
+    border: none;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .fab-delete-all:hover { background: #c9302c; }
+  .fab-delete-all .icon {
+    width: 18px; height: 18px; display: inline-block;
+    border: 2px solid #fff; border-radius: 2px; position: relative;
+  }
+  .fab-delete-all .icon::before,
+  .fab-delete-all .icon::after {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 12px; height: 2px; background: #fff; transform-origin: center;
+  }
+  .fab-delete-all .icon::before { transform: translate(-50%, -50%) rotate(45deg); }
+  .fab-delete-all .icon::after { transform: translate(-50%, -50%) rotate(-45deg); }
+</style>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+<button type="button" class="fab-delete-all" id="fab-delete-all">
+  <span class="icon" aria-hidden="true"></span>
+  Xóa tất cả
+</button>
+<script>
+  (function() {
+    const btn = document.getElementById('fab-delete-all');
+    if (!btn) return;
+
+    btn.addEventListener('click', function() {
+      // Confirm destructive action
+      if (!window.confirm('Bạn có chắc chắn muốn xóa TẤT CẢ thanh toán?')) {
+        return;
+      }
+
+      // Ensure changelist form exists
+      const form = document.getElementById('changelist-form');
+      if (!form) {
+        alert('Không tìm thấy biểu mẫu danh sách.');
+        return;
+      }
+
+      // Select all rows via action checkboxes
+      const boxes = form.querySelectorAll('input.action-select');
+      boxes.forEach(b => { b.checked = true; });
+
+      // Set admin action to delete_selected
+      const actionSelect = form.querySelector('select[name="action"]');
+      if (!actionSelect) {
+        alert('Không tìm thấy hành động xóa.');
+        return;
+      }
+      actionSelect.value = 'delete_selected';
+
+      // Submit form to trigger the action (will show confirmation page)
+      form.submit();
+    });
+  })();
+</script>
+{% endblock %}

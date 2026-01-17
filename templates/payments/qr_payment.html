@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load formatting %}
+{% block title %}Thanh toán QR Code{% endblock %}
+
+{% block content %}
+<!-- Threeland Hero - QR Payment -->
+<div class="threeland-hero hero-short">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">PAYMENT</p>
+    <h1 class="hero-main-title">Thanh toán QR Code</h1>
+  </div>
+</div>
+
+<div class="container mt-4">
+
+    {% if messages %} <div class="messages">
+        {% for message in messages %} <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }} <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+ <div class="row"> <div class="col-md-8"> <div class="card"> <div class="card-header">
+                    <h5>📋 Thông tin thanh toán</h5>
+                </div> <div class="card-body text-center"> <div class="mb-4"> <img src="https://api.vietqr.io/image/970436-123456789012-qr_only.png?amount={{ payment.amount }}&addInfo=Booking%20{{ booking.id }}" alt="QR Code" class="img-fluid" style="max-width: 300px;">
+                    </div>
+ <div class="info-box" style="background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 1rem; border-radius: 0.5rem; color: #1e293b !important;">
+                        <h6>Hướng dẫn thanh toán:</h6> <ol class="text-start">
+                            <li>Mở ứng dụng ngân hàng của bạn</li>
+                            <li>Quét mã QR ở trên</li>
+                            <li>Nhập số tiền: <strong>{{ payment.amount|vn_intcomma }} VNĐ</strong></li>
+                            <li>Thêm ghi chú: <strong>Booking {{ booking.id }}</strong></li>
+                            <li>Hoàn tất thanh toán</li>
+                            <li>Upload hình ảnh biên lai bên dưới</li>
+                        </ol>
+                    </div>
+ <div class="mt-4">
+                        <h5>📤 Upload biên lai</h5> <form action="{% url 'payments:upload_qr_receipt' payment.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %} <div class="mb-3"> <input type="file" class="form-control" name="receipt_image" accept="image/*" required> <div class="form-text">Chọn file hình ảnh của biên lai thanh toán</div>
+                            </div> <button type="submit" class="btn btn-success btn-lg"> <i class="fas fa-upload"></i> Upload biên lai
+                            </button>
+                        </form>
+                    </div>
+ <div class="mt-3"> <a href="{% url 'payments:select_payment_method' booking.id %}" class="btn btn-secondary"> <i class="fas fa-arrow-left"></i> Quay lại chọn phương thức
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+ <div class="col-md-4">
+            <!-- Tóm tắt đơn hàng --> <div class="card"> <div class="card-header">
+                    <h5>📋 Tóm tắt đơn hàng</h5>
+                </div> <div class="card-body"> <div class="d-flex justify-content-between mb-2">
+                        <span>Tour:</span>
+                        <span>{{ booking.tour.name }}</span>
+                    </div> <div class="d-flex justify-content-between mb-2">
+                        <span>Người lớn:</span>
+                        <span>{{ booking.num_adults }}</span>
+                    </div> <div class="d-flex justify-content-between mb-2">
+                        <span>Trẻ em:</span>
+                        <span>{{ booking.num_children }}</span>
+                    </div>
+                    <hr> <div class="d-flex justify-content-between">
+                        <strong>Số tiền cần thanh toán:</strong>
+                        <strong>{{ payment.amount|vn_intcomma }} VNĐ</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin chuyển khoản --> <div class="card mt-3"> <div class="card-header">
+                    <h6>🏦 Thông tin chuyển khoản</h6>
+                </div> <div class="card-body"> <p class="small"><strong>Ngân hàng:</strong> Vietcombank</p> <p class="small"><strong>Số tài khoản:</strong> 123456789012</p> <p class="small"><strong>Chủ tài khoản:</strong> VN-TRAVEL</p> <p class="small"><strong>Nội dung:</strong> Booking {{ booking.id }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

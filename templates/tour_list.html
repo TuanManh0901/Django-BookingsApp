@@ -1,0 +1,769 @@
+{% extends 'base.html' %}
+{% load formatting %}
+{% block title %}
+VN Travel - Khám Phá Việt Nam
+{% endblock %}
+
+{% block content %}
+<!-- Threeland-Style Hero for Tour List -->
+<div class="threeland-hero" style="min-height: 55vh;">
+  <!-- Background Image -->
+  {% load static %}
+  <div class="hero-background-image" style="background-image: url('{% static 'images/ha_long_bay.png' %}');"></div>
+  <div class="hero-overlay"></div>
+  
+  <!-- Hero Content -->
+  <div class="hero-main-content">
+    <div class="container text-center">
+      <p class="hero-subtitle" data-aos="fade-up" style="color: white; font-size: 1rem; margin-bottom: 1rem; opacity: 0.9;">Explore</p>
+      <h1 class="hero-main-title" data-aos="fade-up" data-aos-delay="100">
+        Top-Selling Southeast Asia Tours
+      </h1>
+      <a href="{% url 'ai_chatbot:chat' %}" class="btn-plan-trip" data-aos="fade-up" data-aos-delay="200">
+        Get Free Advice Now
+      </a>
+    </div>
+  </div>
+  
+  <!-- Search Bar at Bottom -->
+  <div class="hero-search-bottom">
+    <div class="container-fluid px-4">
+      <form action="{% url 'tour_list' %}" method="GET" class="search-form-bottom">
+        <div class="search-fields-row">
+          <!-- Duration -->
+          <div class="search-field-item">
+            <i class="ni ni-calendar-grid-58"></i>
+            <select name="duration" class="form-select-transparent">
+              <option value="">Duration</option>
+              {% for dur in durations %}
+                <option value="{{ dur }}" {% if selected_duration == dur|stringformat:"s" %}selected{% endif %}>{{ dur }} days</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <!-- Location -->
+          <div class="search-field-item">
+            <i class="ni ni-world-2"></i>
+            <select name="location" class="form-select-transparent">
+              <option value="">Tour Style</option>
+              {% for loc in locations %}
+                <option value="{{ loc }}" {% if selected_location == loc %}selected{% endif %}>{{ loc }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <!-- Search Input -->
+          <div class="search-field-item search-input-field">
+            <i class="ni ni-zoom-split-in"></i>
+            <input type="text" name="q" placeholder="Type Any" class="form-control-transparent" value="{{ search_query }}">
+          </div>
+          
+          <!-- Search Button -->
+          <button type="submit" class="btn-search-bottom">
+            Search <i class="ni ni-bold-right"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add Threeland Hero Styles -->
+<style>
+/* Threeland Hero Styles for Tour List */
+.threeland-hero {
+  position: relative;
+  min-height: 60vh;
+  overflow: hidden;
+}
+
+.hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-main-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+}
+
+.hero-main-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  line-height: 1.3;
+}
+
+.btn-plan-trip {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-plan-trip:hover {
+  background: white;
+  color: #2d3436;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.hero-search-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 2rem 0;
+}
+
+.search-form-bottom {
+  background: white;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-fields-row {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.search-field-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-right: 1px solid #e0e0e0;
+}
+
+.search-field-item:last-of-type {
+  border-right: none;
+}
+
+.search-field-item i {
+  color: #667eea;
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.form-select-transparent,
+.form-control-transparent {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #2d3436;
+  width: 100%;
+}
+
+.form-select-transparent:focus,
+.form-control-transparent:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control-transparent::placeholder {
+  color: #95a5a6;
+}
+
+.search-input-field {
+  flex: 1.5;
+}
+
+.btn-search-bottom {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-search-bottom:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+@media (max-width: 992px) {
+  .search-fields-row {
+    flex-direction: column;
+  }
+  
+  .search-field-item {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .btn-search-bottom {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hero-main-title {
+    font-size: 2.5rem;
+  }
+}
+</style>
+
+
+
+<!-- Quick Stats Section -->
+<div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-md-3 col-6 mb-4">
+      <div class="p-3">
+        <div style="font-size: 3em; margin-bottom: 10px;">🌍</div>
+        <h3 class="mb-0" style="color: #667eea; font-weight: 700;">50+</h3>
+        <p class="text-muted mb-0">Điểm đến</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="p-3">
+        <div style="font-size: 3em; margin-bottom: 10px;">👥</div>
+        <h3 class="mb-0" style="color: #667eea; font-weight: 700;">10,000+</h3>
+        <p class="text-muted mb-0">Khách hàng</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="p-3">
+        <div style="font-size: 3em; margin-bottom: 10px;">⭐</div>
+        <h3 class="mb-0" style="color: #667eea; font-weight: 700;">4.8/5</h3>
+        <p class="text-muted mb-0">Đánh giá</p>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="p-3">
+        <div style="font-size: 3em; margin-bottom: 10px;">🏆</div>
+        <h3 class="mb-0" style="color: #667eea; font-weight: 700;">15+</h3>
+        <p class="text-muted mb-0">Năm kinh nghiệm</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tour Categories -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4" style="font-weight: 700;">Khám phá theo chủ đề</h2>
+  <div class="row">
+    <div class="col-md-3 col-6 mb-4">
+      <div class="card text-center border-0 shadow-sm h-100" style="cursor: pointer; transition: all 0.3s;">
+        <div class="card-body">
+          <div style="font-size: 3em; margin-bottom: 15px;">🏖️</div>
+          <h5 class="card-title" style="font-weight: 600;">Biển đảo</h5>
+          <p class="text-muted small mb-0">20+ tours</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="card text-center border-0 shadow-sm h-100" style="cursor: pointer; transition: all 0.3s;">
+        <div class="card-body">
+          <div style="font-size: 3em; margin-bottom: 15px;">⛰️</div>
+          <h5 class="card-title" style="font-weight: 600;">Núi rừng</h5>
+          <p class="text-muted small mb-0">15+ tours</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="card text-center border-0 shadow-sm h-100" style="cursor: pointer; transition: all 0.3s;">
+        <div class="card-body">
+          <div style="font-size: 3em; margin-bottom: 15px;">🏛️</div>
+          <h5 class="card-title" style="font-weight: 600;">Văn hóa</h5>
+          <p class="text-muted small mb-0">12+ tours</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-4">
+      <div class="card text-center border-0 shadow-sm h-100" style="cursor: pointer; transition: all 0.3s;">
+        <div class="card-body">
+          <div style="font-size: 3em; margin-bottom: 15px;">🎢</div>
+          <h5 class="card-title" style="font-weight: 600;">Giải trí</h5>
+          <p class="text-muted small mb-0">18+ tours</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Destination Showcase -->
+<div class="container mt-5 mb-5">
+  <div class="section-header" data-aos="fade-up">
+    <div class="section-subtitle">Điểm đến phổ biến</div>
+    <h2>Khám Phá Việt Nam</h2>
+    <p class="section-description">Từ phố cổ Hà Nội đến biển đảo Phú Quốc, trải nghiệm những điểm đến tuyệt vời nhất</p>
+  </div>
+  
+  <div class="row">
+    <!-- Hanoi -->
+    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="destination-card">
+        {% load static %}
+        <img src="{% static 'images/hanoi_city.png' %}" alt="Hà Nội">
+        <div class="destination-overlay">
+          <h3>Hà Nội</h3>
+          <p class="tour-count"><i class="ni ni-map-big"></i> 15+ tours khả dụng</p>
+          <a href="#tours" class="btn btn-white btn-sm explore-btn">
+            <i class="ni ni-spaceship"></i> Khám Phá
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Da Lat -->
+    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&q=80" alt="Đà Lạt">
+        <div class="destination-overlay">
+          <h3>Đà Lạt</h3>
+          <p class="tour-count"><i class="ni ni-map-big"></i> 12+ tours khả dụng</p>
+          <a href="#tours" class="btn btn-white btn-sm explore-btn">
+            <i class="ni ni-spaceship"></i> Khám Phá
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Phu Quoc -->
+    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+      <div class="destination-card">
+        <img src="{% static 'images/phu_quoc_resort.png' %}" alt="Phú Quốc">
+        <div class="destination-overlay">
+          <h3>Phú Quốc</h3>
+          <p class="tour-count"><i class="ni ni-map-big"></i> 10+ tours khả dụng</p>
+          <a href="#tours" class="btn btn-white btn-sm explore-btn">
+            <i class="ni ni-spaceship"></i> Khám Phá
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ha Long -->
+    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="destination-card">
+        <img src="{% static 'images/ha_long_bay.png' %}" alt="Hạ Long">
+        <div class="destination-overlay">
+          <h3>Hạ Long</h3>
+          <p class="tour-count"><i class="ni ni-map-big"></i> 8+ tours khả dụng</p>
+          <a href="#tours" class="btn btn-white btn-sm explore-btn">
+            <i class="ni ni-spaceship"></i> Khám Phá
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Nha Trang -->
+    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&q=80" alt="Nha Trang">
+        <div class="destination-overlay">
+          <h3>Nha Trang</h3>
+          <p class="tour-count"><i class="ni ni-map-big"></i> 14+ tours khả dụng</p>
+          <a href="#tours" class="btn btn-white btn-sm explore-btn">
+            <i class="ni ni-spaceship"></i> Khám Phá
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Da Nang & Hoi An -->
+    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1555424425-48ae5c0ea261?w=800&q=80" alt="Đà Nẵng - Hội An">
+        <div class="destination-overlay">
+          <h3>Đà Nẵng - Hội An</h3>
+          <p class="tour-count"><i class="ni ni-map-big"></i> 18+ tours khả dụng</p>
+          <a href="#tours" class="btn btn-white btn-sm explore-btn">
+            <i class="ni ni-spaceship"></i> Khám Phá
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Enhanced card hover for categories */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Search bar enhancements */
+.form-select:focus, .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Destination Card Styles */
+.destination-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  height: 250px; /* Fixed height for consistency */
+}
+
+.destination-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.destination-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.05);
+}
+
+.destination-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  color: white;
+  padding: 20px;
+  transition: background 0.3s ease;
+}
+
+.destination-overlay h3 {
+  color: white;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.destination-overlay .tour-count {
+  font-size: 0.9em;
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.destination-overlay .explore-btn {
+  background-color: white;
+  color: #667eea;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.destination-overlay .explore-btn:hover {
+  background-color: #e2e6ea;
+  color: #525f7f;
+}
+</style>
+
+<div class="container mt-5" id="tours">
+  <!-- Section Header -->
+  <div class="section-header" data-aos="fade-up">
+    <div class="section-subtitle">Trải nghiệm tuyệt vời</div>
+    <h2>Tours Nổi Bật</h2>
+    <p class="section-description">Khám phá những điểm đến tuyệt đẹp tại Việt Nam với các gói tour được thiết kế đặc biệt</p>
+  </div>
+  
+  <div class="row">
+    {% for tour in tours %}
+    <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'100' }}">
+      <div class="premium-tour-card">
+        <!-- Card Image -->
+        <div class="card-image-wrapper">
+          {% if tour.images.all %}
+            <img src="{{ tour.images.first.image.url }}" alt="{{ tour.images.first.alt_text }}" />
+          {% else %}
+            {% load static %}
+            <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}" />
+          {% endif %}
+          
+          <div class="image-overlay"></div>
+          
+          <!-- Badges -->
+          <div class="card-badges">
+            {% if tour.is_hot %}
+              <span class="badge-custom badge-hot">🔥 Hot</span>
+            {% endif %}
+            {% if tour.get_available_seats <= 5 and tour.get_available_seats > 0 %}
+              <span class="badge-custom badge-limited">⚡ Sắp hết chỗ</span>
+            {% endif %}
+          </div>
+          
+          <!-- Weather Badge (Top-Right) -->
+          {% if tour.weather_data %}
+          <div class="weather-badge-top-right">
+            <span class="weather-icon-large">{{ tour.weather_emoji }}</span>
+            <span class="weather-temp-large">{{ tour.weather_data.temp }}°</span>
+          </div>
+          {% endif %}
+          
+          <!-- Quick Actions -->
+          <div class="quick-actions">
+            <button class="quick-action-btn" title="Yêu thích">
+              <i class="ni ni-favourite-28"></i>
+            </button>
+            <button class="quick-action-btn" title="Chia sẻ">
+              <i class="ni ni-send"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Card Body -->
+        <div class="card-body">
+          <h5 class="card-title">{{ tour.name }}</h5>
+          
+          <!-- Rating -->
+          <div class="tour-rating">
+            <div class="stars">
+              ⭐⭐⭐⭐⭐
+            </div>
+            <span class="rating-count">({{ forloop.counter|add:'20' }} đánh giá)</span>
+          </div>
+          
+          
+          <!-- Tour Details -->
+          <div class="tour-details">
+            <div class="tour-detail-item">
+              <i class="ni ni-pin-3"></i>
+              <span>{{ tour.location }}</span>
+            </div>
+            <div class="tour-detail-item">
+              <i class="ni ni-time-alarm"></i>
+              <span>{{ tour.duration }} ngày</span>
+            </div>
+            <div class="tour-detail-item">
+              <i class="ni ni-circle-08"></i>
+              <span>{{ tour.get_available_seats }}/{{ tour.max_people }} chỗ</span>
+            </div>
+          </div>
+          
+          <!-- Price Display -->
+          <div class="tour-price">
+            <span class="price-label">Từ</span>
+            <span class="price-amount">{{ tour.price|vn_intcomma }}</span>
+            <span class="price-label">VNĐ</span>
+          </div>
+          
+          <!-- Action Button -->
+          <a href="{% url 'tour_detail' tour.pk %}" class="btn btn-primary w-100">
+            <i class="ni ni-spaceship"></i> Xem Chi Tiết
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+      <div class="text-muted">
+        <i class="ni ni-planet" style="font-size: 4rem; opacity: 0.3;"></i>
+        <h4 class="mt-3">Chưa có tour nào</h4>
+        <p>Vui lòng quay lại sau hoặc liên hệ với chúng tôi để biết thêm thông tin.</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+  {% if is_paginated %} <div class="d-flex justify-content-center mt-4">
+    <nav> <ul class="pagination">
+        {% if page_obj.has_previous %} <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+        {% endif %}
+{% for num in page_obj.paginator.page_range %}
+{% if page_obj.number == num %} <li class="page-item active"> <span class="page-link">{{ num }}</span>
+        </li>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <li class="page-item"> <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endif %}
+{% endfor %}
+{% if page_obj.has_next %} <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        {% endif %}\n      </ul>
+    </nav>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Why Choose Us Section -->
+<div class="container mt-5 mb-5">
+  <h2 class="text-center mb-4" style="font-weight: 700;">Tại sao chọn VN Travel?</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="text-center p-4">
+        <div class="mb-3" style="width: 70px; height: 70px; margin: 0 auto; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="ni ni-satisfied" style="font-size: 2em; color: white;"></i>
+        </div>
+        <h5 style="font-weight: 600; margin-bottom: 15px;">Dịch vụ tận tâm</h5>
+        <p class="text-muted">Đội ngũ hướng dẫn viên chuyên nghiệp, nhiệt tình, sẵn sàng hỗ trợ 24/7</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="text-center p-4">
+        <div class="mb-3" style="width: 70px; height: 70px; margin: 0 auto; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="ni ni-badge" style="font-size: 2em; color: white;"></i>
+        </div>
+        <h5 style="font-weight: 600; margin-bottom: 15px;">Giá cả hợp lý</h5>
+        <p class="text-muted">Cam kết giá tốt nhất, minh bạch, không phí phát sinh</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="text-center p-4">
+        <div class="mb-3" style="width: 70px; height: 70px; margin: 0 auto; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <i class="ni ni-atom" style="font-size: 2em; color: white;"></i>
+        </div>
+        <h5 style="font-weight: 600; margin-bottom: 15px;">AI Travel Advisor</h5>
+        <p class="text-muted">Tư vấn du lịch thông minh với công nghệ AI hiện đại</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Customer Testimonials -->
+<div class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+  <div class="container">
+    <h2 class="text-center mb-5" style="font-weight: 700;">Khách hàng nói gì về chúng tôi</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2em;">
+                A
+              </div>
+              <div class="ms-3">
+                <h6 class="mb-0" style="font-weight: 600;">Anh Minh</h6>
+                <div style="color: #ffc107; font-size: 0.9em;">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+            <p class="text-muted mb-0" style="font-style: italic;">"Chuyến đi Đà Lạt tuyệt vời! Hướng dẫn viên nhiệt tình, lịch trình hợp lý. Gia đình tôi rất hài lòng."</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2em;">
+                H
+              </div>
+              <div class="ms-3">
+                <h6 class="mb-0" style="font-weight: 600;">Chị Hương</h6>
+                <div style="color: #ffc107; font-size: 0.9em;">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+            <p class="text-muted mb-0" style="font-style: italic;">"Tour Phú Quốc 4 ngày rất đáng tiền. Khách sạn đẹp, ăn uống ngon. Sẽ quay lại lần sau!"</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center mb-3">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2em;">
+                T
+              </div>
+              <div class="ms-3">
+                <h6 class="mb-0" style="font-weight: 600;">Anh Tuấn</h6>
+                <div style="color: #ffc107; font-size: 0.9em;">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+            <p class="text-muted mb-0" style="font-style: italic;">"AI chatbot tư vấn rất hữu ích, giúp tôi chọn được tour phù hợp. Dịch vụ chuyên nghiệp!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter Section -->
+<div class="container my-5">
+  <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px;">
+    <div class="card-body p-5 text-center text-white">
+      <h3 class="mb-3" style="font-weight: 700;">Nhận ưu đãi đặc biệt</h3>
+      <p class="mb-4" style="font-size: 1.1em;">Đăng ký nhận thông tin về các tour mới và khuyến mãi hấp dẫn</p>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <input type="email" class="form-control" placeholder="Nhập email của bạn" style="border-radius: 8px 0 0 8px; border: none;">
+            <button class="btn btn-light" type="button" style="border-radius: 0 8px 8px 0; font-weight: 600; color: #667eea;">
+              Đăng ký <i class="ni ni-send"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- AOS (Animate On Scroll) Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 800,
+    easing: 'ease-out',
+    once: true,
+    offset: 100
+  });
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script>
+
+{% endblock %}

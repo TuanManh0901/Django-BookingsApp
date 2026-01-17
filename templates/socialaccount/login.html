@@ -1,0 +1,18 @@
+{% extends "socialaccount/base.html" %}
+
+{% block head_title %}Sign In{% endblock %}
+
+{% block content %}
+<form method="post" action="{{ action_url }}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="hidden" name="process" value="login" />
+</form>
+
+<script>
+  // Auto-submit the form to skip confirmation page
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('form').submit();
+  });
+</script>
+{% endblock %}

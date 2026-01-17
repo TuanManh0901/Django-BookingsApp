@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Chỉnh sửa thông tin - VN Travel{% endblock %}
+
+{% block content %}
+<!-- Threeland Hero - Edit Profile -->
+<div class="threeland-hero" style="min-height: 40vh;">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">ACCOUNT SETTINGS</p>
+    <h1 class="hero-main-title">Chỉnh sửa thông tin</h1>
+  </div>
+</div>
+
+<!-- Edit Form Content -->
+<div class="container mt-n5" style="position: relative; z-index: 100;">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <div class="card shadow-lg rounded-premium border-0">
+        <div class="card-body p-4 p-md-5">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <form method="post" novalidate class="profile-edit-form">
+            {% csrf_token %}
+
+            <!-- Account Information Section -->
+            <div class="mb-5">
+              <h4 class="mb-4" style="font-family: 'Playfair Display', serif; font-weight: 700; color: var(--gray-900);">
+                <i class="ni ni-circle-08 me-2" style="color: var(--primary-light);"></i>
+                Thông tin tài khoản
+              </h4>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="{{ user_form.first_name.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">Tên</label>
+                  {{ user_form.first_name }}
+                  {% if user_form.first_name.errors %}
+                    <div class="text-danger small mt-1">{{ user_form.first_name.errors }}</div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="{{ user_form.last_name.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">Họ</label>
+                  {{ user_form.last_name }}
+                  {% if user_form.last_name.errors %}
+                    <div class="text-danger small mt-1">{{ user_form.last_name.errors }}</div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-12">
+                  <label for="{{ user_form.email.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">Email</label>
+                  {{ user_form.email }}
+                  {% if user_form.email.errors %}
+                    <div class="text-danger small mt-1">{{ user_form.email.errors }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Personal Information Section -->
+            <div class="mb-5">
+              <h4 class="mb-4" style="font-family: 'Playfair Display', serif; font-weight: 700; color: var(--gray-900);">
+                <i class="ni ni-badge me-2" style="color: var(--primary-light);"></i>
+                Thông tin cá nhân
+              </h4>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="{{ form.phone.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">
+                    <i class="ni ni-mobile-button me-1"></i> Số điện thoại
+                  </label>
+                  {{ form.phone }}
+                  {% if form.phone.errors %}
+                    <div class="text-danger small mt-1">{{ form.phone.errors }}</div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="{{ form.cccd.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">
+                    <i class="ni ni-credit-card me-1"></i> CCCD/CMND
+                  </label>
+                  {{ form.cccd }}
+                  {% if form.cccd.errors %}
+                    <div class="text-danger small mt-1">{{ form.cccd.errors }}</div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="{{ form.date_of_birth.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">
+                    <i class="ni ni-calendar-grid-58 me-1"></i> Ngày sinh
+                  </label>
+                  {{ form.date_of_birth }}
+                  {% if form.date_of_birth.errors %}
+                    <div class="text-danger small mt-1">{{ form.date_of_birth.errors }}</div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="{{ form.gender.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">
+                    <i class="ni ni-satisfied me-1"></i> Giới tính
+                  </label>
+                  {{ form.gender }}
+                  {% if form.gender.errors %}
+                    <div class="text-danger small mt-1">{{ form.gender.errors }}</div>
+                  {% endif %}
+                </div>
+                
+                <div class="col-12">
+                  <label for="{{ form.address.id_for_label }}" class="form-label fw-semibold text-muted small text-uppercase">
+                    <i class="ni ni-pin-3 me-1"></i> Địa chỉ
+                  </label>
+                  {{ form.address }}
+                  {% if form.address.errors %}
+                    <div class="text-danger small mt-1">{{ form.address.errors }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+              </div>
+            {% endif %}
+
+            <!-- Action Buttons -->
+            <div class="d-flex flex-wrap gap-3 justify-content-between mt-5 pt-4" style="border-top: 1px solid var(--gray-200);">
+              <a href="{% url 'user_profile' %}" class="btn btn-outline-secondary btn-lg" style="border-radius: var(--radius-lg); min-width: 150px;">
+                <i class="ni ni-bold-left me-2"></i>
+                Hủy
+              </a>
+              
+              <button type="submit" class="btn btn-primary btn-lg" style="border-radius: var(--radius-lg); min-width: 150px; background: var(--gradient-hero); border: none;">
+                <i class="ni ni-check-bold me-2"></i>
+                Lưu thay đổi
+              </button>
+            </div>
+          </form>
+
+          <!-- Info Note -->
+          <div class="mt-4 p-3 rounded" style="background: var(--gray-50);">
+            <small class="text-muted">
+              <i class="ni ni-bell-55 me-2"></i>
+              <strong>Lưu ý:</strong> Thông tin này sẽ được hiển thị khi bạn đặt tour và trong hồ sơ cá nhân.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .profile-edit-form .form-control,
+  .profile-edit-form .form-select {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray-300);
+    padding: 0.75rem 1rem;
+    transition: all var(--transition-base);
+  }
+
+  .profile-edit-form .form-control:focus,
+  .profile-edit-form .form-select:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .profile-edit-form label {
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+</style>
+{% endblock %}

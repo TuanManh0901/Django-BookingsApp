@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Du Lịch Có Trách Nhiệm - VN Travel{% endblock %}
+
+{% block content%}
+<div class="threeland-hero">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <div class="container text-center">
+      <p class="hero-subtitle">DU LỊCH BỀN VỮNG</p>
+      <h1 class="hero-main-title">Trách Nhiệm Của Chúng Tôi</h1>
+    </div>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Cam Kết Du Lịch Có Trách Nhiệm</h2>
+        <p class="lead">
+          Tại VN Travel, chúng tôi tin rằng du lịch không chỉ mang lại trải nghiệm tuyệt vời cho khách hàng 
+          mà còn phải bảo vệ môi trường, văn hóa và cộng đồng địa phương.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4">
+        <div class="responsibility-card">
+          <div class="responsibility-icon">
+            <i class="ni ni-world-2"></i>
+          </div>
+          <h3>Bảo Vệ Môi Trường</h3>
+          <p>
+            Chúng tôi cam kết giảm thiểu tác động tiêu cực đến môi trường thông qua việc sử dụng 
+            năng lượng sạch, giảm rác thải nhựa, và hỗ trợ các dự án bảo tồn thiên nhiên.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="responsibility-card">
+          <div class="responsibility-icon">
+            <i class="ni ni-building"></i>
+          </div>
+          <h3>Hỗ Trợ Cộng Đồng</h3>
+          <p>
+            Làm việc với các doanh nghiệp địa phương, nhà hàng gia đình, và homestay để tạo thu nhập 
+            bền vững cho cộng đồng. 70% chi phí tour được phân phối trực tiếp cho người dân địa phương.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-lg-4">
+        <div class="responsibility-card">
+          <div class="responsibility-icon">
+            <i class="ni ni-trophy"></i>
+          </div>
+          <h3>Bảo Tồn Văn Hóa</h3>
+          <p>
+            Tôn trọng và bảo vệ di sản văn hóa, truyền thống địa phương. Hợp tác với các nghệ nhân 
+            truyền thống và tổ chức văn hóa để gìn giữ bản sắc Việt Nam.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80" 
+             alt="Responsible tourism" 
+             class="img-fluid rounded shadow">
+      </div>
+      <div class="col-lg-6">
+        <h2 class="mb-4">Hành Động Cụ Thể</h2>
+        <ul class="action-list">
+          <li><i class="ni ni-check-bold text-success"></i> Sử dụng xe điện và hybrid khi có thể</li>
+          <li><i class="ni ni-check-bold text-success"></i> Hợp tác với homestay và nhà hàng địa phương</li>
+          <li><i class="ni ni-check-bold text-success"></i> Hạn chế sử dụng nhựa một lần</li>
+          <li><i class="ni ni-check-bold text-success"></i> Đóng góp cho các dự án bảo tồn rừng và biển</li>
+          <li><i class="ni ni-check-bold text-success"></i> Giáo dục du khách về văn hóa và môi trường địa phương</li>
+          <li><i class="ni ni-check-bold text-success"></i> Tuyển dụng và đào tạo hướng dẫn viên địa phương</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section text-center">
+      <h2 class="mb-3">Cùng Chúng Tôi Du Lịch Có Trách Nhiệm</h2>
+      <p class="mb-4">Khám phá Việt Nam một cách bền vững và có ý nghĩa</p>
+      <a href="{% url 'vietnam_destinations' %}" class="btn btn-primary btn-lg">
+        Xem Tours <i class="ni ni-bold-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+.responsibility-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.responsibility-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.responsibility-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.responsibility-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2d3436;
+}
+
+.responsibility-card p {
+  color: #636e72;
+  line-height: 1.7;
+}
+
+.action-list {
+  list-style: none;
+  padding: 0;
+}
+
+.action-list li {
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.action-list li i {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 4rem 2rem;
+  border-radius: 12px;
+  color: white;
+  margin-top: 4rem;
+}
+
+.cta-section h2 {
+  color: white;
+  font-weight: 700;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+</style>
+{% endblock %}

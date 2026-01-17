@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load currency_filters %}
+{% load humanize %}
+
+{% block title %}Tours Campuchia - VN Travel{% endblock %}
+
+{% block content %}
+<div class="threeland-hero hero-tall">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1604421165735-7a896dd0c74d?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <div class="container text-center">
+      <p class="hero-subtitle">KHÁM PHÁ CAMPUCHIA</p>
+      <h1 class="hero-main-title">Tours Campuchia</h1>
+      <p class="text-white" style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem;">
+        Khám phá Angkor Wat huyền bí và vẻ đẹp thanh bình của Campuchia
+      </p>
+    </div>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    {% if tours %}
+      <h3 class="mb-4">Tours Campuchia ({{ total_tours }})</h3>
+      <div class="row g-4">
+        {% for tour in tours %}
+        <div class="col-lg-4 col-md-6">
+          <div class="tour-card-premium">
+            <div class="tour-image-wrapper">
+              {% if tour.images.all %}
+                <img src="{{ tour.images.first.image.url }}" alt="{{ tour.name }}">
+              {% else %}
+                <img src="https://images.unsplash.com/photo-1604421165735-7a896dd0c74d?w=800&q=80" alt="{{ tour.name }}">
+              {% endif %}
+              <div class="tour-badge">{{ tour.duration }} ngày</div>
+            </div>
+            
+            <div class="tour-card-body">
+              <div class="tour-location-tag">
+                <i class="ni ni-pin-3"></i> {{ tour.location }}
+              </div>
+              
+              <h4 class="tour-card-title">
+                <a href="{% url 'tour_detail' tour.pk %}">{{ tour.name }}</a>
+              </h4>
+              
+              <p class="tour-card-description">
+                {{ tour.description|truncatewords:20 }}
+              </p>
+              
+              <div class="tour-card-footer">
+                <div class="tour-price">
+                  <span class="price-label">Từ</span>
+                  <span class="price-value">{{ tour.price|currency_vnd }}</span>
+                </div>
+                <a href="{% url 'tour_detail' tour.pk %}" class="btn btn-sm btn-primary">
+                  Chi Tiết <i class="ni ni-bold-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="coming-soon-section">
+        <div class="text-center py-5">
+          <i class="ni ni-world-2" style="font-size: 5rem; color: #667eea; opacity: 0.3;"></i>
+          <h2 class="mt-4 mb-3">Sắp Ra Mắt</h2>
+          <p class="text-muted" style="font-size: 1.1rem;">
+            Chúng tôi đang chuẩn bị những tour Campuchia tuyệt vời.<br>
+            Vui lòng quay lại sau hoặc xem các tour Việt Nam của chúng tôi.
+          </p>
+          <a href="{% url 'vietnam_destinations' %}" class="btn btn-primary btn-lg mt-3">
+            <i class="ni ni-bold-left"></i> Xem Tours Việt Nam
+          </a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+.coming-soon-section {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+{% endblock %}

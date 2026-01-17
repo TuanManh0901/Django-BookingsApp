@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}Book Tour: {{ tour.name }}{% endblock %}
+
+{% block content %}
+<!-- Threeland Hero - Create Booking -->
+<div class="threeland-hero hero-short">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">Complete Your Booking</p>
+    <h1 class="hero-main-title">{{ tour.name }}</h1>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm" style="border-radius: 15px;">
+        <div class="card-body p-4">
+          <!-- Thông tin số chỗ -->
+          <div class="alert alert-info mb-4">
+            <div class="row">
+              <div class="col-md-4">
+                <strong>Tổng chỗ:</strong> {{ tour.max_people }}
+              </div>
+              <div class="col-md-4">
+                <strong>Đã đặt:</strong> <span class="text-warning">{{ tour.get_total_booked_people }}</span>
+              </div>
+              <div class="col-md-4">
+                <strong>Còn trống:</strong> 
+                {% if tour.get_available_seats <= 0 %}
+                  <span class="badge bg-danger">Hết chỗ</span>
+                {% elif tour.get_available_seats <= 5 %}
+                  <span class="badge bg-warning text-dark">{{ tour.get_available_seats }} chỗ</span>
+                {% else %}
+                  <span class="badge bg-success">{{ tour.get_available_seats }} chỗ</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          {% if tour.is_full %}
+            <div class="alert alert-danger">
+              <strong>Xin lỗi!</strong> Tour này đã hết chỗ. Vui lòng chọn tour khác hoặc liên hệ chúng tôi để được hỗ trợ.
+            </div>
+            <a href="{% url 'tour_list' %}" class="btn btn-primary">Xem các tour khác</a>
+          {% else %}
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="{{ form.booking_date.id_for_label }}" class="form-label">Booking Date</label>
+              {{ form.booking_date }}
+              {% if form.booking_date.errors %}
+                <div class="text-danger">{{ form.booking_date.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.num_adults.id_for_label }}" class="form-label">Number of Adults</label>
+              {{ form.num_adults }}
+              {% if form.num_adults.errors %}
+                <div class="text-danger">{{ form.num_adults.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.num_children.id_for_label }}" class="form-label">Number of Children</label>
+              {{ form.num_children }}
+              {% if form.num_children.errors %}
+                <div class="text-danger">{{ form.num_children.errors }}</div>
+              {% endif %}
+            </div>
+
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary">Book Now</button>
+            <a href="{% url 'tour_detail' tour.pk %}" class="btn btn-secondary">Cancel</a>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

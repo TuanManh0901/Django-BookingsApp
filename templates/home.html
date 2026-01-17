@@ -1,0 +1,1038 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+VN Travel
+{% endblock %}
+
+{% block messages %}
+{% if messages %}
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9999; margin-top: 80px;">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-lg" role="alert" style="min-width: 300px;">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock messages %}
+
+{% block content %}
+<!-- Threeland-Style Full Screen Hero -->
+<div class="threeland-hero">
+  <!-- Background Image -->
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+
+  <!-- Hero Content Center -->
+  <div class="hero-main-content">
+    <div class="container text-center">
+      <h1 class="hero-main-title" data-aos="fade-up">
+        HÀNH TRÌNH RỰC RỠ
+      </h1>
+      <p class="hero-subtitle-elegant" data-aos="fade-up" data-aos-delay="150">
+        Trải nghiệm trọn vẹn tại Việt Nam
+      </p>
+      <a href="{% url 'search_tours' %}" class="btn-plan-trip" data-aos="fade-up" data-aos-delay="200">
+        Lên Kế Hoạch
+      </a>
+    </div>
+  </div>
+  
+  <!-- Search Bar at Bottom -->
+  <div class="hero-search-bottom">
+    <div class="container-fluid px-4">
+      <form action="{% url 'search_tours' %}" method="GET" class="search-form-bottom">
+        <div class="search-fields-row">
+          <!-- Duration -->
+          <div class="search-field-item">
+            <i class="ni ni-calendar-grid-58"></i>
+            <select name="duration" class="form-select-transparent">
+              <option value="">Thời Gian</option>
+              <option value="1">1 ngày</option>
+              <option value="2">2 ngày</option>
+              <option value="3">3 ngày</option>
+              <option value="4">4 ngày</option>
+              <option value="5">5 ngày</option>
+              <option value="7">7 ngày</option>
+              <option value="10">10+ ngày</option>
+            </select>
+          </div>
+          
+          <!-- Tour Style -->
+          <div class="search-field-item">
+            <i class="ni ni-world-2"></i>
+            <select name="location" class="form-select-transparent">
+              <option value="">Điểm Đến</option>
+              <option value="Hà Nội">Hà Nội</option>
+              <option value="Hạ Long">Vịnh Hạ Long</option>
+              <option value="Đà Lạt">Đà Lạt</option>
+              <option value="Phú Quốc">Quần Đảo Phú Quốc</option>
+              <option value="Nha Trang">Nha Trang</option>
+              <option value="Sapa">Sapa</option>
+            </select>
+          </div>
+          
+          <!-- Search Input -->
+          <div class="search-field-item search-input-field">
+            <i class="ni ni-zoom-split-in"></i>
+            <input type="text" name="q" placeholder="Tìm kiếm..." class="form-control-transparent">
+          </div>
+          
+          <!-- Search Button -->
+          <button type="submit" class="btn-search-bottom">
+            Tìm Kiếm <i class="ni ni-bold-right"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Content Sections Below -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title-main">Trải Nghiệm Tour Bán Chạy Nhất</h2>
+      <p class="section-subtitle-main">Khám phá những tour phổ biến nhất ở Việt Nam</p>
+    </div>
+    
+    <div class="row g-4">
+      {% load static %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <a href="{% url 'search_tours' %}?location=Hà Nội" class="destination-card-threeland">
+          <img src="{% static 'images/hanoi_city.png' %}" alt="Hanoi">
+          
+          <!-- Weather Badge -->
+          {% if destinations_weather.0.weather %}
+          <div class="weather-badge">
+            <span class="weather-icon">{{ destinations_weather.0.icon_emoji }}</span>
+            <span class="weather-temp">{{ destinations_weather.0.weather.temp }}°C</span>
+          </div>
+          {% endif %}
+          
+          <div class="destination-info-threeland">
+            <h4>Tour Thành Phố Hà Nội</h4>
+            <p class="tour-count-text">Khám phá thủ đô</p>
+          </div>
+        </a>
+      </div>
+      
+      
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <a href="{% url 'search_tours' %}?location=Hạ Long" class="destination-card-threeland">
+          <img src="{% static 'images/ha_long_bay.png' %}" alt="Ha Long">
+          
+          <!-- Weather Badge -->
+          {% if destinations_weather.1.weather %}
+          <div class="weather-badge">
+            <span class="weather-icon">{{ destinations_weather.1.icon_emoji }}</span>
+            <span class="weather-temp">{{ destinations_weather.1.weather.temp }}°C</span>
+          </div>
+          {% endif %}
+          
+          <div class="destination-info-threeland">
+            <h4>Du Thuyền Vịnh Hạ Long</h4>
+            <p class="tour-count-text">Di sản Thế giới UNESCO</p>
+          </div>
+        </a>
+      </div>
+      
+      
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <a href="{% url 'search_tours' %}?location=Phú Quốc" class="destination-card-threeland">
+          <img src="{% static 'images/phu_quoc_resort.png' %}" alt="Phu Quoc">
+          
+          <!-- Weather Badge -->
+          {% if destinations_weather.2.weather %}
+          <div class="weather-badge">
+            <span class="weather-icon">{{ destinations_weather.2.icon_emoji }}</span>
+            <span class="weather-temp">{{ destinations_weather.2.weather.temp }}°C</span>
+          </div>
+          {% endif %}
+          
+          <div class="destination-info-threeland">
+            <h4>Khu Nghỉ Dưỡng Phú Quốc</h4>
+            <p class="tour-count-text">Thiên đường nhiệt đới</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="text-center mt-5">
+      <a href="{% url 'search_tours' %}" class="btn btn-primary btn-lg px-5">
+        Xem Tất Cả Tours
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About Us Section with Statistics -->
+<section class="py-5 bg-white" id="about-us">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- Quote Icon Top -->
+        <div class="text-center mb-4" data-aos="fade-up">
+          <div class="quote-icon-top">
+            <i class="ni ni-chat-round"></i>
+          </div>
+        </div>
+        
+        <!-- Section Title -->
+        <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="d-inline-block mb-3 px-3 py-1" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px;">
+            <img src="{% static 'argon-dashboard-master/assets/img/favicon-travel.svg' %}" alt="VN Travel" style="height: 24px; vertical-align: middle;">
+          </div>
+          <h2 class="section-title-main mb-3">Đối Tác Du Lịch Đáng Tin Cậy Tại Việt Nam</h2>
+        </div>
+        
+        <!-- Company Description -->
+        <div class="about-description text-center mb-5" data-aos="fade-up" data-aos-delay="200">
+          <p class="lead" style="line-height: 1.8; color: #2d3436; font-size: 1.05rem;">
+            Với hơn 15 năm kinh nghiệm, VN Travel là công ty du lịch Việt Nam đáng tin cậy và được công nhận là DMC cao cấp tại Đông Dương. 
+            Đội ngũ địa phương, đa ngôn ngữ của chúng tôi tạo ra những chuyến đi được cá nhân hóa trên khắp Việt Nam, Campuchia, Lào và Thái Lan, 
+            được thiết kế cho mọi phong cách du lịch và ngân sách. Hiện chúng tôi đang phục vụ hơn 1.000 đối tác toàn cầu với dịch vụ xuất sắc 
+            cho các tour du lịch tư nhân, tour nhóm và MICE. Với 25% khách hàng quay lại hàng năm, chúng tôi tự hào cung cấp những chuyến du lịch 
+            vừa chân thực vừa khó quên.
+          </p>
+          <p class="lead" style="line-height: 1.8; color: #2d3436; font-size: 1.05rem;">
+            Chọn VN Travel, công ty du lịch Việt Nam đáng tin cậy của bạn cho những cuộc phiêu lưu ý nghĩa, không lo lắng.
+          </p>
+        </div>
+        
+        
+        <!-- Decorative Divider -->
+        <div class="text-center mt-4 mb-5" data-aos="fade-up" data-aos-delay="300">
+          <div style="width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #667eea, transparent); margin: 0 auto;"></div>
+        </div>
+        
+        <!-- Statistics Bar -->
+        <div class="statistics-bar" data-aos="fade-up" data-aos-delay="400">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <div class="stat-item">
+                <h3 class="stat-number">50+</h3>
+                <p class="stat-label">Điểm Đến</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-item">
+                <h3 class="stat-number">1000+</h3>
+                <p class="stat-label">Đối Tác Toàn Cầu</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-item">
+                <h3 class="stat-number">50+</h3>
+                <p class="stat-label">Chuyên Gia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quote Icon Bottom -->
+        <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="500">
+          <div class="quote-icon-bottom">
+            <i class="ni ni-chat-round"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Choose VN Travel For -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-title-main">Chọn VN Travel Với</h2>
+      <p class="section-subtitle-main">Cam kết của chúng tôi với sự xuất sắc</p>
+    </div>
+    
+    <div class="row g-4">
+      <!-- Best Price -->
+      <div class="col-lg-3 col-md-6" data-aos="fade-up">
+        <div class="choose-us-card text-center h-100">
+          <div class="choose-us-icon">
+            <i class="ni ni-money-coins"></i>
+          </div>
+          <h5 class="choose-us-title">Giá Tốt Nhất</h5>
+          <p class="choose-us-description">
+            Được công nhận là người chiến thắng về giá tại nhiều thị trường với các câu trả lời và tư vấn được cung cấp trong vòng 24 giờ.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Professionalism -->
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="choose-us-card text-center h-100">
+          <div class="choose-us-icon">
+            <i class="ni ni-badge"></i>
+          </div>
+          <h5 class="choose-us-title">Chuyên Nghiệp</h5>
+          <p class="choose-us-description">
+            Đội ngũ hơn 50 chuyên gia tận tâm; đại lý du lịch hàng đầu với các văn phòng khu vực trên khắp Đông Dương.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Flexibility -->
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="choose-us-card text-center h-100">
+          <div class="choose-us-icon">
+            <i class="ni ni-settings"></i>
+          </div>
+          <h5 class="choose-us-title">Linh Hoạt</h5>
+          <p class="choose-us-description">
+            Lựa chọn đa dạng từ khách sạn 5 sao đến homestay ấm cúng; dịch vụ tùy chỉnh cho các nhóm linh hoạt từ FIT, GIT đến MICE.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Reliability -->
+      <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="choose-us-card text-center h-100">
+          <div class="choose-us-icon">
+            <i class="ni ni-support-16"></i>
+          </div>
+          <h5 class="choose-us-title">Đáng Tin Cậy</h5>
+          <p class="choose-us-description">
+            15+ năm kinh nghiệm lâu dài và ổn định tài chính với bảo hiểm trách nhiệm du lịch cao lên đến 500,000 USD.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials / Reviews Section -->
+<section class="py-5 bg-light" id="reviews">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-title-main">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+      <p class="section-subtitle-main">Trải nghiệm thực tế từ những du khách đã đi cùng VN Travel</p>
+    </div>
+
+    {% if featured_reviews %}
+    <!-- Testimonials Carousel -->
+    <div class="testimonials-carousel swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+        {% for review in featured_reviews %}
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img src="https://ui-avatars.com/api/?name={{ review.user.get_full_name|default:review.user.username|urlencode }}&size=80&background=667eea&color=fff" 
+                   alt="{{ review.user.get_full_name|default:review.user.username }}" 
+                   class="testimonial-avatar">
+              <div class="testimonial-user-info">
+                <h5 class="testimonial-name">{{ review.user.get_full_name|default:review.user.username }}</h5>
+                <div class="testimonial-rating">
+                  {% for i in "12345" %}
+                    {% if forloop.counter <= review.rating %}
+                      <span class="star filled">★</span>
+                    {% else %}
+                      <span class="star">☆</span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-body">
+              <p class="testimonial-comment">"{{ review.comment }}"</p>
+              <p class="testimonial-tour-name">
+                <i class="ni ni-pin-3"></i> {{ review.tour.name }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+      
+      <!-- Navigation -->
+     <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    {% else %}
+    <div class="text-center text-muted">
+      <p>Chưa có đánh giá nào.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Floating Chat Widget -->
+<div class="floating-chat-widget">
+  <a href="{% url 'ai_chatbot:chat' %}" class="chat-bubble">
+    <i class="ni ni-chat-round"></i>
+  </a>
+</div>
+
+<style>
+/* Threeland Hero Styles */
+.threeland-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+
+/* Hero Main Content */
+.hero-main-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+}
+
+.hero-main-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.hero-subtitle-elegant {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: white;
+  font-style: italic;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0.95;
+}
+
+.btn-plan-trip {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-plan-trip:hover {
+  background: white;
+  color: #2d3436;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Search Bar Bottom */
+.hero-search-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 2rem 0;
+}
+
+.search-form-bottom {
+  background: white;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-fields-row {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.search-field-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-right: 1px solid #e0e0e0;
+}
+
+.search-field-item:last-of-type {
+  border-right: none;
+}
+
+.search-field-item i {
+  color: #667eea;
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.form-select-transparent,
+.form-control-transparent {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #2d3436;
+  width: 100%;
+}
+
+.form-select-transparent:focus,
+.form-control-transparent:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control-transparent::placeholder {
+  color: #95a5a6;
+}
+
+.search-input-field {
+  flex: 1.5;
+}
+
+.btn-search-bottom {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-search-bottom:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Destination Cards */
+.destination-card-threeland {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 300px;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.destination-card-threeland:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.destination-card-threeland img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.destination-card-threeland:hover img {
+  transform: scale(1.05);
+}
+
+.destination-info-threeland {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 2rem;
+}
+
+.destination-info-threeland h4 {
+  color: white;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.tour-count-text {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+/* Weather Badge */
+.weather-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  font-weight: 600;
+}
+
+.weather-icon {
+  font-size: 1.2rem;
+}
+
+.weather-temp {
+  color: #2d3436;
+  font-size: 0.95rem;
+}
+
+/* Feature Boxes */
+.feature-box-threeland {
+  padding: 2rem 1rem;
+}
+
+.feature-icon-threeland {
+  font-size: 3rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.feature-box-threeland h5 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.feature-box-threeland p {
+  color: #636e72;
+  margin-bottom: 0;
+}
+
+/* Section Titles */
+.section-title-main {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle-main {
+  font-size: 1.1rem;
+  color: #636e72;
+  margin-bottom: 0;
+}
+
+/* Floating Chat Widget */
+.floating-chat-widget {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.chat-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.chat-bubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(102, 126, 234, 0.8);
+  }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .search-fields-row {
+    flex-direction: column;
+  }
+  
+  .search-field-item {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .btn-search-bottom {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hero-main-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-main-title {
+    font-size: 2rem;
+  }
+  
+  .btn-plan-trip {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Testimonials Carousel Styles */
+.testimonials-carousel {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 60px;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  border: 3px solid #667eea;
+}
+
+.testimonial-user-info {
+  flex: 1;
+}
+
+.testimonial-name {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.testimonial-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.testimonial-rating .star {
+  color: #dfe6e9;
+  font-size: 1.2rem;
+}
+
+.testimonial-rating .star.filled {
+  color: #FDB241;
+}
+
+.testimonial-body {
+  margin-top: 1rem;
+}
+
+.testimonial-comment {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #636e72;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.testimonial-tour-name {
+  font-size: 0.9rem;
+  color: #667eea;
+  font-weight: 500;
+  margin: 0;
+}
+
+.testimonial-tour-name i {
+  margin-right: 5px;
+}
+
+/* Swiper Navigation */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #667eea !important;
+  width: 44px !important;
+  height: 44px !important;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 20px !important;
+  font-weight: 700;
+}
+
+.swiper-pagination-bullet {
+  background: #667eea !important;
+  opacity: 0.3;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonials-carousel {
+    padding: 0 40px;
+  }
+  
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+  
+  .testimonial-avatar {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* About Us Section Styles */
+.quote-icon-top,
+.quote-icon-bottom {
+  font-size: 3rem;
+  color: #0066B3;
+  opacity: 0.2;
+}
+
+.quote-icon-top {
+  transform: rotate(180deg);
+}
+
+.about-description {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Statistics Bar */
+.statistics-bar {
+  background: linear-gradient(135deg, #0066B3 0%, #0052a3 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 102, 179, 0.2);
+}
+
+.stat-item {
+  padding: 2.5rem 1rem;
+  color: white;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Choose Us Cards */
+.choose-us-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.choose-us-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.choose-us-icon {
+  font-size: 3.5rem;
+  color: #667eea;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.choose-us-card:hover .choose-us-icon {
+  transform: scale(1.1);
+  color: #5568d3;
+}
+
+.choose-us-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 1rem;
+}
+
+.choose-us-description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #636e72;
+  margin: 0;
+}
+
+/* Responsive for About Us and Choose Us */
+@media (max-width: 768px) {
+  .stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.85rem;
+  }
+  
+  .stat-item {
+    padding: 2rem 1rem;
+  }
+  
+  .stat-item:not(:last-child)::after {
+    display: none;
+  }
+  
+  .choose-us-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .choose-us-icon {
+    font-size: 3rem;
+  }
+}
+
+</style>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+</style>
+
+<!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Swiper JS - MUST load BEFORE init -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  // Initialize AOS
+  AOS.init({
+    duration: 600,
+    easing: 'ease-out',
+    once: true
+  });
+
+  // Initialize Swiper for testimonials
+  const testimonialsSwiper = new Swiper('.testimonials-carousel', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  });
+</script>
+
+
+<script>
+</script>
+
+{% endblock %}

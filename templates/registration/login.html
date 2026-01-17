@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load socialaccount %}
+{% block title %}
+Đăng nhập - VN Travel
+{% endblock %}
+
+{% block body_class %}auth-page{% endblock %}
+
+{% block content %}
+<!-- Threeland Hero - Full Screen Authentication -->
+<div class="threeland-hero" style="min-height: 100vh;">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <!-- Hero Title -->
+          <div class="text-center mb-4">
+            <p class="hero-subtitle">Welcome</p>
+            <h1 class="hero-main-title mb-4">Login</h1>
+          </div>
+          
+          <!-- Login Card -->
+          <div class="card bg-white shadow border-0">
+            <div class="card-body px-lg-5 py-lg-4">
+              {% if form.non_field_errors %}
+              <div class="soft-alert mb-3">
+                {% for error in form.non_field_errors %}
+                  {% if 'email address and/or password' in error|lower or 'not correct' in error|lower %}
+                    <span class="text-danger"><i class="fas fa-exclamation-circle alert-icon" aria-hidden="true"></i> <strong>Đăng nhập thất bại!</strong> Email hoặc mật khẩu không đúng.</span>
+                  {% else %}
+                    <span class="text-danger"><i class="fas fa-exclamation-circle alert-icon" aria-hidden="true"></i> <strong>Lỗi!</strong> {{ error }}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              {% endif %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+              {% endfor %}
+              {% endif %}
+              <form method="post" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                  <label class="form-control-label" for="id_login">
+                    <i class="fas fa-user"></i> Email hoặc tên đăng nhập
+                  </label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" name="login" class="form-control" placeholder="Email hoặc tên đăng nhập" id="id_login" required autofocus />
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label class="form-control-label" for="id_password">
+                    <i class="fas fa-lock"></i> Mật khẩu
+                  </label>
+                  <div class="input-group input-group-alternative" style="position: relative;">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control password-input" placeholder="Mật khẩu" id="id_password" required style="padding-right: 45px;" />
+                    <button type="button" class="toggle-password" data-target="id_password" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer; color: #1e293b; padding: 0; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-size: 22px; z-index: 10;">
+                      🙈
+                    </button>
+                  </div>
+                </div>
+                <div class="custom-control custom-checkbox mb-3">
+                  <input class="custom-control-input" id="customCheck" type="checkbox" name="remember" />
+                  <label class="custom-control-label" for="customCheck">
+                    <span class="text-muted">Ghi nhớ đăng nhập</span>
+                  </label>
+                </div>
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                  </button>
+                </div>
+              </form>
+              <div class="row mt-3">
+                <div class="col-12 text-center">
+                  <a href="{% url 'account_reset_password' %}" class="text-muted">
+                    <small>Quên mật khẩu?</small>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent">
+              <div class="text-center">
+                <small>Chưa có tài khoản? <a href="{% url 'register' %}" class="text-primary"><strong>Đăng ký ngay</strong></a></small>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Social Login -->
+          <div class="row mt-3">
+            <div class="col text-center"><small class="text-white">hoặc đăng nhập bằng</small></div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <a class="btn btn-outline-light btn-block w-100" href="{% provider_login_url 'google' process='login' %}">
+                <i class="fab fa-google"></i> Google
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .input-group-alternative {
+    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+    border: 0;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .input-group-alternative .form-control {
+    border: 0;
+  }
+
+  .input-group-alternative .input-group-text {
+    border: 0;
+    background-color: transparent;
+    color: #8898aa;
+  }
+
+  .input-group-alternative:focus-within {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .form-control:focus {
+    box-shadow: none;
+  }
+
+  .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #5e72e4;
+    border-color: #5e72e4;
+  }
+
+  .toggle-password:hover {
+    opacity: 0.7;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+    
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        
+        if (input.type === 'password') {
+          input.type = 'text';
+          this.innerHTML = '👁️';
+        } else {
+          input.type = 'password';
+          this.innerHTML = '🙈';
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

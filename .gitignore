@@ -1,0 +1,79 @@
+########################
+# Python compiled files #
+########################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info
+.Python
+
+###############
+# Build / Dist #
+###############
+dist/
+build/
+*.log
+
+#################
+# Databases local#
+#################
+*.db
+*.sqlite
+*.sqlite3
+
+########################
+# Virtual environments   #
+########################
+.venv/
+venv/
+env/
+ENV/
+
+############
+# Secrets   #
+############
+.env
+*.env
+config.local.*
+settings_local.py
+
+################
+# AI model data #
+################
+models/
+*.pt
+*.pth
+
+############
+# Frontend  #
+############
+node_modules/
+*.map
+
+############
+# Static/media (Django collectstatic) #
+############
+staticfiles/
+media/
+
+############
+# Editors / OS #
+############
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+############
+# Cache / misc#
+############
+.pytest_cache/
+.coverage*
+htmlcov/
+
+# End of file
+
+

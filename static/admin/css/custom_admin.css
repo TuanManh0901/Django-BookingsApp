@@ -1,0 +1,25 @@
+/* Custom Django Admin CSS - Hide unnecessary submit buttons */
+
+/* Ẩn nút "Save and add another" (Lưu và thêm mới) */
+input[name="_addanother"],
+button[name="_addanother"],
+.submit-row input[name="_addanother"],
+.submit-row button[name="_addanother"] {
+    display: none !important;
+}
+
+/* Ẩn nút "Save and continue editing" (Lưu và tiếp tục chỉnh sửa) */
+input[name="_continue"],
+button[name="_continue"],
+.submit-row input[name="_continue"],
+.submit-row button[name="_continue"] {
+    display: none !important;
+}
+
+/* Đảm bảo nút "Save" (Lưu lại) vẫn hiển thị */
+input[name="_save"],
+button[name="_save"],
+.submit-row input[name="_save"],
+.submit-row button[name="_save"] {
+    display: inline-block !important;
+}

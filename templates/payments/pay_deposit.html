@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load formatting %}
+{% block title %}Thanh toán cọc{% endblock %}
+
+{% block content %}
+<!-- Threeland Hero - Payment -->
+<div class="threeland-hero hero-short">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">Secure Checkout</p>
+    <h1 class="hero-main-title">Thanh toán cọc giữ chỗ</h1>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <!-- Main content: QR Code -->
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">📱 Thanh toán QR Code - Cọc giữ chỗ</h5>
+        </div>
+        <div class="card-body text-center">
+          <!-- QR Code -->
+          <div class="mb-4">
+            <img src="https://api.vietqr.io/image/970436-123456789012-qr_only.png?amount={{ booking.deposit_amount }}&addInfo=Coc%20Booking%20{{ booking.id }}" 
+                 alt="QR Code" class="img-fluid" style="max-width: 300px;">
+          </div>
+          
+          <!-- Instructions -->
+          <div class="info-box text-start" style="background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 1rem; border-radius: 0.5rem; color: #1e293b !important;">
+            <h6>📋 Hướng dẫn thanh toán:</h6>
+            <ol>
+              <li>Mở ứng dụng ngân hàng của bạn</li>
+              <li>Quét mã QR ở trên</li>
+              <li>Nhập số tiền: <strong>{{ booking.deposit_amount|vn_intcomma }} VNĐ</strong></li>
+              <li>Thêm ghi chú: <strong>Coc Booking {{ booking.id }}</strong></li>
+              <li>Hoàn tất thanh toán</li>
+              <li>Liên hệ admin để xác nhận thanh toán</li>
+            </ol>
+          </div>
+          
+          <div class="warning-box" style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: 0.5rem; color: #1e293b !important;">
+            <i class="fas fa-info-circle"></i> <strong>Lưu ý:</strong> Sau khi thanh toán, vui lòng chụp ảnh biên lai và upload bên dưới để xác nhận.
+          </div>
+          
+          <!-- Form Upload biên lai -->
+          <div class="mt-4">
+            <h5>📤 Upload biên lai thanh toán</h5>
+            <form action="{% url 'payments:upload_qr_receipt' payment.id %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="mb-3">
+                <input type="file" class="form-control" name="receipt_image" accept="image/*" required>
+                <div class="form-text">Chọn file hình ảnh của biên lai thanh toán cọc</div>
+              </div>
+              <button type="submit" class="btn btn-success btn-lg">
+                <i class="fas fa-upload"></i> Upload biên lai
+              </button>
+            </form>
+          </div>
+          
+          <div class="mt-3">
+            <a href="{% url 'payments:select_payment_method' booking.id %}" class="btn btn-secondary">
+              <i class="fas fa-arrow-left"></i> Quay lại chọn phương thức
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bank Info Card -->
+      <div class="card shadow-sm mt-3">
+        <div class="card-header bg-white">
+          <h6>🏦 Thông tin chuyển khoản</h6>
+        </div>
+        <div class="card-body">
+          <p class="small"><strong>Ngân hàng:</strong> Vietcombank</p>
+          <p class="small"><strong>Số tài khoản:</strong> 123456789012</p>
+          <p class="small"><strong>Chủ tài khoản:</strong> VN-TRAVEL</p>
+          <p class="small mb-0"><strong>Nội dung:</strong> Coc Booking {{ booking.id }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar: Booking Info -->
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white"><h5 class="mb-0">📋 Thông tin đơn đặt tour</h5></div>
+        <div class="card-body">
+          <p><strong>Tour:</strong> {{ booking.tour.name }}</p>
+          <p><strong>Ngày khởi hành:</strong> {{ booking.booking_date|vn_date }}</p>
+          <p><strong>Người lớn:</strong> {{ booking.num_adults }}</p>
+          <p><strong>Trẻ em:</strong> {{ booking.num_children }}</p>
+          <p><strong>Tổng tiền:</strong> {{ booking.total_price|vn_intcomma }} VNĐ</p>
+          <p><strong>Cọc 50%:</strong> <span class="text-danger fw-bold">{{ booking.deposit_amount|vn_intcomma }} VNĐ</span></p>
+          <p class="text-muted"><small>Còn lại sau khi cọc: {{ booking.total_price|subtract:booking.deposit_amount|vn_intcomma }} VNĐ</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <a href="{% url 'booking_detail' booking.pk %}" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i> Quay lại đơn đặt tour
+    </a>
+  </div>
+</div>
+{% endblock %}

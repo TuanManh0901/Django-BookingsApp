@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <style>
+    /* Argon styling for change form - giữ sidebar và navbar Django */
+    fieldset.module { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(50,50,93,.15); border: none; margin-bottom: 20px; }
+    fieldset.module h2 { background: #f6f9fc; }
+    .form-row { border-bottom: 1px solid #e9ecef; padding: 15px 20px; }
+    .form-row input, .form-row select, .form-row textarea { border: 1px solid #e9ecef; border-radius: 6px; padding: 10px 12px; }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: #11cdef; box-shadow: 0 0 0 3px rgba(17,205,239,.1); }
+    .submit-row { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(50,50,93,.15); margin-top: 20px; border: none; }
+    .inline-group { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(50,50,93,.15); padding: 20px; margin-bottom: 20px; }
+  </style>
+{% endblock %}

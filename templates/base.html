@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}VN Travel{% endblock %}</title>
+    {% load static %}
+  {% load humanize %}
+    <!-- Favicon: use project logo on homepage, otherwise site favicon (cache-busted) -->
+    {% if request.path == '/' %}
+    <link rel="icon" href="{% static 'argon-dashboard-master/assets/img/favicon-travel.svg' %}?v=3" type="image/svg+xml">
+    <link rel="shortcut icon" href="{% static 'argon-dashboard-master/assets/img/favicon-travel.svg' %}?v=3">
+    <link rel="apple-touch-icon" href="{% static 'argon-dashboard-master/assets/img/favicon-travel.svg' %}?v=3">
+    {% else %}
+    <link rel="icon" type="image/svg+xml" href="{% static 'argon-dashboard-master/assets/img/favicon-site.svg' %}?v=3">
+    <link rel="shortcut icon" href="{% static 'argon-dashboard-master/assets/img/favicon-site.svg' %}?v=3">
+    <link rel="apple-touch-icon" href="{% static 'argon-dashboard-master/assets/img/favicon-site.svg' %}?v=3">
+    {% endif %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    />
+    <!-- Argon Design System CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"
+    />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"
+    />
+    <link href="{% static 'argon-design-system/css/nucleo-icons.css' %}" rel="stylesheet"
+    />
+    <link href="{% static 'argon-design-system/css/nucleo-svg.css' %}" rel="stylesheet"
+    />
+    <link href="{% static 'argon-design-system/css/font-awesome.css' %}" rel="stylesheet"
+    />
+    <link href="{% static 'argon-design-system/css/argon-design-system.css' %}" rel="stylesheet"
+    />
+    <!-- Custom CSS for badge overrides (cache-bust) --> <link href="{% static 'custom.css' %}?v=2" rel="stylesheet" />
+    <!-- Premium Design System CSS --> <link href="{% static 'premium-styles.css' %}?v=3" rel="stylesheet" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      /* Dropdown menu styles */
+      .dropdown-menu {
+        min-width: 220px;
+      }
+      .dropdown-item i {
+        width: 20px;
+        margin-right: 8px;
+      }
+      .dropdown-item.text-danger:hover {
+        background-color: #dc3545;
+        color: white !important;
+      }
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden;
+        background-color: #ffffff;
+      }
+      
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* Ensure main content is full width */
+      main, .main-content {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* Remove Bootstrap container padding for full-width */
+      .navbar .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        max-width: 100%;
+      }
+      
+      /* Threeland.com Exact Navbar Style */
+      .sticky-nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1030;
+        background: transparent;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 1rem 0;
+        transition: none;
+      }
+      
+      /* Container padding like Threeland */
+      .sticky-nav .container-fluid {
+        padding-left: clamp(1.5rem, 3vw, 3rem);
+        padding-right: clamp(1.5rem, 3vw, 3rem);
+      }
+      
+      /* Logo/Brand - always white */
+      .sticky-nav .navbar-brand {
+        color: white !important;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      
+      .sticky-nav .navbar-brand span {
+        color: white;
+      }
+      
+      /* Nav links - white with hover effect */
+      .sticky-nav .navbar-nav .nav-link {
+        color: white !important;
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem !important;
+        transition: opacity 0.2s ease;
+        letter-spacing: 0.3px;
+      }
+      
+      .sticky-nav .navbar-nav .nav-link:hover {
+        opacity: 0.8;
+      }
+      
+      /* Dropdown arrows for menu items */
+      .nav-item.dropdown > .nav-link::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        border-top: 5px solid white;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+      }
+      
+      /* Dropdown menu styling */
+      .sticky-nav .dropdown-menu {
+        background: white;
+        border: none;
+        border-top: 4px solid #0066B3;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        border-radius: 0;
+        margin-top: 0.5rem;
+        min-width: 200px;
+      }
+      
+      .sticky-nav .dropdown-item {
+        color: #0a284a;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+      }
+      
+      .sticky-nav .dropdown-item:hover {
+        background: rgba(0, 102, 179, 0.08);
+        color: #0066B3;
+      }
+      
+      /* Buttons - Language & Agent Hub */
+      .btn-outline-light {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: white !important;
+        background: transparent;
+        border-radius: 6px;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      
+      .btn-outline-light:hover {
+        background: white;
+        color: #0066B3 !important;
+        border-color: white;
+      }
+      
+      /* Mobile toggler */
+      .sticky-nav .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      
+      .sticky-nav .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+    </style>
+    
+    <style>
+      /* Shared Threeland Hero Styles */
+      .threeland-hero { position: relative; min-height: 50vh; overflow: hidden; }
+      .threeland-hero.hero-tall { min-height: 60vh; }
+      .hero-background-image { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: -1; }
+      .hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1; }
+      .hero-main-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 10; text-align: center; width: 100%; padding: 0 1rem; }
+      .hero-subtitle { color: white; font-size: 1rem; margin-bottom: 1rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 2px; }
+      .hero-main-title { font-size: 3rem; font-weight: 700; color: white; margin-bottom: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+      .btn-hero-primary { display: inline-block; padding: 1rem 2.5rem; background: transparent; border: 2px solid white; color: white; font-weight: 600; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; margin: 0.5rem; }
+      .btn-hero-primary:hover { background: white; color: #2d3436; transform: translateY(-2px); }
+      @media (max-width: 768px) { .hero-main-title { font-size: 2rem; } .threeland-hero { min-height: 40vh; } }
+      
+      /* Hide main menu on auth pages */
+      body.auth-page .navbar-nav.mx-auto { display: none !important; }
+      
+      /* Auth pages styling */
+      body.auth-page .hero-main-content { padding-top: 80px; padding-bottom: 60px; }
+      body.auth-page footer { display: none !important; }
+      body.auth-page .threeland-hero { min-height: 100vh !important; display: flex; align-items: flex-start; overflow-y: auto; }
+      body.auth-page .hero-main-content { position: relative; transform: none; top: auto; left: auto; width: 100%; }
+      
+      /* Wider form on auth pages */
+      body.auth-page .col-lg-5 { max-width: 500px; }
+      body.auth-page .col-lg-6 { max-width: 600px; }
+      
+      /* Spacing only for first input label */
+      body.auth-page .card-body .form-group:first-of-type .form-control-label { margin-bottom: 0.75rem; }
+      
+      /* More padding at top of form card */
+      body.auth-page .card-body { padding-top: 2.5rem !important; }
+      
+      /* Google button styling - only in content area, not navbar */
+      body.auth-page .hero-main-content .btn-outline-light {
+        background: white !important;
+        color: #4285f4 !important;
+        border: 1px solid #dadce0 !important;
+        font-weight: 500;
+      }
+      body.auth-page .hero-main-content .btn-outline-light:hover {
+        background: #f8f9fa !important;
+        border-color: #4285f4 !important;
+      }
+    </style>
+    
+    <!-- Extra head block for child templates -->
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    <!-- Threeland-Style Transparent Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-nav" id="mainNav">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'home' %}">
+          <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" fill="white"/>
+            <text x="32" y="42" font-size="24" font-weight="bold" fill="#5e72e4" text-anchor="middle" font-family="Arial">VN</text>
+          </svg>
+          <span>TRAVEL</span>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Main Menu -->
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'vietnam_destinations' %}">Điểm Đến</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tour</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'search_tours' %}?is_hot=true">Tours Hot 🔥</a></li>
+                <li><a class="dropdown-item" href="{% url 'search_tours' %}?duration=1">Tours Trong Ngày</a></li>
+                <li><a class="dropdown-item" href="{% url 'search_tours' %}?location=Phú Quốc">Kỳ Nghỉ Biển</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'responsibility' %}">Trách Nhiệm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about_us' %}">Về Chúng Tôi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'education' %}">Giáo Dục</a>
+            </li>
+          </ul>
+
+          <!-- Right Menu -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  <i class="fas fa-user-circle"></i> {{ user.username }}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{% url 'user_profile' %}"><i class="fas fa-user"></i> Hồ Sơ</a></li>
+                  <li><a class="dropdown-item" href="{% url 'my_bookings' %}"><i class="fas fa-calendar-check"></i> Đặt Tour</a></li>
+                  <li><a class="dropdown-item" href="{% url 'ai_chatbot:chat' %}"><i class="fas fa-comments"></i> AI Chat</a></li>
+                  {% if user.is_staff %}
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/admin/"><i class="fas fa-cogs"></i> Quản Trị</a></li>
+                  {% endif %}
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item text-danger" href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="btn btn-outline-light me-2" href="{% url 'account_login' %}">Đăng Nhập</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-outline-light" href="{% url 'register' %}">Đăng Ký</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Messages (if any) - Can be overridden by child templates -->
+    {% block messages %}
+    {% if messages %}
+      <div class="messages-container" style="position: fixed; top: 80px; right: 20px; z-index: 9999; min-width: 300px; max-width: 400px;">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-lg" role="alert" style="margin-bottom: 10px; border-radius: 8px;">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% endblock messages %}
+    
+    <!-- Main Content (Full Width) -->
+{% block content %}
+{% endblock %}
+
+<!-- Premium Footer -->
+<footer class="footer mt-5" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 60px 0 30px;">
+  <div class="container">
+    <div class="row">
+      <!-- About Section -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VN Travel logo" style="vertical-align:middle;">
+            <circle cx="32" cy="32" r="30" fill="white"/>
+            <text x="32" y="42" font-size="24" font-weight="bold" fill="#3b82f6" text-anchor="middle" font-family="Arial">VN</text>
+          </svg>
+          <h5 class="mb-0" style="font-weight: 600; font-size: 1.25rem; letter-spacing: 0.5px; color: white;">TRAVEL</h5>
+        </div>
+        <p style="opacity: 0.9; line-height: 1.7;">
+          Đối tác du lịch tin cậy của bạn tại Việt Nam. Chúng tôi mang đến những trải nghiệm du lịch tuyệt vời với dịch vụ chuyên nghiệp và AI Travel Advisor thông minh.
+        </p>
+        <div class="social-links mt-3">
+          <a href="#" class="text-white me-3" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="#" class="text-white me-3" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="text-white me-3" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="#" class="text-white" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h5 class="mb-3" style="font-weight: 700; font-size: 1.1rem;">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{% url 'tour_list' %}" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">Tours</a></li>
+          <li class="mb-2"><a href="{% url 'ai_chatbot:chat' %}" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">AI Chatbot</a></li>
+          <li class="mb-2"><a href="{% url 'about_us' %}" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">Về chúng tôi</a></li>
+        </ul>
+      </div>
+      
+      <!-- Destinations -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="mb-3" style="font-weight: 700; font-size: 1.1rem;">Điểm đến</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{% url 'search_tours' %}?location=Hà Nội" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">Hà Nội</a></li>
+          <li class="mb-2"><a href="{% url 'search_tours' %}?location=Đà Lạt" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">Đà Lạt</a></li>
+          <li class="mb-2"><a href="{% url 'search_tours' %}?location=Phú Quốc" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">Phú Quốc</a></li>
+          <li class="mb-2"><a href="{% url 'search_tours' %}?location=Hạ Long" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">Hạ Long</a></li>
+          <li class="mb-2"><a href="{% url 'search_tours' %}?location=Nha Trang" class="text-white" style="opacity: 0.8; text-decoration: none; transition: opacity 0.3s;">Nha Trang</a></li>
+        </ul>
+      </div>
+      
+      <!-- Contact -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="mb-3" style="font-weight: 700; font-size: 1.1rem;">Liên hệ</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2" style="opacity: 0.9;">
+            <i class="ni ni-email-83 me-2"></i>
+            dulich@vntravel.com
+          </li>
+          <li class="mb-2" style="opacity: 0.9;">
+            <i class="ni ni-mobile-button me-2"></i>
+            +84 842190901
+          </li>
+          <li class="mb-2" style="opacity: 0.9;">
+            <i class="ni ni-pin-3 me-2"></i>
+            Hà Nội, Việt Nam
+          </li>
+        </ul>
+        <div class="mt-3">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Visa_2014_logo.svg" alt="Visa" style="height: 30px; margin-right: 10px; filter: brightness(0) invert(1); opacity: 0.7;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 30px; filter: brightness(0) invert(1); opacity: 0.7;">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Copyright -->
+    <div class="row mt-4 pt-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
+      <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+        <p class="mb-0" style="opacity: 0.7; font-size: 0.9rem;">
+          © 2026 VN Travel. All rights reserved.
+        </p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="#" class="text-white me-3" style="opacity: 0.7; text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
+        <a href="#" class="text-white me-3" style="opacity: 0.7; text-decoration: none; font-size: 0.9rem;">Terms of Service</a>
+        <a href="#" class="text-white" style="opacity: 0.7; text-decoration: none; font-size: 0.9rem;">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer a:hover {
+  opacity: 1 !important;
+}
+
+.social-links a:hover {
+  transform: translateY(-3px);
+  display: inline-block;
+}
+</style>
+
+    </div>
+    <!-- Argon JS --> <script src="{% static 'argon-design-system/js/argon-design-system.js' %}"></script>
+    <!-- Bootstrap JS --> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+      // Navbar is now position: absolute, no scroll behavior needed
+      
+      // Auto-dismiss alerts after 5 seconds
+      document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+          setTimeout(function() {
+            const bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+          }, 5000); // 5 seconds
+        });
+      });
+    </script>
+    </script>
+  </body>
+</html>

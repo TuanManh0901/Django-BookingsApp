@@ -1,0 +1,497 @@
+.badge.bg-pending {
+  background-color: #ffc107 !important;
+  color: #212529 !important;
+  font-weight: bold;
+}
+
+/* Improve card backgrounds for better visibility */
+.card {
+  background-color: #ffffff !important;
+  border: 1.5px solid #c9d7df !important; /* slightly stronger, a bit bolder */
+  box-shadow: 0 8px 28px rgba(16, 24, 40, 0.06) !important; /* deeper, clearer shadow */
+}
+
+.card-header {
+  background-color: #f8f9fa !important;
+  border-bottom: 1px solid #e9ecef !important;
+  font-weight: 600 !important;
+}
+
+.card-body {
+  background-color: #ffffff !important;
+}
+
+/* Improve alert backgrounds */
+.alert {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.alert-info {
+  background-color: #d1ecf1 !important;
+  border-color: #bee5eb !important;
+}
+
+.alert-success {
+  background-color: #2dce89 !important; /* Vibrant green background */
+  border-color: #1ea16d !important; /* Darker green border */
+  color: #ffffff !important; /* White text for maximum contrast */
+  font-weight: 700 !important; /* Bold text */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important; /* Subtle shadow for depth */
+}
+
+.alert-warning {
+  background-color: #fff3cd !important;
+  border-color: #ffeaa7 !important;
+}
+
+.alert-danger {
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
+}
+
+/* Improve table styling */
+.table {
+  background-color: #ffffff !important;
+  border: 1px solid #e9ecef !important;
+}
+
+.table thead th {
+  background-color: #f8f9fa !important;
+  border-bottom: 2px solid #dee2e6 !important;
+  font-weight: 600 !important;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa !important;
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef !important;
+}
+
+/* Make bold labels and important inline texts darker for better contrast */
+.fw-bold,
+.card .fw-bold,
+.col-md-4.fw-bold {
+  color: #0b2330 !important; /* dark teal/near-black for improved readability */
+}
+
+/* Slightly darker content text inside profile/cards */
+.card-body,
+.card-body .col-md-8 {
+  color: #1f2f3a !important;
+}
+
+/* Ensure links within buttons remain visible */
+.btn,
+.btn a {
+  color: #ffffff !important;
+}
+
+/* Make input/select/textarea text darker and bolder for readability */
+input.form-control,
+.form-control,
+.form-select,
+.form-control:focus,
+.form-select:focus,
+textarea.form-control {
+  color: #081821 !important; /* darker */
+  font-weight: 700 !important; /* stronger bold */
+  opacity: 1 !important;
+  -webkit-text-fill-color: #081821 !important; /* Safari */
+}
+
+/* Ensure placeholder text is also bolder (visible in Safari/Chrome/Firefox) */
+.form-control::placeholder,
+.form-select::placeholder,
+textarea.form-control::placeholder {
+  color: #6c757d !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #6c757d !important;
+}
+
+/* Make selected option text bold in selects */
+.form-select option {
+  font-weight: 700;
+  color: #081821;
+}
+
+/* Ensure disabled/readonly inputs keep readable color */
+input.form-control[readonly],
+textarea.form-control[readonly],
+input.form-control:disabled,
+textarea.form-control:disabled {
+  color: #081821 !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #081821 !important;
+}
+
+/* Scoped: stronger input text only inside profile edit form to avoid global side-effects */
+.profile-edit-form .form-control,
+.profile-edit-form .form-select,
+.profile-edit-form textarea.form-control {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+.profile-edit-form .form-control::placeholder,
+.profile-edit-form textarea.form-control::placeholder {
+  color: #6c757d !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+/* More specific overrides to defeat component/Argon styles that may set lighter color */
+.profile-edit-form .input-group .form-control,
+.profile-edit-form input.form-control,
+.profile-edit-form input[type="text"],
+.profile-edit-form input[type="email"],
+.profile-edit-form input[type="tel"],
+.profile-edit-form input[type="date"],
+.profile-edit-form input[type="number"],
+.profile-edit-form textarea.form-control,
+.profile-edit-form select.form-select {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Also ensure autofill text is visible (Chrome) */
+.profile-edit-form input:-webkit-autofill,
+.profile-edit-form input:-webkit-autofill::first-line {
+  -webkit-text-fill-color: #000000 !important;
+  font-weight: 800 !important;
+}
+
+/* Only change Cancel (Hủy) button appearance inside profile edit form */
+.profile-edit-form .btn.btn-secondary {
+  background-color: #6c757d !important;
+  color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+  box-shadow: none !important;
+}
+.profile-edit-form .btn.btn-secondary:hover,
+.profile-edit-form .btn.btn-secondary:focus {
+  background-color: #5a6268 !important;
+  color: #ffffff !important;
+}
+
+/* Make 'Xem Tour' button text and icon darker for better contrast in hero */
+.btn.btn-white.btn-icon,
+.btn.btn-white.btn-icon .btn-inner--text,
+.btn.btn-white.btn-icon .btn-inner--icon,
+.btn.btn-white.btn-icon .btn-inner--icon i {
+  color: #081821 !important; /* dark color for text/icon */
+  font-weight: 700 !important;
+}
+
+/* Ensure the icon's background (if any) doesn't force white fill */
+.btn.btn-white.btn-icon .btn-inner--icon i {
+  -webkit-text-fill-color: #081821 !important;
+  opacity: 1 !important;
+}
+
+/* Make quick-question buttons (chat area) use black, bold text for readability */
+.card-body .d-flex.flex-wrap.gap-2 .btn,
+.card-body .d-flex.flex-wrap.gap-2 .btn.btn-outline-primary {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+.card-body .d-flex.flex-wrap.gap-2 .btn.btn-outline-primary:hover,
+.card-body .d-flex.flex-wrap.gap-2 .btn.btn-outline-primary:focus {
+  color: #000000 !important;
+}
+/* ============================================================
+   VIBRANT & BEAUTIFUL BUTTON STYLES FOR ENTIRE PROJECT
+   Modern gradients with clear, readable text
+   ============================================================ */
+
+/* Primary buttons: vibrant blue gradient */
+.btn-primary,
+a.btn-primary,
+button.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(135deg, #5568d3 0%, #63408f 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4) !important;
+  color: #ffffff !important;
+}
+
+/* Success buttons: vibrant green gradient */
+.btn-success,
+a.btn-success,
+button.btn-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px rgba(17, 153, 142, 0.3) !important;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background: linear-gradient(135deg, #0e7c73 0%, #2dd969 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(17, 153, 142, 0.4) !important;
+  color: #ffffff !important;
+}
+
+/* Danger buttons: vibrant red gradient */
+.btn-danger,
+a.btn-danger,
+button.btn-danger {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px rgba(245, 87, 108, 0.3) !important;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background: linear-gradient(135deg, #e07fe9 0%, #e03f54 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(245, 87, 108, 0.4) !important;
+  color: #ffffff !important;
+}
+
+/* Secondary buttons: elegant gray gradient */
+.btn-secondary,
+a.btn-secondary,
+button.btn-secondary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 6px rgba(108, 117, 125, 0.25) !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: linear-gradient(135deg, #5568d3 0%, #63408f 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(108, 117, 125, 0.35) !important;
+  color: #ffffff !important;
+}
+
+/* Info & Warning buttons */
+.btn-info {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 6px rgba(79, 172, 254, 0.3) !important;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 6px rgba(255, 193, 7, 0.3) !important;
+}
+
+/* Outline buttons: clean with vibrant borders */
+.btn-outline-primary,
+a.btn-outline-primary {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.1) 0%,
+    rgba(118, 75, 162, 0.1) 100%
+  ) !important;
+  border: 1px solid #667eea !important;
+  color: #667eea !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.15) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: #ffffff !important;
+  border-color: #667eea !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3) !important;
+}
+
+.btn-outline-success,
+a.btn-outline-success {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 153, 142, 0.1) 0%,
+    rgba(56, 239, 125, 0.1) 100%
+  ) !important;
+  border: 1px solid #11998e !important;
+  color: #11998e !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 4px rgba(17, 153, 142, 0.15) !important;
+}
+
+.btn-outline-success:hover,
+.btn-outline-success:focus {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+  color: #ffffff !important;
+  border-color: #11998e !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(17, 153, 142, 0.3) !important;
+}
+
+.btn-outline-danger,
+a.btn-outline-danger {
+  background: linear-gradient(
+    135deg,
+    rgba(240, 147, 251, 0.1) 0%,
+    rgba(245, 87, 108, 0.1) 100%
+  ) !important;
+  border: 1px solid #f5576c !important;
+  color: #f5576c !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 4px rgba(245, 87, 108, 0.15) !important;
+}
+
+.btn-outline-danger:hover,
+.btn-outline-danger:focus {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  color: #ffffff !important;
+  border-color: #f5576c !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(245, 87, 108, 0.3) !important;
+}
+
+.btn-outline-secondary,
+a.btn-outline-secondary {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.08) 0%,
+    rgba(118, 75, 162, 0.08) 100%
+  ) !important;
+  border: 1px solid #667eea !important;
+  color: #667eea !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 2px 4px rgba(108, 117, 125, 0.1) !important;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: #ffffff !important;
+  border-color: #667eea !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.25) !important;
+}
+
+/* Small buttons maintain vibrant style */
+.btn-sm {
+  font-weight: 600 !important;
+  padding: 0.35rem 0.85rem !important;
+}
+
+/* Large buttons */
+.btn-lg {
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 1.1rem !important;
+}
+
+/* Buttons in cards and tables */
+.card .btn,
+.table .btn,
+.list-group-item .btn {
+  font-weight: 600 !important;
+}
+
+/* Disabled state */
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Small translucent wrapper for inline alerts (used for login errors, etc.) */
+.soft-alert {
+  display: inline-block;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  background-color: rgba(255, 122, 115, 0.08); /* subtle coral wash */
+  border: 1px solid rgba(255, 122, 115, 0.12);
+}
+.soft-alert .text-danger {
+  color: #dc3545 !important; /* restore Bootstrap's text-danger red */
+  font-weight: 600;
+}
+.soft-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem; /* slightly reduced to fit inline icon + text */
+  border-radius: 10px;
+  background-color: rgba(255, 122, 115, 0.06);
+  border: 1px solid rgba(255, 122, 115, 0.1);
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  font-size: 0.9rem; /* balance readability and wrapping */
+  width: 100%;
+  line-height: 1.25;
+  min-height: 64px; /* ensure taller visual block */
+}
+.soft-alert .alert-icon {
+  color: rgba(255, 86, 86, 0.95);
+  font-size: 1.05rem; /* slightly larger so it's visually prominent */
+  line-height: 1;
+  display: inline-block;
+  margin-right: 0.5rem; /* ensure small separation from 'Đăng' */
+}
+.soft-alert .text-danger {
+  color: #e05555 !important;
+  font-weight: 600;
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+/* When icon is on top, stack and allow text full width */
+.soft-alert.icon-top {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+.soft-alert.icon-top .alert-icon {
+  font-size: 1.15rem;
+  color: rgba(255, 86, 86, 0.95);
+}
+.soft-alert.icon-top .text-danger {
+  display: block;
+}
+
+.soft-alert .no-wrap {
+  white-space: nowrap;
+}

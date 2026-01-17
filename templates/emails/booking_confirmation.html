@@ -1,0 +1,306 @@
+{% load currency_filters %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận đặt tour</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            background-color: #ffffff;
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .success-badge {
+            background-color: #10b981;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .booking-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .booking-info h2 {
+            margin-top: 0;
+            color: #1e3a8a;
+            font-size: 20px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .info-value {
+            color: #111827;
+            font-weight: 600;
+        }
+        .tour-details {
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 8px;
+        }
+        .tour-details h3 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+        .price-total {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .price-total h3 {
+            margin: 0;
+            color: #92400e;
+            font-size: 16px;
+        }
+        .price-total .amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #92400e;
+            margin: 10px 0;
+        }
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: #ffffff !important;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 20px 0;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            /* Outlook support */
+            mso-padding-alt: 0;
+            font-size: 16px;
+        }
+        .action-button:hover {
+            opacity: 0.9;
+            color: #ffffff !important;
+        }
+        .next-steps {
+            background-color: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .next-steps h3 {
+            margin-top: 0;
+            color: #92400e;
+        }
+        .next-steps ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .next-steps li {
+            margin: 8px 0;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .divider {
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎉 Đặt tour thành công!</h1>
+            <p>Cảm ơn bạn đã tin tưởng VN Travel</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div style="text-align: center;">
+                <span class="success-badge">✅ ĐẶT TOUR THÀNH CÔNG</span>
+            </div>
+
+            <p>Xin chào <strong>{{ booking.user.last_name }} {{ booking.user.first_name }}</strong>,</p>
+            
+            <p>Chúng tôi xác nhận đã nhận được yêu cầu đặt tour của bạn. Dưới đây là thông tin chi tiết:</p>
+
+            <!-- Booking Information -->
+            <div class="booking-info">
+                <h2>📋 Thông tin đặt tour</h2>
+                <div class="info-row">
+                    <span class="info-label">Mã đặt tour:</span>
+                    <span class="info-value">#{{ booking.id }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Ngày đặt:</span>
+                    <span class="info-value">{{ booking.booking_date|date:"d/m/Y" }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Trạng thái:</span>
+                    <span class="info-value" style="color: #f59e0b;">{{ booking.get_status_display }}</span>
+                </div>
+            </div>
+
+            <!-- Tour Details -->
+            <div class="tour-details">
+                <h3>🗺️ Chi tiết tour</h3>
+                <div class="info-row">
+                    <span class="info-label">Tour:</span>
+                    <span class="info-value">{{ booking.tour.name }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Điểm đến:</span>
+                    <span class="info-value">{{ booking.tour.location }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Thời gian:</span>
+                    <span class="info-value">{{ booking.tour.duration }} ngày</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Ngày đặt tour:</span>
+                    <span class="info-value">{{ booking.booking_date|date:"d/m/Y" }}</span>
+                </div>
+            </div>
+
+            <!-- Passenger Information -->
+            <div class="booking-info">
+                <h2>👥 Thông tin hành khách</h2>
+                <div class="info-row">
+                    <span class="info-label">Người lớn:</span>
+                    <span class="info-value">{{ booking.num_adults }} người</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Trẻ em:</span>
+                    <span class="info-value">{{ booking.num_children }} người</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tổng số khách:</span>
+                    <span class="info-value">{{ booking.num_adults|add:booking.num_children }} người</span>
+                </div>
+            </div>
+
+            <!-- Price Total -->
+            <div class="price-total">
+                <h3>💰 Tổng chi phí</h3>
+                <div class="amount">{{ booking.total_price|currency_vnd }}</div>
+                <p style="margin: 5px 0; color: #92400e;">
+                    ({{ booking.num_adults }} người lớn + {{ booking.num_children }} trẻ em) × {{ booking.tour.price|currency_vnd }}
+                </p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="booking-info">
+                <h2>📞 Thông tin liên hệ</h2>
+                <div class="info-row">
+                    <span class="info-label">Họ tên:</span>
+                    <span class="info-value">{{ booking.user.last_name }} {{ booking.user.first_name }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{ booking.user.email }}</span>
+                </div>
+                {% if booking.user.profile.phone %}
+                <div class="info-row">
+                    <span class="info-label">Số điện thoại:</span>
+                    <span class="info-value">{{ booking.user.profile.phone }}</span>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>📝 Các bước tiếp theo</h3>
+                <ol>
+                    <li><strong>Thanh toán:</strong> Vui lòng thanh toán để hoàn tất đặt tour</li>
+                    <li><strong>Xác nhận:</strong> Chúng tôi sẽ xác nhận sau khi nhận được thanh toán</li>
+                    <li><strong>Thông tin chi tiết:</strong> Bạn sẽ nhận được email với hướng dẫn chi tiết trước ngày khởi hành</li>
+                    <li><strong>Liên hệ:</strong> Nếu có thắc mắc, vui lòng liên hệ hotline: <strong>+84 842190901</strong></li>
+                </ol>
+            </div>
+
+            <!-- Action Button -->
+            <div style="text-align: center;">
+                <a href="{{ site_url }}/bookings/{{ booking.id }}/" 
+                   class="action-button"
+                   style="display: inline-block; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff !important; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; text-align: center; font-size: 16px; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
+                    Xem chi tiết đặt tour →
+                </a>
+            </div>
+
+            <div class="divider"></div>
+
+            <p style="color: #6b7280; font-size: 14px;">
+                <strong>Lưu ý:</strong> Đây là email tự động. Vui lòng không trả lời email này. 
+                Nếu bạn cần hỗ trợ, vui lòng liên hệ qua hotline hoặc email: support@vntravel.com
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>VN Travel</strong> - Hệ thống đặt tour du lịch thông minh</p>
+            <p>
+                🌐 <a href="{{ site_url }}">vntravel.com</a> |
+                📧 dulich@vntravel.com |
+                📱 +84 842190901
+            </p>
+            <p style="margin-top: 15px; font-size: 12px;">
+                &copy; 2026 VN Travel. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

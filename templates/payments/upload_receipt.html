@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Upload biên lai{% endblock %}
+{%
+block content %}
+<!-- Threeland Hero - Upload Receipt -->
+<div class="threeland-hero hero-short">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">Payment Verification</p>
+    <h1 class="hero-main-title">Upload biên nhận</h1>
+  </div>
+</div>
+
+<div class="container mt-4">
+
+  {% if messages %} <div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert"
+    >
+      {{ message }} <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+ <div class="row justify-content-center"> <div class="col-md-6"> <div class="card"> <div class="card-header">
+          <h5>📋 Thông tin thanh toán</h5>
+        </div> <div class="card-body">
+          <p><strong>Mã thanh toán:</strong> {{ payment.id }}</p>
+          <p>
+            <strong>Số tiền:</strong> {{ payment.amount|floatformat:0 }} VNĐ
+          </p>
+          <p><strong>Phương thức:</strong> {{ payment.get_method_display }}</p>
+          <p><strong>Trạng thái:</strong> {{ payment.get_status_display }}</p>
+        </div>
+      </div>
+ <div class="card mt-3"> <div class="card-header">
+          <h5>📤 Upload hình ảnh biên lai</h5>
+        </div> <div class="card-body"> <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} <div class="mb-3"> <label for="receipt_image" class="form-label">Chọn file hình ảnh</label
+              >
+              <input type="file" class="form-control" id="receipt_image" name="receipt_image" accept="image/*"
+                required
+              /> <div class="form-text">
+                Chỉ chấp nhận file hình ảnh (JPG, PNG, GIF)
+              </div>
+            </div> <div class="d-grid"> <button type="submit" class="btn btn-success btn-lg"> <i class="fas fa-upload"></i> Upload biên lai
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+ <div class="mt-3 text-center">
+        <a href="{% url 'booking_detail' payment.booking.id %}" class="btn btn-secondary"> <i class="fas fa-arrow-left"></i> Quay lại chi tiết đặt tour
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}{{ user.username }} - Profile | VN Travel{% endblock %}
+
+{% block content %}
+<!-- Threeland Hero - Profile -->
+<div class="threeland-hero hero-tall">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <p class="hero-subtitle">YOUR ACCOUNT</p>
+    <h1 class="hero-main-title">{{ user.get_full_name|default:user.username }}</h1>
+    <div class="text-white mt-3">
+      <span class="me-4"><i class="ni ni-calendar-grid-58"></i> Tham gia {{ user.date_joined|date:"d/m/Y" }}</span>
+      {% if user.is_staff %}
+        <span class="badge" style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; font-weight: 700; padding: 0.5rem 1rem; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);">
+          <i class="ni ni-badge"></i> ADMIN
+        </span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Profile Content -->
+<div class="container mt-n5" style="position: relative; z-index: 100;">
+  <div class="row">
+    <!-- Main Info Card -->
+    <div class="col-lg-8 mb-4">
+      <div class="card shadow-lg rounded-premium border-0">
+        <div class="card-body p-4">
+          <div class="section-header text-start mb-4">
+            <h3 style="font-family: 'Playfair Display', serif; font-weight: 700; color: var(--gray-900);">
+              <i class="ni ni-single-02 me-2" style="color: var(--primary-light);"></i>
+              Thông tin cá nhân
+            </h3>
+          </div>
+
+          <div class="row g-4">
+            <!-- Username -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper">
+                  <i class="ni ni-circle-08"></i>
+                </div>
+                <div>
+                  <div class="info-label">Tên đăng nhập</div>
+                  <div class="info-value">{{ user.username }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper" style="background: var(--gradient-success);">
+                  <i class="ni ni-email-83"></i>
+                </div>
+                <div>
+                  <div class="info-label">Email</div>
+                  <div class="info-value">{{ user.email|default:"Chưa cập nhật" }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full Name -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper" style="background: var(--gradient-warm);">
+                  <i class="ni ni-badge"></i>
+                </div>
+                <div>
+                  <div class="info-label">Họ tên</div>
+                  <div class="info-value">
+                    {% if user.first_name or user.last_name %}
+                      {{ user.last_name }} {{ user.first_name }}
+                    {% else %}
+                      <span class="text-muted">Chưa cập nhật</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper" style="background: var(--gradient-ocean);">
+                  <i class="ni ni-mobile-button"></i>
+                </div>
+                <div>
+                  <div class="info-label">Số điện thoại</div>
+                  <div class="info-value">{{ profile.phone|default:"Chưa cập nhật" }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ID Card -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                  <i class="ni ni-credit-card"></i>
+                </div>
+                <div>
+                  <div class="info-label">CCCD/CMND</div>
+                  <div class="info-value">{{ profile.cccd|default:"Chưa cập nhật" }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Birthday -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                  <i class="ni ni-calendar-grid-58"></i>
+                </div>
+                <div>
+                  <div class="info-label">Ngày sinh</div>
+                  <div class="info-value">{{ profile.date_of_birth|date:"d/m/Y"|default:"Chưa cập nhật" }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                  <i class="ni ni-satisfied"></i>
+                </div>
+                <div>
+                  <div class="info-label">Giới tính</div>
+                  <div class="info-value">
+                    {% if profile.gender %}
+                      {% if profile.gender == 'M' %}Nam{% elif profile.gender == 'F' %}Nữ{% else %}Khác{% endif %}
+                    {% else %}
+                      <span class="text-muted">Chưa cập nhật</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="col-md-6">
+              <div class="profile-info-card">
+                <div class="info-icon-wrapper" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);">
+                  <i class="ni ni-pin-3"></i>
+                </div>
+                <div>
+                  <div class="info-label">Địa chỉ</div>
+                  <div class="info-value">{{ profile.address|default:"Chưa cập nhật" }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Account Status Card -->
+      <div class="card shadow-lg rounded-premium border-0 mb-4" style="background: var(--gradient-hero);">
+        <div class="card-body p-4 text-white text-center">
+          <div class="mb-3">
+            <i class="ni ni-badge" style="font-size: 3.5rem; opacity: 0.9;"></i>
+          </div>
+          <h5 class="mb-2" style="font-weight: 700;">Loại tài khoản</h5>
+          {% if user.is_superuser %}
+            <div class="badge" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); font-size: 1.1rem; padding: 0.75rem 1.5rem; border-radius: var(--radius-full);">
+              SUPER ADMIN
+            </div>
+          {% elif user.is_staff %}
+            <div class="badge" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); font-size: 1.1rem; padding: 0.75rem 1.5rem; border-radius: var(--radius-full);">
+              ADMIN
+            </div>
+          {% else %}
+            <div class="badge" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); font-size: 1.1rem; padding: 0.75rem 1.5rem; border-radius: var(--radius-full);">
+              USER
+            </div>
+          {% endif %}
+          
+          <hr style="border-color: rgba(255,255,255,0.2); margin: 1.5rem 0;">
+          
+          <div class="text-start" style="font-size: 0.9rem; opacity: 0.95;">
+            <div class="mb-2">
+              <i class="ni ni-time-alarm me-2"></i>
+              <strong>Tham gia:</strong> {{ user.date_joined|date:"d/m/Y" }}
+            </div>
+            <div>
+              <i class="ni ni-check-bold me-2"></i>
+              <strong>Đăng nhập cuối:</strong> {{ user.last_login|date:"d/m/Y H:i" }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions Card -->
+      <div class="card shadow-lg rounded-premium border-0">
+        <div class="card-body p-4">
+          <h6 class="mb-3" style="font-weight: 700; font-family: 'Playfair Display', serif;">
+            <i class="ni ni-settings me-2"></i>
+            Thao tác nhanh
+          </h6>
+          
+          <div class="d-grid gap-2">
+            <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary btn-lg" style="border-radius: var(--radius-lg); font-weight: 600;">
+              <i class="ni ni-ruler-pencil me-2"></i>
+              Chỉnh sửa thông tin
+            </a>
+            
+            <a href="{% url 'my_bookings' %}" class="btn btn-outline-primary btn-lg" style="border-radius: var(--radius-lg); font-weight: 600;">
+              <i class="ni ni-calendar-grid-58 me-2"></i>
+              Xem đặt chỗ của tôi
+            </a>
+
+            {% if user.is_staff %}
+              <a href="/admin/" class="btn btn-outline-primary btn-lg" style="border-radius: var(--radius-lg); font-weight: 600;">
+                <i class="ni ni-settings-gear-65 me-2"></i>
+                Quản lý Admin
+              </a>
+            {% endif %}
+
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg" style="border-radius: var(--radius-lg); font-weight: 600;">
+              <i class="ni ni-bold-left me-2"></i>
+              Về trang chủ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .profile-info-card {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    border: 1px solid transparent;
+  }
+
+  .profile-info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    background: white;
+    border-color: var(--gray-200);
+  }
+
+  .info-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: var(--radius-lg);
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    transition: transform var(--transition-base);
+  }
+
+  .profile-info-card:hover .info-icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .info-label {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-value {
+    font-size: 1.05rem;
+    color: var(--gray-900);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .rounded-premium {
+    border-radius: var(--radius-xl);
+  }
+
+  /* Animation on load */
+  .card {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-main-title {
+      font-size: 2rem;
+    }
+    
+    .profile-info-card {
+      padding: 1rem;
+    }
+    
+    .info-icon-wrapper {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      font-size: 1.25rem;
+    }
+  }
+</style>
+{% endblock %}

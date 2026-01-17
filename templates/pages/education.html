@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Giáo Dục & Tài Nguyên Du Lịch - VN Travel{% endblock %}
+
+{% block content %}
+<div class="threeland-hero">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <div class="container text-center">
+      <p class="hero-subtitle">TÀI NGUYÊN DU LỊCH</p>
+      <h1 class="hero-main-title">Giáo Dục & Hướng Dẫn</h1>
+      <p class="text-white" style="font-size: 1.2rem;">Mọi thông tin bạn cần để lên kế hoạch chuyến đi Việt Nam hoàn hảo</p>
+    </div>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Hướng Dẫn Du Lịch Việt Nam</h2>
+        <p class="lead">
+          Khám phá những tips hữu ích, thông tin văn hóa và hướng dẫn chi tiết để có chuyến đi trọn vẹn tại Việt Nam.
+        </p>
+      </div>
+    </div>
+
+    <!-- Travel Guide Cards -->
+    <div class="row g-4 mb-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="guide-card">
+          <div class="guide-icon">
+            <i class="ni ni-calendar-grid-58"></i>
+          </div>
+          <h3>Thời Điểm Tốt Nhất</h3>
+          <p>
+            <strong>Miền Bắc:</strong> Tháng 3-5 và 9-11 (mát mẻ, ít mưa)<br>
+            <strong>Miền Trung:</strong> Tháng 2-5 (khô ráo, nắng đẹp)<br>
+            <strong>Miền Nam:</strong> Tháng 12-4 (mùa khô)
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="guide-card">
+          <div class="guide-icon">
+            <i class="ni ni-badge"></i>
+          </div>
+          <h3>Thông Tin Visa</h3>
+          <p>
+            Công dân hầu hết các quốc gia cần visa để vào Việt Nam. E-visa có sẵn cho 80+ quốc gia, 
+            thời hạn 30 ngày. Miễn visa cho công dân ASEAN tối đa 30 ngày.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="guide-card">
+          <div class="guide-icon">
+            <i class="ni ni-money-coins"></i>
+          </div>
+          <h3>Tiền Tệ & Chi Phí</h3>
+          <p>
+            Đơn vị: Việt Nam đồng (VND). 1 USD ≈ 24,000 VND.<br>
+            Chi phí trung bình: 30-50 USD/ngày (bao gồm ăn, ở, di chuyển).
+            ATM có khắp nơi, thẻ tín dụng được chấp nhận rộng rãi.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="guide-card">
+          <div class="guide-icon">
+            <i class="ni ni-delivery-fast"></i>
+          </div>
+          <h3>Di Chuyển</h3>
+          <p>
+            <strong>Máy bay:</strong> Nhanh nhất cho khoảng cách xa<br>
+            <strong>Tàu hỏa:</strong> Ngắm cảnh đẹp<br>
+            <strong>Xe khách:</strong> Rẻ và đi khắp nơi<br>
+            <strong>Taxi/Grab:</strong> Tiện lợi trong thành phố
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="guide-card">
+          <div class="guide-icon">
+            <i class="ni ni-satisfied"></i>
+          </div>
+          <h3>Văn Hóa & Phong Tục</h3>
+          <p>
+            Cởi giày khi vào nhà, chùa chiền. Mặc đồ kín đáo khi thăm nơi tôn giáo. 
+            Tôn trọng người lớn tuổi. Bo tiền lẻ (5-10%) cho dịch vụ tốt.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="guide-card">
+          <div class="guide-icon">
+            <i class="ni ni-chat-round"></i>
+          </div>
+          <h3>Ngôn Ngữ Cơ Bản</h3>
+          <p>
+            <strong>Xin chào:</strong> Hello<br>
+            <strong>Cảm ơn:</strong> Thank you<br>
+            <strong>Bao nhiêu tiền?:</strong> How much?<br>
+            <strong>Tôi không hiểu:</strong> I don't understand
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popular Articles -->
+    <div class="row">
+      <div class="col-12">
+        <h3 class="mb-4">Bài Viết Phổ Biến</h3>
+      </div>
+      
+      <div class="col-lg-6 mb-4">
+        <div class="article-card">
+          <img src="{% static 'images/phu_quoc_resort.png' %}" alt="Food guide">
+          <div class="article-content">
+            <h4>Top 10 Món Ăn Phải Thử Tại Việt Nam</h4>
+            <p>Từ phở Hà Nội đến bún bò Huế, khám phá những món ăn đặc sắc nhất Việt Nam...</p>
+            <a href="#" class="btn btn-sm btn-outline-primary">Đọc Thêm</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <div class="article-card">
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&q=80" alt="Travel tips">
+          <div class="article-content">
+            <h4>10 Tips Du Lịch Việt Nam An Toàn</h4>
+            <p>Những lời khuyên hữu ích để có chuyến đi an toàn và trọn vẹn tại Việt Nam...</p>
+            <a href="#" class="btn btn-sm btn-outline-primary">Đọc Thêm</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <h3 class="mb-4">Sẵn Sàng Khám Phá Việt Nam?</h3>
+      <a href="{% url 'vietnam_destinations' %}" class="btn btn-primary btn-lg">
+        Xem Tours <i class="ni ni-bold-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+.guide-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.guide-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.guide-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2d3436;
+}
+
+.guide-card p {
+  color: #636e72;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.guide-card strong {
+  color: #2d3436;
+  font-weight: 600;
+}
+
+.article-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.article-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.article-content {
+  padding: 1.5rem;
+}
+
+.article-content h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #2d3436;
+}
+
+.article-content p {
+  color: #636e72;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+</style>
+{% endblock %}

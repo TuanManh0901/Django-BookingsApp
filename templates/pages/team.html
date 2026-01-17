@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Đội Ngũ - VN Travel{% endblock %}
+
+{% block content %}
+<div class="threeland-hero">
+  <div class="hero-background-image" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80');"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-main-content">
+    <div class="container text-center">
+      <p class="hero-subtitle">ĐỘI NGŨ</p>
+      <h1 class="hero-main-title">Gặp Gỡ Đội Ngũ Chúng Tôi</h1>
+      <p class="text-white" style="font-size: 1.2rem;">Những người đam mê du lịch tạo nên trải nghiệm tuyệt vời cho bạn</p>
+    </div>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Chuyên Gia Du Lịch</h2>
+        <p class="lead">
+          Đội ngũ của chúng tôi gồm những chuyên gia du lịch giàu kinh nghiệm, đam mê chia sẻ vẻ đẹp Việt Nam 
+          và mang đến những trải nghiệm đáng nhớ cho du khách.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="team-member-card">
+          <div class="team-photo">
+            <img src="https://ui-avatars.com/api/?name=Nguyen+Van+A&size=300&background=667eea&color=fff&bold=true" alt="CEO">
+          </div>
+          <h3>Nguyễn Văn A</h3>
+          <p class="team-role">CEO & Founder</p>
+          <p class="team-bio">
+            15+ năm kinh nghiệm trong ngành du lịch. Đam mê kết nối du khách với văn hóa Việt Nam.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="team-member-card">
+          <div class="team-photo">
+            <img src="https://ui-avatars.com/api/?name=Tran+Thi+B&size=300&background=11998e&color=fff&bold=true" alt="Marketing Director">
+          </div>
+          <h3>Trần Thị B</h3>
+          <p class="team-role">Giám Đốc Marketing</p>
+          <p class="team-bio">
+            Chuyên gia marketing du lịch với 10 năm kinh nghiệm. Sáng tạo những chiến dịch độc đáo.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="team-member-card">
+          <div class="team-photo">
+            <img src="https://ui-avatars.com/api/?name=Le+Van+C&size=300&background=f093fb&color=fff&bold=true" alt="Operations Manager">
+          </div>
+          <h3>Lê Văn C</h3>
+          <p class="team-role">Quản Lý Vận Hành</p>
+          <p class="team-bio">
+            Đảm bảo mọi tour diễn ra suôn sẻ với sự tỉ mỉ và chuyên nghiệp trong từng chi tiết.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="team-member-card">
+          <div class="team-photo">
+            <img src="https://ui-avatars.com/api/?name=Pham+Thi+D&size=300&background=ff6b9d&color=fff&bold=true" alt="Tour Guide">
+          </div>
+          <h3>Phạm Thị D</h3>
+          <p class="team-role">Hướng Dẫn Viên Trưởng</p>
+          <p class="team-bio">
+            Hướng dẫn viên với kiến thức sâu rộng về lịch sử và văn hóa Việt Nam, thành thạo 3 ngôn ngữ.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="team-member-card">
+          <div class="team-photo">
+            <img src="https://ui-avatars.com/api/?name=Hoang+Van+E&size=300&background=c471ed&color=fff&bold=true" alt="Customer Service">
+          </div>
+          <h3>Hoàng Văn E</h3>
+          <p class="team-role">Trưởng Phòng CSKH</p>
+          <p class="team-bio">
+            Luôn sẵn sàng hỗ trợ 24/7, đảm bảo mọi thắc mắc của khách hàng được giải đáp nhanh chóng.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="team-member-card">
+          <div class="team-photo">
+            <img src="https://ui-avatars.com/api/?name=Vu+Thi+F&size=300&background=f12711&color=fff&bold=true" alt="IT Manager">
+          </div>
+          <h3>Vũ Thị F</h3>
+          <p class="team-role">Quản Lý Công Nghệ</p>
+          <p class="team-bio">
+            Phát triển và duy trì hệ thống AI Travel Advisor, mang công nghệ vào du lịch.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.team-member-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.team-member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-photo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #667eea;
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-member-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #2d3436;
+}
+
+.team-role {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.team-bio {
+  color: #636e72;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+</style>
+{% endblock %}
