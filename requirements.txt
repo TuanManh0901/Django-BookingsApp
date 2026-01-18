@@ -6,3 +6,6 @@ python-telegram-bot==20.7
 google-generativeai==0.3.2
 pillow
 django-allauth
+PyJWT
+gunicorn
+whitenoise
