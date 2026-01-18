@@ -1,5 +1,5 @@
 from django import template
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
 from datetime import date as _date, datetime as _datetime
 from django.utils import timezone
 
@@ -118,5 +118,5 @@ def subtract(value, arg):
     """
     try:
         return Decimal(str(value)) - Decimal(str(arg))
-    except (ValueError, TypeError, decimal.InvalidOperation):
+    except (ValueError, TypeError, InvalidOperation):
         return 0

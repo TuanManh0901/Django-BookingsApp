@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from django.db.models import Q, Avg
+from django.db.models import Q, Avg, Count
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Tour, Review
