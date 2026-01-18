@@ -91,16 +91,48 @@ TEMPLATES = [
 WSGI_APPLICATION = "vn_travel.wsgi.application"
 
 # Database
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config('DATABASE_NAME', default='vn_travel_db'),
-        "USER": config('DATABASE_USER', default='postgres'),
-        "PASSWORD": config('DATABASE_PASSWORD', default='1'),
-        "HOST": config('DATABASE_HOST', default='localhost'),
-        "PORT": config('DATABASE_PORT', default='5432'),
+import os
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    # Parse DATABASE_URL (format: postgresql://user:pass@host:port/dbname)
+    import re
+    match = re.match(r'postgresql://([^:]+):([^@]+)@([^:]+):(\d+)/(.+)', DATABASE_URL)
+    if match:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "USER": match.group(1),
+                "PASSWORD": match.group(2),
+                "HOST": match.group(3),
+                "PORT": match.group(4),
+                "NAME": match.group(5),
+            }
+        }
+    else:
+        # Fallback to individual config
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": config('DATABASE_NAME', default='vn_travel_db'),
+                "USER": config('DATABASE_USER', default='postgres'),
+                "PASSWORD": config('DATABASE_PASSWORD', default='1'),
+                "HOST": config('DATABASE_HOST', default='localhost'),
+                "PORT": config('DATABASE_PORT', default='5432'),
+            }
+        }
+else:
+    # Use individual config vars
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config('DATABASE_NAME', default='vn_travel_db'),
+            "USER": config('DATABASE_USER', default='postgres'),
+            "PASSWORD": config('DATABASE_PASSWORD', default='1'),
+            "HOST": config('DATABASE_HOST', default='localhost'),
+            "PORT": config('DATABASE_PORT', default='5432'),
+        }
     }
-}
 
 # Site URL for MoMo callbacks
 SITE_URL = config('SITE_URL', default='http://127.0.0.1:8000')
