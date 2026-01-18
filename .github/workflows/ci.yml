@@ -3,7 +3,7 @@
 # Automated Testing & Deployment
 # ========================
 
-name: CI/CD Pipeline
+name: VN-Travel CI/CD
 
 on:
   push:
