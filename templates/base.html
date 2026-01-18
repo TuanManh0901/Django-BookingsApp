@@ -436,9 +436,9 @@
     <script>
       // Navbar is now position: absolute, no scroll behavior needed
       
-      // Auto-dismiss alerts after 5 seconds
+      // Auto-dismiss alerts after 5 seconds (except persistent ones)
       document.addEventListener('DOMContentLoaded', function() {
-        const alerts = document.querySelectorAll('.alert');
+        const alerts = document.querySelectorAll('.alert:not(.alert-persistent)');
         alerts.forEach(function(alert) {
           setTimeout(function() {
             const bsAlert = new bootstrap.Alert(alert);

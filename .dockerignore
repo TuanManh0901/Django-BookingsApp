@@ -1,0 +1,49 @@
+# Docker
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.git/
+.gitignore
+.env
+.env.local
+*.log
+*.pot
+*.sqlite3
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Media & Uploads
+media/
+*.mp4
+*.mov
+*.avi
+
+# Test & Coverage
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Build
+*.egg-info/
+dist/
+build/
+
+# Docs
+*.md
+!README.md
+
+# Local files
+nohup.out
+server.log
+server_new.log
+tatbatServer.txt

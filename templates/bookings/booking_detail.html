@@ -80,13 +80,24 @@ Chi tiết đặt chỗ #{{ booking.id }}
               const targetTs = new Date(createdAtIso).getTime() + graceMs;
               const timerEl = document.getElementById('countdown-timer');
               const payBtn = document.getElementById('pay-now-btn');
+              const cancelBtn = document.getElementById('cancel-booking-btn');
 
               function disablePay() {
-                if (!payBtn) return;
-                payBtn.classList.add('disabled');
-                payBtn.setAttribute('aria-disabled', 'true');
-                payBtn.addEventListener('click', function(evt) { evt.preventDefault(); });
+                // Disable payment button
+                if (payBtn) {
+                  payBtn.classList.add('disabled');
+                  payBtn.setAttribute('aria-disabled', 'true');
+                  payBtn.addEventListener('click', function(evt) { evt.preventDefault(); });
+                }
+                
+                // Disable cancel button
+                if (cancelBtn) {
+                  cancelBtn.classList.add('disabled');
+                  cancelBtn.setAttribute('aria-disabled', 'true');
+                  cancelBtn.addEventListener('click', function(evt) { evt.preventDefault(); });
+                }
               }
+
 
               function tick() {
                 const now = Date.now();
@@ -96,45 +107,12 @@ Chi tiết đặt chỗ #{{ booking.id }}
                     timerEl.textContent = '00:00';
                     disablePay();
                     
-                    // Show loading message
+                    // Just show expired message - status will auto-update on page refresh
                     const wrapperEl = document.getElementById('countdown-wrapper');
                     if (wrapperEl) {
-                      wrapperEl.innerHTML = '<div style="text-align:center; padding:1rem;"><strong style="color:#000;">⏳ Đang tự động hủy đặt chỗ...</strong></div>';
+                      wrapperEl.innerHTML = '<div style="text-align:center; padding:1rem;"><strong style="color:#d9534f;">⏰ Đã hết thời gian thanh toán!</strong><br><small>Refresh trang để xem trạng thái mới nhất.</small></div>';
                     }
                     
-                    // Try to tell server to cancel this booking immediately
-                    fetch("{% url 'cancel_booking_ajax' booking.pk %}", {
-                      method: 'POST',
-                      headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRFToken': (function(){
-                          const name = 'csrftoken=';
-                          const cookies = document.cookie.split(';');
-                          for (let c of cookies) {
-                            c = c.trim(); if (c.indexOf(name) === 0) return c.substring(name.length);
-                          }
-                          return '';
-                        })()
-                      }
-                    }).then(r => r.json()).then(data => {
-                      if (data && data.success) {
-                        // Show success then reload
-                        if (wrapperEl) {
-                          wrapperEl.innerHTML = '<div style="text-align:center; padding:1rem;"><strong style="color:#d9534f;">✓ Đặt chỗ đã tự động hủy!</strong></div>';
-                        }
-                        setTimeout(() => window.location.reload(), 1500);
-                      } else {
-                        // Force reload anyway
-                        setTimeout(() => window.location.reload(), 2000);
-                      }
-                    }).catch(() => {
-                      // Force reload on error
-                      if (wrapperEl) {
-                        wrapperEl.innerHTML = '<div style="text-align:center; padding:1rem;"><strong style="color:#000;">Đang tải lại...</strong></div>';
-                      }
-                      setTimeout(() => window.location.reload(), 2000);
-                    });
-
                     return;
                   }
 

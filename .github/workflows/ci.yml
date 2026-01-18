@@ -1,0 +1,181 @@
+# ========================
+# VN-TRAVEL CI/CD PIPELINE
+# Automated Testing & Deployment
+# ========================
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  # ========== Job 1: Linting ==========
+  lint:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install linters
+        run: |
+          pip install flake8 isort black
+      
+      - name: Run Flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      
+      - name: Check import sorting
+        run: isort . --check-only --diff
+        continue-on-error: true
+
+  # ========== Job 2: Testing ==========
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-django coverage
+      
+      - name: Run migrations
+        run: python manage.py migrate
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
+          DEBUG: True
+          SECRET_KEY: test-secret-key-for-ci
+      
+      - name: Run tests with coverage
+        run: |
+          coverage run manage.py test --verbosity=2
+          coverage report --fail-under=50
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
+          DEBUG: True
+          SECRET_KEY: test-secret-key-for-ci
+        continue-on-error: true
+      
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov/
+        continue-on-error: true
+
+  # ========== Job 3: Build Docker Image ==========
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Build Docker image
+        run: |
+          docker build -t vn-travel:${{ github.sha }} .
+          docker images vn-travel
+      
+      - name: Test Docker image
+        run: |
+          docker run -d --name test-container -p 8000:8000 \
+            -e DEBUG=True \
+            -e SECRET_KEY=test-key \
+            -e DATABASE_URL=sqlite:///db.sqlite3 \
+            vn-travel:${{ github.sha }} || true
+          sleep 5
+          docker logs test-container || true
+          docker stop test-container || true
+
+  # ========== Job 4: Security Scan ==========
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: lint
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install safety
+        run: pip install safety bandit
+      
+      - name: Check dependencies for vulnerabilities
+        run: safety check -r requirements.txt
+        continue-on-error: true
+      
+      - name: Run Bandit security scan
+        run: bandit -r . -ll -x ./venv,./tests
+        continue-on-error: true
+
+  # ========== Job 5: Deploy (only on main) ==========
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [test, build, security]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Deploy notification
+        run: |
+          echo "🚀 Ready to deploy to production!"
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo ""
+          echo "To enable auto-deploy, add RENDER_DEPLOY_HOOK secret"
+          echo "Then uncomment the deploy step below"
+      
+      # Uncomment when ready for auto-deploy:
+      # - name: Trigger Render Deploy
+      #   run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}

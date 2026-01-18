@@ -53,19 +53,21 @@ class Booking(models.Model):
         Return REAL-TIME status - checks expiration every time called
         This bypasses database field to solve browser cache issues
         """
-        # If expired, always return 'cancelled' regardless of database field
-        if self.is_expired():
-            return 'cancelled'
-        
-        # Otherwise return database status
-        if self.status == 'cancelled':
+        # First check database payment_status
+        if self.payment_status == 'cancelled':
             return 'cancelled'
         elif self.payment_status == 'paid':
             return 'paid'
-        elif self.deposit_paid and self.deposit_amount > 0:
+        
+        # If pending, check if expired
+        if self.is_expired():
+            return 'cancelled'
+        
+        # Check deposit status
+        if self.deposit_paid and self.deposit_amount > 0:
             return 'partial_paid'
-        else:
-            return 'pending'
+        
+        return 'pending'
     
     def get_overall_status(self):
         """Trả về status tổng hợp dựa trên booking status và payment status"""

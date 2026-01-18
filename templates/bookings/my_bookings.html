@@ -73,7 +73,7 @@
             data-booking-created="{{ booking.created_at.timestamp }}" 
             data-booking-status="{{ booking.payment_status }}"
             data-booking-deposit-paid="{{ booking.deposit_paid|lower }}">
-          <td>{{ forloop.counter }}</td>
+          <td>{{ page_obj.start_index|add:forloop.counter0 }}</td>
           <td> <a href="{% url 'tour_detail' booking.tour.pk %}">{{ booking.tour.name }}</a>
           </td>
           <td>{{ booking.booking_date|vn_date }}</td>

@@ -4599,3 +4599,1386 @@ Not Found: /favicon.ico
 [17/Jan/2026 20:36:11] "GET /booking/119/ HTTP/1.1" 200 20617
 [17/Jan/2026 20:36:11] "GET /booking/119/ HTTP/1.1" 200 20617
 [17/Jan/2026 20:38:01] "GET / HTTP/1.1" 200 51127
+[18/Jan/2026 11:16:08] "GET /admin/ HTTP/1.1" 200 72752
+[18/Jan/2026 11:16:08] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /favicon.ico
+[18/Jan/2026 11:16:10] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8362
+Not Found: /apple-touch-icon.png
+[18/Jan/2026 11:16:10] "GET /favicon.ico HTTP/1.1" 404 8299
+[18/Jan/2026 11:16:10] "GET /apple-touch-icon.png HTTP/1.1" 404 8326
+[18/Jan/2026 11:16:10] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+[18/Jan/2026 11:16:12] "GET / HTTP/1.1" 200 51127
+[18/Jan/2026 11:16:13] "GET /static/custom.css?v=2 HTTP/1.1" 304 0
+[18/Jan/2026 11:16:13] "GET /static/premium-styles.css?v=3 HTTP/1.1" 304 0
+[18/Jan/2026 11:16:13] "GET /static/images/hanoi_city.png HTTP/1.1" 304 0
+[18/Jan/2026 11:16:13] "GET /static/images/ha_long_bay.png HTTP/1.1" 304 0
+[18/Jan/2026 11:16:13] "GET /static/images/phu_quoc_resort.png HTTP/1.1" 304 0
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+[18/Jan/2026 11:16:13] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8362
+Not Found: /favicon.ico
+[18/Jan/2026 11:16:13] "GET /apple-touch-icon.png HTTP/1.1" 404 8326
+[18/Jan/2026 11:16:13] "GET /favicon.ico HTTP/1.1" 404 8299
+[18/Jan/2026 11:16:13] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 11:16:13] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 11:16:13] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:24:07.268913+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:09:07.268909+00:00
+DEBUG AUTO-CANCEL: Found 1 expired bookings
+DEBUG AUTO-CANCEL: Cancelling booking #120, created at 2026-01-18 04:03:09.004017+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #120
+[18/Jan/2026 11:24:07] "GET /my-bookings/ HTTP/1.1" 200 59749
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:24:10.605014+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:09:10.605009+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:24:10] "GET /my-bookings/ HTTP/1.1" 200 59749
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/bookings/models.py changed, reloading.
+Performing system checks...
+
+January 17, 2026 - 20:31:06
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: Booking 103 - Has review: False
+DEBUG: Booking 102 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: Booking 103 - Has review: False
+DEBUG: Booking 102 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: Booking 103 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_AUTHENTICATION_METHOD is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+?: settings.ACCOUNT_EMAIL_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
+?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
+
+System check identified 3 issues (0 silenced).
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:27:32.886097+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:12:32.886091+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:27:32] "GET /my-bookings/ HTTP/1.1" 200 59439
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà nội'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hạ long'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phú quốc'
+  warnings.warn(warning, CacheKeyWarning)
+[18/Jan/2026 11:27:54] "GET / HTTP/1.1" 200 51127
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:27:56.956053+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:12:56.956043+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:27:56] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 11:27:59] "GET /booking/120/ HTTP/1.1" 200 25034
+[18/Jan/2026 11:28:00] "POST /booking/120/cancel-ajax/ HTTP/1.1" 200 49
+Bad Request: /booking/120/cancel-ajax/
+[18/Jan/2026 11:28:01] "POST /booking/120/cancel-ajax/ HTTP/1.1" 400 60
+[18/Jan/2026 11:28:01] "GET /booking/120/ HTTP/1.1" 200 20610
+[18/Jan/2026 11:28:01] "GET /static/argon-design-system/css/nucleo-icons.css HTTP/1.1" 304 0
+[18/Jan/2026 11:28:01] "GET /static/argon-design-system/css/nucleo-svg.css HTTP/1.1" 304 0
+[18/Jan/2026 11:28:01] "GET /static/argon-design-system/css/argon-design-system.css HTTP/1.1" 304 0
+[18/Jan/2026 11:28:01] "GET /static/argon-design-system/css/font-awesome.css HTTP/1.1" 304 0
+[18/Jan/2026 11:28:01] "GET /static/custom.css?v=2 HTTP/1.1" 304 0
+[18/Jan/2026 11:28:01] "GET /static/premium-styles.css?v=3 HTTP/1.1" 304 0
+[18/Jan/2026 11:28:01] "GET /static/argon-design-system/js/argon-design-system.js HTTP/1.1" 304 0
+[18/Jan/2026 11:28:02] "GET /static/argon-design-system/fonts/nucleo-icons.woff2 HTTP/1.1" 304 0
+[18/Jan/2026 11:29:08] "GET / HTTP/1.1" 200 51127
+[18/Jan/2026 11:39:08] "GET / HTTP/1.1" 200 51127
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:39:10.107933+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:24:10.107921+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:39:10] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 11:39:18] "GET /booking/120/ HTTP/1.1" 200 20610
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:39:20.338730+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:24:20.338723+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:39:20] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 11:39:22] "GET /booking/120/ HTTP/1.1" 200 20610
+[18/Jan/2026 11:39:23] "GET /tour/16/ HTTP/1.1" 200 32184
+[18/Jan/2026 11:39:23] "GET /media/tours/tour_16_updated_mui_ne_sand_dunes_new_1768395071287_tZynMuW.png HTTP/1.1" 304 0
+[18/Jan/2026 11:39:25] "GET /tour/16/book/ HTTP/1.1" 200 20800
+[18/Jan/2026 11:39:26] "GET /tour/16/book/ HTTP/1.1" 200 20800
+[18/Jan/2026 11:39:33] "POST /tour/16/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:39:33.587473+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:24:33.587466+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:39:33] "GET /my-bookings/ HTTP/1.1" 200 60200
+[18/Jan/2026 11:39:41] "GET /booking/121/ HTTP/1.1" 200 23372
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:40:24.485801+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:25:24.485793+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:40:24] "GET /my-bookings/ HTTP/1.1" 200 59698
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:40:27.994454+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:25:27.994446+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:40:28] "GET /my-bookings/ HTTP/1.1" 200 59698
+[18/Jan/2026 11:40:30] "GET /admin/ HTTP/1.1" 200 72752
+[18/Jan/2026 11:40:31] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[18/Jan/2026 11:40:51] "GET /education/ HTTP/1.1" 200 25258
+[18/Jan/2026 11:40:53] "GET /about/ HTTP/1.1" 200 24758
+[18/Jan/2026 11:40:54] "GET /education/ HTTP/1.1" 200 25258
+[18/Jan/2026 11:40:58] "GET /about/ HTTP/1.1" 200 24758
+[18/Jan/2026 11:41:02] "GET /destinations/vietnam/ HTTP/1.1" 200 45426
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_14_vietnam_panorama_north_south_1768394751445_rlxq6WJ.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_13_nha_trang_beach_1768394098058_UhcFYOJ.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061_d9oEqyJ.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294_rXOmCUS.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_12_updated_mekong_delta_can_tho_new_1768395091069_2cg7B9u.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_10_hoi_an_hue_da_nang_1768394688009_SqAhEWk.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_11_hue_imperial_city_1768394135604_VuUXf2S.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967_GpTgbVb.png HTTP/1.1" 304 0
+[18/Jan/2026 11:41:02] "GET /media/tours/tour_7_ha_noi_ha_long_tour_1768394623908_HOTLBzT.png HTTP/1.1" 304 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 04:42:44.409704+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 04:27:44.409695+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 11:42:44] "GET /my-bookings/ HTTP/1.1" 200 59698
+[18/Jan/2026 11:42:57] "GET / HTTP/1.1" 200 51127
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:02:54.515957+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 05:47:54.515951+00:00
+DEBUG AUTO-CANCEL: Found 1 expired bookings
+DEBUG AUTO-CANCEL: Cancelling booking #121, created at 2026-01-18 04:39:30.244137+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #121
+[18/Jan/2026 13:02:54] "GET /my-bookings/ HTTP/1.1" 200 59390
+[18/Jan/2026 13:03:06] "GET /booking/121/ HTTP/1.1" 200 23371
+[18/Jan/2026 13:03:15] "GET /booking/121/ HTTP/1.1" 200 23371
+[18/Jan/2026 13:03:16] "GET /booking/121/ HTTP/1.1" 200 23371
+[18/Jan/2026 13:04:36] "GET / HTTP/1.1" 200 51127
+[18/Jan/2026 13:04:36,831] - Broken pipe from ('127.0.0.1', 56329)
+[18/Jan/2026 13:04:36] "GET / HTTP/1.1" 200 51127
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+Not Found: /favicon.ico
+[18/Jan/2026 13:04:37] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8362
+[18/Jan/2026 13:04:37] "GET /favicon.ico HTTP/1.1" 404 8299
+[18/Jan/2026 13:04:37] "GET /apple-touch-icon.png HTTP/1.1" 404 8326
+[18/Jan/2026 13:04:37] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 13:04:37] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 13:04:37] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phan thiết'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_cần thơ'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_nha trang'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hồ chí minh'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hội an'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_ninh bình'
+  warnings.warn(warning, CacheKeyWarning)
+[18/Jan/2026 13:04:40] "GET /search/ HTTP/1.1" 200 48976
+[18/Jan/2026 13:04:50] "GET /tour/15/ HTTP/1.1" 200 32160
+[18/Jan/2026 13:04:52] "GET /tour/15/book/ HTTP/1.1" 200 20808
+[18/Jan/2026 13:05:11] "POST /tour/15/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:05:11.928730+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 05:50:11.928726+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:05:11] "GET /my-bookings/ HTTP/1.1" 200 60249
+[18/Jan/2026 13:27:09] "POST /booking/122/cancel-ajax/ HTTP/1.1" 200 49
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:27:12.697897+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:12:12.697889+00:00
+DEBUG AUTO-CANCEL: Found 1 expired bookings
+DEBUG AUTO-CANCEL: Cancelling booking #122, created at 2026-01-18 06:04:58.831144+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #122
+[18/Jan/2026 13:27:12] "GET /my-bookings/ HTTP/1.1" 200 59439
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:27:14.928449+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:12:14.928442+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:27:14] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 13:27:17] "GET /booking/122/ HTTP/1.1" 200 20605
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:27:20.548866+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:12:20.548858+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:27:20] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 13:27:22] "GET /booking/121/ HTTP/1.1" 200 23837
+[18/Jan/2026 13:27:24] "GET /booking/121/ HTTP/1.1" 200 23837
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:27:26.155349+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:12:26.155339+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:27:26] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 13:27:27] "GET /booking/122/ HTTP/1.1" 200 20605
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:27:28.273865+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:12:28.273853+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:27:28] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 13:27:29] "GET /booking/121/ HTTP/1.1" 200 23837
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:27:32.606418+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:12:32.606412+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:27:32] "GET /my-bookings/ HTTP/1.1" 200 59439
+[18/Jan/2026 13:27:37] "GET / HTTP/1.1" 200 51127
+[18/Jan/2026 13:27:40] "GET /search/ HTTP/1.1" 200 48976
+[18/Jan/2026 13:27:43] "GET /tour/16/ HTTP/1.1" 200 32184
+[18/Jan/2026 13:27:46] "GET /tour/16/book/ HTTP/1.1" 200 20800
+[18/Jan/2026 13:27:58,236] - Broken pipe from ('127.0.0.1', 57038)
+[18/Jan/2026 13:28:00] "POST /tour/16/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:28:00.929284+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:13:00.929276+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:28:00] "GET /my-bookings/ HTTP/1.1" 200 60418
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:31:26.428163+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:16:26.428156+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+Performing system checks...
+
+January 18, 2026 - 11:26:51
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+[18/Jan/2026 13:31:26] "GET /my-bookings/ HTTP/1.1" 200 59916
+[18/Jan/2026 13:31:35] "GET /booking/123/ HTTP/1.1" 200 23838
+[18/Jan/2026 13:31:55] "GET / HTTP/1.1" 200 51127
+[18/Jan/2026 13:32:04] "GET /search/ HTTP/1.1" 200 48976
+[18/Jan/2026 13:32:16] "GET /tour/9/ HTTP/1.1" 200 37936
+[18/Jan/2026 13:32:19] "GET /tour/9/book/ HTTP/1.1" 200 21508
+[18/Jan/2026 13:32:23] "GET /tour/9/ HTTP/1.1" 200 37936
+[18/Jan/2026 13:32:25] "GET /tour/9/book/ HTTP/1.1" 200 21508
+[18/Jan/2026 13:32:32] "GET /tour/9/book/ HTTP/1.1" 200 21508
+[18/Jan/2026 13:41:51] "GET /tour/9/book/ HTTP/1.1" 200 21508
+[18/Jan/2026 13:41:57] "GET /tour/9/book/ HTTP/1.1" 200 21508
+[18/Jan/2026 13:55:47] "GET /tour/9/book/ HTTP/1.1" 200 21573
+[18/Jan/2026 13:55:58] "GET /booking/123/ HTTP/1.1" 200 23885
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:55:59.869246+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:40:59.869237+00:00
+DEBUG AUTO-CANCEL: Found 1 expired bookings
+DEBUG AUTO-CANCEL: Cancelling booking #124, created at 2026-01-18 06:27:55.268264+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #124
+[18/Jan/2026 13:55:59] "GET /my-bookings/ HTTP/1.1" 200 59348
+[18/Jan/2026 13:56:01] "GET /booking/124/ HTTP/1.1" 200 23885
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:04.324691+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:04.324683+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:04] "GET /my-bookings/ HTTP/1.1" 200 59348
+[18/Jan/2026 13:56:05] "GET /booking/123/ HTTP/1.1" 200 23885
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:07.330725+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:07.330718+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:07] "GET /my-bookings/ HTTP/1.1" 200 59348
+[18/Jan/2026 13:56:08] "GET /booking/123/ HTTP/1.1" 200 23885
+[18/Jan/2026 13:56:10] "GET /booking/123/ HTTP/1.1" 200 23885
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:13.000333+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:13.000325+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:13] "GET /my-bookings/ HTTP/1.1" 200 59348
+[18/Jan/2026 13:56:15] "GET /booking/121/ HTTP/1.1" 200 23885
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:16.701662+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:16.701656+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:16] "GET /my-bookings/ HTTP/1.1" 200 59348
+[18/Jan/2026 13:56:18] "GET /booking/119/ HTTP/1.1" 200 20665
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:19.907999+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:19.907990+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:19] "GET /my-bookings/ HTTP/1.1" 200 59348
+[18/Jan/2026 13:56:21] "GET /booking/124/ HTTP/1.1" 200 23885
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:24.374953+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:24.374944+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:24] "GET /my-bookings/ HTTP/1.1" 200 59348
+[18/Jan/2026 13:56:25] "GET /booking/118/ HTTP/1.1" 200 20658
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:27.598233+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:27.598224+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:27] "GET /my-bookings/ HTTP/1.1" 200 59348
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:31.050606+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:31.050595+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:31] "GET /my-bookings/?page=2 HTTP/1.1" 200 63259
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:33.155844+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:33.155836+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:33] "GET /my-bookings/?page=3 HTTP/1.1" 200 73378
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:35.466471+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:35.466462+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:35] "GET /my-bookings/?page=4 HTTP/1.1" 200 38823
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:38.119057+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:38.119053+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:38] "GET /my-bookings/?page=1 HTTP/1.1" 200 59348
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:38.410625+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:38.410617+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:38] "GET /my-bookings/?page=1 HTTP/1.1" 200 59348
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 06:56:41.614361+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:41:41.614353+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 13:56:41] "GET /my-bookings/?page=2 HTTP/1.1" 200 63259
+[18/Jan/2026 13:59:43] "GET /booking/107/ HTTP/1.1" 200 20703
+[18/Jan/2026 13:59:45] "GET /tour/12/ HTTP/1.1" 200 32393
+[18/Jan/2026 13:59:47] "GET /tour/12/book/ HTTP/1.1" 200 21652
+[18/Jan/2026 14:00:02] "POST /tour/12/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:00:02.465810+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:45:02.465807+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:00:02] "GET /my-bookings/ HTTP/1.1" 200 60159
+[18/Jan/2026 14:00:11] "GET /booking/125/ HTTP/1.1" 200 23932
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:00:14.963178+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:45:14.963166+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:00:14] "GET /my-bookings/ HTTP/1.1" 200 59657
+[18/Jan/2026 14:01:52] "GET /booking/125/ HTTP/1.1" 200 23932
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:01:55.296862+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:46:55.296853+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:01:55] "GET /my-bookings/ HTTP/1.1" 200 59657
+[18/Jan/2026 14:01:57] "GET /booking/125/ HTTP/1.1" 200 23932
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:01:59.023398+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:46:59.023390+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:01:59] "GET /my-bookings/ HTTP/1.1" 200 59657
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:02:06.996306+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:47:06.996296+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:02:07] "GET /my-bookings/?page=2 HTTP/1.1" 200 59681
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:02:55.951532+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 06:47:55.951528+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: Booking 103 - Has review: False
+DEBUG: Booking 102 - Has review: False
+DEBUG: Booking 101 - Has review: False
+DEBUG: Booking 100 - Has review: False
+DEBUG: Booking 99 - Has review: False
+DEBUG: Booking 96 - Has review: True
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 95 - Has review: False
+DEBUG: Booking 94 - Has review: False
+DEBUG: Booking 93 - Has review: False
+DEBUG: Booking 92 - Has review: False
+DEBUG: Booking 91 - Has review: True
+DEBUG: Booking 90 - Has review: False
+DEBUG: Booking 89 - Has review: False
+DEBUG: Booking 86 - Has review: True
+DEBUG: Booking 85 - Has review: True
+DEBUG: Booking 84 - Has review: True
+DEBUG: MyBookingsView - Processing 3 bookings
+DEBUG: Booking 83 - Has review: True
+DEBUG: Booking 81 - Has review: False
+DEBUG: Booking 80 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: Booking 103 - Has review: False
+DEBUG: Booking 102 - Has review: False
+DEBUG: Booking 101 - Has review: False
+DEBUG: Booking 100 - Has review: False
+DEBUG: Booking 99 - Has review: False
+DEBUG: Booking 96 - Has review: True
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: Booking 103 - Has review: False
+DEBUG: Booking 102 - Has review: False
+DEBUG: Booking 101 - Has review: False
+DEBUG: Booking 100 - Has review: False
+DEBUG: Booking 99 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+[18/Jan/2026 14:02:55] "GET /my-bookings/?page=1 HTTP/1.1" 200 59657
+[18/Jan/2026 14:19:53] "POST /booking/125/cancel-ajax/ HTTP/1.1" 200 49
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:19:59.335575+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 07:04:59.335567+00:00
+DEBUG AUTO-CANCEL: Found 1 expired bookings
+DEBUG AUTO-CANCEL: Cancelling booking #125, created at 2026-01-18 06:59:58.924033+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #125
+[18/Jan/2026 14:19:59] "GET /my-bookings/?page=1 HTTP/1.1" 200 59349
+[18/Jan/2026 14:20:02] "GET /booking/125/ HTTP/1.1" 200 20704
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:20:05.552040+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 07:05:05.552029+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:20:05] "GET /my-bookings/ HTTP/1.1" 200 59349
+[18/Jan/2026 14:20:08] "GET / HTTP/1.1" 200 51175
+Not Found: /apple-touch-icon-precomposed.png
+[18/Jan/2026 14:20:09] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8362
+Not Found: /apple-touch-icon.png
+Not Found: /favicon.ico
+[18/Jan/2026 14:20:09] "GET /favicon.ico HTTP/1.1" 404 8299
+[18/Jan/2026 14:20:09] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 14:20:09] "GET /apple-touch-icon.png HTTP/1.1" 404 8326
+[18/Jan/2026 14:20:09] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 14:20:09] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:20:11.378834+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 07:05:11.378825+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:20:11] "GET /my-bookings/ HTTP/1.1" 200 59349
+[18/Jan/2026 14:20:15] "GET /booking/125/ HTTP/1.1" 200 20704
+[18/Jan/2026 14:20:16] "GET /tour/12/ HTTP/1.1" 200 32393
+[18/Jan/2026 14:20:19] "GET /tour/12/book/ HTTP/1.1" 200 21652
+[18/Jan/2026 14:20:34] "POST /tour/12/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:20:34.837123+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 07:05:34.837115+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:20:34] "GET /my-bookings/ HTTP/1.1" 200 60213
+[18/Jan/2026 14:20:53] "GET / HTTP/1.1" 200 51175
+[18/Jan/2026 14:20:57] "GET /search/ HTTP/1.1" 200 49024
+[18/Jan/2026 14:20:59] "GET /tour/14/ HTTP/1.1" 200 32301
+[18/Jan/2026 14:21:02] "GET /tour/14/book/ HTTP/1.1" 200 21610
+[18/Jan/2026 14:21:15] "POST /tour/14/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 07:21:15.310123+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 07:06:15.310112+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 14:21:15] "GET /my-bookings/ HTTP/1.1" 200 60571
+[18/Jan/2026 14:21:23] "GET / HTTP/1.1" 200 51175
+[18/Jan/2026 16:24:45] "GET /tour/9/book/ HTTP/1.1" 200 21573
+[18/Jan/2026 16:24:49] "GET / HTTP/1.1" 200 51175
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+Not Found: /favicon.ico
+[18/Jan/2026 16:24:49] "GET /favicon.ico HTTP/1.1" 404 8299
+[18/Jan/2026 16:24:49] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8362
+[18/Jan/2026 16:24:49] "GET /apple-touch-icon.png HTTP/1.1" 404 8326
+[18/Jan/2026 16:24:49] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 16:24:49] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[18/Jan/2026 16:24:49] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:24:51.103258+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:09:51.103250+00:00
+DEBUG AUTO-CANCEL: Found 2 expired bookings
+DEBUG AUTO-CANCEL: Cancelling booking #127, created at 2026-01-18 07:21:11.290366+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #127
+DEBUG AUTO-CANCEL: Cancelling booking #126, created at 2026-01-18 07:20:31.669948+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #126
+[18/Jan/2026 16:24:51] "GET /my-bookings/ HTTP/1.1" 200 59453
+[18/Jan/2026 16:25:09] "POST /bookings/119/review/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:25:09.153956+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:10:09.153953+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:25:09] "GET /my-bookings/ HTTP/1.1" 200 63271
+[18/Jan/2026 16:25:13] "GET / HTTP/1.1" 200 51175
+[18/Jan/2026 16:25:39] "GET /tours/ HTTP/1.1" 200 49021
+[18/Jan/2026 16:25:41] "GET /ai-chat/ HTTP/1.1" 200 34441
+[18/Jan/2026 16:25:42] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 532
+[18/Jan/2026 16:25:42] "GET /ai-chat/api/chat/history/?session_id=session_1767866184120_hrqv58o8b HTTP/1.1" 200 8983
+[18/Jan/2026 16:25:43] "GET /about/ HTTP/1.1" 200 24806
+[18/Jan/2026 16:25:45] "GET /search/?location=H%C3%A0%20N%E1%BB%99i HTTP/1.1" 200 30424
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_đà lạt'
+  warnings.warn(warning, CacheKeyWarning)
+[18/Jan/2026 16:25:47] "GET /search/?location=%C4%90%C3%A0%20L%E1%BA%A1t HTTP/1.1" 200 27599
+[18/Jan/2026 16:25:47] "GET /media/tours/H%C3%ACnh-N%E1%BB%81n-%C4%90L-H%C3%A8_71ntPBX.jpg HTTP/1.1" 304 0
+[18/Jan/2026 16:25:48] "GET /search/?location=Ph%C3%BA%20Qu%E1%BB%91c HTTP/1.1" 200 27662
+[18/Jan/2026 16:25:50] "GET /search/?location=H%E1%BA%A1%20Long HTTP/1.1" 200 27693
+[18/Jan/2026 16:25:52] "GET /search/?location=Nha%20Trang HTTP/1.1" 200 27682
+[18/Jan/2026 16:25:54] "GET /search/?location=H%C3%A0%20N%E1%BB%99i HTTP/1.1" 200 30424
+[18/Jan/2026 16:26:04] "GET /education/ HTTP/1.1" 200 25306
+[18/Jan/2026 16:26:10] "GET /about/ HTTP/1.1" 200 24806
+[18/Jan/2026 16:26:13] "GET /responsibility/ HTTP/1.1" 200 23726
+[18/Jan/2026 16:26:19] "GET /search/?is_hot=true HTTP/1.1" 200 40680
+[18/Jan/2026 16:26:20] "GET /search/?duration=1 HTTP/1.1" 200 27675
+[18/Jan/2026 16:26:22] "GET /search/?location=Ph%C3%BA%20Qu%E1%BB%91c HTTP/1.1" 200 27662
+[18/Jan/2026 16:26:24] "GET /search/?is_hot=true HTTP/1.1" 200 40680
+[18/Jan/2026 16:26:27] "GET /destinations/vietnam/ HTTP/1.1" 200 45474
+[18/Jan/2026 16:26:29] "GET /profile/ HTTP/1.1" 200 28363
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:26:39.929375+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:11:39.929361+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:26:39] "GET /my-bookings/ HTTP/1.1" 200 62788
+[18/Jan/2026 16:26:42] "GET /ai-chat/ HTTP/1.1" 200 34441
+[18/Jan/2026 16:26:43] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 532
+[18/Jan/2026 16:26:43] "GET /ai-chat/api/chat/history/?session_id=session_1767866184120_hrqv58o8b HTTP/1.1" 200 8983
+[18/Jan/2026 16:26:45] "GET / HTTP/1.1" 200 51175
+[18/Jan/2026 16:26:49] "GET /destinations/vietnam/ HTTP/1.1" 200 45474
+[18/Jan/2026 16:26:53] "GET /tour/15/ HTTP/1.1" 200 32208
+[18/Jan/2026 16:27:02] "GET /tour/15/book/ HTTP/1.1" 200 21570
+[18/Jan/2026 16:27:11] "POST /tour/15/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:27:11.337814+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:12:11.337801+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:27:11] "GET /my-bookings/ HTTP/1.1" 200 63606
+[18/Jan/2026 16:31:33] "GET / HTTP/1.1" 200 51175
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:31:37.536056+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:16:37.536041+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:31:37] "GET /my-bookings/ HTTP/1.1" 200 63104
+[18/Jan/2026 16:31:39] "GET /booking/127/ HTTP/1.1" 200 23896
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:31:45.353043+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:16:45.353036+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:31:45] "GET /my-bookings/ HTTP/1.1" 200 63104
+[18/Jan/2026 16:31:46] "GET /booking/128/ HTTP/1.1" 200 23881
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:31:48.467752+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:16:48.467739+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:31:48] "GET /my-bookings/ HTTP/1.1" 200 63104
+[18/Jan/2026 16:31:49] "GET /payment/booking/128/payment/ HTTP/1.1" 200 21988
+[18/Jan/2026 16:31:53] "GET /booking/128/ HTTP/1.1" 200 23881
+[18/Jan/2026 16:31:55] "GET / HTTP/1.1" 200 51175
+[18/Jan/2026 16:42:37] "GET / HTTP/1.1" 200 51175
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:42:40.446883+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:27:40.446874+00:00
+DEBUG AUTO-CANCEL: Found 1 expired bookings
+DEBUG AUTO-CANCEL: Cancelling booking #128, created at 2026-01-18 09:27:07.329429+00:00
+DEBUG AUTO-CANCEL: Successfully cancelled booking #128
+[18/Jan/2026 16:42:40] "GET /my-bookings/ HTTP/1.1" 200 62796
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:42:44.020373+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:27:44.020367+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:42:44] "GET /my-bookings/?page=2 HTTP/1.1" 200 59685
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:42:46.460501+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:27:46.460489+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:42:46] "GET /my-bookings/?page=3 HTTP/1.1" 200 66283
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:42:48.858534+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:27:48.858523+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:42:48] "GET /my-bookings/?page=4 HTTP/1.1" 200 63131
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:42:51.539114+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:27:51.539108+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[18/Jan/2026 16:42:51] "GET /my-bookings/?page=3 HTTP/1.1" 200 66283
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-18 09:42:54.610785+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-18 09:27:54.610774+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: False
+DEBUG: Booking 118 - Has review: False
+DEBUG: Submitting review for booking 119
+DEBUG: Payment status: paid
+DEBUG: No existing review
+DEBUG: POST data - rating: 4, comment: ok
+DEBUG: Created new review
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+DEBUG: Booking 118 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+DEBUG: Booking 118 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 118 - Has review: False
+DEBUG: Booking 117 - Has review: False
+DEBUG: Booking 116 - Has review: False
+DEBUG: Booking 108 - Has review: False
+DEBUG: Booking 107 - Has review: False
+DEBUG: Booking 106 - Has review: False
+DEBUG: Booking 105 - Has review: False
+DEBUG: Booking 104 - Has review: False
+DEBUG: Booking 103 - Has review: False
+DEBUG: Booking 102 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 101 - Has review: False
+DEBUG: Booking 100 - Has review: False
+DEBUG: Booking 99 - Has review: False
+DEBUG: Booking 96 - Has review: True
+DEBUG: Booking 95 - Has review: False
+DEBUG: Booking 94 - Has review: False
+DEBUG: Booking 93 - Has review: False
+DEBUG: Booking 92 - Has review: False
+DEBUG: Booking 91 - Has review: True
+DEBUG: Booking 90 - Has review: False
+DEBUG: MyBookingsView - Processing 7 bookings
+DEBUG: Booking 89 - Has review: False
+DEBUG: Booking 86 - Has review: True
+DEBUG: Booking 85 - Has review: True
+DEBUG: Booking 84 - Has review: True
+DEBUG: Booking 83 - Has review: True
+DEBUG: Booking 81 - Has review: False
+DEBUG: Booking 80 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 101 - Has review: False
+DEBUG: Booking 100 - Has review: False
+DEBUG: Booking 99 - Has review: False
+DEBUG: Booking 96 - Has review: True
+DEBUG: Booking 95 - Has review: False
+DEBUG: Booking 94 - Has review: False
+DEBUG: Booking 93 - Has review: False
+DEBUG: Booking 92 - Has review: False
+DEBUG: Booking 91 - Has review: True
+DEBUG: Booking 90 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+[18/Jan/2026 16:42:54] "GET /my-bookings/?page=1 HTTP/1.1" 200 62796
+[18/Jan/2026 16:43:00] "GET /destinations/vietnam/ HTTP/1.1" 200 45474
+[18/Jan/2026 16:43:03] "GET /responsibility/ HTTP/1.1" 200 23726
+[18/Jan/2026 16:43:06] "GET /about/ HTTP/1.1" 200 24806
+[18/Jan/2026 16:43:09] "GET /education/ HTTP/1.1" 200 25306
+[18/Jan/2026 16:43:13] "GET /search/?is_hot=true HTTP/1.1" 200 40681
+[18/Jan/2026 16:43:20] "GET /destinations/vietnam/ HTTP/1.1" 200 45474
+[18/Jan/2026 16:43:21] "GET / HTTP/1.1" 200 51175
+[18/Jan/2026 16:43:28] "GET /search/ HTTP/1.1" 200 49022
+[18/Jan/2026 16:43:33] "GET / HTTP/1.1" 200 51175
+[18/Jan/2026 17:05:13] "GET / HTTP/1.1" 200 50374
+Not Found: /ai-chat/api/
+[18/Jan/2026 18:16:27] "POST /ai-chat/api/ HTTP/1.1" 404 9529
+Not Found: /ai/chat/api/
+[18/Jan/2026 18:34:12] "POST /ai/chat/api/ HTTP/1.1" 404 8303
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/vn_travel/urls.py changed, reloading.
+DEBUG: Booking 120 - Has review: False
+DEBUG: Booking 119 - Has review: True
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_AUTHENTICATION_METHOD is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+?: settings.ACCOUNT_EMAIL_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
+?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
+
+System check identified 3 issues (0 silenced).
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/vn_travel/urls.py changed, reloading.
+Performing system checks...
+
+January 18, 2026 - 19:14:02
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+System check identified some issues:
+
+WARNINGS:
+?: settings.ACCOUNT_AUTHENTICATION_METHOD is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+?: settings.ACCOUNT_EMAIL_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
+?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'username*', 'password1*', 'password2*']
+
+System check identified 3 issues (0 silenced).
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/ai_chatbot/services.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+[18/Jan/2026 19:14:41] "GET /health/ HTTP/1.1" 200 314

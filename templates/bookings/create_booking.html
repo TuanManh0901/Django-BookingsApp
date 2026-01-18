@@ -19,7 +19,7 @@
       <div class="card shadow-sm" style="border-radius: 15px;">
         <div class="card-body p-4">
           <!-- Thông tin số chỗ -->
-          <div class="alert alert-info mb-4">
+          <div class="alert alert-info alert-persistent mb-4">
             <div class="row">
               <div class="col-md-4">
                 <strong>Tổng chỗ:</strong> {{ tour.max_people }}
@@ -85,4 +85,30 @@
     </div>
   </div>
 </div>
+
+<script>
+// Prevent double booking submission
+document.addEventListener('DOMContentLoaded', function() {
+  const bookingForm = document.querySelector('form[method="post"]');
+  if (!bookingForm) return;
+  
+  let isSubmitting = false;
+  
+  bookingForm.addEventListener('submit', function(e) {
+    if (isSubmitting) {
+      e.preventDefault();
+      return false;
+    }
+    
+    isSubmitting = true;
+    
+    // Disable submit button
+    const submitBtn = bookingForm.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang đặt tour...';
+    }
+  });
+});
+</script>
 {% endblock %}

@@ -28,6 +28,7 @@ from tours.views import (
 )
 from bookings.views import create_booking, MyBookingsView, BookingDetailView, cancel_booking, cancel_booking_ajax, pay_booking, submit_review
 from .views import user_profile, register, edit_profile
+from .health import health_check_view, readiness_check_view, liveness_check_view
 from telegram_bot import views as telegram_views
 # from .admin import admin_site  # Import custom admin site
 
@@ -35,6 +36,11 @@ from telegram_bot import views as telegram_views
 urlpatterns = [
     # Language switcher (must be before i18n_patterns)
     path('i18n/', include('django.conf.urls.i18n')),
+    
+    # DevOps Health Checks
+    path('health/', health_check_view, name='health_check'),
+    path('ready/', readiness_check_view, name='readiness_check'),
+    path('live/', liveness_check_view, name='liveness_check'),
     
     path("admin/", admin.site.urls),  # Use default admin site
     path('accounts/', include('allauth.urls')),
