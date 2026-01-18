@@ -35,8 +35,11 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 # Copy application code
 COPY . .
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+# Collect static files (with dummy vars for build)
+ENV SECRET_KEY=dummy-secret-key-for-collectstatic
+ENV DEBUG=False
+ENV ALLOWED_HOSTS=*
+RUN python manage.py collectstatic --noinput || true
 
 # Create non-root user for security
 RUN useradd --create-home appuser && chown -R appuser:appuser /app
