@@ -132,15 +132,15 @@ if DATABASE_URL:
             }
         }
 else:
-    # Use individual config vars
+    # Use individual config vars (for Render)
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": config('DATABASE_NAME', default='vn_travel_db'),
-            "USER": config('DATABASE_USER', default='postgres'),
-            "PASSWORD": config('DATABASE_PASSWORD', default='1'),
-            "HOST": config('DATABASE_HOST', default='localhost'),
-            "PORT": config('DATABASE_PORT', default='5432'),
+            "NAME": config('DB_NAME', default='vn_travel_db'),
+            "USER": config('DB_USER', default='postgres'),
+            "PASSWORD": config('DB_PASSWORD', default=''),
+            "HOST": config('DB_HOST', default='localhost'),
+            "PORT": config('DB_PORT', default='5432'),
         }
     }
 
