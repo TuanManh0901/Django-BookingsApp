@@ -127,11 +127,15 @@ class CustomUserCreationForm(UserCreationForm):
         user.last_name = self.cleaned_data['last_name']
         if commit:
             user.save()
+            # Get or create profile (in case signal didn't fire)
+            from .models import UserProfile
+            profile, created = UserProfile.objects.get_or_create(user=user)
             # Lưu thông tin profile
-            user.profile.phone = self.cleaned_data.get('phone', '')
-            user.profile.cccd = self.cleaned_data.get('cccd', '')
-            user.profile.date_of_birth = self.cleaned_data.get('date_of_birth')
-            user.profile.gender = self.cleaned_data.get('gender', '')
-            user.profile.address = self.cleaned_data.get('address', '')
-            user.profile.save()
+            profile.phone = self.cleaned_data.get('phone', '')
+            profile.cccd = self.cleaned_data.get('cccd', '')
+            profile.date_of_birth = self.cleaned_data.get('date_of_birth')
+            profile.gender = self.cleaned_data.get('gender', '')
+            profile.address = self.cleaned_data.get('address', '')
+            profile.save()
         return user
+
