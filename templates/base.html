@@ -448,10 +448,12 @@
       });
     </script>
     
-    <!-- Floating AI Chat Button -->
+    <!-- Floating AI Chat Button (hide on auth pages) -->
+    {% if request.resolver_match.url_name not in 'login,account_login,account_signup,register,account_reset_password' %}
     <a href="{% url 'ai_chatbot:chat' %}" class="floating-chat-btn" title="AI Travel Advisor" aria-label="Chat with AI">
       <i class="fas fa-comments"></i>
     </a>
+    {% endif %}
     
     <style>
       .floating-chat-btn {
