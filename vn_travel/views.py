@@ -45,7 +45,8 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            # Specify backend when multiple authentication backends are configured
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.success(request, f'Chào mừng {user.username}! Tài khoản của bạn đã được tạo thành công.')
             return redirect('tour_list')
     else:
