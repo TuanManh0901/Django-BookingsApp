@@ -5,8 +5,20 @@ set -o errexit
 # Install dependencies
 pip install -r requirements.txt
 
-# Collect static files
-python manage.py collectstatic --no-input
+# Collect static files (including static/media/tours/)
+echo "==> Collecting static files..."
+python manage.py collectstatic --no-input --verbosity 2
+
+# Verify static files copied
+echo "==> Verifying static/media files..."
+if [ -d "staticfiles/media/tours" ]; then
+    echo "✅ staticfiles/media/tours/ exists"
+    ls staticfiles/media/tours/ | head -5
+else
+    echo "❌ ERROR: staticfiles/media/tours/ NOT FOUND!"
+    echo "Checking source directory:"
+    ls -la static/media/tours/ | head -10
+fi
 
 # Run migrations
 python manage.py migrate
