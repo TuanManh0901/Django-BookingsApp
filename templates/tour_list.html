@@ -514,10 +514,11 @@ VN Travel - Khám Phá Việt Nam
         <!-- Card Image -->
         <div class="card-image-wrapper">
           {% if tour.images.all %}
-            <img src="{{ tour.images.first.image.url }}" alt="{{ tour.images.first.alt_text }}" />
+            {% load tour_tags %}
+            <img src="{% tour_image_url tour.images.first %}" alt="{{ tour.images.first.alt_text }}" />
           {% else %}
             {% load static %}
-            <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}" />
+            <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}\" />
           {% endif %}
           
           <div class="image-overlay"></div>
