@@ -9,7 +9,7 @@
 <!-- Premium Tour Detail Header -->
 <!-- Threeland Hero - Tour Detail -->
 <div class="threeland-hero hero-tall">
-  <div class="hero-background-image" style="background-image: url('{% if tour.images.all %}{{ tour.images.first.image.url }}{% else %}https://images.unsplash.com/photo-1528127269322-539801943592?w=1920&q=80{% endif %}');"></div>
+  <div class="hero-background-image" style="background-image: url('{% if tour.images.all %}{% load tour_tags %}{% tour_image_url tour.images.first %}{% else %}https://images.unsplash.com/photo-1528127269322-539801943592?w=1920&q=80{% endif %}');"></div>
   <div class="hero-overlay"></div>
   
   <div class="hero-main-content">
@@ -45,7 +45,7 @@
           <div class="carousel-inner">
             {% for image in tour.images.all %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ image.alt_text }}" 
+              <img src="{% load tour_tags %}{% tour_image_url image %}" class="d-block w-100" alt="{{ image.alt_text }}" 
                    style="height: 500px; object-fit: cover;" />
             </div>
             {% endfor %}

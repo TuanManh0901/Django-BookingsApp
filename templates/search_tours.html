@@ -84,7 +84,8 @@ Tìm Kiếm Tours - VN Travel
         <div class="premium-tour-card">
           <div class="card-image-wrapper">
             {% if tour.images.all %}
-              <img src="{{ tour.images.first.image.url }}" alt="{{ tour.name }}" />
+              {% load tour_tags %}
+              <img src="{% tour_image_url tour.images.first %}" alt="{{ tour.name }}" />
             {% else %}
               {% load static %}
               <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}" />

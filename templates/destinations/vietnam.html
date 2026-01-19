@@ -88,7 +88,7 @@
           <div class="tour-card-premium">
             <div class="tour-image-wrapper">
               {% if tour.images.all %}
-                <img src="{{ tour.images.first.image.url }}" alt="{{ tour.name }}">
+                <img src="{% load tour_tags %}{% tour_image_url tour.images.first %}" alt="{{ tour.name }}">
               {% else %}
                 {% load static %}
                 <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}">

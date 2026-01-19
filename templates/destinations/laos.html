@@ -31,7 +31,7 @@
           <div class="tour-card-premium">
             <div class="tour-image-wrapper">
               {% if tour.images.all %}
-                <img src="{{ tour.images.first.image.url }}" alt="{{ tour.name }}">
+                <img src="{% load tour_tags %}{% tour_image_url tour.images.first %}" alt="{{ tour.name }}">
               {% else %}
                 <img src="https://images.unsplash.com/photo-1540611025311-01df3cef54b5?w=800&q=80" alt="{{ tour.name }}">
               {% endif %}
