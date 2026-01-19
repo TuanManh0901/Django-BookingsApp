@@ -3,7 +3,7 @@
   "model": "tours.review",
   "pk": 13,
   "fields": {
-    "booking": 86,
+    "booking": null,
     "tour": 2,
     "user": 1,
     "rating": 4,
@@ -17,7 +17,7 @@
   "model": "tours.review",
   "pk": 14,
   "fields": {
-    "booking": 85,
+    "booking": null,
     "tour": 3,
     "user": 1,
     "rating": 5,
@@ -31,7 +31,7 @@
   "model": "tours.review",
   "pk": 15,
   "fields": {
-    "booking": 84,
+    "booking": null,
     "tour": 3,
     "user": 1,
     "rating": 3,
@@ -45,7 +45,7 @@
   "model": "tours.review",
   "pk": 16,
   "fields": {
-    "booking": 83,
+    "booking": null,
     "tour": 3,
     "user": 1,
     "rating": 2,
@@ -59,7 +59,7 @@
   "model": "tours.review",
   "pk": 17,
   "fields": {
-    "booking": 91,
+    "booking": null,
     "tour": 1,
     "user": 1,
     "rating": 2,
@@ -73,7 +73,7 @@
   "model": "tours.review",
   "pk": 18,
   "fields": {
-    "booking": 96,
+    "booking": null,
     "tour": 2,
     "user": 1,
     "rating": 5,
@@ -87,7 +87,7 @@
   "model": "tours.review",
   "pk": 19,
   "fields": {
-    "booking": 97,
+    "booking": null,
     "tour": 9,
     "user": 6,
     "rating": 5,
@@ -101,7 +101,7 @@
   "model": "tours.review",
   "pk": 20,
   "fields": {
-    "booking": 119,
+    "booking": null,
     "tour": 16,
     "user": 1,
     "rating": 4,
@@ -115,7 +115,7 @@
   "model": "tours.review",
   "pk": 21,
   "fields": {
-    "booking": 129,
+    "booking": null,
     "tour": 1,
     "user": 1,
     "rating": 5,
