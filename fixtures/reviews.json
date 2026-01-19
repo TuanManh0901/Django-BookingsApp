@@ -1,0 +1,128 @@
+[
+{
+  "model": "tours.review",
+  "pk": 13,
+  "fields": {
+    "booking": 86,
+    "tour": 2,
+    "user": 1,
+    "rating": 4,
+    "comment": "tạm được",
+    "is_featured": false,
+    "created_at": "2026-01-10T08:38:56.263Z",
+    "updated_at": "2026-01-10T08:38:56.263Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 14,
+  "fields": {
+    "booking": 85,
+    "tour": 3,
+    "user": 1,
+    "rating": 5,
+    "comment": "đẹp",
+    "is_featured": false,
+    "created_at": "2026-01-10T08:39:04.574Z",
+    "updated_at": "2026-01-10T08:39:04.574Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 15,
+  "fields": {
+    "booking": 84,
+    "tour": 3,
+    "user": 1,
+    "rating": 3,
+    "comment": "cũng được",
+    "is_featured": false,
+    "created_at": "2026-01-10T08:45:00.259Z",
+    "updated_at": "2026-01-10T08:45:00.259Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 16,
+  "fields": {
+    "booking": 83,
+    "tour": 3,
+    "user": 1,
+    "rating": 2,
+    "comment": "k vui",
+    "is_featured": false,
+    "created_at": "2026-01-10T08:58:06.208Z",
+    "updated_at": "2026-01-10T08:58:06.208Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 17,
+  "fields": {
+    "booking": 91,
+    "tour": 1,
+    "user": 1,
+    "rating": 2,
+    "comment": "cũng tạm",
+    "is_featured": false,
+    "created_at": "2026-01-10T09:36:44.909Z",
+    "updated_at": "2026-01-10T09:36:44.909Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 18,
+  "fields": {
+    "booking": 96,
+    "tour": 2,
+    "user": 1,
+    "rating": 5,
+    "comment": "Một trải nghiệm rất tuyệt vời",
+    "is_featured": false,
+    "created_at": "2026-01-11T06:47:51.374Z",
+    "updated_at": "2026-01-11T06:47:51.374Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 19,
+  "fields": {
+    "booking": 97,
+    "tour": 9,
+    "user": 6,
+    "rating": 5,
+    "comment": "được đấy",
+    "is_featured": false,
+    "created_at": "2026-01-13T07:56:50.315Z",
+    "updated_at": "2026-01-13T07:56:50.315Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 20,
+  "fields": {
+    "booking": 119,
+    "tour": 16,
+    "user": 1,
+    "rating": 4,
+    "comment": "ok",
+    "is_featured": false,
+    "created_at": "2026-01-18T09:25:09.124Z",
+    "updated_at": "2026-01-18T09:25:09.124Z"
+  }
+},
+{
+  "model": "tours.review",
+  "pk": 21,
+  "fields": {
+    "booking": 129,
+    "tour": 1,
+    "user": 1,
+    "rating": 5,
+    "comment": "Tuyệt vời",
+    "is_featured": false,
+    "created_at": "2026-01-18T14:00:34.820Z",
+    "updated_at": "2026-01-18T14:00:34.820Z"
+  }
+}
+]
