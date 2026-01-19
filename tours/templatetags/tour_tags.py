@@ -19,10 +19,19 @@ def tour_image_url(tour_image):
     # Get the image path (tours/filename.jpg)
     image_path = str(tour_image.image.name)
     
-    if settings.DEBUG:
-        # Development: use MEDIA_URL
-        return settings.MEDIA_URL + image_path
-    else:
+    # CRITICAL: Check if in production
+    # settings.DEBUG could be True/False (boolean) or "True"/"False" (string from env)
+    is_production = not settings.DEBUG  # Works for boolean
+    
+    # Additional check: if RENDER environment variable exists, we're on Render (production)
+    if os.environ.get('RENDER'):
+        is_production = True
+    
+    if is_production:
         # Production: use static tag
         # Path: static/media/tours/filename.jpg → /static/media/tours/filename.jpg
         return static(f'media/{image_path}')
+    else:
+        # Development: use MEDIA_URL
+        return settings.MEDIA_URL + image_path
+
