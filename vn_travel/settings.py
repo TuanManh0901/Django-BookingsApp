@@ -191,7 +191,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # For production collectstatic
 # WhiteNoise middleware (in MIDDLEWARE) will serve static files
 # Don't use custom STATICFILES_STORAGE - causes issues with admin files
 
-MEDIA_URL = "/media/"
+# Media files - in production served from static/ via collectstatic
+# In development: /media/ folder, in production: /static/media/ folder
+MEDIA_URL = "/static/media/" if not DEBUG else "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
