@@ -185,7 +185,10 @@ USE_TZ = True
 
 # Static files
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# Include both regular static files AND static/media (tour images)
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 STATIC_ROOT = BASE_DIR / "staticfiles"  # For production collectstatic
 
 # WhiteNoise middleware (in MIDDLEWARE) will serve static files
