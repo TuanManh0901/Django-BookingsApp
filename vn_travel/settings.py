@@ -233,7 +233,14 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_SESSION_REMEMBER = True
+
+# Social Account Auto Signup - Skip signup form completely
 SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'  # Skip email verification
+SOCIALACCOUNT_EMAIL_REQUIRED = False  # Don't require email from social provider
+SOCIALACCOUNT_QUERY_EMAIL = True  # Try to get email from provider
+SOCIALACCOUNT_STORE_TOKENS = False  # Don't store OAuth tokens
+
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 
 # Disable allauth messages
