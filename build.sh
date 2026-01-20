@@ -23,6 +23,10 @@ fi
 # Run migrations
 python manage.py migrate
 
+# Create/update superadmin user
+echo "==> Creating superadmin user..."
+python manage.py create_superadmin || echo "Superadmin creation skipped"
+
 # Load fixtures if they exist (only on first deploy or when database is empty)
 if [ -f "fixtures/users.json" ]; then
     echo "Loading fixtures..."
@@ -33,3 +37,5 @@ if [ -f "fixtures/users.json" ]; then
 fi
 
 echo "Build completed successfully!"
+echo "Login: superadmin / VNTravel@2026"
+

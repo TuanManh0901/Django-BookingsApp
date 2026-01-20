@@ -7840,3 +7840,32 @@ WARNINGS:
 ?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
 
 System check identified 4 issues (0 silenced).
+[20/Jan/2026 13:01:47] "GET /accounts/login/ HTTP/1.1" 200 24812
+[20/Jan/2026 13:01:48] "GET /static/custom.css?v=2 HTTP/1.1" 304 0
+[20/Jan/2026 13:01:48] "GET /static/mobile-responsive.css HTTP/1.1" 304 0
+[20/Jan/2026 13:01:50] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[20/Jan/2026 13:01:50] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[20/Jan/2026 13:05:36] "GET /accounts/login/ HTTP/1.1" 200 24812
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà nội'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hạ long'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phú quốc'
+  warnings.warn(warning, CacheKeyWarning)
+[20/Jan/2026 13:05:39] "GET / HTTP/1.1" 200 51890
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/vn_travel/health.py changed, reloading.
+Performing system checks...
+
+January 20, 2026 - 12:29:56
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001f1a02c40 (most recent call first):
+  <no Python frame>
