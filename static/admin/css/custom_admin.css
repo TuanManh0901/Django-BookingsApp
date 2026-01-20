@@ -23,3 +23,12 @@ button[name="_save"],
 .submit-row button[name="_save"] {
     display: inline-block !important;
 }
+
+/* Đổi màu tiêu đề inline (TÀI KHOẢN MẠNG XÃ HỘI) sang màu đen */
+.inline-group h2,
+.inline-group .inline-heading,
+.inline-related h3,
+fieldset h2 {
+    color: #333333 !important;
+}
+
