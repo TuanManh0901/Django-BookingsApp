@@ -158,7 +158,8 @@ class Review(models.Model):
         # No unique_together - booking OneToOne already ensures uniqueness
     
     def __str__(self):
-        return f"{self.user.username} - {self.tour.name} (Booking #{self.booking.id}) ({self.rating}★)"
+        booking_info = f"Booking #{self.booking.id}" if self.booking else "No Booking"
+        return f"{self.user.username} - {self.tour.name} ({booking_info}) ({self.rating}★)"
     
     def save(self, *args, **kwargs):
         # Auto-populate tour and user from booking
