@@ -45,8 +45,10 @@ class NoMessagesSocialAccountAdapter(DefaultSocialAccountAdapter):
             return
         
         # Check if user with this email already exists
-        try:
-            existing_user = User.objects.get(email=email)
+        # Use filter().first() to handle case where multiple users have same email
+        existing_user = User.objects.filter(email=email).first()
+        
+        if existing_user:
             # Connect social account to existing user
             sociallogin.connect(request, existing_user)
             # Login and redirect immediately
@@ -56,8 +58,6 @@ class NoMessagesSocialAccountAdapter(DefaultSocialAccountAdapter):
                          redirect_url='/',
                          signal_kwargs={'sociallogin': sociallogin})
             raise ImmediateHttpResponse(redirect('/'))
-        except User.DoesNotExist:
-            pass  # New user, let auto-signup handle it
     
     def populate_user(self, request, sociallogin, data):
         """
