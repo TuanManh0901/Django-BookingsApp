@@ -76,6 +76,16 @@ def health_check_view(request):
     except:
         status["checks"]["static_files"] = {"status": "unknown"}
     
+    # Check 5: Allauth OAuth Settings (for debugging)
+    try:
+        status["checks"]["allauth"] = {
+            "ACCOUNT_USERNAME_REQUIRED": getattr(settings, 'ACCOUNT_USERNAME_REQUIRED', 'NOT_SET'),
+            "SOCIALACCOUNT_AUTO_SIGNUP": getattr(settings, 'SOCIALACCOUNT_AUTO_SIGNUP', 'NOT_SET'),
+            "SOCIALACCOUNT_EMAIL_VERIFICATION": getattr(settings, 'SOCIALACCOUNT_EMAIL_VERIFICATION', 'NOT_SET'),
+        }
+    except:
+        status["checks"]["allauth"] = {"status": "error"}
+    
     # Response time
     status["response_time_ms"] = round((time.time() - start_time) * 1000, 2)
     
