@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 import json
 import uuid
 from .models import ChatMessage
@@ -78,7 +79,7 @@ def ai_chat_api(request):
 
 @csrf_exempt
 def chat_history_api(request):
-    """API endpoint to fetch chat history by session_id"""
+    """API endpoint to fetch chat history - PRIVATE PER USER"""
     if request.method == 'GET':
         session_id = request.GET.get('session_id')
         
@@ -86,10 +87,19 @@ def chat_history_api(request):
             return JsonResponse({'error': 'session_id is required'}, status=400)
         
         try:
-            # Fetch messages for this session, ordered by creation time
-            messages = ChatMessage.objects.filter(
-                session_id=session_id
-            ).order_by('timestamp').values('message', 'response', 'timestamp')
+            # PRIVACY FIX: Filter by user OR session_id for anonymous
+            if request.user.is_authenticated:
+                # Logged in users only see their own messages
+                messages = ChatMessage.objects.filter(
+                    user=request.user,
+                    session_id=session_id
+                ).order_by('timestamp').values('message', 'response', 'timestamp')
+            else:
+                # Anonymous users can only see messages from their session
+                messages = ChatMessage.objects.filter(
+                    user__isnull=True,
+                    session_id=session_id
+                ).order_by('timestamp').values('message', 'response', 'timestamp')
             
             # Format messages for frontend
             history = []
@@ -121,14 +131,20 @@ def chat_history_api(request):
 
 @csrf_exempt
 def chat_sessions_list_api(request):
-    """API endpoint to list all chat sessions (conversations)"""
+    """API endpoint to list all chat sessions - PRIVATE PER USER"""
     if request.method == 'GET':
         try:
-            # Get unique session_ids from ChatMessage
-            # Group by session_id and get first message as preview
             from django.db.models import Min, Count
             
-            sessions = ChatMessage.objects.values('session_id').annotate(
+            # PRIVACY FIX: Filter by current user only
+            if request.user.is_authenticated:
+                # Logged in users only see their own sessions
+                base_queryset = ChatMessage.objects.filter(user=request.user)
+            else:
+                # Anonymous users - no sessions list (they only have current session)
+                return JsonResponse({'sessions': []})
+            
+            sessions = base_queryset.values('session_id').annotate(
                 created_at=Min('timestamp'),
                 message_count=Count('id')
             ).order_by('-created_at')
@@ -137,7 +153,7 @@ def chat_sessions_list_api(request):
             sessions_list = []
             for session in sessions[:20]:  # Limit to 20 recent sessions
                 session_id = session['session_id']
-                first_msg = ChatMessage.objects.filter(
+                first_msg = base_queryset.filter(
                     session_id=session_id
                 ).order_by('timestamp').first()
                 
@@ -163,7 +179,7 @@ def chat_sessions_list_api(request):
 
 @csrf_exempt
 def delete_session_api(request):
-    """API endpoint to delete a conversation session"""
+    """API endpoint to delete a conversation session - PRIVATE PER USER"""
     if request.method == 'DELETE':
         try:
             data = json.loads(request.body.decode('utf-8'))
@@ -172,8 +188,18 @@ def delete_session_api(request):
             if not session_id:
                 return JsonResponse({'error': 'session_id is required'}, status=400)
             
-            # Delete all messages for this session
-            deleted_count = ChatMessage.objects.filter(session_id=session_id).delete()[0]
+            # PRIVACY FIX: Only delete user's own messages
+            if request.user.is_authenticated:
+                deleted_count = ChatMessage.objects.filter(
+                    user=request.user,
+                    session_id=session_id
+                ).delete()[0]
+            else:
+                # Anonymous users can only delete messages with no user
+                deleted_count = ChatMessage.objects.filter(
+                    user__isnull=True,
+                    session_id=session_id
+                ).delete()[0]
             
             return JsonResponse({
                 'success': True,
@@ -186,3 +212,4 @@ def delete_session_api(request):
             return JsonResponse({'error': 'Failed to delete session'}, status=500)
     
     return JsonResponse({'error': 'Method not allowed'}, status=405)
+
