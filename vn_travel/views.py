@@ -5,21 +5,25 @@ from django.contrib import messages
 from .forms import CustomUserCreationForm
 from .profile_forms import UserProfileForm
 from .forms import UserForm
+from .models import UserProfile
 
 
 @login_required
 def user_profile(request):
     """Trang thông tin cá nhân của user"""
+    # Auto-create profile if doesn't exist
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
     return render(request, 'accounts/profile.html', {
         'user': request.user,
-        'profile': request.user.profile
+        'profile': profile
     })
 
 
 @login_required
 def edit_profile(request):
     """Chỉnh sửa thông tin cá nhân"""
-    profile = request.user.profile
+    # Auto-create profile if doesn't exist
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
