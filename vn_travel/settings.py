@@ -231,7 +231,8 @@ SOCIALACCOUNT_PROVIDERS = {
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_USERNAME_REQUIRED = True
+# CRITICAL: Set to False to allow Google OAuth auto-signup without form!
+ACCOUNT_USERNAME_REQUIRED = False  # Changed from True
 ACCOUNT_SESSION_REMEMBER = True
 
 # Social Account Auto Signup - Skip signup form completely

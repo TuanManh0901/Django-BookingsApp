@@ -1,3 +1,5 @@
+pkill -f runserver
+nohup "/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/bin/python" manage.py runserver &
 
 testuser
 test123456
