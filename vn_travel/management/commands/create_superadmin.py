@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Command(BaseCommand):
-    help = 'Create a superuser for production and manage admin permissions'
+    help = 'Setup admin permissions - manh0 only'
 
     def handle(self, *args, **options):
         # 1. Give admin rights to manh0
@@ -12,35 +12,22 @@ class Command(BaseCommand):
             manh0_user.is_staff = True
             manh0_user.is_superuser = True
             manh0_user.save()
-            self.stdout.write(self.style.SUCCESS('✅ Gave admin rights to manh0'))
+            self.stdout.write(self.style.SUCCESS('✅ manh0 is now admin'))
         except User.DoesNotExist:
-            self.stdout.write(self.style.WARNING('manh0 user not found'))
+            self.stdout.write(self.style.ERROR('❌ manh0 user not found!'))
+            return
         
-        # 2. Delete all users named 'admin' or 'Admin' (case-insensitive)
-        deleted_count = User.objects.filter(username__iexact='admin').delete()[0]
-        if deleted_count > 0:
-            self.stdout.write(self.style.SUCCESS(f'✅ Deleted {deleted_count} admin user(s)'))
-        else:
-            self.stdout.write('No admin users found to delete')
+        # 2. Delete 'admin' user(s)
+        admin_deleted = User.objects.filter(username__iexact='admin').delete()[0]
+        if admin_deleted > 0:
+            self.stdout.write(self.style.SUCCESS(f'✅ Deleted {admin_deleted} "admin" user(s)'))
         
-        # 3. Create/update superadmin as backup
-        username = 'superadmin'
-        email = 'admin@vntravel.com'
-        password = 'VNTravel@2026'
+        # 3. Delete 'superadmin' user(s)
+        superadmin_deleted = User.objects.filter(username__iexact='superadmin').delete()[0]
+        if superadmin_deleted > 0:
+            self.stdout.write(self.style.SUCCESS(f'✅ Deleted {superadmin_deleted} "superadmin" user(s)'))
         
-        if User.objects.filter(username=username).exists():
-            user = User.objects.get(username=username)
-            user.is_staff = True
-            user.is_superuser = True
-            user.set_password(password)
-            user.save()
-            self.stdout.write(self.style.SUCCESS(f'✅ Updated superadmin'))
-        else:
-            User.objects.create_superuser(username, email, password)
-            self.stdout.write(self.style.SUCCESS(f'✅ Created superadmin'))
-        
-        self.stdout.write(self.style.SUCCESS(f'\n📋 Admin accounts:'))
-        self.stdout.write(f'   - manh0 (your main admin)')
-        self.stdout.write(f'   - superadmin / VNTravel@2026 (backup)')
+        self.stdout.write(self.style.SUCCESS(f'\n✅ DONE! Only manh0 has admin rights now.'))
+
 
 
