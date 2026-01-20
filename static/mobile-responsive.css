@@ -8,8 +8,10 @@
 
 /* 2. Prevent horizontal overflow */
 html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    position: relative;
 }
 
 /* 3. Make images responsive by default */
@@ -34,7 +36,28 @@ img {
     overflow-x: hidden;
 }
 
-/* 6. Make cards stack on mobile */
+/* 6. Fix chat button on mobile - prevent duplicates */
+.floating-chat-btn {
+    z-index: 9999 !important;
+}
+
+/* Hide any duplicate chat widgets on mobile */
+@media (max-width: 768px) {
+    /* Ensure only one chat button visible */
+    .floating-chat-btn:not(:first-of-type) {
+        display: none !important;
+    }
+    
+    /* Adjust chat button size and position for mobile */
+    .floating-chat-btn {
+        width: 50px !important;
+        height: 50px !important;
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+}
+
+/* 7. Make cards stack on mobile */
 @media (max-width: 768px) {
     .premium-tour-card,
     .destination-card,
@@ -70,9 +93,15 @@ img {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
+    
+    /* Prevent text from breaking viewport */
+    body, p, h1, h2, h3, h4, h5, h6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
 }
 
-/* 7. Fix viewport meta tag enforcement */
+/* 8. Fix viewport meta tag enforcement */
 @viewport {
     width: device-width;
     zoom: 1.0;
@@ -81,3 +110,4 @@ img {
 @-ms-viewport {
     width: device-width;
 }
+
