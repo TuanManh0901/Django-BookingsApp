@@ -1,5 +1,6 @@
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
+from django.contrib.auth.models import User
 
 
 class NoMessagesAccountAdapter(DefaultAccountAdapter):
@@ -11,36 +12,67 @@ class NoMessagesAccountAdapter(DefaultAccountAdapter):
 
 
 class NoMessagesSocialAccountAdapter(DefaultSocialAccountAdapter):
-    """Custom social account adapter that suppresses allauth messages and auto-generates username."""
+    """Custom social account adapter for seamless Google login (no signup form)."""
     
     def add_message(self, request, level, message_template, message_context=None, extra_tags=''):
         """Override to prevent adding any messages."""
         pass  # Do nothing - suppress all messages
     
-    def populate_username(self, request, user):
+    def is_auto_signup_allowed(self, request, sociallogin):
         """
-        Auto-generate username from Google email to skip signup form.
-        Example: longviet@gmail.com → longviet
+        CRITICAL: Return True to enable auto-signup without form.
+        This ensures user is created automatically without showing signup page.
         """
-        from allauth.account.utils import user_email, user_field, user_username
+        return True
+    
+    def populate_user(self, request, sociallogin, data):
+        """
+        Auto-populate user data from Google account.
+        Creates username automatically from email.
+        """
+        user = super().populate_user(request, sociallogin, data)
         
-        # Get email from Google account
-        email = user_email(user)
-        if email:
-            # Extract username from email (before @)
+        # Get email from Google
+        email = data.get('email', '')
+        
+        # Auto-generate username from email
+        if email and not user.username:
             base_username = email.split('@')[0]
-            # Clean username (remove special chars, keep only alphanumeric and underscore)
+            # Clean special characters
             base_username = ''.join(c if c.isalnum() or c == '_' else '_' for c in base_username)
             
             # Ensure unique username
             username = base_username
             counter = 1
-            while user_username(user, username):
+            while User.objects.filter(username=username).exists():
                 username = f"{base_username}{counter}"
                 counter += 1
             
-            user_username(user, username)
-        else:
-            # Fallback to default behavior if no email
-            super().populate_username(request, user)
+            user.username = username
+        
+        return user
+    
+    def save_user(self, request, sociallogin, form=None):
+        """
+        Save user without requiring form submission.
+        This is called during auto-signup.
+        """
+        user = sociallogin.user
+        user.set_unusable_password()
+        
+        # Ensure username exists
+        if not user.username and user.email:
+            base_username = user.email.split('@')[0]
+            base_username = ''.join(c if c.isalnum() or c == '_' else '_' for c in base_username)
+            
+            username = base_username
+            counter = 1
+            while User.objects.filter(username=username).exists():
+                username = f"{base_username}{counter}"
+                counter += 1
+            
+            user.username = username
+        
+        user.save()
+        return user
 
