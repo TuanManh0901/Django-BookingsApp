@@ -39,3 +39,4 @@ fi
 echo "Build completed successfully!"
 echo "Login: superadmin / VNTravel@2026"
 
+# Force redeploy Tue Jan 20 16:18:42 +07 2026
