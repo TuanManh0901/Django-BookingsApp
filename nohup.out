@@ -7869,3 +7869,210 @@ OSError: [Errno 9] Bad file descriptor
 
 Current thread 0x00000001f1a02c40 (most recent call first):
   <no Python frame>
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+?: settings.ACCOUNT_AUTHENTICATION_METHOD is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+?: settings.ACCOUNT_EMAIL_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
+?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
+
+System check identified 4 issues (0 silenced).
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà nội'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hạ long'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phú quốc'
+  warnings.warn(warning, CacheKeyWarning)
+[20/Jan/2026 20:05:06] "GET / HTTP/1.1" 200 51890
+[20/Jan/2026 20:05:06] "GET /static/mobile-responsive.css HTTP/1.1" 304 0
+[20/Jan/2026 20:05:08] "GET /accounts/login/ HTTP/1.1" 200 24812
+[20/Jan/2026 20:05:09] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[20/Jan/2026 20:05:10] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[20/Jan/2026 20:05:15] "GET /accounts/google/login/callback/?state=Sx14CzmsFgkXbpyO&code=4%2F0ASc3gC0hGTC3jlcQoIO-6qItvobMH004VEqqZyFRNDyFXUf0HCjoZuiOdmnPJ3Lefat-Qg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none HTTP/1.1" 302 0
+[20/Jan/2026 20:05:15] "GET / HTTP/1.1" 200 52498
+[20/Jan/2026 20:05:29] "GET /accounts/logout/ HTTP/1.1" 302 0
+[20/Jan/2026 20:05:29] "GET / HTTP/1.1" 200 51890
+[20/Jan/2026 20:05:31] "GET /accounts/login/ HTTP/1.1" 200 24812
+[20/Jan/2026 20:05:36] "POST /accounts/login/ HTTP/1.1" 302 0
+[20/Jan/2026 20:05:36] "GET / HTTP/1.1" 200 52691
+[20/Jan/2026 20:05:39] "GET /admin/ HTTP/1.1" 200 72752
+[20/Jan/2026 20:05:39] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[20/Jan/2026 20:05:39] "GET /static/argon-dashboard-master/assets/img/theme/logoVN-Travel.png HTTP/1.1" 304 0
+Not Found: /apple-touch-icon-precomposed.png
+[20/Jan/2026 20:05:39] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8877
+Not Found: /favicon.ico
+[20/Jan/2026 20:05:39] "GET /favicon.ico HTTP/1.1" 404 8814
+Not Found: /apple-touch-icon.png
+[20/Jan/2026 20:05:39] "GET /apple-touch-icon.png HTTP/1.1" 404 8841
+[20/Jan/2026 20:05:39] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+[20/Jan/2026 20:05:40] "GET /admin/tours/tourimage/ HTTP/1.1" 200 30751
+[20/Jan/2026 20:05:41] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+[20/Jan/2026 20:05:41] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[20/Jan/2026 20:05:41] "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+[20/Jan/2026 20:05:41] "GET /static/admin/css/changelists.css HTTP/1.1" 200 7501
+[20/Jan/2026 20:05:41] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[20/Jan/2026 20:05:41] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[20/Jan/2026 20:05:41] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[20/Jan/2026 20:05:41] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[20/Jan/2026 20:05:41] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[20/Jan/2026 20:05:41] "GET /static/admin/css/custom_admin.css HTTP/1.1" 200 953
+[20/Jan/2026 20:05:41] "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+[20/Jan/2026 20:05:41] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[20/Jan/2026 20:05:41] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[20/Jan/2026 20:05:41] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[20/Jan/2026 20:05:41] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[20/Jan/2026 20:05:41] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[20/Jan/2026 20:05:41] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[20/Jan/2026 20:05:41] "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[20/Jan/2026 20:05:41] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+[20/Jan/2026 20:05:41] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[20/Jan/2026 20:05:41] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[20/Jan/2026 20:05:41] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+[20/Jan/2026 20:05:43] "GET /admin/auth/user/ HTTP/1.1" 200 23844
+[20/Jan/2026 20:05:43] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+[20/Jan/2026 20:05:43] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[20/Jan/2026 20:05:43] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+[20/Jan/2026 20:05:48] "GET /admin/ HTTP/1.1" 200 72752
+[20/Jan/2026 20:05:48] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[20/Jan/2026 20:06:02] "GET / HTTP/1.1" 200 52691
+[20/Jan/2026 20:06:08,729] - Broken pipe from ('127.0.0.1', 59399)
+[20/Jan/2026 20:06:09] "GET /profile/ HTTP/1.1" 200 29853
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-20 13:06:11.439682+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-20 12:51:11.439674+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[20/Jan/2026 20:06:11] "GET /my-bookings/ HTTP/1.1" 200 64301
+[20/Jan/2026 20:06:14] "GET / HTTP/1.1" 200 52691
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phan thiết'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_cần thơ'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_nha trang'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hồ chí minh'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hội an'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_ninh bình'
+  warnings.warn(warning, CacheKeyWarning)
+[20/Jan/2026 20:06:17] "GET /search/ HTTP/1.1" 200 50637
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_16_updated_mui_ne_sand_dunes_new_1768395071287_tZynMuW.png HTTP/1.1" 304 0
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_12_updated_mekong_delta_can_tho_new_1768395091069_2cg7B9u.png HTTP/1.1" 304 0
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967_GpTgbVb.png HTTP/1.1" 304 0
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_11_hue_imperial_city_1768394135604_VuUXf2S.png HTTP/1.1" 304 0
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_14_vietnam_panorama_north_south_1768394751445_rlxq6WJ.png HTTP/1.1" 200 904358
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061_d9oEqyJ.png HTTP/1.1" 200 1211475
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_13_nha_trang_beach_1768394098058_UhcFYOJ.png HTTP/1.1" 200 836153
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_10_hoi_an_hue_da_nang_1768394688009_SqAhEWk.png HTTP/1.1" 200 1078414
+[20/Jan/2026 20:06:17] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294_rXOmCUS.png HTTP/1.1" 200 960083
+[20/Jan/2026 20:06:19] "GET /tour/14/ HTTP/1.1" 200 33791
+[20/Jan/2026 20:07:26] "GET /tour/14/book/ HTTP/1.1" 200 23100
+[20/Jan/2026 20:07:37] "POST /tour/14/book/ HTTP/1.1" 302 0
+================================================================================
+MY BOOKINGS get_queryset() CALLED!
+================================================================================
+DEBUG AUTO-CANCEL: Current time: 2026-01-20 13:07:37.257938+00:00
+DEBUG AUTO-CANCEL: Cutoff time (15min ago): 2026-01-20 12:52:37.257927+00:00
+DEBUG AUTO-CANCEL: Found 0 expired bookings
+[20/Jan/2026 20:07:37] "GET /my-bookings/ HTTP/1.1" 200 65160
+[20/Jan/2026 20:07:40] "GET /payment/booking/130/payment/ HTTP/1.1" 200 23500
+INFO === MoMo Payment Request (Laravel Style) ===
+INFO Partner Code: MOMOBKUN20180529
+INFO Order ID: 1768914473_251
+INFO Amount: 37000000
+INFO Request Type: payWithCC
+INFO Raw Signature String:
+accessKey=klm05TvNBzhg7h7j&amount=37000000&extraData=eyJvcmRlcl9pZCI6MTMwfQ==&ipnUrl=http://127.0.0.1:8000/payment/momo/ipn/&orderId=1768914473_251&orderInfo=Thanh toán đơn hàng #130&partnerCode=MOMOBKUN20180529&redirectUrl=http://127.0.0.1:8000/payment/momo/callback/&requestId=048d17ed97f2f&requestType=payWithCC
+INFO Signature: c77e819d77e9fbd73e33e0d9688ffda162f16be5de8f62ee565fc0219b9ac27e
+INFO Payload: {
+  "partnerCode": "MOMOBKUN20180529",
+  "partnerName": "YourStore",
+  "storeId": "Store_01",
+  "requestId": "048d17ed97f2f",
+  "amount": "37000000",
+  "orderId": "1768914473_251",
+  "orderInfo": "Thanh to\u00e1n \u0111\u01a1n h\u00e0ng #130",
+  "redirectUrl": "http://127.0.0.1:8000/payment/momo/callback/",
+  "ipnUrl": "http://127.0.0.1:8000/payment/momo/ipn/",
+  "lang": "vi",
+  "extraData": "eyJvcmRlcl9pZCI6MTMwfQ==",
+  "requestType": "payWithCC",
+  "signature": "c77e819d77e9fbd73e33e0d9688ffda162f16be5de8f62ee565fc0219b9ac27e"
+}
+INFO ==============================
+INFO MoMo Response Status: 200
+INFO MoMo Response: {"partnerCode":"MOMOBKUN20180529","orderId":"1768914473_251","requestId":"048d17ed97f2f","amount":37000000,"responseTime":1768914474098,"message":"Thành công.","resultCode":0,"payUrl":"https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzY4OTE0NDczXzI1MQ&s=d518636eb37129d157b762ea95363112fcaa9e4241d4dee16efdd1b60987440c","signature":"122eaa186dfac45e308e7bb4e6d34e35d2f2cfa4a72f1da0cbca48feea7a367c"}
+INFO MoMo payment URL created: https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzY4OTE0NDczXzI1MQ&s=d518636eb37129d157b762ea95363112fcaa9e4241d4dee16efdd1b60987440c
+[20/Jan/2026 20:07:54] "POST /payment/booking/130/process/ HTTP/1.1" 302 0
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/vn_travel/settings.py changed, reloading.
+Performing system checks...
+
+January 20, 2026 - 20:04:42
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 129 - Has review: True
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+DEBUG: Booking 120 - Has review: False
+DEBUG: MyBookingsView - Processing 10 bookings
+DEBUG: Booking 130 - Has review: False
+DEBUG: Booking 129 - Has review: True
+DEBUG: Booking 128 - Has review: False
+DEBUG: Booking 127 - Has review: False
+DEBUG: Booking 126 - Has review: False
+DEBUG: Booking 125 - Has review: False
+DEBUG: Booking 124 - Has review: False
+DEBUG: Booking 123 - Has review: False
+DEBUG: Booking 122 - Has review: False
+DEBUG: Booking 121 - Has review: False
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+?: settings.ACCOUNT_AUTHENTICATION_METHOD is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+?: settings.ACCOUNT_EMAIL_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
+?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
+
+System check identified 4 issues (0 silenced).
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/bookings/email_utils.py changed, reloading.
+Performing system checks...
+
+January 20, 2026 - 20:23:05
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+?: settings.ACCOUNT_AUTHENTICATION_METHOD is deprecated, use: settings.ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+?: settings.ACCOUNT_EMAIL_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
+?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
+
+System check identified 4 issues (0 silenced).

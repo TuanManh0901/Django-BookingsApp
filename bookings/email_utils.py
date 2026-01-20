@@ -75,13 +75,22 @@ Hotline: +84 842190901
         msg.attach_alternative(html_content, "text/html")
         
         # Send email
-        msg.send()
-        
-        logger.info(f"Booking confirmation email sent successfully for booking #{booking.id}")
-        return True
+        try:
+            msg.send()
+            logger.info(f"Booking confirmation email sent successfully for booking #{booking.id}")
+            return True
+        except Exception as send_error:
+            # Email send failed (common on Render due to SMTP blocking)
+            logger.warning(f"Email send failed for booking #{booking.id}: {str(send_error)}")
+            # Log email content for admin review
+            logger.info(f"Email subject: {subject}")
+            logger.info(f"Email to: {user_email}")
+            logger.info(f"Booking details: Tour={booking.tour.name}, ID={booking.id}, Amount={booking.total_price}")
+            # Return False but don't crash the booking
+            return False
         
     except Exception as e:
-        logger.error(f"Failed to send booking confirmation email for booking #{booking.id}: {str(e)}")
+        logger.error(f"Failed to prepare booking confirmation email for booking #{booking.id}: {str(e)}")
         return False
 
 

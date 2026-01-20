@@ -146,7 +146,14 @@ else:
     }
 
 # Site URL for MoMo callbacks
-SITE_URL = config('SITE_URL', default='http://127.0.0.1:8000')
+# Site URL configuration - Auto-detect for production
+# This is CRITICAL for MoMo payment redirectUrl/ipnUrl!
+if RENDER_EXTERNAL_HOSTNAME:
+    # Production on Render - use HTTPS with Render hostname
+    SITE_URL = f'https://{RENDER_EXTERNAL_HOSTNAME}'
+else:
+    # Local development - use config or default to localhost
+    SITE_URL = config('SITE_URL', default='http://127.0.0.1:8000')
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
