@@ -19,9 +19,12 @@ class TravelAdvisor:
         # Dùng models/gemini-2.5-flash (quota cao hơn gemini-pro cho free tier)
         self.model = genai.GenerativeModel(model_name='models/gemini-2.5-flash')
     
-    def get_tours_context(self, limit=5):
+    def get_tours_context(self, limit=None):
         """Lấy thông tin tours để làm context cho AI"""
-        tours = Tour.objects.filter(is_active=True)[:limit]
+        if limit:
+            tours = Tour.objects.filter(is_active=True)[:limit]
+        else:
+            tours = Tour.objects.filter(is_active=True)  # ALL tours
         
         if not tours:
             return "Hiện tại chưa có tour nào trong hệ thống."
