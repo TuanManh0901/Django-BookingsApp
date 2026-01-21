@@ -17,12 +17,12 @@ class TravelAdvisor:
         
         genai.configure(api_key=api_key)
         
-        # SPEED OPTIMIZATION: Config for FASTER responses
+        # SPEED OPTIMIZATION: Config for complete but reasonably fast responses
         generation_config = {
             "temperature": 0.7,  # Lower = more focused, faster
-            "top_p": 0.8,  # Reduce sampling space
-            "top_k": 40,  # Limit token choices
-            "max_output_tokens": 1500,  # Allow complete responses (was 800 - too short!)
+            "top_p": 0.85,  # Slightly increased for better quality
+            "top_k": 50,  # Slightly increased for better variety
+            "max_output_tokens": 2048,  # Enough for complete tour listings (was 1500 - still too short!)
         }
         
         self.model = genai.GenerativeModel(
