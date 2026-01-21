@@ -117,11 +117,19 @@ YÊU CẦU ĐỘ DÀI TỐI THIỂU: Mỗi câu trả lời phải có ít nhấ
             # Gọi Gemini API
             response = self.model.generate_content(full_prompt)
             
-            # Lấy text từ response
-            if hasattr(response, 'text'):
+            # Lấy text từ response - FIXED for new Gemini API
+            try:
+                # Try simple accessor first (for backward compatibility)
                 return response.text
-            else:
-                return str(response)
+            except (ValueError, AttributeError):
+                # Fall back to complex accessor for multi-part responses
+                if response.candidates and len(response.candidates) > 0:
+                    candidate = response.candidates[0]
+                    if candidate.content and candidate.content.parts:
+                        # Extract text from all parts
+                        text_parts = [part.text for part in candidate.content.parts if hasattr(part, 'text')]
+                        return ''.join(text_parts) if text_parts else "Xin lỗi, AI không thể tạo phản hồi."
+                return "Xin lỗi, AI không thể tạo phản hồi."
                 
         except Exception as e:
             return f"Xin lỗi, AI hiện không khả dụng. Lỗi: {str(e)}\n\nVui lòng thử lại sau hoặc liên hệ trực tiếp với VN Travel qua hotline."
