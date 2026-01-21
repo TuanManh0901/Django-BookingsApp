@@ -19,25 +19,21 @@ class TravelAdvisor:
         # Dùng models/gemini-2.5-flash (quota cao hơn gemini-pro cho free tier)
         self.model = genai.GenerativeModel(model_name='models/gemini-2.5-flash')
     
-    def get_tours_context(self, limit=None):
-        """Lấy thông tin tours để làm context cho AI - DEFAULT: ALL TOURS"""
-        if limit:
-            tours = Tour.objects.filter(is_active=True)[:limit]
-        else:
-            tours = Tour.objects.filter(is_active=True)  # Get ALL tours by default
+    def get_tours_context(self, limit=5):
+        """Lấy thông tin tours để làm context cho AI"""
+        tours = Tour.objects.filter(is_active=True)[:limit]
         
         if not tours:
             return "Hiện tại chưa có tour nào trong hệ thống."
         
-        total_tours = tours.count()
-        context = f"Thông tin các tour du lịch hiện có (Tổng cộng {total_tours} tour):\\n\\n"
+        context = "Thông tin các tour du lịch hiện có:\n\n"
         for i, tour in enumerate(tours, 1):
-            context += f"{i}. {tour.name}\\n"
-            context += f"   - Địa điểm: {tour.location}\\n"
-            context += f"   - Giá: {tour.price:,} VND\\n"
-            context += f"   - Thời gian: {tour.duration} ngày\\n"
-            context += f"   - Mô tả: {tour.description[:200]}...\\n"
-            context += f"   - Số chỗ tối đa: {tour.max_people}\\n\\n"
+            context += f"{i}. {tour.name}\n"
+            context += f"   - Địa điểm: {tour.location}\n"
+            context += f"   - Giá: {tour.price:,} VND\n"
+            context += f"   - Thời gian: {tour.duration} ngày\n"
+            context += f"   - Mô tả: {tour.description[:200]}...\n"
+            context += f"   - Số chỗ tối đa: {tour.max_people}\n\n"
         
         return context
     
@@ -53,7 +49,7 @@ class TravelAdvisor:
             str: Câu trả lời từ AI
         """
         # Tạo prompt cho AI
-        system_prompt = \"\"\"
+        system_prompt = """
 Bạn là AI Travel Advisor chuyên nghiệp của công ty VN Travel Việt Nam.
 
 Nhiệm vụ của bạn:
@@ -107,15 +103,15 @@ Chào bạn, [lời chào phù hợp với ngữ cảnh]!
 [Lời mời gọi hành động cuối cùng]
 
 YÊU CẦU ĐỘ DÀI TỐI THIỂU: Mỗi câu trả lời phải có ít nhất 300-500 từ, được cấu trúc rõ ràng với nhiều điểm chi tiết.
-\"\"\"
+"""
         
         # Thêm context tours nếu cần
         tours_context = ""
         if include_tours:
-            tours_context = f"\\n\\n{self.get_tours_context()}"
+            tours_context = f"\n\n{self.get_tours_context()}"
         
         # Tạo prompt hoàn chỉnh
-        full_prompt = f"{system_prompt}{tours_context}\\n\\nKhách hỏi: {user_question}\\n\\nTrả lời:"
+        full_prompt = f"{system_prompt}{tours_context}\n\nKhách hỏi: {user_question}\n\nTrả lời:"
         
         try:
             # Gọi Gemini API
@@ -136,7 +132,7 @@ YÊU CẦU ĐỘ DÀI TỐI THIỂU: Mỗi câu trả lời phải có ít nhấ
                 return "Xin lỗi, AI không thể tạo phản hồi."
                 
         except Exception as e:
-            return f"Xin lỗi, AI hiện không khả dụng. Lỗi: {str(e)}\\n\\nVui lòng thử lại sau hoặc liên hệ trực tiếp với VN Travel qua hotline."
+            return f"Xin lỗi, AI hiện không khả dụng. Lỗi: {str(e)}\n\nVui lòng thử lại sau hoặc liên hệ trực tiếp với VN Travel qua hotline."
     
     def get_tour_recommendation(self, budget=None, location=None, duration=None):
         """
