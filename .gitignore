@@ -57,7 +57,7 @@ node_modules/
 # Static/media (Django collectstatic) #
 ############
 staticfiles/
-/media/
+#/media/
 # Allow static/media/ for production (committed to git)
 
 ############
