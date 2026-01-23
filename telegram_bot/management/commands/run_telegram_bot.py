@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -40,6 +40,11 @@ class Command(BaseCommand):
         application.add_handler(CommandHandler("book", self.book_tour))
         application.add_handler(CommandHandler("menu", self.menu_command))
         application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^menu_"))
+        application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^viewbooking_"))
+        application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^pay_booking_"))
+        application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^cancel_booking_"))
+        application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^confirm_cancel_"))
+        application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^back_to_bookings"))
         application.add_handler(CallbackQueryHandler(self.handle_tour_detail, pattern=r"^tour_"))
         application.add_handler(CallbackQueryHandler(self.handle_book_init, pattern=r"^book_"))
         application.add_handler(CallbackQueryHandler(self.handle_booking_callback, pattern=r"^(bookdate_|bookadults_|bookchildren_)"))
@@ -119,12 +124,18 @@ class Command(BaseCommand):
         telegram_user = await self._get_or_create_user(update)
 
         data = query.data
+        print(f"DEBUG: handle_menu called with callback data: {data}", flush=True)
 
         if data == "menu_search":
             telegram_user.conversation_state = "searching"
             await sync_to_async(telegram_user.save)()
             prompt = "Bạn muốn đi đâu? Nhập tên điểm đến (ví dụ: Đà Nẵng, Đà Lạt)."
-            await query.edit_message_text(prompt)
+            
+            # Tạo inline keyboard với nút quay lại menu
+            keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            
+            await query.edit_message_text(prompt, reply_markup=reply_markup)
             await self._log_conversation(telegram_user, "bot", prompt)
             return
 
@@ -134,7 +145,7 @@ class Command(BaseCommand):
 
         if data == "menu_tours":
             # Hiển thị tất cả tours
-            tours = await sync_to_async(list)(Tour.objects.filter(is_active=True)[:10])
+            tours = await sync_to_async(list)(Tour.objects.filter(is_active=True))
             if not tours:
                 msg = "Hiện chưa có tour nào khả dụng."
                 await query.edit_message_text(msg)
@@ -172,7 +183,7 @@ class Command(BaseCommand):
             return
 
         if data == "menu_book":
-            tours = await sync_to_async(list)(Tour.objects.filter(is_active=True)[:5])
+            tours = await sync_to_async(list)(Tour.objects.filter(is_active=True))
             if not tours:
                 msg = "Hiện chưa có tour để đặt."
                 await query.edit_message_text(msg)
@@ -260,10 +271,13 @@ class Command(BaseCommand):
                     
                     # Add button for each booking
                     button_text = f"{booking.tour.name[:25]}... - {status_text}"
-                    keyboard.append([InlineKeyboardButton(button_text, callback_data=f"viewbooking_{booking.id}")])
+                    callback_data = f"viewbooking_{booking.id}"
+                    print(f"DEBUG: Creating button - text:'{button_text}', callback_data:'{callback_data}'", flush=True)
+                    keyboard.append([InlineKeyboardButton(button_text, callback_data=callback_data)])
                 
                 keyboard.append([InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")])
                 
+                print(f"DEBUG: Total keyboard buttons: {len(keyboard)}", flush=True)
                 await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
                 await self._log_conversation(telegram_user, "bot", "Hiển thị danh sách bookings")
                 return
@@ -276,6 +290,284 @@ class Command(BaseCommand):
                 keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
                 await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
                 return
+
+        # Handler cho xem chi tiết booking
+        if data.startswith("viewbooking_"):
+            print(f"DEBUG: viewbooking handler called with data: {data}", flush=True)
+            try:
+                booking_id = int(data.split("_")[1])
+                
+                # Lấy django user
+                django_user = await sync_to_async(lambda: telegram_user.django_user)()
+                if not django_user:
+                    msg = "❌ Bạn chưa liên kết tài khoản VN Travel."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Lấy booking
+                booking = await sync_to_async(
+                    Booking.objects.filter(id=booking_id, user=django_user).select_related('tour').first
+                )()
+                
+                if not booking:
+                    msg = "❌ Không tìm thấy booking này."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Hiển thị thông tin chi tiết booking
+                status_emoji = {
+                    'pending': '⏳',
+                    'confirmed': '✅',
+                    'paid': '💳',
+                    'cancelled': '❌'
+                }.get(booking.status, '📋')
+                
+                status_text = {
+                    'pending': 'Chờ xác nhận',
+                    'confirmed': 'Đã xác nhận',
+                    'paid': 'Đã thanh toán',
+                    'cancelled': 'Đã hủy'
+                }.get(booking.status, booking.status)
+                
+                msg = f"📋 **CHI TIẾT BOOKING**\n\n"
+                msg += f"🏷️ **Tour:** {booking.tour.name}\n"
+                msg += f"📅 **Ngày đi:** {booking.booking_date.strftime('%d/%m/%Y')}\n"
+                msg += f"👥 **Số người:** {booking.num_adults} người lớn"
+                if booking.num_children > 0:
+                    msg += f", {booking.num_children} trẻ em"
+                msg += f"\n💰 **Tổng tiền:** {int(booking.total_price):,} VND\n"
+                msg += f"🔖 **Trạng thái:** {status_emoji} {status_text}\n"
+                
+                # Thông tin thanh toán
+                payment_status_text = {
+                    'pending': '⏳ Chờ thanh toán',
+                    'paid': '✅ Đã thanh toán',
+                    'refunded': '💸 Đã hoàn tiền'
+                }.get(booking.payment_status, booking.payment_status)
+                msg += f"💳 **Thanh toán:** {payment_status_text}\n"
+                
+                # Thông tin đặt cọc nếu có
+                if booking.deposit_required and booking.deposit_amount > 0:
+                    deposit_pct = int(float(booking.deposit_percentage) * 100)
+                    msg += f"\n💵 **Đặt cọc:** {deposit_pct}% = {int(booking.deposit_amount):,} VND\n"
+                    if booking.deposit_paid:
+                        msg += f"✅ **Đã cọc:** Có\n"
+                        remaining = await sync_to_async(booking.get_remaining_amount)()
+                        msg += f"💰 **Còn lại:** {int(remaining):,} VND\n"
+                    else:
+                        msg += f"⏳ **Đã cọc:** Chưa\n"
+                
+                msg += f"\n🕐 **Ngày đặt:** {booking.created_at.strftime('%d/%m/%Y %H:%M')}\n"
+                
+                # Tạo các nút hành động dựa trên trạng thái thanh toán
+                keyboard = []
+                
+                # Nếu chưa thanh toán và chưa bị hủy
+                if booking.payment_status == 'pending' and booking.status != 'cancelled':
+                    keyboard.append([InlineKeyboardButton("💳 Thanh toán", callback_data=f"pay_booking_{booking.id}")])
+                    keyboard.append([InlineKeyboardButton("❌ Huỷ booking", callback_data=f"cancel_booking_{booking.id}")])
+                
+                keyboard.append([InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")])
+                
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+                await self._log_conversation(telegram_user, "bot", f"Hiển thị chi tiết booking {booking_id}")
+                return
+                
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Error in viewbooking: {e}")
+                msg = "❌ Có lỗi xảy ra khi tải thông tin booking."
+                keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                return
+
+        # Handler cho thanh toán booking
+        if data.startswith("pay_booking_"):
+            try:
+                booking_id = int(data.split("_")[2])
+                
+                # Lấy django user
+                django_user = await sync_to_async(lambda: telegram_user.django_user)()
+                if not django_user:
+                    msg = "❌ Bạn chưa liên kết tài khoản VN Travel."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Lấy booking
+                booking = await sync_to_async(
+                    Booking.objects.filter(id=booking_id, user=django_user).select_related('tour').first
+                )()
+                
+                if not booking:
+                    msg = "❌ Không tìm thấy booking này."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Kiểm tra trạng thái thanh toán
+                if booking.payment_status != 'pending':
+                    msg = "✅ Booking này đã được thanh toán rồi!"
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại chi tiết", callback_data=f"viewbooking_{booking_id}")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Hiển thị hướng dẫn thanh toán
+                msg = "💳 **HƯỚNG DẪN THANH TOÁN**\n\n"
+                msg += f"🏷️ **Tour:** {booking.tour.name}\n"
+                msg += f"💰 **Số tiền:** {int(booking.total_price):,} VND\n\n"
+                msg += "📱 **Để thanh toán, vui lòng:**\n\n"
+                msg += "1️⃣ Truy cập website VN Travel\n"
+                msg += "2️⃣ Đăng nhập vào tài khoản\n"
+                msg += "3️⃣ Vào phần 'Booking của tôi'\n"
+                msg += "4️⃣ Chọn booking này và thanh toán\n\n"
+                msg += "🌐 **Link website:**\n"
+                msg += "https://vntravel.com/bookings/\n\n"
+                msg += "💡 _Sau khi thanh toán xong, trạng thái sẽ tự động cập nhật._"
+                
+                keyboard = [
+                    [InlineKeyboardButton("🔄 Làm mới trạng thái", callback_data=f"viewbooking_{booking_id}")],
+                    [InlineKeyboardButton("⬅️ Quay lại chi tiết", callback_data=f"viewbooking_{booking_id}")]
+                ]
+                
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+                await self._log_conversation(telegram_user, "bot", f"Hiển thị hướng dẫn thanh toán cho booking {booking_id}")
+                return
+                
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Error in pay_booking: {e}")
+                msg = "❌ Có lỗi xảy ra. Vui lòng thử lại sau."
+                keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                return
+
+        # Handler cho huỷ booking (hiển thị xác nhận)
+        if data.startswith("cancel_booking_"):
+            try:
+                booking_id = int(data.split("_")[2])
+                
+                # Lấy django user
+                django_user = await sync_to_async(lambda: telegram_user.django_user)()
+                if not django_user:
+                    msg = "❌ Bạn chưa liên kết tài khoản VN Travel."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Lấy booking
+                booking = await sync_to_async(
+                    Booking.objects.filter(id=booking_id, user=django_user).select_related('tour').first
+                )()
+                
+                if not booking:
+                    msg = "❌ Không tìm thấy booking này."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Kiểm tra xem có thể hủy không
+                if booking.status == 'cancelled':
+                    msg = "ℹ️ Booking này đã bị hủy rồi."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại chi tiết", callback_data=f"viewbooking_{booking_id}")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                if booking.payment_status == 'paid':
+                    msg = "⚠️ Booking đã thanh toán không thể hủy qua bot.\n\nVui lòng liên hệ:\n📞 Hotline: 1900-xxxx\n📧 Email: support@vntravel.com"
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại chi tiết", callback_data=f"viewbooking_{booking_id}")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Hiển thị xác nhận huỷ
+                msg = "⚠️ **XÁC NHẬN HUỶ BOOKING**\n\n"
+                msg += f"🏷️ **Tour:** {booking.tour.name}\n"
+                msg += f"📅 **Ngày đi:** {booking.booking_date.strftime('%d/%m/%Y')}\n"
+                msg += f"💰 **Tổng tiền:** {int(booking.total_price):,} VND\n\n"
+                msg += "❓ **Bạn có chắc chắn muốn hủy booking này không?**\n\n"
+                msg += "⚠️ _Hành động này không thể hoàn tác._"
+                
+                keyboard = [
+                    [InlineKeyboardButton("✅ Xác nhận hủy", callback_data=f"confirm_cancel_{booking_id}")],
+                    [InlineKeyboardButton("❌ Không, quay lại", callback_data=f"viewbooking_{booking_id}")]
+                ]
+                
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+                await self._log_conversation(telegram_user, "bot", f"Hiển thị xác nhận hủy booking {booking_id}")
+                return
+                
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Error in cancel_booking: {e}")
+                msg = "❌ Có lỗi xảy ra. Vui lòng thử lại sau."
+                keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                return
+
+        # Handler cho xác nhận huỷ booking (thực hiện hủy)
+        if data.startswith("confirm_cancel_"):
+            try:
+                booking_id = int(data.split("_")[2])
+                
+                # Lấy django user
+                django_user = await sync_to_async(lambda: telegram_user.django_user)()
+                if not django_user:
+                    msg = "❌ Bạn chưa liên kết tài khoản VN Travel."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Lấy booking
+                booking = await sync_to_async(
+                    Booking.objects.filter(id=booking_id, user=django_user).select_related('tour').first
+                )()
+                
+                if not booking:
+                    msg = "❌ Không tìm thấy booking này."
+                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                    return
+                
+                # Cập nhật trạng thái booking
+                def update_booking_status():
+                    booking.status = 'cancelled'
+                    booking.save()
+                
+                await sync_to_async(update_booking_status)()
+                
+                # Hiển thị thông báo thành công
+                msg = "✅ **ĐÃ HUỶ BOOKING THÀNH CÔNG**\n\n"
+                msg += f"🏷️ **Tour:** {booking.tour.name}\n"
+                msg += f"📅 **Ngày đi:** {booking.booking_date.strftime('%d/%m/%Y')}\n"
+                msg += f"💰 **Số tiền:** {int(booking.total_price):,} VND\n\n"
+                msg += "Booking đã được hủy. Cảm ơn bạn đã sử dụng dịch vụ VN Travel! 🙏"
+                
+                keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+                await self._log_conversation(telegram_user, "bot", f"Đã hủy booking {booking_id}")
+                return
+                
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Error in confirm_cancel: {e}")
+                msg = "❌ Có lỗi xảy ra khi hủy booking. Vui lòng thử lại sau."
+                keyboard = [[InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")]]
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                return
+
+        # Handler cho quay lại danh sách bookings
+        if data == "back_to_bookings":
+            # Gọi lại handler menu_view
+            query.data = "menu_view"
+            await self.handle_menu(update, context)
+            return
 
         if data == "menu_ai":
             # Chuyển state sang asking_ai
@@ -290,10 +582,14 @@ class Command(BaseCommand):
                 "💰 Gợi ý tour phù hợp với ngân sách\n"
                 "📅 Lên kế hoạch lịch trình\n"
                 "❓ Trả lời mọi câu hỏi về du lịch\n\n"
-                "Hãy hỏi tôi bất cứ điều gì! 😊\n"
-                "(Gõ /menu để quay lại)"
+                "Hãy hỏi tôi bất cứ điều gì! 😊"
             )
-            await query.edit_message_text(msg, parse_mode='Markdown')
+            
+            # Tạo inline keyboard với nút quay lại menu
+            keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            
+            await query.edit_message_text(msg, parse_mode='Markdown', reply_markup=reply_markup)
             await self._log_conversation(telegram_user, "bot", msg)
             return
 
@@ -332,6 +628,9 @@ class Command(BaseCommand):
                 [InlineKeyboardButton(f"{tour.name} • {tour.price:,} VND", callback_data=f"tour_{tour.id}")]
                 for tour in tours
             ]
+            # Thêm nút quay lại menu
+            keyboard.append([InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")])
+            
             await update.message.reply_text(
                 "Chọn tour bên dưới để xem chi tiết:",
                 reply_markup=InlineKeyboardMarkup(keyboard),

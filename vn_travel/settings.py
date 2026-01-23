@@ -236,10 +236,11 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # Allauth settings
 ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-# CRITICAL: Set to False to allow Google OAuth auto-signup without form!
-ACCOUNT_USERNAME_REQUIRED = False  # Changed from True
+
+# Updated for django-allauth 0.54+ (Authentication)
+ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+ACCOUNT_SIGNUP_FIELDS = ['username', 'email', 'password1*', 'password2*']
+
 ACCOUNT_SESSION_REMEMBER = True
 
 # Social Account Auto Signup - Skip signup form completely

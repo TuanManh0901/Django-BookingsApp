@@ -8076,3 +8076,701 @@ WARNINGS:
 ?: settings.ACCOUNT_USERNAME_REQUIRED is deprecated, use: settings.ACCOUNT_SIGNUP_FIELDS = ['email', 'password1*', 'password2*']
 
 System check identified 4 issues (0 silenced).
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà nội'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hạ long'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phú quốc'
+  warnings.warn(warning, CacheKeyWarning)
+[21/Jan/2026 22:13:59] "HEAD / HTTP/1.1" 200 0
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phan thiết'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_cần thơ'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_nha trang'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hồ chí minh'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hội an'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_ninh bình'
+  warnings.warn(warning, CacheKeyWarning)
+[21/Jan/2026 22:14:01] "HEAD /tours/ HTTP/1.1" 200 0
+[21/Jan/2026 22:14:01] "HEAD /ai-chat/ HTTP/1.1" 200 0
+[21/Jan/2026 22:14:01] "HEAD /admin/login/ HTTP/1.1" 200 0
+[22/Jan/2026 00:04:26] "GET / HTTP/1.1" 200 52973
+[22/Jan/2026 00:04:26] "GET /static/argon-design-system/css/nucleo-icons.css HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/argon-design-system/css/nucleo-svg.css HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/argon-design-system/css/font-awesome.css HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/mobile-responsive.css HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/argon-design-system/css/argon-design-system.css HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/premium-styles.css?v=3 HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/custom.css?v=2 HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/images/hanoi_city.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/images/phu_quoc_resort.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/images/ha_long_bay.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/argon-design-system/js/argon-design-system.js HTTP/1.1" 304 0
+[22/Jan/2026 00:04:26] "GET /static/argon-design-system/fonts/nucleo-icons.woff2 HTTP/1.1" 304 0
+[22/Jan/2026 00:04:27] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[22/Jan/2026 00:04:27] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg?v=3 HTTP/1.1" 200 1128
+[22/Jan/2026 00:04:30] "GET /destinations/vietnam/ HTTP/1.1" 200 57092
+[22/Jan/2026 00:04:30] "GET /media/tours/WEB-PQ-sao-ch%C3%A9p-1400x788.jpg HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_16_updated_mui_ne_sand_dunes_new_1768395071287_tZynMuW.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_13_nha_trang_beach_1768394098058_UhcFYOJ.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061_d9oEqyJ.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_12_updated_mekong_delta_can_tho_new_1768395091069_2cg7B9u.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294_rXOmCUS.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_11_hue_imperial_city_1768394135604_VuUXf2S.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061.png HTTP/1.1" 200 1211475
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967_GpTgbVb.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_7_ha_noi_ha_long_tour_1768394623908_HOTLBzT.png HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/mau-ngang-dai-2-1.jpg HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/H%C3%ACnh-N%E1%BB%81n-%C4%90L-H%C3%A8_71ntPBX.jpg HTTP/1.1" 304 0
+[22/Jan/2026 00:04:30] "GET /media/tours/H%C3%ACnh-N%E1%BB%81n-%C4%90L-H%C3%A8.jpg HTTP/1.1" 200 1012942
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967.png HTTP/1.1" 200 811509
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_13_nha_trang_beach_1768394098058.png HTTP/1.1" 200 836153
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294.png HTTP/1.1" 200 960083
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_7_ha_noi_ha_long_tour_1768394623908.png HTTP/1.1" 200 1077683
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_14_vietnam_panorama_north_south_1768394751445_rlxq6WJ.png HTTP/1.1" 200 904358
+[22/Jan/2026 00:04:30] "GET /media/tours/tour_10_hoi_an_hue_da_nang_1768394688009_SqAhEWk.png HTTP/1.1" 200 1078414
+[22/Jan/2026 00:04:30] "GET /static/argon-dashboard-master/assets/img/favicon-site.svg?v=3 HTTP/1.1" 200 662
+[22/Jan/2026 00:05:44] "GET /destinations/vietnam/ HTTP/1.1" 200 57092
+[22/Jan/2026 16:36:40] "GET /my-bookings/?id=a4ac6179-e8c1-4e4d-a44e-bff526676454&vscodeBrowserReqId=1769074600005 HTTP/1.1" 302 0
+[22/Jan/2026 16:36:40] "GET /accounts/login/?next=/my-bookings/%3Fid%3Da4ac6179-e8c1-4e4d-a44e-bff526676454%26vscodeBrowserReqId%3D1769074600005 HTTP/1.1" 200 25088
+[22/Jan/2026 17:04:49] "GET /admin/ HTTP/1.1" 200 72753
+[22/Jan/2026 17:04:49] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[22/Jan/2026 17:04:50] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+Not Found: /favicon.ico
+[22/Jan/2026 17:04:50] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8877
+[22/Jan/2026 17:04:50] "GET /favicon.ico HTTP/1.1" 404 8814
+[22/Jan/2026 17:04:50] "GET /apple-touch-icon.png HTTP/1.1" 404 8841
+[22/Jan/2026 17:04:50] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+[22/Jan/2026 17:12:47] "GET /admin/ HTTP/1.1" 200 72753
+[22/Jan/2026 17:12:48] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[22/Jan/2026 20:52:26] "GET /admin/auth/user/ HTTP/1.1" 200 28484
+[22/Jan/2026 20:52:27] "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+[22/Jan/2026 20:52:27] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+[22/Jan/2026 20:52:27] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/css/custom_admin.css HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/css/changelists.css HTTP/1.1" 200 7501
+[22/Jan/2026 20:52:27] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[22/Jan/2026 20:52:27] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[22/Jan/2026 20:52:27] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[22/Jan/2026 20:52:27] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[22/Jan/2026 20:52:27] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[22/Jan/2026 20:52:27] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[22/Jan/2026 20:52:27] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[22/Jan/2026 20:52:27] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+[22/Jan/2026 20:52:27] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+[22/Jan/2026 20:52:27] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[22/Jan/2026 20:52:27] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[22/Jan/2026 20:52:27] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+[22/Jan/2026 20:52:27] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+[22/Jan/2026 20:52:53] "POST /admin/auth/user/ HTTP/1.1" 200 19671
+[22/Jan/2026 20:52:54] "POST /admin/auth/user/ HTTP/1.1" 302 0
+[22/Jan/2026 20:52:54] "GET /admin/auth/user/ HTTP/1.1" 200 23998
+[22/Jan/2026 20:52:54] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[22/Jan/2026 20:52:56,208] - Broken pipe from ('127.0.0.1', 59756)
+[22/Jan/2026 20:52:59] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 20:52:59] "GET /static/custom.css?v=2 HTTP/1.1" 304 0
+[22/Jan/2026 20:52:59] "GET /static/premium-styles.css?v=3 HTTP/1.1" 304 0
+[22/Jan/2026 20:52:59] "GET /static/mobile-responsive.css HTTP/1.1" 200 1528
+[22/Jan/2026 20:52:59] "GET /static/images/hanoi_city.png HTTP/1.1" 304 0
+[22/Jan/2026 20:52:59] "GET /static/images/phu_quoc_resort.png HTTP/1.1" 304 0
+[22/Jan/2026 20:52:59] "GET /static/images/ha_long_bay.png HTTP/1.1" 304 0
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/vn_travel/settings.py changed, reloading.
+Performing system checks...
+
+January 20, 2026 - 20:23:14
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001f1a02c40 (most recent call first):
+  <no Python frame>
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà nội'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hạ long'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phú quốc'
+  warnings.warn(warning, CacheKeyWarning)
+[22/Jan/2026 21:54:15] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 21:54:18] "GET /accounts/logout/ HTTP/1.1" 302 0
+[22/Jan/2026 21:54:18] "GET / HTTP/1.1" 200 51888
+[22/Jan/2026 21:54:19] "GET /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:54:27] "POST /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:54:36] "POST /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:54:40] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[22/Jan/2026 21:54:40] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[22/Jan/2026 21:54:46] "GET /accounts/google/login/callback/?state=4VRpLJbO21WnPLZX&code=4%2F0ASc3gC1B9ZOJe20KzSPVSUv_ACRwih7F5AEpsSUgE0OXue7TpQ6Qe-iVQxcrf29APy2OlA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none HTTP/1.1" 302 0
+[22/Jan/2026 21:54:46] "GET / HTTP/1.1" 200 52496
+[22/Jan/2026 21:54:48] "GET /accounts/logout/ HTTP/1.1" 302 0
+[22/Jan/2026 21:54:48] "GET / HTTP/1.1" 200 51888
+[22/Jan/2026 21:54:50] "GET /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:54:51] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[22/Jan/2026 21:54:51] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[22/Jan/2026 21:54:55] "GET /accounts/google/login/callback/?state=O9sq6FicNP3tlYMI&code=4%2F0ASc3gC0WHjBosTE_1WktRikWy62EadRL4pUf3hPiK_BdJbQqYHjJlgkQx2znT5xkMkx2iQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=1&prompt=none HTTP/1.1" 302 0
+[22/Jan/2026 21:54:55] "GET / HTTP/1.1" 200 52497
+[22/Jan/2026 21:54:57] "GET /accounts/logout/ HTTP/1.1" 302 0
+[22/Jan/2026 21:54:57] "GET / HTTP/1.1" 200 51888
+[22/Jan/2026 21:54:58] "GET /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:55:07] "POST /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:56:31] "POST /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:56:46] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[22/Jan/2026 21:56:46] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[22/Jan/2026 21:56:49] "GET /accounts/google/login/callback/?state=8lOgMHf8wtiGDbHh&code=4%2F0ASc3gC2Iuh31OY3PSEoDR8IPpU7tEdYiMEXzvUp1YKkgNye_0yWVXTvcuua0ENPz0rpUaw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none HTTP/1.1" 302 0
+[22/Jan/2026 21:56:49] "GET / HTTP/1.1" 200 52496
+[22/Jan/2026 21:57:53] "GET / HTTP/1.1" 200 52496
+[22/Jan/2026 21:58:26] "GET / HTTP/1.1" 200 52496
+[22/Jan/2026 21:58:27] "GET /accounts/logout/ HTTP/1.1" 302 0
+[22/Jan/2026 21:58:28] "GET / HTTP/1.1" 200 51888
+[22/Jan/2026 21:58:30] "GET /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 21:58:36] "POST /accounts/login/ HTTP/1.1" 200 24812
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/bookings/views.py changed, reloading.
+Performing system checks...
+
+January 22, 2026 - 21:54:09
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[22/Jan/2026 22:24:34] "POST /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 22:37:16] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[22/Jan/2026 22:37:17] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[22/Jan/2026 22:37:21] "GET /accounts/google/login/callback/?state=Hh7CeXPZF8jUJtxM&code=4%2F0ASc3gC3HIy7FPprHteFDgnb5N8wLy8IiZTL4kvkcD_E6Ji42y4I8X7JtjBss3hRS9eKNWQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=1&prompt=none HTTP/1.1" 302 0
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà nội'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hạ long'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phú quốc'
+  warnings.warn(warning, CacheKeyWarning)
+[22/Jan/2026 22:37:22] "GET / HTTP/1.1" 200 52497
+[22/Jan/2026 22:37:26] "GET /accounts/logout/ HTTP/1.1" 302 0
+[22/Jan/2026 22:37:26] "GET / HTTP/1.1" 200 51888
+[22/Jan/2026 22:37:55] "GET /accounts/login/ HTTP/1.1" 200 24812
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/vn_travel/settings.py changed, reloading.
+Performing system checks...
+
+January 22, 2026 - 22:01:06
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[22/Jan/2026 22:40:28] "POST /accounts/login/ HTTP/1.1" 302 0
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà nội'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hạ long'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phú quốc'
+  warnings.warn(warning, CacheKeyWarning)
+[22/Jan/2026 22:40:28] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 22:40:31] "GET /admin/ HTTP/1.1" 200 72752
+[22/Jan/2026 22:40:31] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+Not Found: /apple-touch-icon-precomposed.png
+[22/Jan/2026 22:40:33] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8877
+Not Found: /apple-touch-icon.png
+Not Found: /favicon.ico
+[22/Jan/2026 22:40:33] "GET /apple-touch-icon.png HTTP/1.1" 404 8841
+[22/Jan/2026 22:40:33] "GET /favicon.ico HTTP/1.1" 404 8814
+[22/Jan/2026 22:40:33] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+[22/Jan/2026 22:41:07] "GET /admin/auth/user/ HTTP/1.1" 200 23844
+[22/Jan/2026 22:41:08] "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+[22/Jan/2026 22:41:08] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+[22/Jan/2026 22:41:08] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[22/Jan/2026 22:41:08] "GET /static/admin/css/changelists.css HTTP/1.1" 200 7501
+[22/Jan/2026 22:41:08] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[22/Jan/2026 22:41:08] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[22/Jan/2026 22:41:08] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[22/Jan/2026 22:41:08] "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[22/Jan/2026 22:41:08] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+[22/Jan/2026 22:41:08] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[22/Jan/2026 22:41:08] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+[22/Jan/2026 22:41:15] "POST /admin/logout/ HTTP/1.1" 302 0
+[22/Jan/2026 22:41:15] "GET / HTTP/1.1" 200 51888
+[22/Jan/2026 22:41:17] "GET /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 22:41:18] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[22/Jan/2026 22:41:18] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[22/Jan/2026 22:41:22] "GET /accounts/google/login/callback/?state=dfLITm5i1loyQX6V&code=4%2F0ASc3gC3DWyWbh1dgTZHiomsFJGVtZov54Nr2qapHcqqXbETti3CuRFh32QQMy1v1o_IUaQ&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=1&prompt=none HTTP/1.1" 302 0
+[22/Jan/2026 22:41:22] "GET / HTTP/1.1" 200 52497
+[22/Jan/2026 22:41:24] "GET /accounts/logout/ HTTP/1.1" 302 0
+[22/Jan/2026 22:41:25] "GET / HTTP/1.1" 200 51888
+[22/Jan/2026 22:41:26] "GET /accounts/login/ HTTP/1.1" 200 24812
+[22/Jan/2026 22:41:32] "POST /accounts/login/ HTTP/1.1" 302 0
+[22/Jan/2026 22:41:32] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 22:41:36] "GET /admin/ HTTP/1.1" 200 72752
+[22/Jan/2026 22:41:36] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[22/Jan/2026 22:41:39] "GET /admin/auth/user/ HTTP/1.1" 200 23844
+[22/Jan/2026 22:41:39] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[22/Jan/2026 22:41:51] "GET /admin/account/emailaddress/ HTTP/1.1" 200 22698
+[22/Jan/2026 22:41:51] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[22/Jan/2026 22:41:55] "GET /admin/ai_chatbot/chatmessage/ HTTP/1.1" 200 26832
+[22/Jan/2026 22:41:56] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[22/Jan/2026 22:42:05] "POST /admin/ai_chatbot/chatmessage/ HTTP/1.1" 200 18577
+[22/Jan/2026 22:42:06] "POST /admin/ai_chatbot/chatmessage/ HTTP/1.1" 302 0
+[22/Jan/2026 22:42:06] "GET /admin/ai_chatbot/chatmessage/ HTTP/1.1" 200 25668
+[22/Jan/2026 22:42:06] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[22/Jan/2026 22:42:08] "GET /admin/ HTTP/1.1" 200 72752
+[22/Jan/2026 22:42:08] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[22/Jan/2026 23:18:02] "GET /admin/ HTTP/1.1" 200 72752
+[22/Jan/2026 23:18:02] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[22/Jan/2026 23:18:05] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 23:18:07] "GET /admin/ HTTP/1.1" 200 72752
+[22/Jan/2026 23:18:07] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[22/Jan/2026 23:30:44] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 23:30:49] "GET /destinations/vietnam/ HTTP/1.1" 200 57092
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967.png HTTP/1.1" 200 811509
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_13_nha_trang_beach_1768394098058.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_7_ha_noi_ha_long_tour_1768394623908.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_16_updated_mui_ne_sand_dunes_new_1768395071287_tZynMuW.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061_d9oEqyJ.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_12_updated_mekong_delta_can_tho_new_1768395091069_2cg7B9u.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294_rXOmCUS.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967_GpTgbVb.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_11_hue_imperial_city_1768394135604_VuUXf2S.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_7_ha_noi_ha_long_tour_1768394623908_HOTLBzT.png HTTP/1.1" 304 0
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294.png HTTP/1.1" 200 960083
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_14_vietnam_panorama_north_south_1768394751445_rlxq6WJ.png HTTP/1.1" 200 904358
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_13_nha_trang_beach_1768394098058_UhcFYOJ.png HTTP/1.1" 200 836153
+[22/Jan/2026 23:30:50] "GET /media/tours/tour_10_hoi_an_hue_da_nang_1768394688009_SqAhEWk.png HTTP/1.1" 200 1078414
+[22/Jan/2026 23:31:12] "GET / HTTP/1.1" 200 52689
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_đắk lắk'
+  warnings.warn(warning, CacheKeyWarning)
+Weather API error: 404
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_bà rịa - vũng tàu'
+  warnings.warn(warning, CacheKeyWarning)
+Weather API error: 404
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_đà lạt'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_bình định'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_quảng bình'
+  warnings.warn(warning, CacheKeyWarning)
+Weather API error: 404
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_sơn la'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hà giang'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_phan thiết'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_cần thơ'
+  warnings.warn(warning, CacheKeyWarning)
+[22/Jan/2026 23:31:17] "GET /search/ HTTP/1.1" 200 50503
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_nha trang'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hồ chí minh'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_hội an'
+  warnings.warn(warning, CacheKeyWarning)
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/django/core/cache/backends/base.py:119: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:weather_ninh bình'
+  warnings.warn(warning, CacheKeyWarning)
+[22/Jan/2026 23:31:32] "GET /search/?page=2&sort_by=newest HTTP/1.1" 200 51199
+Weather API error: 404
+Weather API error: 404
+Weather API error: 404
+[22/Jan/2026 23:31:39] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50503
+[22/Jan/2026 23:55:05] "GET /tour/21/ HTTP/1.1" 200 33636
+[22/Jan/2026 23:55:09] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 23:55:12] "GET /destinations/vietnam/ HTTP/1.1" 200 57092
+[22/Jan/2026 23:56:05] "GET / HTTP/1.1" 200 52689
+Weather API error: 404
+Weather API error: 404
+Weather API error: 404
+[22/Jan/2026 23:56:14] "GET /search/ HTTP/1.1" 200 50502
+[22/Jan/2026 23:56:25] "GET /search/?page=2&sort_by=newest HTTP/1.1" 200 51200
+[22/Jan/2026 23:56:35] "GET /search/?page=3&sort_by=newest HTTP/1.1" 200 32660
+[22/Jan/2026 23:56:39] "GET / HTTP/1.1" 200 52689
+[22/Jan/2026 23:56:47] "GET /destinations/vietnam/ HTTP/1.1" 200 57092
+[22/Jan/2026 23:56:50] "GET /education/ HTTP/1.1" 200 26796
+[22/Jan/2026 23:56:52] "GET /destinations/vietnam/ HTTP/1.1" 200 57092
+[23/Jan/2026 00:07:50] "GET /destinations/vietnam/ HTTP/1.1" 200 56962
+[23/Jan/2026 00:08:04] "GET / HTTP/1.1" 200 52659
+Weather API error: 404
+Weather API error: 404
+Weather API error: 404
+[23/Jan/2026 00:08:09] "GET /search/ HTTP/1.1" 200 50482
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/tours/utils.py changed, reloading.
+Performing system checks...
+
+January 22, 2026 - 22:38:13
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001f1a02c40 (most recent call first):
+  <no Python frame>
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[23/Jan/2026 00:11:08] "GET / HTTP/1.1" 200 52659
+[23/Jan/2026 00:11:13] "GET /search/ HTTP/1.1" 200 51088
+[23/Jan/2026 00:11:25] "GET /search/?page=2&sort_by=newest HTTP/1.1" 200 51109
+[23/Jan/2026 00:11:29] "GET /search/?page=3&sort_by=newest HTTP/1.1" 200 32640
+[23/Jan/2026 00:11:35] "GET /tours/ HTTP/1.1" 200 51088
+[23/Jan/2026 00:11:37] "GET /destinations/vietnam/ HTTP/1.1" 200 56962
+[23/Jan/2026 00:12:19] "GET / HTTP/1.1" 200 52659
+[23/Jan/2026 00:12:29] "GET /search/ HTTP/1.1" 200 51088
+[23/Jan/2026 00:12:32] "GET /tour/23/ HTTP/1.1" 200 33634
+[23/Jan/2026 00:12:34] "GET /tour/23/book/ HTTP/1.1" 200 23066
+[23/Jan/2026 00:12:42] "POST /tour/23/book/ HTTP/1.1" 302 0
+[23/Jan/2026 00:12:42] "GET /my-bookings/ HTTP/1.1" 200 65084
+[23/Jan/2026 00:12:49] "GET /booking/151/ HTTP/1.1" 200 25373
+[23/Jan/2026 00:12:51] "GET /my-bookings/ HTTP/1.1" 200 64582
+[23/Jan/2026 00:12:57] "GET / HTTP/1.1" 200 52659
+[23/Jan/2026 00:13:01] "GET /search/ HTTP/1.1" 200 51088
+[23/Jan/2026 00:13:08] "GET /tour/22/ HTTP/1.1" 200 33696
+[23/Jan/2026 00:13:10] "GET /tour/22/book/ HTTP/1.1" 200 23080
+[23/Jan/2026 00:13:17] "POST /tour/22/book/ HTTP/1.1" 302 0
+[23/Jan/2026 00:13:18] "GET /my-bookings/ HTTP/1.1" 200 65512
+[23/Jan/2026 00:13:27] "GET /payment/booking/152/payment/ HTTP/1.1" 200 23488
+INFO === MoMo Payment Request (Laravel Style) ===
+INFO Partner Code: MOMOBKUN20180529
+INFO Order ID: 1769102009_252
+INFO Amount: 6800000
+INFO Request Type: payWithCC
+INFO Raw Signature String:
+accessKey=klm05TvNBzhg7h7j&amount=6800000&extraData=eyJvcmRlcl9pZCI6MTUyfQ==&ipnUrl=http://127.0.0.1:8000/payment/momo/ipn/&orderId=1769102009_252&orderInfo=Thanh toán đơn hàng #152&partnerCode=MOMOBKUN20180529&redirectUrl=http://127.0.0.1:8000/payment/momo/callback/&requestId=048fd28d5a2f9&requestType=payWithCC
+INFO Signature: 70a315540b5f3699637b61c762f3220641ccb6b9b3c0d26e825487fc582e0504
+INFO Payload: {
+  "partnerCode": "MOMOBKUN20180529",
+  "partnerName": "YourStore",
+  "storeId": "Store_01",
+  "requestId": "048fd28d5a2f9",
+  "amount": "6800000",
+  "orderId": "1769102009_252",
+  "orderInfo": "Thanh to\u00e1n \u0111\u01a1n h\u00e0ng #152",
+  "redirectUrl": "http://127.0.0.1:8000/payment/momo/callback/",
+  "ipnUrl": "http://127.0.0.1:8000/payment/momo/ipn/",
+  "lang": "vi",
+  "extraData": "eyJvcmRlcl9pZCI6MTUyfQ==",
+  "requestType": "payWithCC",
+  "signature": "70a315540b5f3699637b61c762f3220641ccb6b9b3c0d26e825487fc582e0504"
+}
+INFO ==============================
+INFO MoMo Response Status: 200
+INFO MoMo Response: {"partnerCode":"MOMOBKUN20180529","orderId":"1769102009_252","requestId":"048fd28d5a2f9","amount":6800000,"responseTime":1769102009520,"message":"Thành công.","resultCode":0,"payUrl":"https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzY5MTAyMDA5XzI1Mg&s=482c6edfdaf03c513df1e8de800e65af93f6c66afb86f8be00009c39c1193a59","signature":"1b7bafc296df55b7c421ba83d581f74f0039417294115994e714922696640040"}
+INFO MoMo payment URL created: https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzY5MTAyMDA5XzI1Mg&s=482c6edfdaf03c513df1e8de800e65af93f6c66afb86f8be00009c39c1193a59
+[23/Jan/2026 00:13:29] "POST /payment/booking/152/process/ HTTP/1.1" 302 0
+[23/Jan/2026 00:13:29,526] - Broken pipe from ('127.0.0.1', 64339)
+INFO === MoMo Payment Request (Laravel Style) ===
+INFO Partner Code: MOMOBKUN20180529
+INFO Order ID: 1769102009_253
+INFO Amount: 6800000
+INFO Request Type: payWithCC
+INFO Raw Signature String:
+accessKey=klm05TvNBzhg7h7j&amount=6800000&extraData=eyJvcmRlcl9pZCI6MTUyfQ==&ipnUrl=http://127.0.0.1:8000/payment/momo/ipn/&orderId=1769102009_253&orderInfo=Thanh toán đơn hàng #152&partnerCode=MOMOBKUN20180529&redirectUrl=http://127.0.0.1:8000/payment/momo/callback/&requestId=048fd28da01cc&requestType=payWithCC
+INFO Signature: 244e410287f42e307753bba8f5b92d0f2cf0bb4f5f482e09d1c1771b41316abf
+INFO Payload: {
+  "partnerCode": "MOMOBKUN20180529",
+  "partnerName": "YourStore",
+  "storeId": "Store_01",
+  "requestId": "048fd28da01cc",
+  "amount": "6800000",
+  "orderId": "1769102009_253",
+  "orderInfo": "Thanh to\u00e1n \u0111\u01a1n h\u00e0ng #152",
+  "redirectUrl": "http://127.0.0.1:8000/payment/momo/callback/",
+  "ipnUrl": "http://127.0.0.1:8000/payment/momo/ipn/",
+  "lang": "vi",
+  "extraData": "eyJvcmRlcl9pZCI6MTUyfQ==",
+  "requestType": "payWithCC",
+  "signature": "244e410287f42e307753bba8f5b92d0f2cf0bb4f5f482e09d1c1771b41316abf"
+}
+INFO ==============================
+INFO MoMo Response Status: 200
+INFO MoMo Response: {"partnerCode":"MOMOBKUN20180529","orderId":"1769102009_253","requestId":"048fd28da01cc","amount":6800000,"responseTime":1769102009742,"message":"Thành công.","resultCode":0,"payUrl":"https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzY5MTAyMDA5XzI1Mw&s=46cb1fe459c25ff99d97a6517561b418ebe150344a8b7a7ef4ae4a1869204a31","signature":"06f347a0e5c1c32e86b3f2e7edab4b6569345d60afd9fd1998da65587e1c190d"}
+INFO MoMo payment URL created: https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzY5MTAyMDA5XzI1Mw&s=46cb1fe459c25ff99d97a6517561b418ebe150344a8b7a7ef4ae4a1869204a31
+[23/Jan/2026 00:13:29] "POST /payment/booking/152/process/ HTTP/1.1" 302 0
+[23/Jan/2026 00:14:09] "GET /payment/momo/callback/?partnerCode=MOMOBKUN20180529&orderId=1769102009_253&requestId=048fd28da01cc&amount=6800000&orderInfo=Thanh+to%C3%A1n+%C4%91%C6%A1n+h%C3%A0ng+%23152&orderType=momo_wallet&transId=4654233249&resultCode=0&message=Th%C3%A0nh+c%C3%B4ng.&payType=credit&responseTime=1769102046806&extraData=eyJvcmRlcl9pZCI6MTUyfQ%3D%3D&signature=05e752d1a5e41f1e7092e8aa26bc15bc05ff71b81a968275f3b46871dbff8870 HTTP/1.1" 302 0
+[23/Jan/2026 00:14:09] "GET /booking/152/ HTTP/1.1" 200 22632
+[23/Jan/2026 00:14:11] "GET /my-bookings/ HTTP/1.1" 200 65009
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/tours/utils.py changed, reloading.
+Performing system checks...
+
+January 23, 2026 - 00:11:06
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[23/Jan/2026 00:31:00] "POST /booking/151/cancel-ajax/ HTTP/1.1" 200 49
+[23/Jan/2026 00:38:22] "GET /my-bookings/ HTTP/1.1" 200 64701
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[23/Jan/2026 13:59:56] "GET /my-bookings/ HTTP/1.1" 200 64701
+[23/Jan/2026 13:59:56] "GET /static/mobile-responsive.css HTTP/1.1" 304 0
+[23/Jan/2026 13:59:57] "GET /static/argon-dashboard-master/assets/img/favicon-site.svg?v=3 HTTP/1.1" 200 662
+[23/Jan/2026 13:59:59] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 14:00:03] "GET /education/ HTTP/1.1" 200 26796
+[23/Jan/2026 14:00:05] "GET /about/ HTTP/1.1" 200 26296
+[23/Jan/2026 14:00:06] "GET /responsibility/ HTTP/1.1" 200 25216
+[23/Jan/2026 14:00:08] "GET /destinations/vietnam/ HTTP/1.1" 200 56962
+[23/Jan/2026 14:59:47] "GET /admin/ HTTP/1.1" 200 72753
+[23/Jan/2026 14:59:47] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[23/Jan/2026 14:59:47] "GET /static/argon-dashboard-master/assets/img/theme/logoVN-Travel.png HTTP/1.1" 304 0
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+[23/Jan/2026 14:59:48] "GET /apple-touch-icon.png HTTP/1.1" 404 8841
+Not Found: /favicon.ico
+[23/Jan/2026 14:59:48] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8877
+[23/Jan/2026 14:59:48] "GET /favicon.ico HTTP/1.1" 404 8814
+[23/Jan/2026 14:59:48] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+[23/Jan/2026 14:59:51] "GET /admin/bookings/booking/ HTTP/1.1" 200 57068
+[23/Jan/2026 14:59:51] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+[23/Jan/2026 14:59:51] "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+[23/Jan/2026 14:59:51] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[23/Jan/2026 14:59:51] "GET /static/admin/css/custom_admin.css HTTP/1.1" 304 0
+[23/Jan/2026 14:59:51] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[23/Jan/2026 14:59:51] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[23/Jan/2026 14:59:51] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[23/Jan/2026 14:59:51] "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[23/Jan/2026 14:59:51] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[23/Jan/2026 14:59:51] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+Not Found: /favicon.ico
+[23/Jan/2026 14:59:51] "GET /favicon.ico HTTP/1.1" 404 8814
+[23/Jan/2026 15:00:17] "GET /admin/bookings/booking/ HTTP/1.1" 200 57068
+[23/Jan/2026 15:00:17] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[23/Jan/2026 15:00:20] "GET /admin/bookings/booking/ HTTP/1.1" 200 57068
+[23/Jan/2026 15:00:20] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[23/Jan/2026 15:00:37] "GET /admin/bookings/booking/ HTTP/1.1" 200 57068
+[23/Jan/2026 15:00:37] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[23/Jan/2026 15:00:56] "GET /admin/bookings/booking/ HTTP/1.1" 200 57068
+[23/Jan/2026 15:00:56] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[23/Jan/2026 15:04:10] "GET /admin/auth/user/ HTTP/1.1" 200 24317
+[23/Jan/2026 15:04:11] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+[23/Jan/2026 15:04:11] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+[23/Jan/2026 15:04:11] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[23/Jan/2026 15:25:40] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 15:25:48] "GET /ai-chat/ HTTP/1.1" 200 35931
+[23/Jan/2026 15:25:48] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 532
+[23/Jan/2026 15:25:48] "GET /ai-chat/api/chat/history/?session_id=session_1767866184120_hrqv58o8b HTTP/1.1" 200 8983
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/ai_chatbot/services.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[23/Jan/2026 15:27:46] "GET /ai-chat/ HTTP/1.1" 200 35931
+[23/Jan/2026 15:27:46] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 532
+[23/Jan/2026 15:27:46] "GET /ai-chat/api/chat/history/?session_id=session_1767866184120_hrqv58o8b HTTP/1.1" 200 8983
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/ai_chatbot/services.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+[23/Jan/2026 15:28:09] "POST /ai-chat/api/chat/ HTTP/1.1" 200 3563
+[23/Jan/2026 15:28:09] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 532
+Not Found: /payments/process/154/
+[23/Jan/2026 15:37:20] "GET /payments/process/154/?method=momo HTTP/1.1" 404 8856
+Not Found: /payments/process/154/
+[23/Jan/2026 15:37:24] "GET /payments/process/154/?method=qr HTTP/1.1" 404 8854
+Not Found: /bookings/154/
+[23/Jan/2026 15:37:31] "GET /bookings/154/ HTTP/1.1" 404 7573
+[23/Jan/2026 16:30:35] "POST /ai-chat/api/chat/ HTTP/1.1" 200 1757
+[23/Jan/2026 16:30:35] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 532
+[23/Jan/2026 16:38:28] "GET /my-bookings/ HTTP/1.1" 200 64701
+[23/Jan/2026 16:38:28] "GET /static/custom.css?v=2 HTTP/1.1" 304 0
+[23/Jan/2026 16:38:30] "GET /booking/152/ HTTP/1.1" 200 22175
+[23/Jan/2026 16:38:32] "GET /my-bookings/ HTTP/1.1" 200 64701
+[23/Jan/2026 16:38:34] "GET /destinations/vietnam/ HTTP/1.1" 200 56962
+[23/Jan/2026 16:38:35] "GET /education/ HTTP/1.1" 200 26796
+[23/Jan/2026 16:38:36] "GET /static/images/phu_quoc_resort.png HTTP/1.1" 304 0
+[23/Jan/2026 16:38:37] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 16:38:37] "GET /static/images/hanoi_city.png HTTP/1.1" 304 0
+[23/Jan/2026 16:38:37] "GET /static/images/ha_long_bay.png HTTP/1.1" 304 0
+[23/Jan/2026 16:38:42] "GET /admin/ HTTP/1.1" 200 72753
+[23/Jan/2026 16:38:42] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+[23/Jan/2026 16:38:43] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8877
+Not Found: /favicon.ico
+[23/Jan/2026 16:38:43] "GET /apple-touch-icon.png HTTP/1.1" 404 8841
+[23/Jan/2026 16:38:43] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+[23/Jan/2026 16:38:43] "GET /favicon.ico HTTP/1.1" 404 8814
+[23/Jan/2026 16:57:05] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 20:17:16] "GET /my-bookings/ HTTP/1.1" 200 64701
+[23/Jan/2026 20:17:16] "GET /static/premium-styles.css?v=3 HTTP/1.1" 304 0
+[23/Jan/2026 20:17:55] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 20:17:58,668] - Broken pipe from ('127.0.0.1', 58971)
+[23/Jan/2026 20:17:58] "GET /search/ HTTP/1.1" 200 51086
+[23/Jan/2026 20:17:58] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061.png HTTP/1.1" 304 0
+[23/Jan/2026 20:17:58] "GET /media/tours/tour_13_nha_trang_beach_1768394098058.png HTTP/1.1" 304 0
+[23/Jan/2026 20:17:58] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967.png HTTP/1.1" 304 0
+[23/Jan/2026 20:17:58] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294.png HTTP/1.1" 304 0
+[23/Jan/2026 20:17:58] "GET /media/tours/tour_7_ha_noi_ha_long_tour_1768394623908.png HTTP/1.1" 304 0
+[23/Jan/2026 20:17:58] "GET /media/tours/tour_16_updated_mui_ne_sand_dunes_new_1768395071287_tZynMuW.png HTTP/1.1" 304 0
+[23/Jan/2026 20:17:58] "GET /media/tours/tour_15_mekong_delta_scenic_1768394082061_d9oEqyJ.png HTTP/1.1" 304 0
+[23/Jan/2026 20:28:38] "GET /search/ HTTP/1.1" 200 51086
+[23/Jan/2026 20:28:49] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 20:28:51] "GET /search/ HTTP/1.1" 200 51086
+[23/Jan/2026 20:32:15] "GET /search/ HTTP/1.1" 200 51086
+[23/Jan/2026 20:32:28] "GET /search/ HTTP/1.1" 200 51086
+[23/Jan/2026 20:35:45] "GET /search/ HTTP/1.1" 200 51088
+[23/Jan/2026 20:36:58] "GET /search/ HTTP/1.1" 200 50910
+[23/Jan/2026 20:36:58] "GET /media/tours/con_dao.png HTTP/1.1" 200 883585
+[23/Jan/2026 20:36:58] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 200 1177262
+[23/Jan/2026 20:36:58] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 200 749887
+[23/Jan/2026 20:36:58] "GET /media/tours/quy_nhon.png HTTP/1.1" 200 1120149
+[23/Jan/2026 20:36:58] "GET /media/tours/ta_xua.png HTTP/1.1" 200 789966
+[23/Jan/2026 20:36:58] "GET /media/tours/phong_nha.png HTTP/1.1" 200 1008377
+[23/Jan/2026 20:36:59] "GET /media/tours/ha_giang.png HTTP/1.1" 200 1174575
+[23/Jan/2026 20:37:28,005] - Broken pipe from ('127.0.0.1', 59372)
+[23/Jan/2026 20:38:40] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 20:38:43] "GET /search/ HTTP/1.1" 200 50910
+[23/Jan/2026 20:38:43] "GET /media/tours/con_dao.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:43] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:43] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:43] "GET /media/tours/quy_nhon.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:43] "GET /media/tours/phong_nha.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:43] "GET /media/tours/ha_giang.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:43] "GET /media/tours/ta_xua.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /destinations/vietnam/ HTTP/1.1" 200 56784
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_13_nha_trang_beach_1768394098058_UhcFYOJ.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_8_ha_long_luxury_cruise_1768394649967_GpTgbVb.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_9_ninh_binh_trang_an_1768394666294_rXOmCUS.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_14_vietnam_panorama_north_south_1768394751445_rlxq6WJ.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_7_ha_noi_ha_long_tour_1768394623908_HOTLBzT.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_11_hue_imperial_city_1768394135604_VuUXf2S.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_10_hoi_an_hue_da_nang_1768394688009_SqAhEWk.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:45] "GET /media/tours/tour_12_updated_mekong_delta_can_tho_new_1768395091069_2cg7B9u.png HTTP/1.1" 304 0
+[23/Jan/2026 20:38:53] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 20:38:55] "GET /search/ HTTP/1.1" 200 50910
+[23/Jan/2026 20:43:29] "GET /search/ HTTP/1.1" 200 50901
+[23/Jan/2026 20:43:29] "GET /media/tours/con_dao.png HTTP/1.1" 304 0
+[23/Jan/2026 20:43:29] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 304 0
+[23/Jan/2026 20:43:29] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 304 0
+[23/Jan/2026 20:43:29] "GET /media/tours/ha_giang.png HTTP/1.1" 304 0
+[23/Jan/2026 20:43:29] "GET /media/tours/quy_nhon.png HTTP/1.1" 304 0
+[23/Jan/2026 20:43:29] "GET /media/tours/ta_xua.png HTTP/1.1" 304 0
+[23/Jan/2026 20:43:29] "GET /media/tours/phong_nha.png HTTP/1.1" 304 0
+[23/Jan/2026 20:43:35] "GET /search/?is_hot=true HTTP/1.1" 200 47969
+[23/Jan/2026 20:43:39] "GET /search/?duration=1 HTTP/1.1" 200 29667
+[23/Jan/2026 20:43:41] "GET /search/?location=Ph%C3%BA%20Qu%E1%BB%91c HTTP/1.1" 200 29650
+[23/Jan/2026 20:43:43] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 20:43:45] "GET /search/?is_hot=true HTTP/1.1" 200 47969
+[23/Jan/2026 20:43:46] "GET / HTTP/1.1" 200 52661
+[23/Jan/2026 20:43:48] "GET /search/ HTTP/1.1" 200 50901
+[23/Jan/2026 20:45:33] "GET /search/?page=2&sort_by=newest HTTP/1.1" 200 51100
+[23/Jan/2026 20:45:43] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50901
+[23/Jan/2026 20:45:43] "GET /media/tours/con_dao.png HTTP/1.1" 304 0
+[23/Jan/2026 20:45:43] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 304 0
+[23/Jan/2026 20:45:43] "GET /media/tours/ta_xua.png HTTP/1.1" 304 0
+[23/Jan/2026 20:45:43] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 304 0
+[23/Jan/2026 20:45:43] "GET /media/tours/ha_giang.png HTTP/1.1" 304 0
+[23/Jan/2026 20:45:43] "GET /media/tours/phong_nha.png HTTP/1.1" 304 0
+[23/Jan/2026 20:45:43] "GET /media/tours/quy_nhon.png HTTP/1.1" 304 0
+[23/Jan/2026 21:05:59] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50893
+[23/Jan/2026 21:05:59] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 304 0
+[23/Jan/2026 21:05:59] "GET /media/tours/con_dao.png HTTP/1.1" 304 0
+[23/Jan/2026 21:05:59] "GET /media/tours/quy_nhon.png HTTP/1.1" 304 0
+[23/Jan/2026 21:05:59] "GET /media/tours/phong_nha.png HTTP/1.1" 304 0
+[23/Jan/2026 21:05:59] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 304 0
+[23/Jan/2026 21:05:59] "GET /media/tours/ta_xua.png HTTP/1.1" 304 0
+[23/Jan/2026 21:05:59] "GET /media/tours/ha_giang.png HTTP/1.1" 304 0
+[23/Jan/2026 21:16:54] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50893
+[23/Jan/2026 21:16:55] "GET /media/tours/con_dao.png HTTP/1.1" 304 0
+[23/Jan/2026 21:16:55] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 304 0
+[23/Jan/2026 21:16:55] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 304 0
+[23/Jan/2026 21:16:55] "GET /media/tours/quy_nhon.png HTTP/1.1" 304 0
+[23/Jan/2026 21:16:55] "GET /media/tours/ha_giang.png HTTP/1.1" 304 0
+[23/Jan/2026 21:16:55] "GET /media/tours/ta_xua.png HTTP/1.1" 304 0
+[23/Jan/2026 21:16:55] "GET /media/tours/phong_nha.png HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50891
+[23/Jan/2026 21:45:53] "GET /static/mobile-responsive.css HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /media/tours/con_dao.png HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /media/tours/quy_nhon.png HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /media/tours/ta_xua.png HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /media/tours/phong_nha.png HTTP/1.1" 304 0
+[23/Jan/2026 21:45:53] "GET /media/tours/ha_giang.png HTTP/1.1" 304 0

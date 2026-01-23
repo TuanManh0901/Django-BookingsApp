@@ -77,7 +77,10 @@ class MockGeminiAPI:
         mock_response = MagicMock()
         
         # Default responses based on common prompts
-        if 'tour' in prompt.lower() or 'du lịch' in prompt.lower():
+        # Prioritize detailed specific questions
+        if 'giá' in prompt.lower() or 'price' in prompt.lower():
+            response_text = "Giá tour dao động từ 3.000.000đ - 10.000.000đ tùy theo điểm đến và thời gian."
+        elif 'tour' in prompt.lower() or 'du lịch' in prompt.lower():
             response_text = """Chúng tôi có nhiều tour du lịch tuyệt vời! 
             Bạn quan tâm đến tour nào? Chúng tôi có:
             - Tour Hạ Long Bay 3 ngày 2 đêm
@@ -85,8 +88,6 @@ class MockGeminiAPI:
             - Tour Sapa 3 ngày 2 đêm
             
             Bạn muốn biết thêm chi tiết về tour nào?"""
-        elif 'giá' in prompt.lower() or 'price' in prompt.lower():
-            response_text = "Giá tour dao động từ 3.000.000đ - 10.000.000đ tùy theo điểm đến và thời gian."
         else:
             response_text = "Xin chào! Tôi là AI Travel Advisor. Tôi có thể giúp gì cho bạn?"
         

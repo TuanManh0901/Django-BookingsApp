@@ -38,13 +38,31 @@ def get_weather(city):
         'phan thiet': 'Phan Thiet',
         'cần thơ': 'Can Tho',
         'can tho': 'Can Tho',
+        # Fix missing locations
+        'đắk lắk': 'Buon Ma Thuot',  # Buôn Ma Thuột is capital of Đắk Lắk
+        'dak lak': 'Buon Ma Thuot',
+        'buôn ma thuột': 'Buon Ma Thuot',
+        'buon ma thuot': 'Buon Ma Thuot',
+        'bà rịa - vũng tàu': 'Vung Tau',  # Main city of Bà Rịa - Vũng Tàu
+        'ba ria vung tau': 'Vung Tau',
+        'vũng tàu': 'Vung Tau',
+        'vung tau': 'Vung Tau',
+        'côn đảo': 'Vung Tau',  # Use Vung Tau as nearest major city
+        'con dao': 'Vung Tau',
+        'quảng bình': 'Dong Hoi',  # Capital of Quảng Bình province
+        'quang binh': 'Dong Hoi',
+        'đồng hới': 'Dong Hoi',
+        'dong hoi': 'Dong Hoi',
+        'phong nha': 'Dong Hoi',  # Phong Nha is in Quảng Bình
     }
     
     # Normalize and map city name
     city_lower = city.lower().strip()
     mapped_city = city_mapping.get(city_lower, city)
     
-    cache_key = f'weather_{city_lower}'
+    # Create cache key - use ASCII only to avoid memcached warnings
+    import hashlib
+    cache_key = f'weather_{hashlib.md5(city_lower.encode()).hexdigest()[:10]}'
     
     # Check cache first
     cached_weather = cache.get(cache_key)

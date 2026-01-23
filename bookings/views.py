@@ -7,7 +7,10 @@ from django.views.generic import ListView, DetailView
 from tours.models import Tour
 from .forms import BookingForm
 from .models import Booking
+from .models import Booking
 from .email_utils import send_booking_confirmation_email
+from django.utils import timezone
+from datetime import timedelta
 
 @login_required
 def create_booking(request, tour_id):
@@ -52,23 +55,13 @@ class MyBookingsView(LoginRequiredMixin, ListView):
     paginate_by = 10
     
     def get_queryset(self):
-        import sys
-        from django.utils import timezone
-        from datetime import timedelta
-        
-        # AGGRESSIVE LOGGING - THIS SHOULD ALWAYS PRINT!
-        print("=" * 80, file=sys.stderr)
-        print("MY BOOKINGS get_queryset() CALLED!", file=sys.stderr)
-        print("=" * 80, file=sys.stderr)
-        
         queryset = Booking.objects.filter(user=self.request.user)
         
         # Auto-cancel expired pending bookings (15 minutes grace period)
         grace_period = timedelta(minutes=15)
         cutoff_time = timezone.now() - grace_period
         
-        print(f"DEBUG AUTO-CANCEL: Current time: {timezone.now()}", file=sys.stderr)
-        print(f"DEBUG AUTO-CANCEL: Cutoff time (15min ago): {cutoff_time}", file=sys.stderr)
+        
         
         expired_bookings = queryset.filter(
             payment_status='pending',
@@ -76,14 +69,12 @@ class MyBookingsView(LoginRequiredMixin, ListView):
             created_at__lt=cutoff_time
         )
         
-        print(f"DEBUG AUTO-CANCEL: Found {expired_bookings.count()} expired bookings", file=sys.stderr)
+        
         
         # Cancel all expired bookings
         for booking in expired_bookings:
-            print(f"DEBUG AUTO-CANCEL: Cancelling booking #{booking.id}, created at {booking.created_at}", file=sys.stderr)
             booking.payment_status = 'cancelled'
             booking.save()
-            print(f"DEBUG AUTO-CANCEL: Successfully cancelled booking #{booking.id}", file=sys.stderr)
         
         # Return fresh queryset with updated statuses
         return Booking.objects.filter(user=self.request.user)
@@ -105,17 +96,12 @@ class MyBookingsView(LoginRequiredMixin, ListView):
         # Determine which context variable to use (ListView uses both)
         bookings = context.get('bookings') or context.get('object_list')
         
-        # Debugging
-        print(f"DEBUG: MyBookingsView - Processing {len(bookings)} bookings")
-        
         for booking in bookings:
             # Check if this booking has a review (OneToOne relationship)
             try:
                 booking.user_review = booking.review
-                print(f"DEBUG: Booking {booking.id} - Has review: True")
             except Review.DoesNotExist:
                 booking.user_review = None
-                print(f"DEBUG: Booking {booking.id} - Has review: False")
             
         return context
 
@@ -160,8 +146,9 @@ def cancel_booking(request, pk):
         booking.deposit_amount = 0
         booking.deposit_percentage = 0
         booking.save()
+        messages.success(request, 'Đã hủy tour thành công.')
     else:
-        pass
+        messages.error(request, 'Không thể hủy tour này (Chỉ hủy được tour Đang xử lý hoặc Đã xác nhận).')
     return redirect('my_bookings')
 
 
@@ -204,7 +191,11 @@ def submit_review(request, booking_id):
     
     # Only allow reviews for paid bookings
     if booking.payment_status != 'paid':
-        print("DEBUG: Status check failed")
+        filters_passed = False
+    else:
+        filters_passed = True
+
+    if not filters_passed:
         messages.error(request, 'Bạn chỉ có thể đánh giá tour sau khi đã thanh toán hoàn tất.')
         return redirect('my_bookings')
     
@@ -212,19 +203,15 @@ def submit_review(request, booking_id):
     from tours.models import Review
     try:
         existing_review = booking.review  # OneToOne relationship
-        print(f"DEBUG: Existing review found: {existing_review}")
     except Review.DoesNotExist:
         existing_review = None
-        print("DEBUG: No existing review")
     
     if request.method == 'POST':
         rating = request.POST.get('rating')
         comment = request.POST.get('comment', '').strip()
-        print(f"DEBUG: POST data - rating: {rating}, comment: {comment}")
         
         # Validation
         if not rating or not comment:
-            print("DEBUG: Validation failed - missing data")
             messages.error(request, 'Vui lòng điền đầy đủ đánh giá và nhận xét.')
             return redirect('my_bookings')
         
@@ -233,7 +220,6 @@ def submit_review(request, booking_id):
             if rating < 1 or rating > 5:
                 raise ValueError()
         except (ValueError, TypeError):
-            print("DEBUG: Validation failed - invalid rating")
             messages.error(request, 'Đánh giá không hợp lệ.')
             return redirect('my_bookings')
         
@@ -242,7 +228,6 @@ def submit_review(request, booking_id):
             existing_review.rating = rating
             existing_review.comment = comment
             existing_review.save()
-            print("DEBUG: Updated existing review")
             messages.success(request, 'Cập nhật đánh giá thành công!')
         else:
             Review.objects.create(
@@ -253,7 +238,6 @@ def submit_review(request, booking_id):
                 comment=comment,
                 is_featured=False  # Admin can mark as featured later
             )
-            print("DEBUG: Created new review")
             messages.success(request, 'Cảm ơn bạn đã đánh giá! Review của bạn đã được gửi.')
         
         return redirect('my_bookings')

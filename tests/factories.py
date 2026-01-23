@@ -125,11 +125,15 @@ class BookingFactory:
         if booking_date is None:
             booking_date = timezone.now().date() + timedelta(days=30)
         
-        # Calculate total price safely - ensure it doesn't exceed 10^8
-        # Assuming children pay 70% of adult price
-        base_price = min(tour.price, Decimal('50000000.00'))  # Cap price at 50M
-        total_price = (base_price * num_adults) + (base_price * num_children * Decimal('0.7'))
-        total_price = min(total_price, Decimal('99999999.99'))  # Ensure under 10^8
+        # Calculate total_price if not provided
+        if 'total_price' in kwargs:
+            total_price = kwargs.pop('total_price')
+        else:
+            # Calculate total price safely - ensure it doesn't exceed 10^8
+            # Assuming children pay 70% of adult price
+            base_price = min(tour.price, Decimal('50000000.00'))  # Cap price at 50M
+            total_price = (base_price * num_adults) + (base_price * num_children * Decimal('0.7'))
+            total_price = min(total_price, Decimal('99999999.99'))  # Ensure under 10^8
         
         booking = Booking.objects.create(
             user=user,

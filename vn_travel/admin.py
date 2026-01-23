@@ -145,7 +145,9 @@ def custom_admin_index(request, extra_context=None):
                 'barData': monthly_bookings,
             })
         except Exception as e:
-            print(f"Error calculating stats: {e}")
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error calculating stats: {e}")
             response.context_data['stats'] = {}
             response.context_data['monthly_revenue_json'] = '{}'
     
