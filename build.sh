@@ -37,10 +37,10 @@ if [ -f "fixtures/users.json" ]; then
 fi
 
 # Load updated tour data
-if [ -f "tours_data.json" ]; then
-    echo "==> Loading updated tour data..."
-    python manage.py loaddata tours_data.json || true
-    echo "✅ Tour data loaded!"
+if [ -f "database_backup.json" ]; then
+    echo "==> Loading database backup..."
+    python manage.py loaddata database_backup.json || true
+    echo "✅ Database loaded!"
 fi
 
 echo "Build completed successfully!"
