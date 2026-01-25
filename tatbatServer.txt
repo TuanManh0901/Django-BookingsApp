@@ -10,4 +10,4 @@ python manage.py run_telegram_bot
 source venv/bin/activate
 python manage.py runserver
 
-postgresql://postgres:[Meow1090Simple]@db.jebipfhydrtixyjfpsep.supabase.co:5432/postgres
+python manage.py dumpdata --natural-foreign --natural-primary --indent 2 --exclude contenttypes --exclude auth.permission > database_backup.json
