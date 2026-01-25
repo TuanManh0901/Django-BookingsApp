@@ -36,6 +36,13 @@ if [ -f "fixtures/users.json" ]; then
     echo "Fixtures loaded successfully!"
 fi
 
+# Load updated tour data
+if [ -f "tours_data.json" ]; then
+    echo "==> Loading updated tour data..."
+    python manage.py loaddata tours_data.json || true
+    echo "✅ Tour data loaded!"
+fi
+
 echo "Build completed successfully!"
 echo "Login: superadmin / VNTravel@2026"
 
