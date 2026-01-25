@@ -23,27 +23,30 @@ fi
 # Run migrations
 python manage.py migrate
 
-# Create/update superadmin user
-echo "==> Creating superadmin user..."
-python manage.py create_superadmin || echo "Superadmin creation skipped"
+# Load data strategy: Prefer database_backup.json (full local mirror)
+if [ -f "database_backup.json" ]; then
+    echo "==> Found database_backup.json. Resetting DB to match local..."
+    # Flush current database to remove conflicts
+    python manage.py flush --no-input
+    
+    echo "Loading full database backup..."
+    python manage.py loaddata database_backup.json
+    echo "✅ Database restored from backup (20 tours)!"
 
-# Load fixtures if they exist (only on first deploy or when database is empty)
-if [ -f "fixtures/users.json" ]; then
-    echo "Loading fixtures..."
+# If no backup, fallback to default fixtures
+elif [ -f "fixtures/users.json" ]; then
+    echo "==> No backup found. Loading default fixtures..."
     python manage.py loaddata fixtures/users.json || true
     python manage.py loaddata fixtures/tours.json || true
     python manage.py loaddata fixtures/reviews.json || true
-    echo "Fixtures loaded successfully!"
+    echo "Fixtures loaded!"
 fi
 
-# Load updated tour data
-if [ -f "database_backup.json" ]; then
-    echo "==> Loading database backup..."
-    python manage.py loaddata database_backup.json || true
-    echo "✅ Database loaded!"
-fi
+# Create/update superadmin user (MUST run after data is loaded so users exist)
+echo "==> Configuring superadmin..."
+python manage.py create_superadmin || echo "Superadmin configuration skipped"
 
 echo "Build completed successfully!"
-echo "Login: superadmin / VNTravel@2026"
+# echo "Login: superadmin / VNTravel@2026"  <-- Removed as create_superadmin deletes this user often
 
 # Force redeploy Tue Jan 20 16:18:42 +07 2026
