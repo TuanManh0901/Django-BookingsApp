@@ -9,6 +9,11 @@ pip install -r requirements.txt
 echo "==> Collecting static files..."
 python manage.py collectstatic --no-input --verbosity 2
 
+# Copy media files to staticfiles/media (for Render ephemeral storage)
+echo "==> Copying media files to staticfiles..."
+mkdir -p staticfiles/media
+cp -R media/* staticfiles/media/ || echo "No media files to copy"
+
 # Verify static files copied
 echo "==> Verifying static/media files..."
 if [ -d "staticfiles/media/tours" ]; then
