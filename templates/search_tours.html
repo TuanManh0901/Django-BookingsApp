@@ -177,12 +177,16 @@ Tìm Kiếm Tours - VN Travel
   <div class="row mt-5">
     <div class="col-12">
       <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center pagination-premium-soft">
           {% if page_obj.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if selected_location %}&location={{ selected_location }}{% endif %}{% if selected_duration %}&duration={{ selected_duration }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if selected_sort %}&sort_by={{ selected_sort }}{% endif %}">
-                Trước
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if selected_location %}&location={{ selected_location }}{% endif %}{% if selected_duration %}&duration={{ selected_duration }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if selected_sort %}&sort_by={{ selected_sort }}{% endif %}" aria-label="Previous">
+                <i class="fas fa-chevron-left"></i>
               </a>
+            </li>
+          {% else %}
+             <li class="page-item disabled">
+              <span class="page-link"><i class="fas fa-chevron-left"></i></span>
             </li>
           {% endif %}
           
@@ -192,9 +196,13 @@ Tìm Kiếm Tours - VN Travel
           
           {% if page_obj.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if selected_location %}&location={{ selected_location }}{% endif %}{% if selected_duration %}&duration={{ selected_duration }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if selected_sort %}&sort_by={{ selected_sort }}{% endif %}">
-                Sau
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% if selected_location %}&location={{ selected_location }}{% endif %}{% if selected_duration %}&duration={{ selected_duration }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}{% if selected_sort %}&sort_by={{ selected_sort }}{% endif %}" aria-label="Next">
+                <i class="fas fa-chevron-right"></i>
               </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link"><i class="fas fa-chevron-right"></i></span>
             </li>
           {% endif %}
         </ul>

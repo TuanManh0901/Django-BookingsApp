@@ -1,0 +1,23 @@
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/ai_chatbot/services.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+Bot is running... Press Ctrl+C to stop.
+DEBUG: handle_menu called with callback data: menu_tours
+DEBUG: handle_menu called with callback data: menu_back
+DEBUG: handle_menu called with callback data: menu_view
+DEBUG: handle_menu called with callback data: viewbooking_171
+DEBUG: viewbooking handler called with data: viewbooking_171
+DEBUG: handle_menu called with callback data: back_to_bookings
+DEBUG: handle_menu called with callback data: menu_back
