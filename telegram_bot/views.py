@@ -13,6 +13,8 @@ from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
 from django.shortcuts import redirect
 from django.contrib import messages
 
+from django.conf import settings
+
 logger = logging.getLogger(__name__)
 
 def telegram_auto_login(request, token):
@@ -110,15 +112,6 @@ def telegram_webhook(request):
         
         # Trả về 200 OK cho Telegram
         return HttpResponse('OK', status=200)
-        
-    except json.JSONDecodeError as e:
-        logger.error(f"JSON decode error: {e}")
-        return JsonResponse({'error': 'Invalid JSON'}, status=400)
-    
-    except Exception as e:
-        logger.error(f"Webhook error: {e}", exc_info=True)
-        return JsonResponse({'error': 'Internal server error'}, status=500)
-
         
     except json.JSONDecodeError as e:
         logger.error(f"JSON decode error: {e}")

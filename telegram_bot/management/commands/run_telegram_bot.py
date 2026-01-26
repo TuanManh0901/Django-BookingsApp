@@ -266,19 +266,28 @@ class Command(BaseCommand):
                     return
                 
                 # Hiển thị thông tin chi tiết booking
+                # Use effective_status to be consistent with Web logic (handling expiration)
+                effective_status = 'pending'
+                if hasattr(booking, 'get_effective_status'):
+                    effective_status = await sync_to_async(booking.get_effective_status)()
+                else:
+                    effective_status = booking.status
+
                 status_emoji = {
                     'pending': '⏳',
                     'confirmed': '✅',
                     'paid': '💳',
+                    'partial_paid': '💸',
                     'cancelled': '❌'
-                }.get(booking.status, '📋')
+                }.get(effective_status, '📋')
                 
                 status_text = {
                     'pending': 'Chờ xác nhận',
                     'confirmed': 'Đã xác nhận',
                     'paid': 'Đã thanh toán',
+                    'partial_paid': 'Đã đặt cọc',
                     'cancelled': 'Đã hủy'
-                }.get(booking.status, booking.status)
+                }.get(effective_status, effective_status)
                 
                 msg = f"📋 **CHI TIẾT BOOKING**\n\n"
                 msg += f"🏷️ **Tour:** {booking.tour.name}\n"
@@ -313,9 +322,24 @@ class Command(BaseCommand):
                 # Tạo các nút hành động dựa trên trạng thái thanh toán
                 keyboard = []
                 
-                # Nếu chưa thanh toán và chưa bị hủy
-                if booking.payment_status == 'pending' and booking.status != 'cancelled':
-                    keyboard.append([InlineKeyboardButton("💳 Thanh toán", callback_data=f"pay_booking_{booking.id}")])
+                # Nếu chưa thanh toán và chưa bị hủy (dựa trên effective_status)
+                if booking.payment_status == 'pending' and effective_status != 'cancelled':
+                    # Generate Magic Link for Payment
+                    from django.conf import settings
+                    from django.core.signing import TimestampSigner
+                    import urllib.parse
+                    
+                    base_url = getattr(settings, 'SITE_URL', 'http://127.0.0.1:8000')
+                    signer = TimestampSigner()
+                    token = signer.sign(django_user.username)
+                    auth_base = f"{base_url}/telegram/auth/{token}/"
+                    
+                    # Target path
+                    target_path = f"/payment/booking/{booking.id}/payment/"
+                    encoded_path = urllib.parse.quote(target_path)
+                    magic_link = f"{auth_base}?next={encoded_path}"
+
+                    keyboard.append([InlineKeyboardButton("💳 Thanh toán ngay", url=magic_link)])
                     keyboard.append([InlineKeyboardButton("❌ Huỷ booking", callback_data=f"cancel_booking_{booking.id}")])
                 
                 keyboard.append([InlineKeyboardButton("⬅️ Quay lại danh sách", callback_data="back_to_bookings")])
@@ -611,9 +635,7 @@ class Command(BaseCommand):
                     await update.message.reply_text("Số người lớn phải ít nhất là 1. Vui lòng nhập lại:")
                     return
                 
-                # Move to next step: Ask children
-                await self._ask_adults(update.message, tour_id, booking_date, via_message=True) 
-                # Wait, we need to ask children, NOT adults again. 
+                # Move to next step: Ask children 
                 # And we need to transition state. 
                 
                 # Correct logic:
@@ -701,6 +723,13 @@ class Command(BaseCommand):
                 ).latest)('created_at')
                 
                 booking_id = booking.id
+
+                # Gửi email xác nhận
+                from bookings.email_utils import send_booking_confirmation_email
+                try:
+                    await sync_to_async(send_booking_confirmation_email)(booking)
+                except Exception as e:
+                    print(f"Error sending email: {e}")
 
                 # Generate Magic Link
                 from django.conf import settings
@@ -1086,6 +1115,13 @@ class Command(BaseCommand):
                 booking_date=booking_date_obj
             ).latest)('created_at')
             booking_id = booking.id
+
+            # Gửi email xác nhận (chạy async để không block)
+            from bookings.email_utils import send_booking_confirmation_email
+            try:
+                await sync_to_async(send_booking_confirmation_email)(booking)
+            except Exception as e:
+                print(f"Error sending email: {e}")
 
             msg = (
                 f"✅ Đặt tour thành công!\n\n"
