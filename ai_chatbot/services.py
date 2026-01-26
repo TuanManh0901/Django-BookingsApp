@@ -5,6 +5,7 @@ import google.generativeai as genai
 from django.conf import settings
 from django.core.cache import cache
 from tours.models import Tour
+from tours.utils import get_weather
 
 
 # ============================================================================
@@ -25,19 +26,20 @@ PHONG CÁCH TRÁ LỜI:
 - BẮT ĐẦU bằng lời chào ngắn gọn, ấm áp (ví dụ: "Chào bạn! Rất vui khi bạn quan tâm đến...")
 - Cung cấp câu trả lời DÀI, ĐẦY ĐỦ, CẤU TRÚC RÕ RÀNG (300-500 từ tối thiểu)
 - Kết thúc bằng câu hỏi thân thiện khuyến khích tiếp tục tương tác
+- CẬP NHẬT TÌNH HÌNH THỜI TIẾT THỰC TẾ: Dựa vào thông tin context, hãy đưa ra lời khuyên phù hợp (ví dụ: đang mưa thì gợi ý mang ô, trời nắng đẹp thì suggest hoạt động ngoài trời).
 
 CẤU TRÚC THÔNG TIN (BẮT BUỘC):
 - SỬ DỤNG DANH SÁCH CÓ SỐ THỨ TỰ (1., 2., 3., ...)
 - Mỗi điểm có TIÊU ĐỀ VIẾT HOA rõ ràng
 - Sau tiêu đề, viết MÔ TẢ CHI TIẾT 2-3 câu
 - Đưa ra VÍ DỤ CỤ THỂ về địa danh, món ăn, hoạt động
-- Thêm GIÁ CẢ, THỜI GIAN, SỐ LƯỢNG CHỖ khi có thông tin
-- Sử dụng emoji phù hợp: 🏖️ ✈️ 🌸 ☕ 🍜 📸 🏔️ 🌊 🎎
+- Thêm GIÁ CẢ, THỜI GIAN, SỐ LƯỢNG CHỖ, THỜI TIẾT khi có thông tin
+- Sử dụng emoji phù hợp: 🏖️ ✈️ 🌸 ☕ 🍜 📸 🏔️ 🌊 🎎 ☀️ 🌧️
 
 KHI GỢI Ý TOUR:
 - Hãy gợi ý CHỈ NHỮNG TOUR THỰC SỰ CÓ TRONG HỆ THỐNG (từ thông tin tours)
 - Nếu tour phù hợp, liệt kê:
-  + Đặc điểm khí hậu/phong cảnh
+  + Đặc điểm khí hậu/phong cảnh (KÈM THÔNG TIN THỜI TIẾT HIỆN TẠI)
   + Các loại hoa/cây đặc trưng (nếu có)
   + Đồ uống/món ăn nổi tiếng (ít nhất 3-4 món)
   + Các điểm tham quan chính (ít nhất 4-5 địa danh)
@@ -49,12 +51,15 @@ KHI GỢI Ý TOUR:
 KHI HỎI THÔNG TIN TOUR:
 - Tìm tour trong danh sách
 - Mô tả chi tiết: vị trí, giá, thời gian, điểm tham quan, trải nghiệm
+- THÔNG BÁO THỜI TIẾT HIỆN TẠI tại điểm đến và đưa ra lời khuyên.
 - Nếu hỏi về tour không có, gợi ý tour tương tự hoặc liên hệ trực tiếp
 
 MẪU CẤU TRÚC BẮT BUỘC:
 Chào bạn! [lời chào phù hợp với ngữ cảnh]
 
 [Tên tour/địa điểm] - Khám phá điều tuyệt vời:
+
+☀️ Tình hình thời tiết hiện tại: [Thông tin thời tiết từ context + Lời khuyên]
 
 1. [TIÊU ĐỀ 1]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
 2. [TIÊU ĐỀ 2]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
@@ -70,7 +75,7 @@ Chào bạn! [lời chào phù hợp với ngữ cảnh]
 YÊU CẦU TUYỆT ĐỐI:
 ✅ Luôn trả lời bằng tiếng Việt
 ✅ Luôn cấu trúc rõ ràng với danh sách đánh số
-✅ Luôn bao gồm thông tin giá khi có
+✅ Luôn bao gồm thông tin giá và thời tiết khi có
 ✅ Luôn kích thích hành động cuối (đặt, hỏi, liên hệ)
 ✅ Tối thiểu 300 từ trong mỗi câu trả lời
 ✅ Thân thiện, chuyên nghiệp, chi tiết
@@ -90,7 +95,10 @@ class TravelAdvisor:
         genai.configure(api_key=api_key)
         
         # Dùng model đã test và chắc chắn hoạt động
-        self.model = genai.GenerativeModel(model_name='models/gemini-2.5-flash')
+        self.model = genai.GenerativeModel(
+            model_name='models/gemini-2.5-flash',
+            system_instruction=VIETNAMESE_SYSTEM_PROMPT
+        )
     
     def get_tours_context(self, limit=None):
         """Lấy thông tin tours để làm context cho AI"""
@@ -102,10 +110,18 @@ class TravelAdvisor:
         if not tours:
             return "Hiện tại chưa có tour nào trong hệ thống."
         
-        context = "Thông tin các tour du lịch hiện có:\n\n"
+        context = "Thông tin các tour du lịch hiện có (bao gồm thời tiết thực tế):\n\n"
         for i, tour in enumerate(tours, 1):
             context += f"{i}. {tour.name}\n"
             context += f"   - Địa điểm: {tour.location}\n"
+            
+            # Fetch real-time weather using existing utility
+            weather = get_weather(tour.location)
+            if weather:
+                context += f"   - Thời tiết hiện tại: {weather['temp']}°C, {weather['description']}, Độ ẩm {weather['humidity']}%\n"
+            else:
+                context += "   - Thời tiết hiện tại: Không có dữ liệu\n"
+                
             context += f"   - Giá: {tour.price:,} VND\n"
             context += f"   - Thời gian: {tour.duration} ngày\n"
             context += f"   - Mô tả: {tour.description[:200]}...\n"
