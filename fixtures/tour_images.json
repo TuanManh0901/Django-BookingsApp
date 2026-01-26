@@ -38,7 +38,7 @@
   "fields": {
     "tour": 7,
     "image": "tours/tour_7_ha_noi_ha_long_tour_1768394623908_HOTLBzT.png",
-    "alt_text": "Hà Nội & Hạ Long - Hành Trình Di Sản",
+    "alt_text": "Hành Trình Di Sản Kép Hà Nội Hạ Long",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.239Z"
   }
@@ -60,7 +60,7 @@
   "fields": {
     "tour": 9,
     "image": "tours/tour_9_ninh_binh_trang_an_1768394666294_rXOmCUS.png",
-    "alt_text": "Ninh Bình - Tuyệt Tình Cốc & Tràng An",
+    "alt_text": "Ninh Bình Tuyệt Tình Cốc Tràng An",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.249Z"
   }
@@ -115,7 +115,7 @@
   "fields": {
     "tour": 15,
     "image": "tours/tour_15_mekong_delta_scenic_1768394082061_d9oEqyJ.png",
-    "alt_text": "Khám Phá Miền Tây - Chợ Nổi & Vườn Trái Cây",
+    "alt_text": "Trải Nghiệm Chợ Nổi Miền Tây Sông Nước",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.269Z"
   }
@@ -126,7 +126,7 @@
   "fields": {
     "tour": 12,
     "image": "tours/tour_12_updated_mekong_delta_can_tho_new_1768395091069_2cg7B9u.png",
-    "alt_text": "Sắc Màu Phương Nam: Sài Gòn & Miền Tây Sông Nước",
+    "alt_text": "Sắc Màu Phương Nam Sài Gòn Miền Tây",
     "is_main": true,
     "created_at": "2026-01-14T12:52:06.024Z"
   }
@@ -137,7 +137,7 @@
   "fields": {
     "tour": 16,
     "image": "tours/tour_16_updated_mui_ne_sand_dunes_new_1768395071287_tZynMuW.png",
-    "alt_text": "Mũi Né - Thiên Đường Cát Trắng & Resort",
+    "alt_text": "Mũi Né Thiên Đường Biển Xanh Cát Trắng",
     "is_main": true,
     "created_at": "2026-01-14T12:52:06.029Z"
   }

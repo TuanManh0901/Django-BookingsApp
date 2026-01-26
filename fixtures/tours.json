@@ -3,7 +3,7 @@
   "model": "tours.tour",
   "pk": 1,
   "fields": {
-    "name": "Đà Lạt - Thành Phố Ngàn Hoa & Sương Mù",
+    "name": "Đà Lạt Mộng Mơ Thành Phố Ngàn Hoa",
     "slug": "tour-da-lat-3-ngay-2-dem",
     "description": "Khám phá thành phố sương mù với hoa và café.",
     "location": "Đà Lạt",
@@ -54,7 +54,7 @@
   "model": "tours.tour",
   "pk": 7,
   "fields": {
-    "name": "Hà Nội & Hạ Long - Hành Trình Di Sản",
+    "name": "Hành Trình Di Sản Kép Hà Nội Hạ Long",
     "slug": "tour-ha-noi-ha-long-3-ngay-2-em",
     "description": "Khám phá thủ đô Hà Nội ngàn năm văn hiến và vịnh Hạ Long kỳ vĩ. Trải nghiệm Phố Cổ, Văn Miếu, và du thuyền qua đêm trên vịnh Di sản Thế giới UNESCO.",
     "location": "Hà Nội",
@@ -88,7 +88,7 @@
   "model": "tours.tour",
   "pk": 9,
   "fields": {
-    "name": "Ninh Bình - Tuyệt Tình Cốc & Tràng An",
+    "name": "Ninh Bình Tuyệt Tình Cốc Tràng An",
     "slug": "tour-ninh-binh-trang-an-1-ngay",
     "description": "Khám phá \"Vịnh Hạ Long trên cạn\" tại Tràng An. Chèo thuyền qua các hang động kỳ ảo, thăm chùa Bái Đính và ngắm cảnh đẹp Hang Múa.",
     "location": "Ninh Bình",
@@ -139,7 +139,7 @@
   "model": "tours.tour",
   "pk": 12,
   "fields": {
-    "name": "Sắc Màu Phương Nam: Sài Gòn & Miền Tây Sông Nước",
+    "name": "Sắc Màu Phương Nam Sài Gòn Miền Tây",
     "slug": "tour-ho-chi-minh-can-tho-ong-bang-song-cuu-long-3-ngay",
     "description": "Khám phá thành phố Hồ Chí Minh sôi động và miền Tây sông nước. Thăm chợ nổi Cái Răng, vườn trái cây, địa đạo Củ Chi, chùa Vĩnh Nghiêm.",
     "location": "Hồ Chí Minh",
@@ -190,7 +190,7 @@
   "model": "tours.tour",
   "pk": 15,
   "fields": {
-    "name": "Khám Phá Miền Tây - Chợ Nổi & Vườn Trái Cây",
+    "name": "Trải Nghiệm Chợ Nổi Miền Tây Sông Nước",
     "slug": "tour-mekong-delta-2-ngay-1-em",
     "description": "Khám phá miền Tây sông nước: chợ nổi Cái Răng, làng hoa Sa Đéc, vườn trái cây, trải nghiệm homestay với người dân địa phương.",
     "location": "Cần Thơ",
@@ -207,7 +207,7 @@
   "model": "tours.tour",
   "pk": 16,
   "fields": {
-    "name": "Mũi Né - Thiên Đường Cát Trắng & Resort",
+    "name": "Mũi Né Thiên Đường Biển Xanh Cát Trắng",
     "slug": "tour-mui-ne-3-ngay-2-em",
     "description": "Nghỉ dưỡng tại bãi biển Mũi Né. Ngắm bình minh đồi cát bay, thăm suối Tiên, thưởng thức hải sản tươi sống và tham gia thể thao biển.",
     "location": "Phan Thiết",
