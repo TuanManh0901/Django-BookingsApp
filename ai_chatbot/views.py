@@ -102,19 +102,24 @@ def chat_history_api(request):
                 ).order_by('timestamp').values('message', 'response', 'timestamp')
             
             # Format messages for frontend
+            from django.utils import timezone
+            
             history = []
             for msg in messages:
+                # Convert to local time (Asia/Ho_Chi_Minh defined in settings)
+                local_timestamp = timezone.localtime(msg['timestamp'])
+                
                 # Add user message
                 history.append({
                     'text': msg['message'],
                     'type': 'user',
-                    'timestamp': msg['timestamp'].strftime('%H:%M:%S')
+                    'timestamp': local_timestamp.strftime('%H:%M')
                 })
                 # Add bot response
                 history.append({
                     'text': msg['response'],
                     'type': 'bot',
-                    'timestamp': msg['timestamp'].strftime('%H:%M:%S')
+                    'timestamp': local_timestamp.strftime('%H:%M')
                 })
             
             return JsonResponse({

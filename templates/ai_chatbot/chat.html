@@ -245,13 +245,18 @@
   }
 
   // Add message to chat
-  function addMessage(text, type) {
+  function addMessage(text, type, existingTimestamp = null) {
     const messagesDiv = document.getElementById("chat-messages");
     const messageDiv = document.createElement("div");
     messageDiv.className = `message ${type}`;
     
-    const now = new Date();
-    const timestamp = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    let timestamp;
+    if (existingTimestamp) {
+      timestamp = existingTimestamp;
+    } else {
+      const now = new Date();
+      timestamp = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+    }
     
     messageDiv.innerHTML = `
       <div class="message-content">
@@ -348,7 +353,7 @@
         messagesDiv.innerHTML = ""; // Clear existing messages
         
         data.history.forEach(msg => {
-          addMessage(msg.text, msg.type);
+          addMessage(msg.text, msg.type, msg.timestamp);
         });
         
         console.log(`Loaded ${data.history.length} messages`);
