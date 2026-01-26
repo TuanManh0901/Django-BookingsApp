@@ -5,11 +5,79 @@ import json
 import logging
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
 from telegram import Update
 from telegram.ext import Application
+from django.contrib.auth import login, get_user_model
+from django.contrib.auth.decorators import login_required
+from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
+from django.shortcuts import redirect
+from django.contrib import messages
 
 logger = logging.getLogger(__name__)
+
+def telegram_auto_login(request, token):
+    """
+    Magic Link Login View
+    Allows users to click a link from Telegram and auto-login to the website.
+    Token is signed with user's username and has expiration.
+    """
+    signer = TimestampSigner()
+    User = get_user_model()
+    
+    try:
+        # Validate token (max age 1 hour)
+        username = signer.unsign(token, max_age=3600)
+        user = User.objects.get(username=username)
+        
+        # Login the user
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+        
+        # Redirect to 'next' param or homepage
+        next_url = request.GET.get('next', '/')
+        messages.success(request, f"Đã đăng nhập tự động thành công! Xin chào {user.first_name}.")
+        return redirect(next_url)
+        
+    except (BadSignature, SignatureExpired):
+        messages.error(request, "Link đăng nhập đã hết hạn hoặc không hợp lệ. Vui lòng thử lại từ Telegram.")
+        return redirect('/')
+    except User.DoesNotExist:
+        messages.error(request, "Tài khoản không tồn tại.")
+        return redirect('/')
+
+
+@login_required
+def telegram_connect(request, token):
+    """
+    View để liên kết tài khoản Telegram với tài khoản Web đang login.
+    User nhận link từ Bot -> Click -> Login Web -> View này xử lý liên kết.
+    """
+    from .models import TelegramUser
+    signer = TimestampSigner()
+    
+    try:
+        # Token chứa telegram_id
+        telegram_id = signer.unsign(token, max_age=3600)
+        
+        # Tìm TelegramUser
+        tg_user, created = TelegramUser.objects.get_or_create(telegram_id=telegram_id)
+        
+        # Cập nhật liên kết với user đang login
+        tg_user.django_user = request.user
+        
+        # Cập nhật info từ web sang telegram user cho đồng bộ
+        tg_user.first_name = request.user.first_name
+        tg_user.last_name = request.user.last_name
+        tg_user.username = request.user.username
+        tg_user.save()
+        
+        messages.success(request, f"✅ Đã liên kết thành công với Telegram ID {telegram_id}!")
+        return redirect('user_profile')
+        
+    except (BadSignature, SignatureExpired):
+        messages.error(request, "Link liên kết đã hết hạn hoặc không hợp lệ.")
+        return redirect('home')
+
+
 
 
 @csrf_exempt

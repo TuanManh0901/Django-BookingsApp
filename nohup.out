@@ -8827,3 +8827,328 @@ Not Found: /favicon.ico
 [25/Jan/2026 12:05:38] "GET /static/argon-design-system/fonts/nucleo-icons.woff2 HTTP/1.1" 304 0
 [25/Jan/2026 12:05:38] "GET /static/images/ha_long_bay.png HTTP/1.1" 304 0
 [25/Jan/2026 12:51:00] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50898
+[25/Jan/2026 17:33:21] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50896
+[25/Jan/2026 17:33:21] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 304 0
+[25/Jan/2026 17:33:21] "GET /media/tours/con_dao.png HTTP/1.1" 304 0
+[25/Jan/2026 17:33:21] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 304 0
+[25/Jan/2026 17:33:21] "GET /media/tours/quy_nhon.png HTTP/1.1" 304 0
+[25/Jan/2026 17:33:21] "GET /media/tours/phong_nha.png HTTP/1.1" 304 0
+[25/Jan/2026 17:33:21] "GET /media/tours/ta_xua.png HTTP/1.1" 304 0
+[25/Jan/2026 17:33:21] "GET /media/tours/ha_giang.png HTTP/1.1" 304 0
+Not Found: /payments/process/155/
+[25/Jan/2026 18:00:55] "GET /payments/process/155/?method=momo HTTP/1.1" 404 8856
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/telegram_bot/views.py changed, reloading.
+Performing system checks...
+
+January 23, 2026 - 15:27:44
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Fatal Python error: init_sys_streams: can't initialize sys standard streams
+Python runtime state: core initialized
+OSError: [Errno 9] Bad file descriptor
+
+Current thread 0x00000001fa5fec40 (most recent call first):
+  <no Python frame>
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[25/Jan/2026 18:25:37] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50891
+[25/Jan/2026 18:25:37] "GET /static/mobile-responsive.css HTTP/1.1" 200 1528
+[25/Jan/2026 18:25:37] "GET /media/tours/buon_ma_thuot.png HTTP/1.1" 200 1177262
+[25/Jan/2026 18:25:37] "GET /media/tours/con_dao.png HTTP/1.1" 200 883585
+[25/Jan/2026 18:25:37] "GET /media/tours/tuyet_tinh_coc.png HTTP/1.1" 200 749887
+[25/Jan/2026 18:25:37] "GET /media/tours/ta_xua.png HTTP/1.1" 200 789966
+[25/Jan/2026 18:25:38] "GET /telegram/auth/tg_8291664371:1vjyCq:6aptU7bVvRQMKFcXuhndDrOYEzyU5OzcrbLLhjcMUWs/?next=/payment/process/156/%3Fmethod%3Dmomo HTTP/1.1" 302 0
+Not Found: /payment/process/156/
+[25/Jan/2026 18:25:38] "GET /payment/process/156/?method=momo HTTP/1.1" 404 11152
+Performing system checks...
+
+January 25, 2026 - 18:25:33
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[25/Jan/2026 18:33:01] "GET /telegram/auth/tg_8291664371:1vjyMV:4D5I0BJAeQ7N0KAAmhDJSPQYf4Vf9k1nXdPjzYCDfms/?next=/payment/process/158/%3Fmethod%3Dmomo HTTP/1.1" 302 0
+Not Found: /payment/process/158/
+[25/Jan/2026 18:33:01] "GET /payment/process/158/?method=momo HTTP/1.1" 404 11152
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/telegram_bot/views.py changed, reloading.
+Performing system checks...
+
+January 25, 2026 - 18:26:39
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/telegram_bot/urls.py changed, reloading.
+Performing system checks...
+
+January 25, 2026 - 18:34:39
+Django version 6.0, using settings 'vn_travel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/venv/lib/python3.12/site-packages/allauth/exceptions.py:9: UserWarning: allauth.exceptions is deprecated, use allauth.core.exceptions
+  warnings.warn("allauth.exceptions is deprecated, use allauth.core.exceptions")
+System check identified some issues:
+
+WARNINGS:
+?: (account.W001) ACCOUNT_LOGIN_METHODS conflicts with ACCOUNT_SIGNUP_FIELDS
+
+System check identified 1 issue (0 silenced).
+[25/Jan/2026 18:45:10] "GET /telegram/connect/8291664371:1vjyYE:L5l9qPSFlaqR89Y812fs1wxkZ7JDJOzImaQiUddPeF4/ HTTP/1.1" 302 0
+[25/Jan/2026 18:45:10] "GET /profile/ HTTP/1.1" 200 30373
+[25/Jan/2026 18:45:18] "GET /profile/ HTTP/1.1" 200 29235
+[25/Jan/2026 18:45:23] "GET /my-bookings/ HTTP/1.1" 200 43166
+[25/Jan/2026 18:45:31] "GET / HTTP/1.1" 200 52477
+[25/Jan/2026 18:45:31] "GET /static/images/hanoi_city.png HTTP/1.1" 304 0
+[25/Jan/2026 18:45:31] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg HTTP/1.1" 200 1128
+[25/Jan/2026 18:45:31] "GET /static/images/phu_quoc_resort.png HTTP/1.1" 304 0
+[25/Jan/2026 18:45:39] "GET /search/?page=1&sort_by=newest HTTP/1.1" 200 50707
+[25/Jan/2026 18:45:41] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 18:45:41] "GET / HTTP/1.1" 200 51860
+[25/Jan/2026 18:45:43] "GET /accounts/login/ HTTP/1.1" 200 24812
+[25/Jan/2026 18:45:49] "POST /accounts/login/ HTTP/1.1" 302 0
+[25/Jan/2026 18:45:49] "GET / HTTP/1.1" 200 52661
+[25/Jan/2026 18:45:52] "GET /admin/ HTTP/1.1" 200 72753
+[25/Jan/2026 18:45:52] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+Not Found: /apple-touch-icon-precomposed.png
+Not Found: /apple-touch-icon.png
+Not Found: /favicon.ico
+[25/Jan/2026 18:45:54] "GET /apple-touch-icon.png HTTP/1.1" 404 8613
+[25/Jan/2026 18:45:54] "GET /favicon.ico HTTP/1.1" 404 8586
+[25/Jan/2026 18:45:54] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 8649
+[25/Jan/2026 18:45:54] "GET /static/argon-dashboard-master/assets/img/favicon-admin.svg?v=3 HTTP/1.1" 200 651
+[25/Jan/2026 18:45:56] "GET /admin/auth/user/ HTTP/1.1" 200 24790
+[25/Jan/2026 18:45:56] "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+[25/Jan/2026 18:45:56] "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+[25/Jan/2026 18:45:56] "GET /static/admin/css/custom_admin.css HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+[25/Jan/2026 18:45:56] "GET /static/admin/css/changelists.css HTTP/1.1" 200 7501
+[25/Jan/2026 18:45:56] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[25/Jan/2026 18:45:56] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[25/Jan/2026 18:45:56] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[25/Jan/2026 18:45:56] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[25/Jan/2026 18:45:56] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[25/Jan/2026 18:45:56] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[25/Jan/2026 18:45:56] "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+[25/Jan/2026 18:45:56] "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 645
+[25/Jan/2026 18:45:56] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+[25/Jan/2026 18:45:56] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[25/Jan/2026 18:45:56] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[25/Jan/2026 18:45:56] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+[25/Jan/2026 18:46:05] "POST /admin/auth/user/ HTTP/1.1" 200 18461
+[25/Jan/2026 18:46:06] "POST /admin/auth/user/ HTTP/1.1" 302 0
+[25/Jan/2026 18:46:06] "GET /admin/auth/user/ HTTP/1.1" 200 23997
+[25/Jan/2026 18:46:06] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[25/Jan/2026 18:46:13] "GET /telegram/connect/8291664371:1vjyYE:L5l9qPSFlaqR89Y812fs1wxkZ7JDJOzImaQiUddPeF4/ HTTP/1.1" 302 0
+[25/Jan/2026 18:46:13] "GET /profile/ HTTP/1.1" 200 30343
+[25/Jan/2026 18:46:20] "GET / HTTP/1.1" 200 52661
+[25/Jan/2026 18:46:21] "GET / HTTP/1.1" 200 52661
+[25/Jan/2026 18:46:23] "GET /admin/ HTTP/1.1" 200 72753
+[25/Jan/2026 18:46:23] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[25/Jan/2026 18:46:26] "GET / HTTP/1.1" 200 52661
+[25/Jan/2026 18:46:27] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 18:46:27] "GET / HTTP/1.1" 200 51860
+[25/Jan/2026 18:46:35] "GET /telegram/connect/8291664371:1vjyZa:uEOkrScDK3hRbdjSU61fJzvOaWXbwwQjmic92eAkRbk/ HTTP/1.1" 302 0
+[25/Jan/2026 18:46:35] "GET /accounts/login/?next=/telegram/connect/8291664371%3A1vjyZa%3AuEOkrScDK3hRbdjSU61fJzvOaWXbwwQjmic92eAkRbk/ HTTP/1.1" 200 25072
+[25/Jan/2026 18:47:00] "GET /telegram/connect/8291664371:1vjya0:nH_4e5IXDoSO9n7Oo-y1t_YaCD1FM7F-SJCx-rN0DTo/ HTTP/1.1" 302 0
+[25/Jan/2026 18:47:00] "GET /accounts/login/?next=/telegram/connect/8291664371%3A1vjya0%3AnH_4e5IXDoSO9n7Oo-y1t_YaCD1FM7F-SJCx-rN0DTo/ HTTP/1.1" 200 25072
+[25/Jan/2026 18:47:06] "GET /accounts/login/ HTTP/1.1" 200 24812
+[25/Jan/2026 18:47:08] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[25/Jan/2026 18:47:08] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[25/Jan/2026 18:47:19] "GET /accounts/google/login/callback/?state=d2KemgpI98gSJCdX&code=4%2F0ASc3gC1EZOm4jZGy4WmkhM67AXidVJv8d0vOf-knKh6Hsl0E-7llkqjdYTFea53pfTW44Q&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none HTTP/1.1" 302 0
+[25/Jan/2026 18:47:19] "GET / HTTP/1.1" 200 52468
+[25/Jan/2026 18:47:22] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 18:47:22] "GET / HTTP/1.1" 200 51860
+[25/Jan/2026 18:47:25] "GET /accounts/login/ HTTP/1.1" 200 24812
+[25/Jan/2026 18:47:31] "POST /accounts/login/ HTTP/1.1" 302 0
+[25/Jan/2026 18:47:31] "GET / HTTP/1.1" 200 52661
+[25/Jan/2026 18:47:33] "GET /admin/ HTTP/1.1" 200 72753
+[25/Jan/2026 18:47:33] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[25/Jan/2026 18:47:36] "GET /admin/auth/user/ HTTP/1.1" 200 23844
+[25/Jan/2026 18:47:36] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[25/Jan/2026 18:47:41] "POST /admin/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 18:47:41] "GET / HTTP/1.1" 200 51860
+[25/Jan/2026 18:47:42] "GET /accounts/login/ HTTP/1.1" 200 24812
+[25/Jan/2026 18:47:43] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[25/Jan/2026 18:47:44] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[25/Jan/2026 18:47:46] "GET /accounts/google/login/callback/?state=ffctaZTPUupgAU1j&code=4%2F0ASc3gC0nHcOeMvKsR0oJ_lE4XUfLBD6sYgw89l-QYmBGhbSsDHynq0qpW3f40PaQi6ev8A&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=0&prompt=none HTTP/1.1" 302 0
+[25/Jan/2026 18:47:47] "GET / HTTP/1.1" 200 52468
+[25/Jan/2026 18:47:54] "GET /telegram/connect/8291664371:1vjya0:nH_4e5IXDoSO9n7Oo-y1t_YaCD1FM7F-SJCx-rN0DTo/ HTTP/1.1" 302 0
+[25/Jan/2026 18:47:54] "GET /profile/ HTTP/1.1" 200 29706
+[25/Jan/2026 18:48:15] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 18:48:15] "GET / HTTP/1.1" 200 51860
+[25/Jan/2026 19:02:20] "GET /profile/ HTTP/1.1" 302 0
+[25/Jan/2026 19:02:20] "GET /accounts/login/?next=/profile/ HTTP/1.1" 200 24922
+[25/Jan/2026 19:02:55] "GET /accounts/google/login/?process=login&next=%2Fprofile%2F HTTP/1.1" 200 19437
+[25/Jan/2026 19:02:55] "POST /accounts/google/login/?process=login&next=%2Fprofile%2F HTTP/1.1" 302 0
+[25/Jan/2026 19:02:58] "GET /accounts/google/login/callback/?state=SxZH585seABrRlD4&code=4%2F0ASc3gC2Ew9A2O9N6Ts88Q89qrluUcGGNPRIJXTu6R2_0njVqLYCqJx_XvC5sSu2dy0fxLg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=0&prompt=none HTTP/1.1" 302 0
+[25/Jan/2026 19:02:58] "GET /profile/ HTTP/1.1" 200 29216
+[25/Jan/2026 19:03:16] "GET /telegram/auth/manh:1vjypl:HWrahjuEiVy0KQmtaOhQ5cxIqYmyjR3Ys0lxuYqZqso/?next=/payment/process/159/%3Fmethod%3Dmomo HTTP/1.1" 302 0
+Not Found: /payment/process/159/
+[25/Jan/2026 19:03:16] "GET /payment/process/159/?method=momo HTTP/1.1" 404 11152
+[25/Jan/2026 19:03:28] "GET /telegram/auth/manh:1vjypl:HWrahjuEiVy0KQmtaOhQ5cxIqYmyjR3Ys0lxuYqZqso/?next=/booking/159/ HTTP/1.1" 302 0
+[25/Jan/2026 19:03:28] "GET /booking/159/ HTTP/1.1" 200 25912
+[25/Jan/2026 19:03:34] "GET /my-bookings/ HTTP/1.1" 200 39976
+[25/Jan/2026 19:03:41] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 19:03:42] "GET / HTTP/1.1" 200 51860
+[25/Jan/2026 19:03:43] "GET /accounts/login/ HTTP/1.1" 200 24812
+[25/Jan/2026 19:03:49] "GET /telegram/auth/manh:1vjypl:HWrahjuEiVy0KQmtaOhQ5cxIqYmyjR3Ys0lxuYqZqso/?next=/booking/159/ HTTP/1.1" 302 0
+[25/Jan/2026 19:03:49] "GET /booking/159/ HTTP/1.1" 200 25588
+[25/Jan/2026 19:03:52] "GET /my-bookings/ HTTP/1.1" 200 39976
+[25/Jan/2026 19:04:01] "GET / HTTP/1.1" 200 52468
+[25/Jan/2026 19:18:34] "POST /booking/159/cancel-ajax/ HTTP/1.1" 200 49
+[25/Jan/2026 19:18:38] "GET /booking/159/ HTTP/1.1" 200 21870
+[25/Jan/2026 19:18:40] "GET /my-bookings/ HTTP/1.1" 200 39668
+[25/Jan/2026 19:18:45] "GET / HTTP/1.1" 200 52468
+[25/Jan/2026 19:18:48] "GET /profile/ HTTP/1.1" 200 29216
+[25/Jan/2026 19:18:53] "GET / HTTP/1.1" 200 52468
+[25/Jan/2026 19:19:42] "GET /profile/ HTTP/1.1" 200 29216
+[25/Jan/2026 19:19:46] "GET /my-bookings/ HTTP/1.1" 200 39668
+[25/Jan/2026 19:20:39] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 19:20:39] "GET / HTTP/1.1" 200 51860
+[25/Jan/2026 19:20:40] "GET /accounts/login/ HTTP/1.1" 200 24812
+[25/Jan/2026 19:20:47] "POST /accounts/login/ HTTP/1.1" 302 0
+[25/Jan/2026 19:20:47] "GET / HTTP/1.1" 200 52661
+[25/Jan/2026 19:20:49] "GET /admin/ HTTP/1.1" 200 72753
+[25/Jan/2026 19:20:50] "GET /static/argon-dashboard-master/assets/js/popper.min.js HTTP/1.1" 404 1952
+[25/Jan/2026 19:20:56] "GET /admin/bookings/booking/ HTTP/1.1" 200 57046
+[25/Jan/2026 19:20:56] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[25/Jan/2026 19:21:23] "POST /admin/bookings/booking/ HTTP/1.1" 200 18679
+[25/Jan/2026 19:21:24] "POST /admin/bookings/booking/ HTTP/1.1" 302 0
+[25/Jan/2026 19:21:24] "GET /admin/bookings/booking/ HTTP/1.1" 200 54850
+[25/Jan/2026 19:21:25] "GET /admin/jsi18n/ HTTP/1.1" 200 8816
+[25/Jan/2026 19:21:33] "POST /admin/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 19:21:33] "GET / HTTP/1.1" 200 51828
+[25/Jan/2026 19:21:35] "GET /accounts/login/ HTTP/1.1" 200 24812
+[25/Jan/2026 19:21:36] "GET /accounts/google/login/?process=login HTTP/1.1" 200 19437
+[25/Jan/2026 19:21:37] "POST /accounts/google/login/?process=login HTTP/1.1" 302 0
+[25/Jan/2026 19:21:39] "GET /accounts/google/login/callback/?state=h2HtYNLiKy0l8y9N&code=4%2F0ASc3gC1zvFotV5kNOQ34R0hLwTsVtolwzdC6QksNAih2dn6uH2PptkvZg_4KfWLQa_9Ylg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=0&prompt=none HTTP/1.1" 302 0
+[25/Jan/2026 19:21:39] "GET / HTTP/1.1" 200 52436
+[25/Jan/2026 19:21:48] "GET /my-bookings/ HTTP/1.1" 200 25598
+[25/Jan/2026 19:22:47] "GET /telegram/auth/manh:1vjz8T:PSLXZW7RdFpQrYXB0DNjyk37iwL6f9dyZ5LJVew2m6E/?next=/payment/booking/160/payment/ HTTP/1.1" 302 0
+[25/Jan/2026 19:22:47] "GET /payment/booking/160/payment/ HTTP/1.1" 200 24075
+[25/Jan/2026 19:23:10] "GET /telegram/auth/manh:1vjz8T:PSLXZW7RdFpQrYXB0DNjyk37iwL6f9dyZ5LJVew2m6E/?next=/booking/160/ HTTP/1.1" 302 0
+[25/Jan/2026 19:23:10] "GET /booking/160/ HTTP/1.1" 200 25689
+[25/Jan/2026 19:24:09] "GET /telegram/auth/manh:1vjz9s:oj-sBSoV07VumoTMI9puakEC-2Q_QJQgo4EXjtpiN6M/?next=/booking/161/ HTTP/1.1" 302 0
+[25/Jan/2026 19:24:09] "GET /booking/161/ HTTP/1.1" 200 25587
+[25/Jan/2026 19:24:14] "GET / HTTP/1.1" 200 52436
+[25/Jan/2026 19:24:16] "GET /profile/ HTTP/1.1" 200 29216
+[25/Jan/2026 19:24:18] "GET / HTTP/1.1" 200 52436
+[25/Jan/2026 19:24:23] "GET /search/ HTTP/1.1" 200 50698
+[25/Jan/2026 19:24:26] "GET /tour/23/ HTTP/1.1" 200 33421
+[25/Jan/2026 19:24:28] "GET /tour/23/book/ HTTP/1.1" 200 22873
+[25/Jan/2026 19:24:36] "POST /tour/23/book/ HTTP/1.1" 302 0
+[25/Jan/2026 19:24:36] "GET /my-bookings/ HTTP/1.1" 200 37512
+[25/Jan/2026 19:37:54] "POST /booking/160/cancel-ajax/ HTTP/1.1" 200 49
+[25/Jan/2026 19:37:56] "GET /booking/162/ HTTP/1.1" 200 25180
+[25/Jan/2026 19:37:58] "GET /my-bookings/ HTTP/1.1" 200 36694
+[25/Jan/2026 19:37:59] "GET /booking/161/ HTTP/1.1" 200 25097
+[25/Jan/2026 19:38:01] "GET /my-bookings/ HTTP/1.1" 200 36694
+[25/Jan/2026 19:39:01] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:03] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:04] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:05] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:16] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:18] "GET /booking/162/ HTTP/1.1" 200 25180
+[25/Jan/2026 19:39:19] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:20] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:32] "GET /my-bookings/ HTTP/1.1" 200 36386
+[25/Jan/2026 19:39:33] "POST /booking/162/cancel-ajax/ HTTP/1.1" 200 49
+[25/Jan/2026 19:57:07] "GET /my-bookings/ HTTP/1.1" 200 36078
+[25/Jan/2026 19:57:39] "GET /my-bookings/ HTTP/1.1" 200 36078
+[25/Jan/2026 19:57:49] "GET /my-bookings/ HTTP/1.1" 200 36078
+[25/Jan/2026 20:02:29] "GET /telegram/auth/manh:1vjzl2:41uWbVLaUU9TIbdbyxOschmNWZc1riGAultijhTEVec/?next=/booking/163/ HTTP/1.1" 302 0
+[25/Jan/2026 20:02:29] "GET /booking/163/ HTTP/1.1" 200 25679
+[25/Jan/2026 20:02:31] "GET /my-bookings/ HTTP/1.1" 200 39797
+[25/Jan/2026 20:04:28] "GET /my-bookings/ HTTP/1.1" 200 39797
+[25/Jan/2026 20:32:32] "POST /booking/163/cancel-ajax/ HTTP/1.1" 200 49
+[25/Jan/2026 20:35:54] "GET / HTTP/1.1" 200 52436
+[25/Jan/2026 20:35:55] "GET /ai-chat/ HTTP/1.1" 200 35738
+[25/Jan/2026 20:35:56] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 16
+[25/Jan/2026 20:35:56] "GET /ai-chat/api/chat/history/?session_id=session_1767866184120_hrqv58o8b HTTP/1.1" 200 64
+/Users/tuanmanh/Phát triển hệ thống đặt tour du lịch thông minh với AI Travel Advisor cho công ty VN-Travel/ai_chatbot/services.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+[25/Jan/2026 20:36:13] "POST /ai-chat/api/chat/ HTTP/1.1" 200 1473
+[25/Jan/2026 20:36:13] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 155
+[25/Jan/2026 20:36:42] "POST /ai-chat/api/chat/ HTTP/1.1" 200 117
+[25/Jan/2026 20:36:42] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 155
+[25/Jan/2026 20:37:10] "POST /ai-chat/api/chat/ HTTP/1.1" 200 9945
+[25/Jan/2026 20:37:10] "GET /ai-chat/api/sessions/ HTTP/1.1" 200 155
+[25/Jan/2026 23:35:55] "GET /telegram/auth/manh:1vk35b:adX9YLFdgTta3W6-167DmTADYtDBYFjHr72YbIDO4OQ/?next=/payment/booking/164/payment/ HTTP/1.1" 302 0
+[25/Jan/2026 23:35:55] "GET /payment/booking/164/payment/ HTTP/1.1" 200 24060
+[25/Jan/2026 23:36:07] "GET /my-bookings/ HTTP/1.1" 200 43159
+[25/Jan/2026 23:36:21] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 23:36:22] "GET / HTTP/1.1" 200 51828
+[25/Jan/2026 23:36:22] "GET /static/argon-dashboard-master/assets/img/favicon-travel.svg HTTP/1.1" 200 1128
+[25/Jan/2026 23:36:24] "GET /telegram/auth/manh:1vk35b:adX9YLFdgTta3W6-167DmTADYtDBYFjHr72YbIDO4OQ/?next=/payment/booking/164/payment/ HTTP/1.1" 302 0
+[25/Jan/2026 23:36:24] "GET /payment/booking/164/payment/ HTTP/1.1" 200 24060
+[25/Jan/2026 23:36:38] "GET /telegram/auth/manh:1vk35b:adX9YLFdgTta3W6-167DmTADYtDBYFjHr72YbIDO4OQ/?next=/booking/164/ HTTP/1.1" 302 0
+[25/Jan/2026 23:36:38] "GET /booking/164/ HTTP/1.1" 200 25668
+[25/Jan/2026 23:36:44] "GET /payment/booking/164/payment/ HTTP/1.1" 200 23276
+[25/Jan/2026 23:36:46] "GET / HTTP/1.1" 200 52436
+[25/Jan/2026 23:36:49] "GET /accounts/logout/ HTTP/1.1" 302 0
+[25/Jan/2026 23:36:49] "GET / HTTP/1.1" 200 51828
+[26/Jan/2026 10:22:48] "GET /accounts/login/ HTTP/1.1" 200 24812
+[26/Jan/2026 10:22:49] "GET /static/mobile-responsive.css HTTP/1.1" 304 0
+[26/Jan/2026 10:22:49] "GET /static/argon-dashboard-master/assets/img/favicon-site.svg?v=3 HTTP/1.1" 200 662
+[26/Jan/2026 10:22:54] "GET / HTTP/1.1" 200 51828
+[26/Jan/2026 10:22:54,205] - Broken pipe from ('127.0.0.1', 63049)
+[26/Jan/2026 10:22:54] "GET / HTTP/1.1" 200 51828
+[26/Jan/2026 11:51:10] "GET / HTTP/1.1" 200 52050
+[26/Jan/2026 11:54:23] "GET / HTTP/1.1" 200 52505
+[26/Jan/2026 12:02:11] "GET /telegram/auth/manh:1vkEjf:J5IhtZm9R8ycJDqEldN222P1KdG99LjGfljl7nV6Ppk/?next=/booking/165/ HTTP/1.1" 302 0
+[26/Jan/2026 12:02:11] "GET /booking/165/ HTTP/1.1" 200 26349
+[26/Jan/2026 12:02:11] "GET /static/mobile-responsive.css HTTP/1.1" 200 1528
+[26/Jan/2026 12:02:20] "GET /profile/ HTTP/1.1" 200 29893
+[26/Jan/2026 12:02:28] "GET /my-bookings/ HTTP/1.1" 200 47212
+[26/Jan/2026 12:03:05] "GET /booking/165/ HTTP/1.1" 200 25859
+[26/Jan/2026 12:03:07] "GET /my-bookings/ HTTP/1.1" 200 47212

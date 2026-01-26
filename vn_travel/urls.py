@@ -88,8 +88,7 @@ urlpatterns = [
     path('ai-chat/', include('ai_chatbot.urls')),
     path('payment/', include('payments.urls')),
     # Telegram Bot Webhook
-    path('telegram/webhook/', telegram_views.telegram_webhook, name='telegram_webhook'),
-    path('telegram/webhook/info/', telegram_views.webhook_info, name='telegram_webhook_info'),
+    path('telegram/', include('telegram_bot.urls')),
 ]
 
 

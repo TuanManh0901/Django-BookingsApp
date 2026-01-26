@@ -143,8 +143,18 @@ class TravelAdvisor:
             response = self.model.generate_content(simple_prompt)
             
             # Lấy text từ response
+            # Lấy text từ response
             if hasattr(response, 'text') and response.text:
                 response_text = response.text
+                
+                # CLEANUP FORMATTING
+                # 1. Remove asterisks
+                response_text = response_text.replace("*", "")
+                
+                # 2. Reduce multiple newlines to single
+                import re
+                response_text = re.sub(r'\n\s*\n', '\n', response_text)
+                
             else:
                 response_text = "Xin lỗi, AI không thể tạo phản hồi."
             

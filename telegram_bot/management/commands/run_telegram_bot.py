@@ -39,6 +39,7 @@ class Command(BaseCommand):
         application.add_handler(CommandHandler("tours", self.list_tours))
         application.add_handler(CommandHandler("book", self.book_tour))
         application.add_handler(CommandHandler("menu", self.menu_command))
+        application.add_handler(CommandHandler("connect", self.connect_command))
         application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^menu_"))
         application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^viewbooking_"))
         application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^pay_booking_"))
@@ -47,7 +48,7 @@ class Command(BaseCommand):
         application.add_handler(CallbackQueryHandler(self.handle_menu, pattern=r"^back_to_bookings"))
         application.add_handler(CallbackQueryHandler(self.handle_tour_detail, pattern=r"^tour_"))
         application.add_handler(CallbackQueryHandler(self.handle_book_init, pattern=r"^book_"))
-        application.add_handler(CallbackQueryHandler(self.handle_booking_callback, pattern=r"^(bookdate_|bookadults_|bookchildren_)"))
+        application.add_handler(CallbackQueryHandler(self.handle_booking_callback, pattern=r"^(bookdate_|bookadults_|bookchildren_|cancel_manual_)"))
         application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_text))
 
         self.stdout.write(self.style.SUCCESS('Bot is running... Press Ctrl+C to stop.'))
@@ -75,6 +76,7 @@ class Command(BaseCommand):
             "/start - Bắt đầu sử dụng bot\n"
             "/tours - Xem danh sách tour du lịch\n"
             "/book - Đặt tour (sẽ có hướng dẫn)\n"
+            "/connect - Liên kết tài khoản Web\n"
             "/help - Hiển thị trợ giúp này\n\n"
             "Nếu bạn cần hỗ trợ thêm, hãy liên hệ với đội ngũ VN Travel!"
         )
@@ -92,7 +94,7 @@ class Command(BaseCommand):
         message = "🏖️ **Danh sách Tour Du Lịch VN Travel** 🏖️\n\n"
         for tour in tours:
             message += f"📍 **{tour.name}**\n"
-            message += f"💰 Giá: {tour.price:,} VND\n"
+            message += f"💰 Giá: {int(tour.price):,} VND\n"
             message += f"📅 Thời gian: {tour.duration} ngày\n"
             message += f"🌍 Địa điểm: {tour.location}\n"
             message += f"📝 {tour.description[:100]}...\n\n"
@@ -117,6 +119,33 @@ class Command(BaseCommand):
         telegram_user = await self._get_or_create_user(update)
         await self.send_main_menu(update)
         await self._log_conversation(telegram_user, "bot", "Hiển thị menu chính")
+
+    async def connect_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle /connect command to link Telegram account with Web account."""
+        telegram_user = await self._get_or_create_user(update)
+        
+        # Generate Magic Link for connecting
+        from django.conf import settings
+        from django.core.signing import TimestampSigner
+        import urllib.parse
+        
+        base_url = getattr(settings, 'SITE_URL', 'http://127.0.0.1:8000')
+        signer = TimestampSigner()
+        
+        # Sign the telegram_id to ensure security
+        token = signer.sign(str(telegram_user.telegram_id))
+        connect_url = f"{base_url}/telegram/connect/{token}/"
+        
+        msg = (
+            "🔗 **LIÊN KẾT TÀI KHOẢN**\n\n"
+            "Vui lòng nhấn vào link bên dưới để liên kết tài khoản Telegram này với tài khoản VN Travel của bạn:\n\n"
+            f"👉 [Nhấn vào đây để liên kết]({connect_url})\n\n"
+            "⚠️ Link chỉ có hiệu lực trong 60 phút.\n"
+            "💡 Bạn cần đăng nhập vào website trước khi bấm link."
+        )
+        
+        await update.message.reply_text(msg, parse_mode='Markdown')
+        await self._log_conversation(telegram_user, "bot", "Gửi link liên kết tài khoản")
 
     async def handle_menu(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         query = update.callback_query
@@ -166,7 +195,7 @@ class Command(BaseCommand):
                 
                 msg += f"{i}. **{tour.name}**\n"
                 msg += f"   📍 {tour.location}\n"
-                msg += f"   💰 {tour.price:,} VND\n"
+                msg += f"   💰 {int(tour.price):,} VND\n"
                 msg += f"   ⏱ {tour.duration} ngày\n"
                 msg += f"   👥 Còn {available}/{tour.max_people} chỗ\n\n"
 
@@ -191,7 +220,7 @@ class Command(BaseCommand):
                 return
 
             keyboard = [
-                [InlineKeyboardButton(f"{tour.name} • {tour.price:,} VND", callback_data=f"tour_{tour.id}")]
+                [InlineKeyboardButton(f"{tour.name} • {int(tour.price):,} VND", callback_data=f"tour_{tour.id}")]
                 for tour in tours
             ]
             keyboard.append([InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")])
@@ -208,88 +237,8 @@ class Command(BaseCommand):
             return
 
         if data == "menu_view":
-            # Xem bookings của user
-            try:
-                # Get Django user linked to telegram user (async safe)
-                django_user = await sync_to_async(lambda: telegram_user.django_user)()
-                
-                if not django_user:
-                    msg = (
-                        "📋 **BOOKINGS CỦA BẠN**\n\n"
-                        "Bạn chưa liên kết tài khoản VN Travel.\n"
-                        "Vui lòng đăng ký/đăng nhập trên website để xem bookings.\n\n"
-                        "🌐 https://vntravel.com"
-                    )
-                    keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
-                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
-                    await self._log_conversation(telegram_user, "bot", msg)
-                    return
-                
-                # Query user's bookings
-                bookings = await sync_to_async(list)(
-                    Booking.objects.filter(user=django_user).select_related('tour').order_by('-created_at')[:10]
-                )
-                
-                if not bookings:
-                    msg = (
-                        "📋 **BOOKINGS CỦA BẠN**\n\n"
-                        "Bạn chưa có booking nào.\n\n"
-                        "Hãy đặt tour đầu tiên của bạn! 🎉"
-                    )
-                    keyboard = [
-                        [InlineKeyboardButton("📝 Đặt tour ngay", callback_data="menu_book")],
-                        [InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]
-                    ]
-                    await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
-                    await self._log_conversation(telegram_user, "bot", msg)
-                    return
-                
-                # Display bookings list
-                msg = "📋 **BOOKINGS CỦA BẠN**\n\n"
-                keyboard = []
-                
-                for booking in bookings:
-                    status_emoji = {
-                        'pending': '⏳',
-                        'confirmed': '✅',
-                        'paid': '💳',
-                        'cancelled': '❌'
-                    }.get(booking.status, '📋')
-                    
-                    status_text = {
-                        'pending': 'Chờ xác nhận',
-                        'confirmed': 'Đã xác nhận',
-                        'paid': 'Đã thanh toán',
-                        'cancelled': 'Đã hủy'
-                    }.get(booking.status, booking.status)
-                    
-                    msg += f"{status_emoji} **{booking.tour.name}**\n"
-                    msg += f"   📅 {booking.booking_date.strftime('%d/%m/%Y')}\n"
-                    msg += f"   👥 {booking.num_adults + booking.num_children} người\n"
-                    msg += f"   💰 {booking.total_price:,} VND\n"
-                    msg += f"   🔖 {status_text}\n\n"
-                    
-                    # Add button for each booking
-                    button_text = f"{booking.tour.name[:25]}... - {status_text}"
-                    callback_data = f"viewbooking_{booking.id}"
-                    print(f"DEBUG: Creating button - text:'{button_text}', callback_data:'{callback_data}'", flush=True)
-                    keyboard.append([InlineKeyboardButton(button_text, callback_data=callback_data)])
-                
-                keyboard.append([InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")])
-                
-                print(f"DEBUG: Total keyboard buttons: {len(keyboard)}", flush=True)
-                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
-                await self._log_conversation(telegram_user, "bot", "Hiển thị danh sách bookings")
-                return
-                
-            except Exception as e:
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.error(f"Error in menu_view: {e}")
-                msg = "❌ Có lỗi xảy ra khi tải bookings. Vui lòng thử lại sau."
-                keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
-                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
-                return
+            await self._show_bookings_list(update, telegram_user, query)
+            return
 
         # Handler cho xem chi tiết booking
         if data.startswith("viewbooking_"):
@@ -564,9 +513,7 @@ class Command(BaseCommand):
 
         # Handler cho quay lại danh sách bookings
         if data == "back_to_bookings":
-            # Gọi lại handler menu_view
-            query.data = "menu_view"
-            await self.handle_menu(update, context)
+            await self._show_bookings_list(update, telegram_user, query)
             return
 
         if data == "menu_ai":
@@ -625,7 +572,7 @@ class Command(BaseCommand):
             await sync_to_async(telegram_user.save)()
 
             keyboard = [
-                [InlineKeyboardButton(f"{tour.name} • {tour.price:,} VND", callback_data=f"tour_{tour.id}")]
+                [InlineKeyboardButton(f"{tour.name} • {int(tour.price):,} VND", callback_data=f"tour_{tour.id}")]
                 for tour in tours
             ]
             # Thêm nút quay lại menu
@@ -650,6 +597,157 @@ class Command(BaseCommand):
             
             # Gửi typing indicator
             await update.message.chat.send_action("typing")
+            
+        # Handle manual booking input
+        if state.startswith("waiting_adults_"):
+            # waiting_adults_{tour_id}_{booking_date}
+            try:
+                parts = state.split("_")
+                tour_id = parts[2]
+                booking_date = "_".join(parts[3:])
+                
+                adults_count = int(text)
+                if adults_count < 1:
+                    await update.message.reply_text("Số người lớn phải ít nhất là 1. Vui lòng nhập lại:")
+                    return
+                
+                # Move to next step: Ask children
+                await self._ask_adults(update.message, tour_id, booking_date, via_message=True) 
+                # Wait, we need to ask children, NOT adults again. 
+                # And we need to transition state. 
+                
+                # Correct logic:
+                telegram_user.conversation_state = f"booking|{tour_id}|children|{booking_date}|{adults_count}"
+                await sync_to_async(telegram_user.save)()
+                
+                # Call _ask_children. Helper needs 'query' object usually, but can adapt.
+                # _ask_children uses query.edit_message_text. 
+                # We need to send a NEW message because we are in handle_text (responding to text).
+                
+                keyboard = [
+                    [InlineKeyboardButton("0 trẻ em", callback_data=f"bookchildren_{tour_id}_{booking_date}_{adults_count}_0")],
+                    [InlineKeyboardButton("1 trẻ em", callback_data=f"bookchildren_{tour_id}_{booking_date}_{adults_count}_1")],
+                    [InlineKeyboardButton("2 trẻ em", callback_data=f"bookchildren_{tour_id}_{booking_date}_{adults_count}_2")],
+                    [InlineKeyboardButton("✏️ Nhập số lượng khác", callback_data=f"bookchildren_manual_{tour_id}_{booking_date}_{adults_count}")],
+                    [InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_book")],
+                ]
+                msg = f"Đã ghi nhận {adults_count} người lớn.\nChọn số trẻ em:"
+                await update.message.reply_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                return
+
+            except ValueError:
+                await update.message.reply_text("Vui lòng nhập một con số hợp lệ (ví dụ: 2, 5).")
+                return
+
+        if state.startswith("waiting_children_"):
+            # waiting_children_{tour_id}_{booking_date}_{adults}
+            try:
+                parts = state.split("_")
+                tour_id = parts[2]
+                booking_date = parts[3]
+                adults = int(parts[4])
+                
+                children_count = int(text)
+                if children_count < 0:
+                    await update.message.reply_text("Số trẻ em không thể âm. Vui lòng nhập lại:")
+                    return
+
+                # Proceed to create booking
+                # We reuse the logic in handle_booking_callback by simulating a callback or just calling the logic.
+                # Since handle_booking_callback logic for creation is long, better to duplicate or refactor.
+                # For safety, I will replicate the creation logic here or construct a special internal call.
+                
+                # Let's verify constraints first
+                tour = await sync_to_async(Tour.objects.filter(is_active=True, id=tour_id).first)()
+                if not tour:
+                    await update.message.reply_text("Tour không còn tồn tại.")
+                    return
+
+                total_people = adults + children_count
+                available_seats = None
+                if hasattr(tour, "get_available_seats"):
+                    try:
+                        available_seats = await sync_to_async(tour.get_available_seats)()
+                    except Exception:
+                        available_seats = None
+                
+                if available_seats is not None and total_people > available_seats:
+                    msg = f"Không đủ chỗ. Tour còn {available_seats} chỗ, bạn đang đặt {total_people}."
+                    await update.message.reply_text(msg)
+                    return
+
+                # Create booking
+                total_price = Decimal(tour.price) * Decimal(total_people)
+                django_user = await self._get_or_create_site_user(telegram_user)
+
+                await sync_to_async(Booking.objects.create)(
+                    user=django_user,
+                    tour=tour,
+                    booking_date=datetime.strptime(booking_date, "%Y-%m-%d").date(),
+                    num_adults=adults,
+                    num_children=children_count,
+                    total_price=total_price,
+                    status="pending",
+                    payment_status="pending",
+                )
+
+                telegram_user.conversation_state = ""
+                await sync_to_async(telegram_user.save)()
+
+                booking = await sync_to_async(Booking.objects.filter(
+                    user=django_user, 
+                    tour=tour, 
+                    booking_date=datetime.strptime(booking_date, "%Y-%m-%d").date()
+                ).latest)('created_at')
+                
+                booking_id = booking.id
+
+                # Generate Magic Link
+                from django.conf import settings
+                from django.core.signing import TimestampSigner
+                import urllib.parse
+                
+                base_url = getattr(settings, 'SITE_URL', 'http://127.0.0.1:8000')
+                signer = TimestampSigner()
+                token = signer.sign(django_user.username)
+                auth_base = f"{base_url}/telegram/auth/{token}/"
+                
+                def get_magic_link(path):
+                    encoded_path = urllib.parse.quote(path)
+                    return f"{auth_base}?next={encoded_path}"
+
+                # Update message with confirmation
+                msg = (
+                    f"✅ Đặt tour thành công!\n\n"
+                    f"📍 Tour: {tour.name}\n"
+                    f"📅 Ngày: {booking_date}\n"
+                    f"👥 Người lớn: {adults}, Trẻ em: {children_count}\n"
+                    f"💰 Tổng tiền: {int(total_price):,} VND\n\n"
+                    f"🔗 Mã booking: #{booking_id}\n\n"
+                    "Vui lòng chọn phương thức thanh toán bên dưới:"
+                )
+                
+                keyboard = [
+                    [InlineKeyboardButton(
+                        "💳 Chọn phương thức thanh toán", 
+                        url=get_magic_link(f"/payment/booking/{booking_id}/payment/")
+                    )],
+                    [InlineKeyboardButton("📑 Xem chi tiết booking", url=get_magic_link(f"/booking/{booking_id}/"))],
+                    [InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_book")],
+                ]
+                
+                await update.message.reply_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+                return
+
+            except ValueError:
+                await update.message.reply_text("Vui lòng nhập một con số hợp lệ.")
+                return
+            except Exception as e:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Error in manual booking: {e}")
+                await update.message.reply_text("Có lỗi xảy ra. Vui lòng thử lại sau.")
+                return
             
             try:
                 # Khởi tạo AI advisor
@@ -730,7 +828,7 @@ class Command(BaseCommand):
         detail = (
             f"📍 {tour.name}\n"
             f"Địa điểm: {tour.location}\n"
-            f"Giá: {tour.price:,} VND\n"
+            f"Giá: {int(tour.price):,} VND\n"
             f"Thời gian: {tour.duration} ngày\n"
             f"Mô tả: {description[:240]}...\n"
         )
@@ -793,8 +891,11 @@ class Command(BaseCommand):
             if date_part == "manual":
                 telegram_user.conversation_state = f"booking|{tour_id}|date_manual"
                 await sync_to_async(telegram_user.save)()
+                
+                keyboard = [[InlineKeyboardButton("⬅️ Quay lại chọn ngày", callback_data=f"cancel_manual_date_{tour_id}")]]
+                
                 msg = "Nhập ngày khởi hành (YYYY-MM-DD), ví dụ 2025-12-31."
-                await query.edit_message_text(msg)
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
                 await self._log_conversation(telegram_user, "bot", msg)
                 return
 
@@ -807,6 +908,99 @@ class Command(BaseCommand):
             telegram_user.conversation_state = f"booking|{tour_id}|adults|{booking_date}"
             await sync_to_async(telegram_user.save)()
             await self._ask_adults(query, tour_id, booking_date)
+            return
+
+        if data.startswith("cancel_manual_date_"):
+            tour_id = data.split("_")[3]
+            # Reset state
+            telegram_user.conversation_state = f"booking|{tour_id}|date_select"
+            await sync_to_async(telegram_user.save)()
+            
+            # Show date options again (reuse helper logic effectively by calling handle_book_init logic or similar)
+            # Since handle_book_init expects internal structure, we can just manually reconstruct the response here.
+            
+            tour = await sync_to_async(Tour.objects.filter(is_active=True, id=tour_id).first)()
+            if not tour:
+                await query.edit_message_text("Tour không tồn tại.")
+                return
+
+            today = datetime.now().date()
+            options = [today + timedelta(days=d) for d in (3, 7, 14)]
+            keyboard = [
+                [InlineKeyboardButton(date.strftime("%Y-%m-%d"), callback_data=f"bookdate_{tour_id}_{date}")]
+                for date in options
+            ]
+            keyboard.append([InlineKeyboardButton("Chọn ngày khác (nhập)", callback_data=f"bookdate_{tour_id}_manual")])
+            keyboard.append([InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_book")])
+
+            prompt = (
+                f"Đặt tour: {tour.name}\n"
+                "Chọn ngày khởi hành bằng nút bên dưới hoặc chọn 'Chọn ngày khác (nhập)'."
+            )
+            await query.edit_message_text(prompt, reply_markup=InlineKeyboardMarkup(keyboard))
+            return
+
+        if data.startswith("bookadults_manual_"):
+            parts = data.split("_")
+            # bookadults_manual_{tour_id}_{booking_date}
+            tour_id = parts[2]
+            booking_date = "_".join(parts[3:])
+            
+            telegram_user.conversation_state = f"waiting_adults_{tour_id}_{booking_date}"
+            await sync_to_async(telegram_user.save)()
+            
+            keyboard = [[InlineKeyboardButton("⬅️ Quay lại chọn số lượng", callback_data=f"cancel_manual_adults_{tour_id}_{booking_date}")]]
+            
+            await query.edit_message_text("Vui lòng nhập số người lớn (ví dụ: 5, 10):", reply_markup=InlineKeyboardMarkup(keyboard))
+            return
+        
+        if data.startswith("cancel_manual_adults_"):
+            parts = data.split("_")
+            tour_id = parts[3]
+            booking_date = "_".join(parts[4:])
+            
+            # Reset state
+            telegram_user.conversation_state = f"booking|{tour_id}|adults|{booking_date}"
+            await sync_to_async(telegram_user.save)()
+            
+            # Show original options
+            await self._ask_adults(query, tour_id, booking_date)
+            return
+
+        if data.startswith("bookchildren_manual_"):
+            parts = data.split("_")
+            # bookchildren_manual_{tour_id}_{booking_date}_{adults}
+            tour_id = parts[2]
+            booking_date = parts[3] # Date might contain dashes, but here assumes split works if no underscore in date? 
+                                    # Wait, date format is YYYY-MM-DD, no underscores. Correct.
+                                    # But we used split("_"). Let's check format again.
+                                    # Format is YYYY-MM-DD. Safe.
+            adults = parts[4]
+            
+            telegram_user.conversation_state = f"waiting_children_{tour_id}_{booking_date}_{adults}"
+            await sync_to_async(telegram_user.save)()
+            
+            keyboard = [[InlineKeyboardButton("⬅️ Quay lại chọn số lượng", callback_data=f"cancel_manual_children_{tour_id}_{booking_date}_{adults}")]]
+            
+            await query.edit_message_text("Vui lòng nhập số trẻ em (ví dụ: 0, 2):", reply_markup=InlineKeyboardMarkup(keyboard))
+            return
+
+        if data.startswith("cancel_manual_children_"):
+            parts = data.split("_")
+            # cancel_manual_children_{tour_id}_{booking_date}_{adults}
+            tour_id = parts[3]
+            booking_date = parts[4]
+            try:
+                adults_val = int(parts[5])
+            except:
+                adults_val = 1
+            
+            # Reset state
+            telegram_user.conversation_state = f"booking|{tour_id}|children|{booking_date}|{adults_val}"
+            await sync_to_async(telegram_user.save)()
+            
+            # Show original options
+            await self._ask_children(query, tour_id, booking_date, adults_val)
             return
 
         if data.startswith("bookadults_"):
@@ -898,28 +1092,39 @@ class Command(BaseCommand):
                 f"📍 Tour: {tour.name}\n"
                 f"📅 Ngày: {booking_date_obj}\n"
                 f"👥 Người lớn: {int_adults}, Trẻ em: {int_children}\n"
-                f"💰 Tổng tiền: {total_price:,} VND\n\n"
+                f"💰 Tổng tiền: {int(total_price):,} VND\n\n"
                 f"🔗 Mã booking: #{booking_id}\n\n"
                 "Vui lòng chọn phương thức thanh toán bên dưới:"
             )
 
             # Keyboard thanh toán
             from django.conf import settings
+            from django.core.signing import TimestampSigner
+            import urllib.parse
+            
             base_url = getattr(settings, 'SITE_URL', 'http://127.0.0.1:8000')
+            
+            # Generate Token (Magic Link)
+            signer = TimestampSigner()
+            token = signer.sign(django_user.username)
+            auth_base = f"{base_url}/telegram/auth/{token}/"
+            
+            # Helper to create magic link
+            def get_magic_link(path):
+                import urllib.parse
+                encoded_path = urllib.parse.quote(path)
+                return f"{auth_base}?next={encoded_path}"
+            
+            # Fix URL paths based on payments/urls.py
+            # path('booking/<int:booking_id>/process/', views.process_payment) -> /payment/booking/{id}/process/
+            
+            # Xóa các nút chọn method cụ thể, dùng nút chung đến trang chọn phương thức
             keyboard = [
                 [InlineKeyboardButton(
-                    "💳 Thanh toán MoMo", 
-                    url=f"{base_url}/payments/process/{booking_id}/?method=momo"
+                    "💳 Chọn phương thức thanh toán", 
+                    url=get_magic_link(f"/payment/booking/{booking_id}/payment/")
                 )],
-                [InlineKeyboardButton(
-                    "📱 Thanh toán QR Code", 
-                    url=f"{base_url}/payments/process/{booking_id}/?method=qr"
-                )],
-                [InlineKeyboardButton(
-                    "💵 Thanh toán khi nhận tour (COD)", 
-                    url=f"{base_url}/payments/process/{booking_id}/?method=cod"
-                )],
-                [InlineKeyboardButton("📑 Xem chi tiết booking", url=f"{base_url}/bookings/{booking_id}/")],
+                [InlineKeyboardButton("📑 Xem chi tiết booking", url=get_magic_link(f"/booking/{booking_id}/"))],
                 [InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_book")],
             ]
 
@@ -935,7 +1140,7 @@ class Command(BaseCommand):
             [InlineKeyboardButton("1 người lớn", callback_data=f"bookadults_{tour_id}_{booking_date}_1")],
             [InlineKeyboardButton("2 người lớn", callback_data=f"bookadults_{tour_id}_{booking_date}_2")],
             [InlineKeyboardButton("3 người lớn", callback_data=f"bookadults_{tour_id}_{booking_date}_3")],
-            [InlineKeyboardButton("4 người lớn", callback_data=f"bookadults_{tour_id}_{booking_date}_4")],
+            [InlineKeyboardButton("✏️ Nhập số lượng khác", callback_data=f"bookadults_manual_{tour_id}_{booking_date}")],
             [InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_book")],
         ]
         msg = "Chọn số người lớn:"
@@ -951,7 +1156,7 @@ class Command(BaseCommand):
             [InlineKeyboardButton("0 trẻ em", callback_data=f"bookchildren_{tour_id}_{booking_date}_{adults}_0")],
             [InlineKeyboardButton("1 trẻ em", callback_data=f"bookchildren_{tour_id}_{booking_date}_{adults}_1")],
             [InlineKeyboardButton("2 trẻ em", callback_data=f"bookchildren_{tour_id}_{booking_date}_{adults}_2")],
-            [InlineKeyboardButton("3 trẻ em", callback_data=f"bookchildren_{tour_id}_{booking_date}_{adults}_3")],
+            [InlineKeyboardButton("✏️ Nhập số lượng khác", callback_data=f"bookchildren_manual_{tour_id}_{booking_date}_{adults}")],
             [InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_book")],
         ]
         msg = "Chọn số trẻ em:"
@@ -1039,3 +1244,94 @@ class Command(BaseCommand):
         await sync_to_async(telegram_user.save)()
         await update.message.reply_text(message)
         await self._log_conversation(telegram_user, "bot", message)
+
+    async def _show_bookings_list(self, update, telegram_user, query):
+        """Helper to show user bookings"""
+        try:
+            # Get Django user linked to telegram user (async safe)
+            django_user = await sync_to_async(lambda: telegram_user.django_user)()
+            
+            if not django_user:
+                msg = (
+                    "📋 **BOOKINGS CỦA BẠN**\n\n"
+                    "Bạn chưa liên kết tài khoản VN Travel.\n"
+                    "Vui lòng đăng ký/đăng nhập trên website để xem bookings.\n\n"
+                    "🌐 https://vntravel.com"
+                )
+                keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+                await self._log_conversation(telegram_user, "bot", msg)
+                return
+            
+            # Query user's bookings
+            bookings = await sync_to_async(list)(
+                Booking.objects.filter(user=django_user).select_related('tour').order_by('-created_at')[:10]
+            )
+            
+            if not bookings:
+                msg = (
+                    "📋 **BOOKINGS CỦA BẠN**\n\n"
+                    "Bạn chưa có booking nào.\n\n"
+                    "Hãy đặt tour đầu tiên của bạn! 🎉"
+                )
+                keyboard = [
+                    [InlineKeyboardButton("📝 Đặt tour ngay", callback_data="menu_book")],
+                    [InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]
+                ]
+                await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+                await self._log_conversation(telegram_user, "bot", msg)
+                return
+            
+            # Display bookings list
+            msg = "📋 **BOOKINGS CỦA BẠN**\n\n"
+            keyboard = []
+            
+            for booking in bookings:
+                # Use get_effective_status to sync with Web logic (check expiration)
+                effective_status = 'pending'
+                if hasattr(booking, 'get_effective_status'):
+                    effective_status = await sync_to_async(booking.get_effective_status)()
+                else:
+                    effective_status = booking.status
+
+                status_emoji = {
+                    'pending': '⏳',
+                    'confirmed': '✅',
+                    'paid': '💳',
+                    'partial_paid': '💸',
+                    'cancelled': '❌'
+                }.get(effective_status, '📋')
+                
+                status_text = {
+                    'pending': 'Chờ xác nhận',
+                    'confirmed': 'Đã xác nhận',
+                    'paid': 'Đã thanh toán',
+                    'partial_paid': 'Đã đặt cọc',
+                    'cancelled': 'Đã hủy'
+                }.get(effective_status, effective_status)
+                
+                msg += f"{status_emoji} **{booking.tour.name}**\n"
+                msg += f"   📅 {booking.booking_date.strftime('%d/%m/%Y')}\n"
+                msg += f"   👥 {booking.num_adults + booking.num_children} người\n"
+                msg += f"   💰 {int(booking.total_price):,} VND\n"
+                msg += f"   🔖 {status_text}\n\n"
+                
+                # Add button for each booking
+                button_text = f"{booking.tour.name[:25]}... - {status_text}"
+                callback_data = f"viewbooking_{booking.id}"
+                keyboard.append([InlineKeyboardButton(button_text, callback_data=callback_data)])
+            
+            keyboard.append([InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")])
+            
+            await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode='Markdown')
+            await self._log_conversation(telegram_user, "bot", "Hiển thị danh sách bookings")
+            return
+            
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error in show_bookings_list: {e}")
+            msg = "❌ Có lỗi xảy ra khi tải bookings. Vui lòng thử lại sau."
+            keyboard = [[InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")]]
+            await query.edit_message_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+            return

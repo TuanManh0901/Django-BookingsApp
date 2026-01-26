@@ -351,8 +351,11 @@
           <a href="#" class="text-white me-3" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;">
             <i class="fab fa-youtube"></i>
           </a>
-          <a href="#" class="text-white" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;">
+          <a href="#" class="text-white me-3" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;">
             <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="https://t.me/vn_travel_advisor_bot" target="_blank" class="text-white" style="font-size: 1.5rem; opacity: 0.8; transition: opacity 0.3s;" data-bs-toggle="tooltip" data-bs-placement="top" title="Chat với AI Travel Advisor trên Telegram">
+            <i class="fab fa-telegram"></i> <span style="font-size: 1rem; font-weight: bold;">Bot</span>
           </a>
         </div>
       </div>
@@ -446,6 +449,12 @@
             bsAlert.close();
           }, 5000); // 5 seconds
         });
+
+        // Initialize Bootstrap Tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
       });
     </script>
     
