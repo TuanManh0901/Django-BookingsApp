@@ -47,6 +47,11 @@ elif [ -f "fixtures/users.json" ]; then
     echo "Fixtures loaded!"
 fi
 
+# Force update tour names and images (override backup if needed)
+echo "==> Updating Tour Names from fixtures..."
+python manage.py loaddata fixtures/tours.json
+python manage.py loaddata fixtures/tour_images.json
+
 # Create/update superadmin user (MUST run after data is loaded so users exist)
 echo "==> Configuring superadmin..."
 python manage.py create_superadmin || echo "Superadmin configuration skipped"
