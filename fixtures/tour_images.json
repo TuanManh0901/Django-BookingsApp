@@ -38,7 +38,7 @@
   "fields": {
     "tour": 7,
     "image": "tours/tour_7_ha_noi_ha_long_tour_1768394623908_HOTLBzT.png",
-    "alt_text": "Tour Hà Nội - Hạ Long 3 ngày 2 đêm",
+    "alt_text": "Hà Nội & Hạ Long - Hành Trình Di Sản",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.239Z"
   }
@@ -49,7 +49,7 @@
   "fields": {
     "tour": 8,
     "image": "tours/tour_8_ha_long_luxury_cruise_1768394649967_GpTgbVb.png",
-    "alt_text": "Tour Hạ Long Bay Luxury Cruise 2 ngày 1 đêm",
+    "alt_text": "Du Thuyền 5 Sao Hạ Long - Giấc Mơ Vịnh Biển",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.245Z"
   }
@@ -60,7 +60,7 @@
   "fields": {
     "tour": 9,
     "image": "tours/tour_9_ninh_binh_trang_an_1768394666294_rXOmCUS.png",
-    "alt_text": "Tour Ninh Bình - Tràng An 1 ngày",
+    "alt_text": "Ninh Bình - Tuyệt Tình Cốc & Tràng An",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.249Z"
   }
@@ -71,7 +71,7 @@
   "fields": {
     "tour": 10,
     "image": "tours/tour_10_hoi_an_hue_da_nang_1768394688009_SqAhEWk.png",
-    "alt_text": "Tour Hội An - Huế - Đà Nẵng 4 ngày 3 đêm",
+    "alt_text": "Con Đường Di Sản Miền Trung (Đà Nẵng - Huế - Hội An)",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.253Z"
   }
@@ -82,7 +82,7 @@
   "fields": {
     "tour": 11,
     "image": "tours/tour_11_hue_imperial_city_1768394135604_VuUXf2S.png",
-    "alt_text": "Tour Huế Cố Đô 2 ngày 1 đêm",
+    "alt_text": "Huế - Dấu Ấn Cố Đô Trầm Mặc",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.256Z"
   }
@@ -93,7 +93,7 @@
   "fields": {
     "tour": 13,
     "image": "tours/tour_13_nha_trang_beach_1768394098058_UhcFYOJ.png",
-    "alt_text": "Tour Nha Trang biển đảo 4 ngày 3 đêm",
+    "alt_text": "Nha Trang - Vịnh Ngọc Quyến Rũ",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.263Z"
   }
@@ -104,7 +104,7 @@
   "fields": {
     "tour": 14,
     "image": "tours/tour_14_vietnam_panorama_north_south_1768394751445_rlxq6WJ.png",
-    "alt_text": "Tour Panorama Việt Nam từ Bắc vào Nam 10 ngày",
+    "alt_text": "Hành Trình Xuyên Việt - Tinh Hoa Đất Nước",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.266Z"
   }
@@ -115,7 +115,7 @@
   "fields": {
     "tour": 15,
     "image": "tours/tour_15_mekong_delta_scenic_1768394082061_d9oEqyJ.png",
-    "alt_text": "Tour Mekong Delta 2 ngày 1 đêm",
+    "alt_text": "Khám Phá Miền Tây - Chợ Nổi & Vườn Trái Cây",
     "is_main": true,
     "created_at": "2026-01-14T12:47:25.269Z"
   }
@@ -126,7 +126,7 @@
   "fields": {
     "tour": 12,
     "image": "tours/tour_12_updated_mekong_delta_can_tho_new_1768395091069_2cg7B9u.png",
-    "alt_text": "Tour Hồ Chí Minh - Cần Thơ - Đồng bằng sông Cửu Long 3 ngày",
+    "alt_text": "Sắc Màu Phương Nam: Sài Gòn & Miền Tây Sông Nước",
     "is_main": true,
     "created_at": "2026-01-14T12:52:06.024Z"
   }
@@ -137,7 +137,7 @@
   "fields": {
     "tour": 16,
     "image": "tours/tour_16_updated_mui_ne_sand_dunes_new_1768395071287_tZynMuW.png",
-    "alt_text": "Tour Mũi Né 3 ngày 2 đêm",
+    "alt_text": "Mũi Né - Thiên Đường Cát Trắng & Resort",
     "is_main": true,
     "created_at": "2026-01-14T12:52:06.029Z"
   }

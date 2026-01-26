@@ -3,7 +3,7 @@
   "model": "tours.tour",
   "pk": 1,
   "fields": {
-    "name": "Tour Đà Lạt 3 ngày 2 đêm",
+    "name": "Đà Lạt - Thành Phố Ngàn Hoa & Sương Mù",
     "slug": "tour-da-lat-3-ngay-2-dem",
     "description": "Khám phá thành phố sương mù với hoa và café.",
     "location": "Đà Lạt",
@@ -20,7 +20,7 @@
   "model": "tours.tour",
   "pk": 2,
   "fields": {
-    "name": "Tour Phú Quốc nghỉ dưỡng",
+    "name": "Phú Quốc - Thiên Đường Nghỉ Dưỡng Đảo Ngọc",
     "slug": "tour-phu-quoc-nghi-duong",
     "description": "Thư giãn tại biển Phú Quốc với resort 5 sao.",
     "location": "Phú Quốc",
@@ -37,7 +37,7 @@
   "model": "tours.tour",
   "pk": 3,
   "fields": {
-    "name": "Tour Sapa trekking",
+    "name": "Sapa - Chinh Phục Đỉnh Fansipan Hùng Vĩ",
     "slug": "tour-sapa-trekking",
     "description": "Leo núi, thăm bản làng tại Sapa.",
     "location": "Sapa",
@@ -54,7 +54,7 @@
   "model": "tours.tour",
   "pk": 7,
   "fields": {
-    "name": "Tour Hà Nội - Hạ Long 3 ngày 2 đêm",
+    "name": "Hà Nội & Hạ Long - Hành Trình Di Sản",
     "slug": "tour-ha-noi-ha-long-3-ngay-2-em",
     "description": "Khám phá thủ đô Hà Nội ngàn năm văn hiến và vịnh Hạ Long kỳ vĩ. Trải nghiệm Phố Cổ, Văn Miếu, và du thuyền qua đêm trên vịnh Di sản Thế giới UNESCO.",
     "location": "Hà Nội",
@@ -71,7 +71,7 @@
   "model": "tours.tour",
   "pk": 8,
   "fields": {
-    "name": "Tour Hạ Long Bay Luxury Cruise 2 ngày 1 đêm",
+    "name": "Du Thuyền 5 Sao Hạ Long - Giấc Mơ Vịnh Biển",
     "slug": "tour-ha-long-bay-luxury-cruise-2-ngay-1-em",
     "description": "Du thuyền sang trọng khám phá Vịnh Hạ Long với hơn 1,600 đảo đá vôi. Bao gồm kayak, thăm hang động, bữa tối seafood tươi sống và tập Thái Cực buổi sáng.",
     "location": "Hạ Long",
@@ -88,7 +88,7 @@
   "model": "tours.tour",
   "pk": 9,
   "fields": {
-    "name": "Tour Ninh Bình - Tràng An 1 ngày",
+    "name": "Ninh Bình - Tuyệt Tình Cốc & Tràng An",
     "slug": "tour-ninh-binh-trang-an-1-ngay",
     "description": "Khám phá \"Vịnh Hạ Long trên cạn\" tại Tràng An. Chèo thuyền qua các hang động kỳ ảo, thăm chùa Bái Đính và ngắm cảnh đẹp Hang Múa.",
     "location": "Ninh Bình",
@@ -105,7 +105,7 @@
   "model": "tours.tour",
   "pk": 10,
   "fields": {
-    "name": "Tour Hội An - Huế - Đà Nẵng 4 ngày 3 đêm",
+    "name": "Con Đường Di Sản Miền Trung (Đà Nẵng - Huế - Hội An)",
     "slug": "tour-hoi-an-hue-a-nang-4-ngay-3-em",
     "description": "Khám phá Di sản Văn hóa Thế giới: Phố cổ Hội An lung linh đèn lồng, Cố đô Huế hoàng gia, và Đà Nẵng hiện đại. Bao gồm Cầu Vàng, Bà Nà Hills.",
     "location": "Hội An",
@@ -122,7 +122,7 @@
   "model": "tours.tour",
   "pk": 11,
   "fields": {
-    "name": "Tour Huế Cố Đô 2 ngày 1 đêm",
+    "name": "Huế - Dấu Ấn Cố Đô Trầm Mặc",
     "slug": "tour-hue-co-o-2-ngay-1-em",
     "description": "Trải nghiệm lịch sử triều Nguyễn tại Cố đô Huế. Thăm Đại Nội, lăng Khải Định, thuyền rồng trên Sông Hương, và thưởng thức ẩm thực cung đình.",
     "location": "Huế",
@@ -139,7 +139,7 @@
   "model": "tours.tour",
   "pk": 12,
   "fields": {
-    "name": "Tour Hồ Chí Minh - Cần Thơ - Đồng bằng sông Cửu Long 3 ngày",
+    "name": "Sắc Màu Phương Nam: Sài Gòn & Miền Tây Sông Nước",
     "slug": "tour-ho-chi-minh-can-tho-ong-bang-song-cuu-long-3-ngay",
     "description": "Khám phá thành phố Hồ Chí Minh sôi động và miền Tây sông nước. Thăm chợ nổi Cái Răng, vườn trái cây, địa đạo Củ Chi, chùa Vĩnh Nghiêm.",
     "location": "Hồ Chí Minh",
@@ -156,7 +156,7 @@
   "model": "tours.tour",
   "pk": 13,
   "fields": {
-    "name": "Tour Nha Trang biển đảo 4 ngày 3 đêm",
+    "name": "Nha Trang - Vịnh Ngọc Quyến Rũ",
     "slug": "tour-nha-trang-bien-ao-4-ngay-3-em",
     "description": "Nghỉ dưỡng tại bãi biển Nha Trang đẹp nhất Việt Nam. Tour tham quan 4 đảo, lặn ngắm san hô, tắm bùn khoáng, và thưởng thức hải sản tươi sống.",
     "location": "Nha Trang",
@@ -173,7 +173,7 @@
   "model": "tours.tour",
   "pk": 14,
   "fields": {
-    "name": "Tour Panorama Việt Nam từ Bắc vào Nam 10 ngày",
+    "name": "Hành Trình Xuyên Việt - Tinh Hoa Đất Nước",
     "slug": "tour-panorama-viet-nam-tu-bac-vao-nam-10-ngay",
     "description": "Hành trình toàn cảnh Việt Nam: Hà Nội - Hạ Long - Đà Nẵng - Hội An - Sài Gòn - Mekong Delta. Trải nghiệm văn hóa và ẩm thực ba miền trong 10 ngày.",
     "location": "Hà Nội",
@@ -190,7 +190,7 @@
   "model": "tours.tour",
   "pk": 15,
   "fields": {
-    "name": "Tour Mekong Delta 2 ngày 1 đêm",
+    "name": "Khám Phá Miền Tây - Chợ Nổi & Vườn Trái Cây",
     "slug": "tour-mekong-delta-2-ngay-1-em",
     "description": "Khám phá miền Tây sông nước: chợ nổi Cái Răng, làng hoa Sa Đéc, vườn trái cây, trải nghiệm homestay với người dân địa phương.",
     "location": "Cần Thơ",
@@ -207,7 +207,7 @@
   "model": "tours.tour",
   "pk": 16,
   "fields": {
-    "name": "Tour Mũi Né 3 ngày 2 đêm",
+    "name": "Mũi Né - Thiên Đường Cát Trắng & Resort",
     "slug": "tour-mui-ne-3-ngay-2-em",
     "description": "Nghỉ dưỡng tại bãi biển Mũi Né. Ngắm bình minh đồi cát bay, thăm suối Tiên, thưởng thức hải sản tươi sống và tham gia thể thao biển.",
     "location": "Phan Thiết",
