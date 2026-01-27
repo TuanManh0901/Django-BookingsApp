@@ -4,8 +4,6 @@
 {% block breadcrumb %}AI Chat{% endblock %}
 
 {% block content %}
-<!-- Close base.html container to go full width -->
-</div>
 
 <!-- Threeland Hero - AI Travel Advisor -->
 <div class="threeland-hero">
@@ -26,7 +24,7 @@
     <div class="row">
       <!-- Chat Sidebar - Conversations List -->
       <div class="col-md-3 mb-4">
-        <div class="card shadow-lg border-0" style="border-radius: 20px; height: 600px; overflow: hidden; position: relative;">
+        <div class="card shadow-lg border-0" style="border-radius: 20px; height: 750px; overflow: hidden; position: relative;">
           <div class="card-header bg-primary text-white" style="border-radius: 20px 20px 0 0; padding-right: 60px;">
             <h5 class="mb-0"><i class="fas fa-comments me-2"></i>Conversations</h5>
           </div>
@@ -51,7 +49,7 @@
 
       <!-- Main Chat Interface -->
       <div class="col-md-9">
-        <div class="card shadow-lg border-0" style="border-radius: 20px; height: 600px; display: flex; flex-direction: column;">
+        <div class="card shadow-lg border-0" style="border-radius: 20px; height: 750px; display: flex; flex-direction: column;">
           <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px 20px 0 0;">
             <h5 class="mb-0">
               <i class="fas fa-robot me-2"></i>AI Travel Advisor
@@ -326,6 +324,11 @@
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         color: white;
+    }
+
+    /* FIX FOOTER GAP: Remove margin-top from global footer on this page */
+    footer.footer {
+        margin-top: 0 !important;
     }
 
   </style>
@@ -625,8 +628,31 @@
       }, 1000);
     }
   });
+
+  // FUNCTION TO BOOK AI ITINERARY
+  function bookItinerary() {
+    // 1. Get the timeline HTML
+    const timeline = document.querySelector('.itinerary-timeline');
+    if (!timeline) {
+        alert("Không tìm thấy lịch trình để đặt. Vui lòng yêu cầu AI tạo lịch trình trước.");
+        return;
+    }
+    
+    // 2. Clone and Clean up (remove buttons)
+    const clone = timeline.cloneNode(true);
+    const existingBtn = clone.querySelector('.book-btn-mini');
+    if(existingBtn) existingBtn.remove();
+    
+    // 3. Save to Session Storage
+    const itineraryHtml = clone.outerHTML;
+    sessionStorage.setItem('pending_ai_itinerary', itineraryHtml);
+    
+    // 4. Redirect to Booking Page (Using Tour ID 1 as placeholder "Custom Tour")
+    // NOTE: In production, create a specific "Design Tour" with ID X
+    window.location.href = "/tour/1/book/"; 
+  }
+
 </script>
 
-<!-- Reopen base.html container -->
-<div class="container mt-4">
+<!-- Reopen base.html container removed -->
 {% endblock %}

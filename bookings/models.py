@@ -29,6 +29,10 @@ class Booking(models.Model):
     deposit_percentage = models.DecimalField(max_digits=4, decimal_places=2, default=Decimal('0.00'))
     deposit_amount = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
     deposit_paid = models.BooleanField(default=False)
+    
+    # AI Custom Field
+    custom_itinerary = models.TextField(blank=True, null=True, verbose_name="Lịch trình AI Design")
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

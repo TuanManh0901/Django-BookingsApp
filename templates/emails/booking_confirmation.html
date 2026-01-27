@@ -216,7 +216,17 @@
                 </div>
             </div>
 
-            <!-- Passenger Information -->
+            </div>
+
+            <!-- Custom AI Itinerary (If present) -->
+            {% if booking.custom_itinerary %}
+            <div class="booking-info" style="border-left: 4px solid #8b5cf6; background-color: #f3f0ff;">
+                <h2 style="color: #6d28d9;">✨ Lịch trình thiết kế riêng (AI)</h2>
+                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6;">
+                    {{ booking.custom_itinerary|safe }}
+                </div>
+            </div>
+            {% endif %}
             <div class="booking-info">
                 <h2>👥 Thông tin hành khách</h2>
                 <div class="info-row">

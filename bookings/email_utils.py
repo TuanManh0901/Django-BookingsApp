@@ -61,6 +61,10 @@ Email: dulich@vntravel.com
 Hotline: +84 842190901
         """
         
+        # Include Custom Itinerary if present (AI Itinerary Planner)
+        if hasattr(booking, 'custom_itinerary') and booking.custom_itinerary:
+            text_content += f"\n\n--- LỊCH TRÌNH THIẾT KẾ RIÊNG (AI) ---\n{booking.custom_itinerary}\n--------------------------------------"
+        
         # Create email
         subject = f'✅ Xác nhận đặt tour #{booking.id} - {booking.tour.name}'
         from_email = settings.DEFAULT_FROM_EMAIL

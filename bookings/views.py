@@ -27,6 +27,12 @@ def create_booking(request, tour_id):
                 booking.user = request.user
                 booking.tour = tour
                 booking.total_price = (booking.num_adults + booking.num_children) * tour.price
+                
+                # Save AI Itinerary if present (Enhanced Feature)
+                custom_itinerary = request.POST.get('custom_itinerary')
+                if custom_itinerary:
+                    booking.custom_itinerary = custom_itinerary
+
                 # Ensure new booking has deposit fields set to defaults to avoid NULL constraint errors
                 try:
                     booking.deposit_required = False

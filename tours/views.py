@@ -129,11 +129,17 @@ class SearchToursView(ListView):
         # Search query
         search_query = self.request.GET.get('q', '').strip()
         if search_query:
-            queryset = queryset.filter(
-                Q(name__icontains=search_query) |
-                Q(description__icontains=search_query) |
-                Q(location__icontains=search_query)
-            )
+            # Robust search: Handle Vietnamese case sensitivity issues (đ != Đ in some collations)
+            # We search for the original, Title Case, and Upper Case versions
+            queries = {search_query, search_query.title(), search_query.upper(), search_query.lower()}
+            
+            query = Q()
+            for q_str in queries:
+                query |= Q(name__icontains=q_str)
+                query |= Q(description__icontains=q_str)
+                query |= Q(location__icontains=q_str)
+            
+            queryset = queryset.filter(query)
         
         # Filter by location
         location = self.request.GET.get('location', '').strip()

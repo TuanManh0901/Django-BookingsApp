@@ -2,6 +2,7 @@
 AI Travel Advisor Service using Google Gemini AI
 """
 import google.generativeai as genai
+import time
 from django.conf import settings
 from django.core.cache import cache
 from tours.models import Tour
@@ -29,7 +30,8 @@ PHONG CÁCH TRÁ LỜI:
 - CẬP NHẬT TÌNH HÌNH THỜI TIẾT THỰC TẾ: Dựa vào thông tin context, hãy đưa ra lời khuyên phù hợp (ví dụ: đang mưa thì gợi ý mang ô, trời nắng đẹp thì suggest hoạt động ngoài trời).
 
 CẤU TRÚC THÔNG TIN (BẮT BUỘC):
-- SỬ DỤNG DANH SÁCH CÓ SỐ THỨ TỰ (1., 2., 3., ...)
+- SỬ DỤNG DANH SÁCH CÓ SỐ THỨ TỰ (1., 2., 3., ...) cho các mục chính (VD: Tên Tour)
+- Sử dụng GẠCH ĐẦU DÒNG (-) cho các mẩu tin chi tiết bên trong
 - Mỗi điểm có TIÊU ĐỀ VIẾT HOA rõ ràng
 - Sau tiêu đề, viết MÔ TẢ CHI TIẾT 2-3 câu
 - Đưa ra VÍ DỤ CỤ THỂ về địa danh, món ăn, hoạt động
@@ -61,9 +63,9 @@ Chào bạn! [lời chào phù hợp với ngữ cảnh]
 
 ☀️ Tình hình thời tiết hiện tại: [Thông tin thời tiết từ context + Lời khuyên]
 
-1. [TIÊU ĐỀ 1]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
-2. [TIÊU ĐỀ 2]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
-3. [TIÊU ĐỀ 3]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
+- [TIÊU ĐỀ 1 VIẾT HOA]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
+- [TIÊU ĐỀ 2 VIẾT HOA]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
+- [TIÊU ĐỀ 3 VIẾT HOA]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
 [...tiếp tục đến ít nhất 5-7 điểm...]
 
 💰 Thông tin giá tour:
@@ -117,7 +119,7 @@ Thay vì trả về text thông thường, hãy trả về mã HTML CHUẨN (kh�
 <div class="text-center mt-3">
    <div class="price-tag">💰 Tổng chi phí dự kiến: [Số tiền] VNĐ</div>
    <br>
-   <a href="/tours/" class="book-btn-mini mt-3">👉 Đặt lịch trình này ngay</a>
+   <a href="javascript:void(0)" onclick="bookItinerary()" class="book-btn-mini mt-3">👉 Đặt lịch trình này ngay</a>
 </div>
 
 LƯU Ý QUAN TRỌNG:
@@ -199,8 +201,26 @@ class TravelAdvisor:
             # Prompt đơn giản hơn để tránh lỗi
             simple_prompt = f"Trả lời bằng tiếng Việt: {user_question}{tours_context}"
             
-            # Gọi Gemini API với model đã test
-            response = self.model.generate_content(simple_prompt)
+            # Wrapper retry logic for Rate Limits (429)
+            max_retries = 3
+            base_delay = 2
+            
+            headers = None
+            response = None
+            
+            for attempt in range(max_retries):
+                try:
+                    # Gọi Gemini API với model đã test
+                    response = self.model.generate_content(simple_prompt)
+                    break # Success, exit loop
+                except Exception as e:
+                    error_str = str(e).lower()
+                    if "429" in error_str or "quota" in error_str:
+                        if attempt < max_retries - 1:
+                            sleep_time = base_delay * (2 ** attempt) # 2s, 4s...
+                            time.sleep(sleep_time)
+                            continue
+                    raise e # Re-raise other errors or if retries exhausted
             
             # Lấy text từ response
             # Lấy text từ response

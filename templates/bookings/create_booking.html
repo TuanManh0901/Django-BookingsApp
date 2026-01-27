@@ -76,10 +76,17 @@
               <div class="alert alert-danger">{{ form.non_field_errors }}</div>
             {% endif %}
 
+            <input type="hidden" name="custom_itinerary" id="custom_itinerary">
+            
             <button type="submit" class="btn btn-primary">Book Now</button>
             <a href="{% url 'tour_detail' tour.pk %}" class="btn btn-secondary">Cancel</a>
           </form>
           {% endif %}
+          
+          <div id="ai-itinerary-alert" class="alert alert-success alert-persistent mt-3" style="display: none;">
+             <i class="fas fa-magic me-2"></i><strong>Tuyệt vời!</strong> Bạn đang đặt tour theo <strong>Lịch trình thiết kế riêng bởi AI</strong>.
+             <br><small>Lịch trình chi tiết sẽ được gửi kèm trong email xác nhận.</small>
+          </div>
         </div>
       </div>
     </div>
@@ -89,6 +96,19 @@
 <script>
 // Prevent double booking submission
 document.addEventListener('DOMContentLoaded', function() {
+  // Check for AI Custom Itinerary
+  const pendingItinerary = sessionStorage.getItem('pending_ai_itinerary');
+  if (pendingItinerary) {
+      const hiddenInput = document.getElementById('custom_itinerary');
+      if (hiddenInput) {
+          hiddenInput.value = pendingItinerary;
+          document.getElementById('ai-itinerary-alert').style.display = 'block';
+          // Optional: Clear session storage so it doesn't persist to other bookings
+          // sessionStorage.removeItem('pending_ai_itinerary'); // Keep until submitted? Better clear on success.
+          sessionStorage.removeItem('pending_ai_itinerary');
+      }
+  }
+
   const bookingForm = document.querySelector('form[method="post"]');
   if (!bookingForm) return;
   
