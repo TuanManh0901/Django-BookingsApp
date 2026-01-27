@@ -119,5 +119,36 @@ class Booking(models.Model):
             return self.get_remaining_amount()
         return self.total_price
     
+    @classmethod
+    def cancel_expired_bookings(cls):
+        """
+        Class method to cancel all expired bookings in bulk.
+        Logic: Cancel if pending, no deposit, and created > 15 mins ago.
+        """
+        from django.utils import timezone
+        from datetime import timedelta
+        
+        grace_period = timedelta(minutes=15)
+        cutoff_time = timezone.now() - grace_period
+        
+        expired_bookings = cls.objects.filter(
+            payment_status='pending',
+            deposit_paid=False,
+            created_at__lt=cutoff_time
+        ).exclude(status='cancelled')
+        
+        count = expired_bookings.count()
+        if count > 0:
+            # We use update() for bulk efficiency, but if we need signals, loop is better.
+            # Here fast cleanup is prioritized.
+            expired_bookings.update(
+                status='cancelled', 
+                payment_status='cancelled',
+                deposit_required=False,
+                deposit_percentage=0,
+                deposit_amount=0
+            )
+        return count
+
     class Meta:
         ordering = ['-created_at']

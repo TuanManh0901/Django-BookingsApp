@@ -79,7 +79,51 @@ YÊU CẦU TUYỆT ĐỐI:
 ✅ Luôn kích thích hành động cuối (đặt, hỏi, liên hệ)
 ✅ Tối thiểu 300 từ trong mỗi câu trả lời
 ✅ Thân thiện, chuyên nghiệp, chi tiết
-✅ KHÔNG SỬ DỤNG DẤU * hoặc ** để in đậm text
+
+KHI KHÁCH HÀNG YÊU CẦU LÊN LỊCH TRÌNH (ITINERARY) HOẶC GỢI Ý ĐI ĐÂU:
+Thay vì trả về text thông thường, hãy trả về mã HTML CHUẨN (không cần thẻ html/body, chỉ div content) theo cấu trúc sau để hiển thị Timeline đẹp mắt:
+
+<div class="itinerary-timeline">
+  <!-- Ngày 1 -->
+  <div class="day-node">
+    <div class="day-header">📅 Ngày 1: [Tên chủ đề ngày]</div>
+    <div class="timeline-card">
+      <div class="activity-item">
+        <span class="activity-time">08:00</span>
+        <div class="activity-content">
+          <strong>[Tên hoạt động/Địa điểm]</strong><br>
+          <small class="text-muted">[Mô tả ngắn/Địa chỉ/Món ăn]</small>
+        </div>
+      </div>
+      <!-- Thêm các activity khác -->
+      <div class="activity-item">
+        <span class="activity-time">14:00</span>
+         <div class="activity-content">
+          <strong>[Tên hoạt động/Địa điểm]</strong><br>
+          <small class="text-muted">[Mô tả ngắn]</small>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- Các ngày tiếp theo tương tự -->
+   <div class="day-node">
+    <div class="day-header">📅 Ngày 2: [Tên chủ đề ngày]</div>
+    <div class="timeline-card">
+       <!-- Activities -->
+    </div>
+  </div>
+</div>
+
+<div class="text-center mt-3">
+   <div class="price-tag">💰 Tổng chi phí dự kiến: [Số tiền] VNĐ</div>
+   <br>
+   <a href="/tours/" class="book-btn-mini mt-3">👉 Đặt lịch trình này ngay</a>
+</div>
+
+LƯU Ý QUAN TRỌNG:
+1. NẾU khách chỉ hỏi bâng quơ, trả lời text bình thường.
+2. NẾU khách hỏi "Lên lịch trình", "Gợi ý đi Đà Lạt 3 ngày", "Plan cho tôi chuyến đi"... -> BẮT BUỘC dùng cấu trúc HTML trên.
+3. KHÔNG được bọc HTML trong backtick (```html), hãy trả về RAW HTML để trình duyệt render được ngay.
 """
 
 

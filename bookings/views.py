@@ -11,27 +11,32 @@ from .models import Booking
 from .email_utils import send_booking_confirmation_email
 from django.utils import timezone
 from datetime import timedelta
+from django.db import transaction
 
 @login_required
 def create_booking(request, tour_id):
-    tour = get_object_or_404(Tour, pk=tour_id)
-    if request.method == 'POST':
-        form = BookingForm(request.POST, tour=tour, user=request.user)
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.user = request.user
-            booking.tour = tour
-            booking.total_price = (booking.num_adults + booking.num_children) * tour.price
-            # Ensure new booking has deposit fields set to defaults to avoid NULL constraint errors
-            try:
-                booking.deposit_required = False
-                booking.deposit_percentage = 0
-                booking.deposit_amount = 0
-                booking.deposit_paid = False
-            except Exception:
-                # If fields don't exist (older schema), ignore
-                pass
-            booking.save()
+    # Use atomic transaction to prevent race conditions
+    with transaction.atomic():
+        # Lock the tour row until transaction completes
+        tour = get_object_or_404(Tour.objects.select_for_update(), pk=tour_id)
+        
+        if request.method == 'POST':
+            form = BookingForm(request.POST, tour=tour, user=request.user)
+            if form.is_valid():
+                booking = form.save(commit=False)
+                booking.user = request.user
+                booking.tour = tour
+                booking.total_price = (booking.num_adults + booking.num_children) * tour.price
+                # Ensure new booking has deposit fields set to defaults to avoid NULL constraint errors
+                try:
+                    booking.deposit_required = False
+                    booking.deposit_percentage = 0
+                    booking.deposit_amount = 0
+                    booking.deposit_paid = False
+                except Exception:
+                    # If fields don't exist (older schema), ignore
+                    pass
+                booking.save()
             
             # Send booking confirmation email
             try:
@@ -44,8 +49,8 @@ def create_booking(request, tour_id):
                 messages.success(request, f'Đặt tour thành công! (Không thể gửi email: {str(e)})')
             
             return redirect('my_bookings')
-    else:
-        form = BookingForm(tour=tour, user=request.user)
+        else:
+            form = BookingForm(tour=tour, user=request.user)
     return render(request, 'bookings/create_booking.html', {'form': form, 'tour': tour})
 
 class MyBookingsView(LoginRequiredMixin, ListView):
@@ -55,29 +60,12 @@ class MyBookingsView(LoginRequiredMixin, ListView):
     paginate_by = 10
     
     def get_queryset(self):
-        queryset = Booking.objects.filter(user=self.request.user)
+        # Centralized cleanup of expired bookings
+        Booking.cancel_expired_bookings()
         
-        # Auto-cancel expired pending bookings (15 minutes grace period)
-        grace_period = timedelta(minutes=15)
-        cutoff_time = timezone.now() - grace_period
-        
-        
-        
-        expired_bookings = queryset.filter(
-            payment_status='pending',
-            deposit_paid=False,
-            created_at__lt=cutoff_time
-        )
-        
-        
-        
-        # Cancel all expired bookings
-        for booking in expired_bookings:
-            booking.payment_status = 'cancelled'
-            booking.save()
-        
-        # Return fresh queryset with updated statuses
-        return Booking.objects.filter(user=self.request.user)
+        # Optimized query with select_related to prevent N+1 queries
+        # Note: 'review' is related_name from Review model (OneToOne)
+        return Booking.objects.filter(user=self.request.user).select_related('tour', 'review')
     
     def dispatch(self, request, *args, **kwargs):
         """Add no-cache headers to prevent browser caching"""
@@ -120,15 +108,11 @@ class BookingDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         booking = self.get_object()
         
-        # Auto-cancel if expired (15 minutes grace period)
-        grace_period = timedelta(minutes=15)
-        if (booking.payment_status == 'pending' and 
-            not booking.deposit_paid and 
-            booking.created_at < timezone.now() - grace_period):
-            booking.payment_status = 'cancelled'
-            booking.save()
-            # Refresh from DB to get updated status
-            booking.refresh_from_db()
+        # Ensure expired status is updated
+        if booking.status == 'pending' and booking.is_expired():
+             booking.status = 'cancelled'
+             booking.payment_status = 'cancelled'
+             booking.save()
         
         # Kiểm tra xem có payment nào đã upload receipt_image chưa
         has_receipt = booking.payments.filter(receipt_image__isnull=False).exclude(receipt_image='').exists()
@@ -140,6 +124,7 @@ def cancel_booking(request, pk):
     booking = get_object_or_404(Booking, pk=pk, user=request.user)
     if booking.status in ['pending', 'confirmed']:
         booking.status = 'cancelled'
+        booking.payment_status = 'cancelled'  # Sync payment status
         # Nếu hủy, xem như không còn trạng thái cọc để tránh hiển thị "đã cọc 50%"
         booking.deposit_required = False
         booking.deposit_paid = False
