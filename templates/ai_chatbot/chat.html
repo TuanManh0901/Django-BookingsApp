@@ -336,7 +336,7 @@
         addMessage("Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại.", "bot");
       }
     } catch (error) {
-      console.error("Error:", error);
+
       removeTypingIndicator();
       addMessage("Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.", "bot");
     }
@@ -356,13 +356,13 @@
           addMessage(msg.text, msg.type, msg.timestamp);
         });
         
-        console.log(`Loaded ${data.history.length} messages`);
+
         return true; // Has history
       }
       
       return false; // No history
     } catch (error) {
-      console.error("Error loading history:", error);
+
       return false;
     }
   }
@@ -419,13 +419,7 @@
           sessionsDiv.appendChild(item);
         });
         
-        console.log(`Loaded ${data.sessions.length} conversations`);
-      } else if (!currentSessionInList) {
-        console.log('No conversation history');
-      }
-    } catch (error) {
-      console.error('Error loading sessions:', error);
-    }
+
   }
 
   // Delete a conversation
@@ -449,7 +443,7 @@
       const data = await response.json();
       
       if (response.ok) {
-        console.log('Session deleted:', data.message);
+
         
         // If deleted current session, create new one
         if (deleteSessionId === sessionId) {
@@ -472,7 +466,7 @@
         alert('Không thể xóa cuộc hội thoại: ' + (data.error || 'Lỗi không xác định'));
       }
     } catch (error) {
-      console.error('Error deleting session:', error);
+
       alert('Có lỗi xảy ra khi xóa cuộc hội thoại');
     }
   }
@@ -490,7 +484,7 @@
     await loadChatHistory();
     loadSessions();
     
-    console.log('Switched to session:', sessionId);
+
   }
 
   // Start new conversation
@@ -510,7 +504,7 @@
     
     loadSessions();
     
-    console.log('Started new conversation:', sessionId);
+
   }
 
   // Initialize
