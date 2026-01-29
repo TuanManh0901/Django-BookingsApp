@@ -106,14 +106,22 @@ class Command(BaseCommand):
     async def book_tour(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Handle tour booking request."""
         telegram_user = await self._get_or_create_user(update)
-        await update.message.reply_text(
-            "📝 **Đặt Tour Du Lịch**\n\n"
-            "Để đặt tour, vui lòng truy cập website VN Travel:\n"
-            "🌐 http://127.0.0.1:8000\n\n"
-            "Hoặc liên hệ hotline: 1900-xxxx\n\n"
-            "Chúng tôi sẽ hỗ trợ bạn đặt tour nhanh nhất có thể! 🚀"
-        )
-        await self._log_conversation(telegram_user, "bot", "Hướng dẫn đặt tour qua web")
+        tours = await sync_to_async(list)(Tour.objects.filter(is_active=True))
+        if not tours:
+            msg = "Hiện chưa có tour để đặt."
+            await update.message.reply_text(msg)
+            await self._log_conversation(telegram_user, "bot", msg)
+            return
+
+        keyboard = [
+            [InlineKeyboardButton(f"{tour.name} • {int(tour.price):,} VND", callback_data=f"tour_{tour.id}")]
+            for tour in tours
+        ]
+        keyboard.append([InlineKeyboardButton("⬅️ Quay lại menu", callback_data="menu_back")])
+
+        msg = "Chọn tour để xem chi tiết và đặt qua bot:"
+        await update.message.reply_text(msg, reply_markup=InlineKeyboardMarkup(keyboard))
+        await self._log_conversation(telegram_user, "bot", msg)
 
     async def menu_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         telegram_user = await self._get_or_create_user(update)
@@ -778,28 +786,82 @@ class Command(BaseCommand):
                 await update.message.reply_text("Có lỗi xảy ra. Vui lòng thử lại sau.")
                 return
             
+            
+            
+
+        # Default handler: AI Chat
+        if not state or state == "asking_ai":
+            # Helper function để gửi tin nhắn thông minh
+            async def send_smart_message(text, parse_mode='HTML'):
+                import re
+                
+                # Hàm làm sạch HTML cho Telegram
+                def cleanup_html_for_telegram(raw_text):
+                    # 1. Thay thế các header tags h1-h6 bằng <b>
+                    # VD: <h3>Tiêu đề</h3> -> <b>Tiêu đề</b>
+                    cleaned = re.sub(r'<h[1-6]>(.*?)</h[1-6]>', r'<b>\1</b>', raw_text, flags=re.DOTALL)
+                    
+                    # 2. Xử lý thẻ <br> thành xuống dòng
+                    cleaned = cleaned.replace('<br>', '\n').replace('<br/>', '\n')
+                    
+                    # 3. Xử lý thẻ <p> và <div> thành xuống dòng (nếu cần)
+                    cleaned = re.sub(r'</(p|div)>', '\n', cleaned)
+                    cleaned = re.sub(r'<(p|div)[^>]*>', '', cleaned)
+                    
+                    # 4. Xóa các thẻ markdown khác nếu còn sót lại (như <span>, <font>...)
+                    # Telegram chỉ hỗ trợ: <b>, <strong>, <i>, <em>, <u>, <ins>, <s>, <strike>, <del>, <code>, <pre>, <a>
+                    # Tuy nhiên regex để whitelist thì phức tạp, ta chỉ fix những lỗi hay gặp nhất từ AI.
+                    
+                    return cleaned
+
+                # Làm sạch text trước khi xử lý
+                text = cleanup_html_for_telegram(text)
+
+                # Hàm chia tin nhắn an toàn hơn (split theo newline)
+                def split_text_safe(text, limit=4000):
+                    if len(text) <= limit:
+                        return [text]
+                    parts = []
+                    while text:
+                        if len(text) <= limit:
+                            parts.append(text)
+                            break
+                        # Tìm vị trí xuống dòng gần nhất trước limit
+                        split_at = text.rfind('\n', 0, limit)
+                        if split_at == -1:
+                            # Nếu không có newline, buộc phải cắt tại limit
+                            split_at = limit
+                        parts.append(text[:split_at])
+                        text = text[split_at:].lstrip() # Xóa khoảng trắng thừa đầu dòng
+                    return parts
+
+                chunks = split_text_safe(text)
+                
+                for chunk in chunks:
+                    try:
+                        await update.message.reply_text(chunk, parse_mode=parse_mode)
+                    except Exception as e:
+                        # Nếu vẫn lỗi (thường do tag lồng nhau sai hoặc unclosed tag), gửi dạng text thường
+                        # Strip mọi tag để dễ đọc hơn
+                        strip_tags = re.sub(r'<[^>]*>', '', chunk)
+                        await update.message.reply_text(strip_tags, parse_mode=None)
+
             try:
-                # Khởi tạo AI advisor
-                advisor = TravelAdvisor()
+                # Khởi tạo AI advisor with Telegram mode
+                advisor = TravelAdvisor(client_type='telegram')
                 
                 # Lấy câu trả lời từ AI
                 ai_response = await sync_to_async(advisor.get_advice)(text, include_tours=True)
                 
-                # Gửi câu trả lời (plain text, không parse Markdown để tránh lỗi)
-                response_msg = f"🤖 AI Travel Advisor:\n\n{ai_response}"
-                
-                # Split message nếu quá dài (Telegram limit 4096 chars)
-                if len(response_msg) > 4000:
-                    # Gửi phần đầu
-                    await update.message.reply_text(response_msg[:4000])
-                    # Gửi phần còn lại
-                    await update.message.reply_text(response_msg[4000:])
-                else:
-                    await update.message.reply_text(response_msg)
+                # Gửi câu trả lời
+                response_msg = f"🤖 <b>AI Travel Advisor</b>\n\n{ai_response}"
                 
                 # Log conversation
                 await self._log_conversation(telegram_user, "user", text)
                 await self._log_conversation(telegram_user, "bot", ai_response)
+
+                # Gửi tin nhắn thông minh
+                await send_smart_message(response_msg)
                 
                 # Gửi suggestion
                 suggestion = "\n\n💡 Bạn có câu hỏi khác không? Hoặc gõ /menu để quay lại."
@@ -810,7 +872,7 @@ class Command(BaseCommand):
                     f"⚠️ Xin lỗi, đã có lỗi xảy ra: {str(e)}\n\n"
                     "Vui lòng thử lại hoặc gõ /menu để quay lại."
                 )
-                await update.message.reply_text(error_msg)
+                await update.message.reply_text(error_msg, parse_mode=None)
                 await self._log_conversation(telegram_user, "bot", f"Error: {str(e)}")
             
             return

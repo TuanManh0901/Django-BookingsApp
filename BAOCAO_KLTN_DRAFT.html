@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BÁO CÁO KHÓA LUẬN - VN-TRAVEL</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #000;
+            max-width: 21cm; /* A4 width */
+            margin: 0 auto;
+            padding: 2cm;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 1rem;
+        }
+        h2 {
+            font-size: 1.4rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        h4 {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Special Sections */
+        .header_info {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: bold;
+        }
+        .student_info {
+             margin: 2rem auto;
+             width: 80%;
+             border: 1px solid #ddd;
+             padding: 1.5rem;
+             background-color: #f9f9f9;
+        }
+         .student_info p {
+             text-align: left;
+             margin-bottom: 0.5rem;
+         }
+
+        blockquote {
+            background: #f1f8e9;
+            border-left: 5px solid #8bc34a;
+            margin: 1.5em 10px;
+            padding: 0.5em 10px;
+            font-style: italic;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 2rem 0;
+        }
+        
+        .toc {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            border: 1px solid #eee;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+         .toc a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Mermaid Diagram Styling */
+        .mermaid {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        @media print {
+            body {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER PAGE INFO -->
+    <div class="header_info">
+        <p>TRƯỜNG ĐẠI HỌC TÀI NGUYÊN VÀ MÔI TRƯỜNG HÀ NỘI</p>
+        <p>KHOA CÔNG NGHỆ THÔNG TIN</p>
+        <hr>
+        <h1>BÁO CÁO KHOÁ LUẬN TỐT NGHIỆP</h1>
+        <p><strong>Đề tài:</strong><br>Xây dựng hệ thống gợi ý và đặt tour du lịch thông minh với AI Travel Advisor cùng tự động hoá DevOps cho doanh nghiệp VN-Travel</p>
+    </div>
+
+    <div class="student_info">
+        <p><strong>Sinh viên thực hiện:</strong> Đinh Tuấn Mạnh</p>
+        <p><strong>Mã sinh viên:</strong> 22111062516</p>
+        <p><strong>Lớp:</strong> DH12C2</p>
+        <p><strong>Ngành:</strong> Công Nghệ Thông Tin</p>
+        <p><strong>Giảng viên hướng dẫn:</strong> ThS. Trần Minh Thắng</p>
+        <p style="text-align: center; margin-top: 1rem; font-weight:bold;">HÀ NỘI – Năm 2026</p>
+    </div>
+
+    <hr>
+
+    <!-- CONTENT START -->
+
+    <h2>BẢN CAM ĐOAN</h2>
+    <p>Tên tôi là: Đinh Tuấn Mạnh<br>
+    Mã sinh viên: 22111062516<br>
+    Lớp: DH12C2<br>
+    Ngành: Công Nghệ thông tin</p>
+    <p>Tôi đã thực hiện khóa luận với đề tài: <strong>“Xây dựng hệ thống gợi ý và đặt tour du lịch thông minh với AI Travel Advisor cùng tự động hoá DevOps cho doanh nghiệp VN-Travel”</strong>.</p>
+    <p>Tôi xin cam đoan đây là đề tài nghiên cứu của riêng tôi và được sự hướng dẫn của giảng viên ThS. Trần Minh Thắng. Các nội dung nghiên cứu, kết quả trong đề tài này là trung thực và chưa được công bố dưới bất kỳ hình thức nào. Nếu phát hiện hiện có bất kỳ hình thức gian lận nào tôi xin hoàn toàn chịu trách nhiệm trước pháp luật.</p>
+    <p style="text-align: right;"><em>Hà Nội, ngày 26 tháng 01 năm 2026</em></p>
+    <p style="text-align: right;"><strong>Sinh viên thực hiện</strong><br>(Ký và ghi rõ họ tên)<br><br>Đinh Tuấn Mạnh</p>
+
+    <hr>
+
+    <h2>LỜI CẢM ƠN</h2>
+    <p>Sau thời gian thực hiện khóa luận tốt nghiệp, đến nay mọi công việc liên quan đến khóa luận đã hoàn tất. Để có sự thành công này, em xin gửi lời cảm ơn chân thành đến tất cả các thầy, cô giáo trường Đại học Tài Nguyên và Môi Trường Hà Nội.</p>
+    <p>Em xin gửi lời cảm ơn chân thành nhất tới <strong>ThS. Trần Minh Thắng</strong>, người đã tận tình hướng dẫn, giúp đỡ em trong suốt quá trình làm khóa luận. Thầy đã giúp đỡ em trong việc chọn đề tài, hình thành những ý tưởng, những góp ý, chỉnh sửa để đề tài được hoàn thiện một cách tốt nhất có thể.</p>
+    <p>Em cũng xin gửi lời cảm ơn đến khoa Công nghệ thông tin – Trường Đại Học Tài Nguyên và Môi Trường Hà Nội đã luôn quan tâm, tạo điều kiện giúp em hoàn thành khóa luận tốt nghiệp này.</p>
+    <p>Vì thời gian, khả năng của bản thân có hạn mặc dù đã rất cố gắng hoàn thành khóa luận xong vẫn không tránh khỏi những sai sót. Em rất mong nhận được sự đóng góp, bổ sung ý kiến của quý thầy cô để khóa luận của em được hoàn thiện hơn.</p>
+    <p>Cuối cùng, em xin kính chúc các thầy cô giảng viên trường Đại học Tài nguyên và Môi trường Hà Nội nói chung, các thầy cô khoa Công nghệ thông tin nói riêng dồi dào sức khỏe và thành công trong sự nghiệp cao quý.</p>
+    <p>Em xin chân thành cảm ơn!</p>
+
+    <hr>
+
+    <h2>MỤC LỤC</h2>
+    <div class="toc">
+        <a href="#loi-mo-dau">1. LỜI MỞ ĐẦU</a>
+        <a href="#chuong-1">2. CHƯƠNG 1: TỔNG QUAN VỀ ĐỀ TÀI</a>
+        <a href="#chuong-2">3. CHƯƠNG 2: CƠ SỞ LÝ THUYẾT</a>
+        <a href="#chuong-3">4. CHƯƠNG 3: PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG</a>
+        <a href="#chuong-4">5. CHƯƠNG 4: CÀI ĐẶT VÀ TRIỂN KHAI</a>
+        <a href="#tong-ket">6. TỔNG KẾT</a>
+    </div>
+
+    <hr>
+
+    <h2 id="loi-mo-dau">LỜI MỞ ĐẦU</h2>
+    <p>Trong kỷ nguyên số hóa 4.0, ngành du lịch đang chứng kiến sự chuyển mình mạnh mẽ, và du lịch trực tuyến (E-Tourism) đã trở thành một phần không thể thiếu trong nền kinh tế số. Theo báo cáo của Statista (2023), doanh thu thị trường du lịch trực tuyến toàn cầu dự kiến sẽ đạt mức tăng trưởng ấn tượng trong những năm tới. Điều này cho thấy sự bùng nổ của xu hướng đặt tour du lịch qua mạng trên toàn thế giới, và Việt Nam không nằm ngoài xu thế đó. Tại Việt Nam, với sự phổ biến của Internet và smartphone, hành vi của khách du lịch đang thay đổi nhanh chóng từ đặt tour truyền thống sang các nền tảng trực tuyến tiện lợi.</p>
+    <p>Trong bối cảnh đó, các doanh nghiệp lữ hành truyền thống cần đổi mới và ứng dụng công nghệ để đáp ứng nhu cầu ngày càng cao của thị trường. <strong>"Xây dựng hệ thống gợi ý và đặt tour du lịch thông minh với AI Travel Advisor cùng tự động hoá DevOps cho doanh nghiệp VN-Travel"</strong> là một giải pháp hiện đại giúp công ty lữ hành nâng cao trải nghiệm khách hàng, tối ưu hóa quy trình vận hành và tăng trưởng doanh thu.</p>
+    <p>Hệ thống này không chỉ đơn thuần là một website bán tour trực tuyến mà còn tích hợp <strong>AI Travel Advisor (Chatbot thông minh)</strong> sử dụng công nghệ Generative AI để hỗ trợ khách hàng 24/7. Theo các khảo sát gần đây, du khách ngày càng ưa chuộng việc tự lên kế hoạch và tìm kiếm thông tin nhanh chóng. Việc sử dụng AI Chatbot giúp khách hàng ngay lập tức nhận được tư vấn về lịch trình, gợi ý điểm đến, và giải đáp thắc mắc mà không cần sự can thiệp trực tiếp của nhân viên tư vấn. Điều này không chỉ cải thiện trải nghiệm khách hàng nhờ sự phản hồi tức thì mà còn giúp doanh nghiệp giảm áp lực lên bộ phận chăm sóc khách hàng và nâng cao hiệu suất làm việc.</p>
+    <p>Bên cạnh đó, hệ thống tích hợp phương thức <strong>thanh toán trực tuyến qua MoMo</strong>, mang lại sự tiện lợi tối đa và an toàn cho khách hàng. Việc áp dụng thanh toán số giúp quy trình đặt cọc và thanh toán trở nên liền mạch, giảm thiểu tỷ lệ hủy tour vào phút chót và giúp doanh nghiệp quản lý dòng tiền hiệu quả hơn. Các nghiên cứu đã chỉ ra rằng việc tích hợp thanh toán trực tuyến đa dạng có thể gia tăng đáng kể tỷ lệ chuyển đổi đơn hàng cho các doanh nghiệp vừa và nhỏ (SMEs).</p>
+    <p>Ngoài ra, hệ thống quản lý tour du lịch thông minh còn cung cấp nhiều lợi ích quan trọng như: quản lý tập trung dữ liệu tour và booking, tự động hóa quy trình xác nhận qua email, và đảm bảo tính ổn định của hệ thống thông qua quy trình DevOps tự động hóa. Đây là bước đi chiến lược để VN-Travel khẳng định vị thế trong thị trường du lịch cạnh tranh khốc liệt hiện nay.</p>
+
+    <h2 id="chuong-1">CHƯƠNG 1: TỔNG QUAN VỀ ĐỀ TÀI</h2>
+
+    <h3>1.1 GIỚI THIỆU ĐỀ TÀI</h3>
+    <p>VN-Travel là một doanh nghiệp lữ hành cần chuyển đổi số để nâng cao năng lực cạnh tranh. Đề tài tập trung xây dựng một nền tảng web toàn diện bao gồm website đặt tour, hệ thống quản trị (Admin), và đặc biệt là module AI Travel Advisor sử dụng mô hình ngôn ngữ lớn (LLM) để tương tác với khách hàng bằng ngôn ngữ tự nhiên.</p>
+
+    <h3>1.2 TÍNH MỚI VÀ ĐIỂM NỔI BẬT CỦA ĐỀ TÀI</h3>
+    <p>Đề tài <strong>"Xây dựng hệ thống gợi ý và đặt tour du lịch thông minh với AI Travel Advisor cùng tự động hoá DevOps cho doanh nghiệp VN-Travel"</strong> không chỉ đơn thuần là một website đặt tour truyền thống mà còn là một <strong>hệ sinh thái công nghệ toàn diện</strong>, tích hợp các xu hướng hiện đại nhất (Generative AI, DevOps, Omnichannel) để giải quyết bài toán cốt lõi của ngành du lịch số. Các điểm nổi bật cụ thể như sau:</p>
+    <ul>
+        <li><strong>Tích hợp AI Travel Advisor hỗ trợ khách hàng đa nền tảng 24/7:</strong> Hệ thống sử dụng mô hình ngôn ngữ lớn (LLM - Google Gemini) hoạt động đồng bộ trên cả <strong>Website và Telegram Bot</strong>. Khác với chatbot kịch bản thông thường, AI Travel Advisor có khả năng hiểu ngôn ngữ tự nhiên tiếng Việt, ghi nhớ ngữ cảnh hội thoại và trả lời linh hoạt các câu hỏi về lịch trình, thời tiết, giá vé... giúp doanh nghiệp tiết kiệm chi phí nhân sự và tăng khả năng phản hồi tức thì.</li>
+        <li><strong>Ứng dụng công nghệ RAG (Retrieval-Augmented Generation) trong tư vấn:</strong> AI không trả lời dựa trên dữ liệu huấn luyện cũ mà truy xuất trực tiếp từ cơ sở dữ liệu thời gian thực của hệ thống (Real-time Database). Điều này đảm bảo thông tin về tour, số chỗ trống và giá vé được AI tư vấn luôn chính xác tuyệt đối, loại bỏ hiện tượng "ảo giác" (hallucination) thường gặp ở các mô hình AI generative thuần túy.</li>
+        <li><strong>Tích hợp thanh toán trực tuyến & Xử lý giao dịch an toàn (Concurrency Safety):</strong> Hệ thống tích hợp cổng thanh toán <strong>MoMo</strong>, giúp khách hàng thanh toán dễ dàng. Đặc biệt, hệ thống áp dụng cơ chế khóa giao dịch (Database Transaction Locking) để xử lý triệt để bài toán "Race Condition" (đặt trùng chỗ) khi có lượng truy cập lớn, đảm bảo tính vẹn toàn dữ liệu tài chính.</li>
+        <li><strong>Tối ưu hóa quy trình vận hành với DevOps tự động:</strong> Khác với các đồ án thông thường, dự án áp dụng quy trình <strong>CI/CD (Continuous Integration/Continuous Deployment)</strong> chuyên nghiệp. Mọi thay đổi mã nguồn đều được tự động kiểm thử và triển khai lên máy chủ, kết hợp với hệ thống Monitoring giám sát sức khỏe website, minh chứng cho tính thực tiễn và khả năng mở rộng của đề tài.</li>
+    </ul>
+
+    <h3>1.3 MỤC TIÊU CỦA ĐỀ TÀI</h3>
+    <h4>1.3.1 Mục tiêu chung</h4>
+    <p>Xây dựng hoàn thiện hệ thống website VN-Travel đáp ứng nhu cầu kinh doanh thực tế, hỗ trợ khách hàng tìm kiếm, đặt tour và nhận tư vấn tự động.</p>
+    <h4>1.3.2 Mục tiêu cụ thể</h4>
+    <ul>
+        <li>Phát triển hệ thống quản lý du lịch toàn diện với các chức năng cốt lõi: quản lý danh sách tour, quản lý đặt tour (booking), quản lý khách hàng và báo cáo doanh thu.</li>
+        <li>Tích hợp <strong>AI Travel Advisor (Chatbot)</strong> sử dụng công nghệ Generative AI để hỗ trợ khách hàng tra cứu thông tin lịch trình, hỏi đáp thời tiết và tư vấn đặt tour tự động 24/7 trên đa nền tảng (Web & Telegram).</li>
+        <li>Xây dựng tính năng <strong>gợi ý tour thông minh</strong> và tìm kiếm nâng cao, tích hợp bản đồ số (OpenStreetMap & Leaflet) và dự báo thời tiết (OpenWeather) để cá nhân hóa trải nghiệm người dùng.</li>
+        <li>Tích hợp <strong>cổng thanh toán trực tuyến MoMo</strong>, giúp khách hàng thực hiện đặt cọc và thanh toán vé tour an toàn, tiện lợi ngay trên hệ thống website.</li>
+        <li>Thiết kế giao diện web <strong>hiện đại, thân thiện, dễ sử dụng</strong> (UI/UX) cho cả người quản trị và khách du lịch, đảm bảo quy trình vận hành trơn tru và chuyên nghiệp.</li>
+    </ul>
+
+    <h3>1.4 PHẠM VI VÀ GIỚI HẠN CỦA ĐỀ TÀI</h3>
+    <h4>1.4.1 Phạm vi</h4>
+    <p>Đề tài tập trung vào việc xây dựng một hệ thống đặt tour du lịch thông minh trên nền tảng web tích hợp AI, với các chức năng chính bao gồm:</p>
+    <ul>
+        <li><strong>Quản lý danh sách tour, booking (đặt chỗ), khách hàng và báo cáo doanh thu</strong> dành cho quản trị viên (Admin) của công ty lữ hành.</li>
+        <li><strong>Giao diện website đặt tour</strong> dành cho khách hàng với đầy đủ chức năng tìm kiếm, xem chi tiết lịch trình, đặt tour và kiểm tra tình trạng chỗ trống theo thời gian thực (Real-time).</li>
+        <li><strong>Tích hợp AI Travel Advisor (Chatbot)</strong> hỗ trợ khách hàng tự động trong việc tư vấn tour, gợi ý điểm đến và giải đáp thắc mắc 24/7 thông qua hội thoại tự nhiên.</li>
+        <li><strong>Ứng dụng AI gợi ý tour thông minh</strong> dựa trên nhu cầu tìm kiếm và các câu hỏi của khách hàng, giúp cá nhân hóa trải nghiệm người dùng.</li>
+        <li><strong>Thanh toán trực tuyến</strong> qua cổng thanh toán MoMo, giúp quy trình đặt cọc và thanh toán diễn ra nhanh chóng, an toàn.</li>
+        <li><strong>Hệ thống được xây dựng và triển khai</strong> trên các nền tảng thực tế (Web & Telegram), phù hợp cho mô hình vận hành của doanh nghiệp du lịch vừa và nhỏ.</li>
+    </ul>
+    <h4>1.4.2 Giới hạn</h4>
+    <ul>
+        <li><strong>Hệ thống hiện tại chỉ tập trung triển khai trên nền tảng Web và Telegram Bot</strong>, chưa có ứng dụng di động riêng (Mobile App native) dành cho iOS/Android.</li>
+        <li><strong>Dữ liệu tour và địa điểm</strong> mới chỉ dừng lại ở phạm vi các điểm đến phổ biến trong nước (Việt Nam), chưa mở rộng ra thị trường quốc tế.</li>
+        <li><strong>Phương thức thanh toán</strong> hỗ trợ chính qua ví điện tử MoMo và chuyển khoản ngân hàng, chưa tích hợp cổng thanh toán thẻ quốc tế (Visa/Mastercard) trực tiếp.</li>
+        <li><strong>Chatbot AI</strong> phụ thuộc vào giới hạn truy cập (Quota) của dịch vụ Google Gemini API miễn phí, có thể gặp độ trễ phản hồi trong giờ cao điểm hoặc khi hết hạn ngạch ngày.</li>
+    </ul>
+
+    <h3>1.5 PHƯƠNG PHÁP NGHIÊN CỨU</h3>
+    <p>Để thực hiện đề tài <strong>“Xây dựng hệ thống gợi ý và đặt tour du lịch thông minh với AI Travel Advisor cùng tự động hoá DevOps cho doanh nghiệp VN-Travel”</strong>, các phương pháp nghiên cứu và triển khai chính được sử dụng bao gồm:</p>
+    
+    <h4>📍 Phương pháp thu thập và phân tích yêu cầu</h4>
+    <ul>
+        <li><strong>Khảo sát nghiệp vụ du lịch:</strong> Tìm hiểu quy trình vận hành thực tế của các công ty lữ hành (quản lý tour, xử lý booking, chính sách giá...) để xây dựng các chức năng phần mềm sát với nhu cầu thực tế.</li>
+        <li><strong>Phân tích xu hướng công nghệ:</strong> Nghiên cứu ứng dụng <strong>Generative AI (LLM)</strong> và kiến trúc <strong>RAG</strong> để giải quyết bài toán tư vấn khách hàng tự động, thay thế cho các chatbot kịch bản cứng nhắc truyền thống.</li>
+    </ul>
+
+    <h4>📍 Phương pháp thiết kế hệ thống</h4>
+    <ul>
+        <li><strong>Thiết kế kiến trúc tổng thể:</strong> Xây dựng mô hình kiến trúc Client-Server, tách biệt rõ ràng giữa Frontend (Template/Static), Backend (Django Views/Models) và các AI Services tích hợp.</li>
+        <li><strong>Mô hình hóa hệ thống:</strong> Sử dụng các biểu đồ UML (Use Case, Class Diagram, Sequence Diagram) để đặc tả chi tiết các luồng xử lý nghiệp vụ và quan hệ dữ liệu.</li>
+        <li><strong>Thiết kế giao diện (UI/UX):</strong> Sử dụng <strong>Argon Design System</strong> để thiết kế giao diện hiện đại, tập trung vào trải nghiệm người dùng tối ưu trên cả máy tính và thiết bị di động.</li>
+    </ul>
+
+    <h4>📍 Phương pháp phát triển và tích hợp</h4>
+    <ul>
+        <li><strong>Phát triển ứng dụng Web:</strong> Sử dụng ngôn ngữ <strong>Python</strong> và framework <strong>Django</strong> mạnh mẽ, kết hợp với cơ sở dữ liệu <strong>PostgreSQL</strong> để đảm bảo tính ổn định và bảo mật.</li>
+        <li><strong>Tích hợp AI Travel Advisor:</strong> Sử dụng <strong>Google Gemini Pro API</strong> làm lõi trí tuệ nhân tạo, kết hợp với thuật toán tìm kiếm ngữ nghĩa (Semantic Search) để tư vấn chính xác.</li>
+        <li><strong>Tích hợp dịch vụ bên thứ 3:</strong> Kết nối các API cần thiết như <strong>MoMo</strong> (Thanh toán), <strong>OpenStreetMap</strong> (Bản đồ), <strong>OpenWeather</strong> (Thời tiết).</li>
+    </ul>
+
+    <h4>📍 Phương pháp kiểm thử và tự động hóa (DevOps)</h4>
+    <ul>
+        <li><strong>Kiểm thử chức năng (Automation Test):</strong> Viết các kịch bản kiểm thử tự động (Unit Test, Integration Test) để đảm bảo chất lượng phần mềm.</li>
+        <li><strong>Triển khai CI/CD:</strong> Áp dụng quy trình tích hợp và triển khai liên tục (GitHub Actions, Render) để tự động hóa việc đưa sản phẩm đến tay người dùng cuối.</li>
+    </ul>
+
+    <h2 id="chuong-2">CHƯƠNG 2: CƠ SỞ LÝ THUYẾT</h2>
+
+    <h3>2.1 GIỚI THIỆU VỀ PYTHON VÀ DJANGO FRAMEWORK</h3>
+    <p><strong>Python</strong> là một ngôn ngữ lập trình bậc cao, thông dịch, hướng đối tượng và đa năng. <strong>Django</strong> là một Web Framework mạnh mẽ được viết bằng Python, phát triển dựa trên mô hình MVT (Model-View-Template), giúp các lập trình viên xây dựng ứng dụng web nhanh chóng, bảo mật và dễ bảo trì.</p>
+    <p><em>Một số đặc điểm nổi bật của Django Framework:</em></p>
+    <ul>
+        <li><strong>Mô hình "Pin kèm theo" (Batteries-Included):</strong> Django cung cấp sẵn hầu hết các thư viện cần thiết cho phát triển web như xác thực người dùng (Authentication), quản trị nội dung (Admin), xử lý form, sitemap... mà không cần cài đặt thêm.</li>
+        <li><strong>Hệ thống ORM (Object-Relational Mapping) mạnh mẽ:</strong> Cho phép tương tác với cơ sở dữ liệu thông qua các đối tượng Python thay vì viết câu lệnh SQL thuần, giúp code ngắn gọn, dễ đọc và tránh được lỗi cú pháp SQL.</li>
+        <li><strong>Tính bảo mật cao (Security):</strong> Django tích hợp sẵn các cơ chế bảo vệ ứng dụng khỏi các lỗ hổng phổ biến như SQL Injection, Cross-site Scripting (XSS), Cross-site Request Forgery (CSRF) và Clickjacking.</li>
+        <li><strong>Khả năng mở rộng (Scalability):</strong> Django có kiến trúc linh hoạt, dễ dàng mở rộng để xử lý lượng truy cập lớn (ví dụ: Instagram, Pinterest đều sử dụng Django).</li>
+    </ul>
+    <p>Với sự hỗ trợ mạnh mẽ từ cộng đồng và các tính năng ưu việt, Django là lựa chọn hoàn hảo để xây dựng nền tảng backend vững chắc cho hệ thống VN-Travel.</p>
+
+    <h3>2.2 HỆ QUẢN TRỊ CƠ SỞ DỮ LIỆU POSTGRESQL</h3>
+    <p><strong>PostgreSQL</strong> là một hệ quản trị cơ sở dữ liệu quan hệ đối tượng (ORDBMS) mã nguồn mở tiên tiến nhất hiện nay, nổi tiếng với độ ổn định, tính toàn vẹn dữ liệu và khả năng xử lý các truy vấn phức tạp.</p>
+    <p><em>Một số đặc điểm nổi bật của PostgreSQL:</em></p>
+    <ul>
+        <li><strong>Hỗ trợ kiểu dữ liệu đa dạng:</strong> Ngoài các kiểu dữ liệu quan hệ truyền thống, PostgreSQL hỗ trợ mạnh mẽ <strong>JSON/JSONB</strong>, cho phép lưu trữ dữ liệu phi cấu trúc (NoSQL) ngay trong bảng quan hệ. Điều này cực kỳ hữu ích cho việc lưu trữ lịch trình tour (Itinerary) linh động trong dự án.</li>
+        <li><strong>Tính toàn vẹn và độ tin cậy (ACID Compliance):</strong> PostgreSQL tuân thủ nghiêm ngặt các chuẩn ACID, đảm bảo an toàn dữ liệu tuyệt đối ngay cả khi hệ thống gặp sự cố mất điện hay lỗi phần cứng.</li>
+        <li><strong>Khả năng mở rộng và hiệu năng cao:</strong> Hỗ trợ đánh chỉ mục (Indexing) nâng cao (B-tree, GIN, GiST) giúp tăng tốc độ truy vấn, đồng thời hỗ trợ tốt cho việc xử lý đồng thời (Concurrency) nhờ cơ chế MVCC.</li>
+        <li><strong>Cộng đồng lớn và mã nguồn mở:</strong> Hoàn toàn miễn phí, cộng đồng hỗ trợ lớn và tài liệu phong phú.</li>
+    </ul>
+    <p>PostgreSQL được lựa chọn làm cơ sở dữ liệu chính cho dự án nhờ khả năng xử lý giao dịch an toàn và tính linh hoạt trong lưu trữ dữ liệu phức tạp.</p>
+
+    <h3>2.3 TRÍ TUỆ NHÂN TẠO GENERATIVE AI VÀ GOOGLE GEMINI</h3>
+    <p><strong>Generative AI (AI tạo sinh)</strong> là một nhánh của trí tuệ nhân tạo tập trung vào việc tạo ra nội dung mới dựa trên dữ liệu đã học. <strong>Google Gemini</strong> là mô hình ngôn ngữ lớn (LLM) đa phương thức tiên tiến nhất của Google, có khả năng hiểu, suy luận và tạo ra văn bản, code, hình ảnh... với độ chính xác cao.</p>
+    <p><em>Một số đặc điểm nổi bật của Google Gemini trong dự án:</em></p>
+    <ul>
+        <li><strong>Khả năng hiểu ngôn ngữ tự nhiên (NLU):</strong> Gemini có thể hiểu sâu sắc ngữ cảnh, ý định và sắc thái trong câu hỏi tiếng Việt của người dùng, vượt trội hơn hẳn các chatbot kịch bản (Rule-based) truyền thống.</li>
+        <li><strong>Cửa sổ ngữ cảnh lớn (Long Context Window):</strong> Cho phép mô hình xử lý một lượng lớn thông tin đầu vào (như danh sách toàn bộ tour, chính sách giá) để đưa ra câu trả lời chính xác mà không bị "quên" dữ liệu.</li>
+        <li><strong>Tích hợp linh hoạt qua API:</strong> Google cung cấp bộ SDK <code>google-generativeai</code> cho Python, giúp tích hợp sức mạnh của LLM vào ứng dụng Django một cách dễ dàng và hiệu quả.</li>
+        <li><strong>Hiệu năng và chi phí:</strong> Phiên bản Gemini Flash cung cấp tốc độ phản hồi cực nhanh (Low latency) với chi phí hợp lý, phù hợp cho các tác vụ chatbot thời gian thực.</li>
+    </ul>
+    <p>Việc tích hợp Google Gemini giúp "thổi hồn" vào hệ thống, biến VN-Travel trở thành một trợ lý du lịch thông minh thực thụ.</p>
+
+    <h3>2.4 GIỚI THIỆU VỀ THANH TOÁN TRỰC TUYẾN</h3>
+    <p>Thanh toán trực tuyến là một phương thức thanh toán cho phép khách hàng chi trả cho sản phẩm hoặc dịch vụ trực tuyến thông qua internet. Phương thức này đã trở nên phổ biến trong những năm gần đây do sự phát triển của thương mại điện tử và nhu cầu thanh toán không dùng tiền mặt. Các phương thức phổ biến bao gồm ví điện tử (MoMo, ZaloPay), cổng thanh toán (VNPAY), và thẻ ngân hàng.</p>
+    <p>Trong dự án này, hệ thống tích hợp <strong>MoMo</strong>, một trong những ví điện tử phổ biến nhất tại Việt Nam, cho phép khách hàng thanh toán nhanh chóng qua QR Code hoặc thẻ ATM nội địa.</p>
+    
+    <h4>2.4.1 Ưu nhược điểm của thanh toán trực tuyến</h4>
+    <p><strong>📍 Ưu điểm:</strong></p>
+    <ul>
+        <li><strong>Tiết kiệm thời gian:</strong> Giúp khách hàng thanh toán ngay lập tức mà không cần di chuyển hay chuẩn bị tiền mặt.</li>
+        <li><strong>Tăng cường tiện lợi:</strong> Cho phép giao dịch 24/7 tại bất kỳ đâu miễn là có kết nối internet.</li>
+        <li><strong>Giảm thiểu rủi ro:</strong> Hạn chế các rủi ro liên quan đến quản lý tiền mặt như mất mát, nhầm lẫn hay trộm cắp.</li>
+        <li><strong>Tự động hóa quy trình:</strong> Hệ thống tự động cập nhật trạng thái đơn hàng ngay khi nhận được tín hiệu thanh toán (IPN), giúp giảm tải cho nhân viên quản lý.</li>
+    </ul>
+    <p><strong>📍 Nhược điểm:</strong></p>
+    <ul>
+        <li><strong>Rủi ro bảo mật:</strong> Luôn tiềm ẩn nguy cơ về an ninh mạng nếu không tuân thủ các chuẩn bảo mật (dự án đã khắc phục bằng cách sử dụng API MoMo chính thức và HTTPS).</li>
+        <li><strong>Phụ thuộc vào đường truyền:</strong> Giao dịch có thể bị gián đoạn nếu kết nối internet không ổn định.</li>
+        <li><strong>Phí giao dịch:</strong> Một số cổng thanh toán có thể thu phí xử lý giao dịch.</li>
+    </ul>
+
+    <h3>2.5 CÁC CÔNG NGHỆ TÍCH HỢP KHÁC</h3>
+    <p>Để hoàn thiện hệ sinh thái công nghệ, dự án còn tích hợp các dịch vụ và thư viện chuyên dụng khác:</p>
+    <p><em>Các thành phần công nghệ bổ trợ:</em></p>
+    <ul>
+        <li><strong>OpenStreetMap & Leaflet:</strong> Giải pháp bản đồ số mã nguồn mở, giúp hiển thị vị trí điểm đến trực quan, tương tác mượt mà trên website mà không tốn chi phí bản quyền đắt đỏ như Google Maps.</li>
+        <li><strong>OpenWeatherMap API:</strong> Cung cấp dữ liệu thời tiết thời gian thực và dự báo, giúp khách hàng có thông tin chuẩn bị tốt nhất cho chuyến đi.</li>
+        <li><strong>Celery & Redis:</strong> Hệ thống hàng đợi (Task Queue) giúp xử lý các tác vụ nền (Background Tasks) như gửi email xác nhận, cập nhật trạng thái đơn hàng mà không làm chậm trải nghiệm của người dùng.</li>
+        <li><strong>Giao diện Argon Design System:</strong> Bộ giao diện người dùng hiện đại dựa trên Bootstrap, giúp website có vẻ ngoài chuyên nghiệp và nhất quán.</li>
+    </ul>
+
+    <h2 id="chuong-3">CHƯƠNG 3: PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG</h2>
+
+    <h3>3.1 MỤC TIÊU HỆ THỐNG</h3>
+    <p>Xây dựng một hệ thống đặt tour du lịch trực tuyến có giao diện hiện đại, thân thiện, dễ sử dụng. Hệ thống hỗ trợ công cụ tìm kiếm đa dạng và gợi ý thông minh, giúp nhân viên quản trị dễ dàng quản lý thông tin khách hàng, tour du lịch, booking và doanh thu; đồng thời giúp khách hàng dễ dàng tiếp cận các sản phẩm du lịch, quản lý lịch trình cá nhân và thực hiện đặt tour theo nhu cầu một cách nhanh chóng.</p>
+
+    <h3>3.2 ĐẶC TẢ YÊU CẦU</h3>
+    <p><strong>3.2.1 Yêu cầu chức năng:</strong></p>
+    <ul>
+        <li><em>Về phía người dùng là Admin (nhân viên quản lý):</em>
+            <ul>
+                <li>Quản lý, thống kê các tour du lịch, sắp xếp, phân loại theo nhiều tiêu chí (giá, địa điểm).</li>
+                <li>Quản lý, thống kê các danh mục tour.</li>
+                <li>Quản lý tài khoản người dùng (Khách hàng).</li>
+                <li>Quản lý tổng thể các booking (đơn đặt tour), cập nhật tình trạng thanh toán và xử lý hoàn tiền/hủy tour.</li>
+            </ul>
+        </li>
+        <li><em>Về phía người dùng là Khách hàng:</em>
+            <ul>
+                <li>Đăng ký, đăng nhập tài khoản.</li>
+                <li>Quản lý thông tin cá nhân (Profile).</li>
+                <li>Tìm kiếm thông tin tour du lịch theo từ khóa, bộ lọc (Filter).</li>
+                <li>Quản lý danh sách booking cá nhân.</li>
+                <li>Đặt tour trực tuyến và thanh toán.</li>
+                <li>Theo dõi trạng thái đơn đặt tour của bản thân.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>3.2.2 Yêu cầu phi chức năng:</strong></p>
+    <ul>
+        <li><em>Hiệu suất:</em> Tốc độ tải trang (Load page) và cập nhật thông tin quản lý nhanh chóng (< 2 giây).</li>
+        <li><em>Khả năng tiếp cận:</em> Giao diện đơn giản, dễ dàng sử dụng, thuận tiện trên mọi thiết bị (Responsive Design).</li>
+    </ul>
+
+            <h3>3.3 CHI TIẾT CÁC USE CASE CHÍNH</h3>
+
+    <p>Dưới đây là chi tiết các Use Case chính của hệ thống, được phân tích đầy đủ dựa trên nghiệp vụ thực tế và sơ đồ Use Case tổng quát.</p>
+
+    <p><strong>3.3.0 Biểu đồ Use Case Tổng quát</strong></p>
+
+    <div style="text-align: center; margin: 2rem 0;">
+        <img src="http://www.plantuml.com/plantuml/svg/bPLDQnD16CVl-oaUUj3qqEOkRMco6qteIsfUj20Yqzt9pf3TcJ0pImtIamSFNkh1es0L4SM2e20c50yR-ZtscpZxcjqQ4NFAFlDxPfwN_pDZx4g5X0fypxWDGud1mICKU0eSAh2jA6TGKtm2YiC9Luhxwt0IAF0HevF0Gmg3XwPSMqwf8e24uAVIa6FA9aWW7oR87YCNzzNKmn1lY9ZhuH8GI6mZVUmp0_IlgN5Ny80v9lUuW8U4AfokSE5WaLgRdiOIQoC-hsmyAssDRANj_x_ncM6ahcjx9Bom2P3mBNFN04dOQ-TB3SUdBB4rB4ENRdjx6_hjHgzbGHqQfjaT7WwWDkWUhSTBHfxcsk9yyPovm4Wqkvma_aFpoJvtAVk36OTNET33BfKA2yFOQyD6CDdOMRgLBGNNi6vYMOpci3_e7hHwqEzOBQZjj-uEu1OqkmDjlH7g8FpYmvX6iry-37WWyc3w60cRBBbZx8DDAAWOLHNq0SMdyNSvjsZs8uMWrkHSTyjTp_7uEy6N_FqWchrdu8LNO8SNkcxXEvRZHuAFg5PJ0VUZ-IK2HSBlkdoA5c3BeQh3HhmInlmr1LztGS5OD-DJaCCcqHh5HqZAQefUD7-fnI3r6R1uTNt1oacsTTcvcARzyV18fQNFIbKr5aMfcfV9ntQ7dxBKdcUv_0jRcvlbjE0ER6tXfmepPsTd1RVCw5zaAPKgcgcdOHrq3ZFfz3htsd_LJgbj5c945th-mSuBTe2OlXDCf5RoPVsaP5L19VJGlVuQpTzGSCAVsOGMJlekM-sqEDUzAyrquP6fCSxLmWfHBxaFJUqlOQHdFXdvqdYGyBDVJoHNFmw_eKhWPczeLSEsWcaqVw7gxMZ-SPe6KTAnZQKipe-7Lr2NPC9ObclbGdBCofMa12jNYgCgknHwoO9F942PxGKEJkLIySxnQlWtd7GnzzC7Wb2cPFoEZ36Uf9Up11ip9P2NIFuHeOw3sUCqskHUtTNgYv-ctm00" alt="Biểu đồ Use Case VN-Travel (Layout Ngang)" style="max-width: 100%; border: 0px solid #ddd; padding: 5px; border-radius: 5px;">
+        <p style="font-style: italic; margin-top: 5px;">Hình 3.1: Biểu đồ Use Case tổng quát hệ thống VN-Travel</p>
+    </div>
+
+
+    <h4>3.3.1 Nhóm Use Case Khách hàng</h4>
+
+    <p><strong>3.3.1 Đăng ký tài khoản (Register)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Khách hàng.</li>
+        <li><strong>Mục đích:</strong> Đăng ký tài khoản mới để sử dụng dịch vụ.</li>
+        <li><strong>Mô tả:</strong> Khách hàng nhập thông tin (username, email, pass). Hệ thống kiểm tra hợp lệ và tạo tài khoản.</li>
+    </ul>
+
+    <p><strong>3.3.2 Đăng nhập (Login)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> User (Khách/Admin).</li>
+        <li><strong>Mục đích:</strong> Truy cập hệ thống.</li>
+        <li><strong>Mô tả:</strong> Nhập credential, hệ thống xác thực và cấp session.</li>
+    </ul>
+
+    <p><strong>3.3.3 Tìm kiếm Tour (Search)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Khách hàng.</li>
+        <li><strong>Mục đích:</strong> Tìm tour theo tiêu chí.</li>
+        <li><strong>Mô tả:</strong> Nhập từ khóa/lọc giá, hệ thống trả về danh sách tour phù hợp.</li>
+    </ul>
+
+    <p><strong>3.3.4 Xem chi tiết Tour (View Detail)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Khách hàng.</li>
+        <li><strong>Mục đích:</strong> Xem thông tin đầy đủ của tour.</li>
+        <li><strong>Mô tả:</strong> Chọn tour, hệ thống hiển thị lịch trình, giá, ảnh chi tiết.</li>
+    </ul>
+
+    <p><strong>3.3.5 Đặt Tour (Booking)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Khách hàng.</li>
+        <li><strong>Mục đích:</strong> Đặt chỗ cho tour.</li>
+        <li><strong>Mô tả:</strong> Chọn ngày, số người, xác nhận. Hệ thống kiểm tra slot và tạo đơn hàng.</li>
+    </ul>
+
+    <p><strong>3.3.6 Sửa thông tin cá nhân (Edit Profile)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Khách hàng.</li>
+        <li><strong>Mục đích:</strong> Cập nhật hồ sơ.</li>
+        <li><strong>Mô tả:</strong> Thay đổi SĐT, avatar... Hệ thống lưu thông tin mới.</li>
+    </ul>
+
+    <p><strong>3.3.7 Đổi mật khẩu (Change Password)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Khách hàng.</li>
+        <li><strong>Mục đích:</strong> Bảo mật tài khoản.</li>
+        <li><strong>Mô tả:</strong> Nhập pass cũ/mới. Hệ thống kiểm tra và cập nhật pass mới.</li>
+    </ul>
+
+    <p><strong>3.3.8 Xem lịch sử đơn hàng (My Bookings)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Khách hàng.</li>
+        <li><strong>Mục đích:</strong> Theo dõi đơn hàng đã đặt.</li>
+        <li><strong>Mô tả:</strong> Hệ thống liệt kê danh sách đơn hàng của người dùng hiện tại.</li>
+    </ul>
+
+    <h4>3.3.2 Nhóm Use Case Admin</h4>
+
+    <p><strong>3.3.9 Quản lý Danh mục (Manage Category)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Admin.</li>
+        <li><strong>Mục đích:</strong> Phân loại tour.</li>
+        <li><strong>Mô tả:</strong> Thêm, sửa, xóa các danh mục tour.</li>
+    </ul>
+
+    <p><strong>3.3.10 Quản lý Tour (Manage Tour)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Admin.</li>
+        <li><strong>Mục đích:</strong> Quản lý sản phẩm du lịch.</li>
+        <li><strong>Mô tả:</strong> CRUD tour, quản lý lịch trình, giá, hình ảnh.</li>
+    </ul>
+
+    <p><strong>3.3.11 Quản lý Đơn hàng (Manage Booking)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Admin.</li>
+        <li><strong>Mục đích:</strong> Xử lý đơn đặt.</li>
+        <li><strong>Mô tả:</strong> Duyệt đơn, hủy đơn, xác nhận thanh toán.</li>
+    </ul>
+
+    <p><strong>3.3.12 Quản lý Người dùng (Manage User)</strong></p>
+    <ul>
+        <li><strong>Actor:</strong> Admin.</li>
+        <li><strong>Mục đích:</strong> Quản trị thành viên.</li>
+        <li><strong>Mô tả:</strong> Xem danh sách, khóa/mở khóa tài khoản user.</li>
+    </ul>
+
+    <h3>3.4 ĐẶC TẢ CHI TIẾT VÀ BIỂU ĐỒ TUẦN TỰ (SEQUENCE DIAGRAM)</h3>
+    <p>Phần này trình bày chi tiết luồng xử lý của từng Use Case thông qua mô hình khái niệm và biểu đồ tuần tự.</p>
+
+
+
+
+
+
+    <h4>3.4.1 Biểu đồ tuần tự Use Case "Đăng ký"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng.</li>
+            <li><em>Lớp biên:</em> form DangKy (Form đăng ký).</li>
+            <li><em>Lớp điều khiển:</em> control_DangKy (Xử lý validation, tạo user).</li>
+            <li><em>Lớp thực thể:</em> auth_user (Lưu trữ thông tin tài khoản).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fVMxTsMwFN1ziq_svQADKoitwMTCVLmOG1tNvovzXbVCTL0AiAukYkBCQgKJqRWTK-6Rm-AEVSRN2gyW7Pf93vvPP0E_I2bIpkmQTRROmWEpZLRIhF-N4hUiVSRgrDWN9LxeJu6sQC6uRJaxWJwlKkbgAkmYIBj7CgFhFsG5KjZLC9unYvMMZIv1KwIVm0-wmQDO_LJ93C4xhon7DuE-AP95AVJcTRkShAPpVlyCdDnGYRsea5PCBcN4sOhAuUYyOhkeLGCW5NBbMWFQgX6v0aYj30S15aRmjESXjeYR9E6bZuAErmWxfp8CSfflGyTlO3e5gonUxfoFYeZymHsKwLIO9wRbjTXZS7m97rzirXuzwH3IFpKfD1uT3mPvCqbFV2r8B-TpL49y1rKs6GpXe912d3w5SuAla3UxEoc5WxY7Yr_5MzhyK-3nbjdcx3W68qjjrdeog83ZeAj6AqPyz_kF" alt="Sequence Diagram Register" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.2 Biểu đồ tuần tự Use Case "Đăng nhập"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng / Admin.</li>
+            <li><em>Lớp biên:</em> form DangNhap (Giao diện đăng nhập).</li>
+            <li><em>Lớp điều khiển:</em> control_DangNhap (Xác thực tài khoản).</li>
+            <li><em>Lớp thực thể:</em> auth_user (Thông tin người dùng).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fZO_TsNADMb3PIWVCSSq7gyo_NkqusDCVF2v19ypjZMmPkSFmPoCRbwAFQOiEgMSUzswJC-SN8EJQ9P0SoaLHFvfz5998TopiYRsOPHSscFYJCKElGYTxWdiZJXRZqhgFEU0iB7qZWpqFUp1rdJUBOp8YgIEqZBU4nkjrlDgp0O4MMVmbiF_LjYvQLZYvyNQsfkCmyqQgo98kc8xANTF-jP24dEDfphBRppYIIHf1dlSatDZKwb-fnoUJSFcCQx6WsSOvIyQkmjS_6dEWNJ97ijxvSrJcYQ2HLCXKpRk7gUpVyu7n6B11mwITqFXeQPKVsiTqNk9gZBfBGOOPmyD5fDVlC5pe_YYeJetLEgetoVxuYAQKBG76AbMPSSHeIncjotZ3S2AdPbNADLYUK_Nt5KtCbQOeegW6x-CKV-ZNzjKF9kag_aNMMeVwlAdFnf07NzK7V-3g2wZwXgLa19qO2NLWFrCYA_nnlS9wrG4enr3Dj15HYXD8kf7BQ==" alt="Sequence Diagram Login" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.3 Biểu đồ tuần tự Use Case "Tìm kiếm Tour"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng.</li>
+            <li><em>Lớp biên:</em> form TimKiem (Danh sách tour).</li>
+            <li><em>Lớp điều khiển:</em> control_TimKiem (Xử lý tìm kiếm, lọc).</li>
+            <li><em>Lớp thực thể:</em> tours_tour (Thông tin tour du lịch).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fVOxTsMwEN3zFafsFTsDKjCAVMGUvXIdt7aS2K19rqgQA2JEDIiJDVQhJKADYksGhvAj_hOcLKRJSoZTknd5797zJRgaJBptlgYmEXJONMnA4CplvmpBa4SLmMFEKYzUZbOMzS2TlJ0xY8iUHaZiKoEyiUwHwcRXMBiYGI6EK24s_Ny74gHQuvxVArriE6xhQIkvUfmRQSJc_p1BpKwO4TIAf3kZFFTMiUQIR7x8phx4-SRnYReeKu0_FtlIsKwHpkqiVul4dwd6YTOuahjUKLGopM0m3k39SFEsCbK-SbZfweCgNQ_swzl3-WZeGX-HhJdfZO-Yu-JOwsQVj5D6W9qS6TpqkVYybV9e6cQVGwEoyjcLlJcbwL94WxK9qXQ5K6FGPF4j0nYFS5e_SIiJ5GBq-xXaUmimWpM3eQY7HETa5WtPX1z3ssfsH_7u8H2ncVrtpF9DfwS3TY3Eh4Sw8Eu67kj1htVs6B5YE93emqtgyGRc_Vy_" alt="Sequence Diagram Search" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.4 Biểu đồ tuần tự Use Case "Xem chi tiết Tour"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng.</li>
+            <li><em>Lớp biên:</em> form ChiTietTour (Trang chi tiết).</li>
+            <li><em>Lớp điều khiển:</em> control_ChiTietTour (Lấy thông tin tour).</li>
+            <li><em>Lớp thực thể:</em> tours_tour (Dữ liệu tour).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fZO_TsMwEMb3PMWpEwy8AAMqfwYQsHWAqXKda2KR2CU-V60QA2JgQAyIFwAhhMSCkJiSgSG8iN8Exx1IW7cZLJ3vdD9_312iriZWkMmzSF8IOWIFy0HTNEN3FoL7TCpihKFSNFCTdhleGpQcT1FrluBuJhIJHCVhEUVDV4HQ0THsCVvdGvh9tNUTkLHluwSy1RcYjcCZO84wB54KIGHLH4KeMkUHriJwnyOR4GLEJEHnOK1feApp_SyTznJ6qIoc9lPRE0i-x3IJV5IKlfXXV5G71n3ySZ9lhpQ0-cAJ8yEnMWaEoRfNX8HWTuBdsO1CWz04H1wI3FsywXyheVhPoF0DCSlznPP6w3iAgcyWb1OgtP6WibN6Bl9ArvQn3L8Bt8xyvBMPiW31CZmb-52ZSdw4OthcQLVN9oR2o601knqFLV9hbKubtpj__fHdYlxDCmtZNarDZn-dW25i90H72qyVBraLwoNtV8zv1XXURRk3f-If" alt="Sequence Diagram View Tour" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.5 Biểu đồ tuần tự Use Case "Đặt Tour (Booking)"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng.</li>
+            <li><em>Lớp biên:</em> form DatTour (Form đặt tour).</li>
+            <li><em>Lớp điều khiển:</em> control_DatTour (Xử lý đặt tour, kiểm tra chỗ).</li>
+            <li><em>Lớp thực thể:</em> bookings_booking (Đơn hàng), tours_tour (Thông tin tour).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/hZO9TsMwFIX3PMVV9r4AA-JPYigwsVeO48YWjV3s64oKMfECIEaWdkJCqlQkJKRmTNX38JtgB4Y2TiGDleQe38_n3CQ5Mkg02nKUmBshx0STEgxOR8yvWtCmwkXOYKgUZupuW8ZuLZOUXTJjSMGOR6KQQJlEppNk6BUMUpPDiXDVo4X1s6teAK1bvUlAV32ANQwo8cv6ya2-EK6V1SncJ-AvT0BBxZhIhLTP6znlwOuZLNK4PFS6hDOCzf64TJVErUaD_YpMKW-qMIPfmzRpNMSikrbMvJ3mkaKYEGRd59l9Bb3D1qngAK64Wy3GgLz-lAWgkCGRYBu9oAWIHbXaBUDbl2ecu2ohYFq_W6A-Z_sHojOVuGcARfF4Uj8MtQTUBCb1DC42ywDbzOVPBC1YHHBDixv39hhr-mNozYGGAJsGOfsXERvqms0pt1PvR4IhfjbZZumqV-p5xONQ1XMZ4Trj2xbEI9yu7n5BD8kRk3n4074B" alt="Sequence Diagram Booking" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.6 Biểu đồ tuần tự Use Case "Sửa thông tin cá nhân"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng.</li>
+            <li><em>Lớp biên:</em> form SuaThongTin (Form hồ sơ).</li>
+            <li><em>Lớp điều khiển:</em> control_SuaThongTin (Cập nhật thông tin).</li>
+            <li><em>Lớp thực thể:</em> auth_user (Thông tin tài khoản).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fVOxTsMwEN3zFafs_QEGVGBgQLC0e-U6bmyRnENyRlSIiYEZMbJQFiSkCiExNWP4Ef8JlzCQFqceTrLv6b27d-doXJEoyeVZVF0aLEQpcqhomSmOpZFdRptEwcJamtubPkxdOYVSnauqEqk6ykyKIBWSKqNowQgFcZXAsfH1vYPvR18_ATm_eUMgX3-CqxRIwWHi67UA0s0XpkCGSZoVoG5eMYbbCPiwIBlpCoEE8ZluVlKDbl4wjf-nF7bMYeLEVFtMpwYDEGmRSpvN9qOEIz3jIss46pJ8t-jyObfXXSWZa0EqVND2E4wOA2XBAVxov1kX_c5zXz-bHfpwQwHCVibUGiudssUGls27A8kT6CIrY1sA7egNuhMmb1X_rGKtkx41JL7-gIxX4MHtyPTs7ch7HKM9nWyxU2uw5n1h_zqWRA0LhKsfms30dyjzZmX3ywza1QeFZ9hHbC_RXTRWmLSf7wc=" alt="Sequence Diagram Edit Profile" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.7 Biểu đồ tuần tự Use Case "Đổi mật khẩu"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng.</li>
+            <li><em>Lớp biên:</em> form DoiMatKhau (Form đổi mật khẩu).</li>
+            <li><em>Lớp điều khiển:</em> control_DoiMatKhau (Xử lý đổi mật khẩu).</li>
+            <li><em>Lớp thực thể:</em> auth_user (Tài khoản).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fVO7TsMwFN3zFVeZ6Q8woILYojKxMFWu4yZWE7t1rhEIMfEDIMTE0ooBFakDElMzMKR8iP-EmzA0zQMPlux7dM4959reMENm0KaJl82kmjPDUsjwNhG0G8mrSixDAVOtcaJv6jCxsEJxMRJZxiJxmshIARcKhfG8KSEE-FkIZ9LlDxZ2Ty5_BrRu-64AXf4JNhPAGW27R5e_SEjddoMwi912bX2484AWKaHkcs4Ugh_ExYrHEBdLFfnt8lSbFM61HDEMYmY7EFwrNDoZ_wtiFuMx9WZ8ryrSWSubTshVdeQorxmKrnYOr2Bw0m4KjuGCHG7mB3aB_6yP6CZ_lQ2RTlNt1lKqwx2pXRUfRE-p_42gkXNDrS-gTu5Scx8WSQXlpFNAw-C6WJaiZFOVbrGhU8u4oq_RDPqtBG77jbCgJ_TWJg9FP31n9z3TuYyLLxXBpFhpmO0FWxp9UdUxncOrAw6f0L03FCosf9wv" alt="Sequence Diagram Change Password" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.8 Biểu đồ tuần tự Use Case "Xem lịch sử đơn hàng"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Khách hàng.</li>
+            <li><em>Lớp biên:</em> form LichSu (Danh sách đơn hàng).</li>
+            <li><em>Lớp điều khiển:</em> control_LichSu (Lấy lịch sử).</li>
+            <li><em>Lớp thực thể:</em> bookings_booking (Dữ liệu đơn hàng).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/hVO7TsNAEOz9FSv3-QEKFKiQCBVBgiq6nDf2Cfsu3CNKhCgQJRXiB4gQioREQRuXQfzH_QlrQ2H7DLg4-byjmZ3ZdTQ0lmnrijwyl0LOmWYFGLvKkU4teF3JRIIwU8pO1bIJwyuHkuMJGsNSPMhFKoGjtKijaEYIhNgkcCh8eefg48GXj2Cd324kWF--gzMInNFxjgXkvrznGRhfvhH0cy0h2z3JNIbrCOghRSu4mDNpIT7OdmvCfgPC8kzpAkaCZ6eup8qVtFrlk18BU6XIYmomPy9xVGOYs0q6Ykrm6iu3YsEs9nXT_gSD_XZPsAcXu1cHnKJwsGyb75AHXtpMFXXHELGP_PZlBQmTRFk30gi0w9-XRsBYqQSpkM5YuxUsSEw2FchXuWFwZoKkwmRruZB60O9rrP32mQTL24a5miPBf1UCUz1jOapWlbYzo3n8JdGXWrMeTK1ZbO_LTTREmVR_2Rc=" alt="Sequence Diagram View History" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.9 Biểu đồ tuần tự Use Case "Quản lý Danh mục"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Admin.</li>
+            <li><em>Lớp biên:</em> form QLDanhMuc (Quản lý danh mục).</li>
+            <li><em>Lớp điều khiển:</em> control_QLDanhMuc (CRUD danh mục).</li>
+            <li><em>Lớp thực thể:</em> tours_category (Dữ liệu danh mục).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/hZOxTsMwFEX3fMVT9qo7A2pLNyhSRQeYKtdxa4vEbu1nRIWYGBiYEF-AEEKq1AHB1AgxhB_xn-CEgkqSQgYrsW_e8X3XDloGiUabxIE5FXJKNEnA4DxmftSCFitcRAzGSuFInW_K2MwySVmPGUMmrB2LiQTKJDIdBGOvYBCaCDrCpVcWPm5degdo3epJArr0GaxhQIkf-n7yQUKcvUGXSA6JSx9pCBcB-MezUFAxJRIhbEeJkGF1fqx0Av2D_O-epTUCqiRqFQ__0qCy2gwpQTZReh4GhYJYVNImI--p-KQozrzi11bW79DYrewEduCQu9VyCsizVzkBFBKiH5OlmnU2KhVzStWOB51kCwvU99fCgGeLpHnk0iVpHmcvpMTZ0o26sjmt1BiPGnAfIPWeBMQuvfZ2up0So9zNAlCu1NhqZt-t3hFm-cnwmG9aUSVi_1DqbNRns1dEI_OE8CsWk91TDjw_s7IA31SYW7q3KakLcnN9fXgugxaTUX7FPgE=" alt="Sequence Diagram Manage Category" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.10 Biểu đồ tuần tự Use Case "Quản lý Tour"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Admin.</li>
+            <li><em>Lớp biên:</em> form QLTour (Quản lý tour).</li>
+            <li><em>Lớp điều khiển:</em> control_QLTour (CRUD tour, upload ảnh).</li>
+            <li><em>Lớp thực thể:</em> tours_tour (Dữ liệu tour).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fZOxTsMwEIb3PMUpe8XOgFoYWApSpe6V61wbi-Rc4jMCISYGZsQLgBiYKkBiImIq4j38JtimQ9qEZrCS-8-f__utJH3DomJbFok5U7QQlSjB8FWBfq2UjEquMoSZ1jzVl802PLdIEk_QGDHHQaHmBBKJsUqSme9ASE0Gh8rVtxa-7139AGzd5wsBu_odrEGQwi8jX3wmKFZfMNa2SuE6Af_4U1hJtRDEkA6yUlHars90VcJoGPe1VamJK11M_m1gXzYTjmJUhWVNtpz6GeKnZHUhGDcMrN-hd7B5PuzDae4-lwvgfPVBc2BFcaItVMvzJiVgt4x78rGrlwoyV79C4RO9s13krnlbrMBvzO3Zw583u3cUnVMYgLvYzagit8nodZsO4BDGI-UgQyRxZ4Y7qC23HSmP_-Kdrp70bnpXHk29dRNNcX3jN0kfKQv_wS8=" alt="Sequence Diagram Manage Tour" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.11 Biểu đồ tuần tự Use Case "Quản lý Đơn hàng"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Admin.</li>
+            <li><em>Lớp biên:</em> form QLDonHang (Quản lý booking).</li>
+            <li><em>Lớp điều khiển:</em> control_QLDonHang (Duyệt/Hủy đơn).</li>
+            <li><em>Lớp thực thể:</em> bookings_booking (Dữ liệu đơn hàng).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/jVOxTsMwEN3zFafs_QEG1AISDDBUYq8cx00sknOJz6gVYmJGAvEDRB2QkDogMTViSsV_5E9wrAq1dQpkuDj2y3v33iVBXxMryORZoK8kTljBctA0y4StheTuJJWxgLFSFKnpJkxcG4FcXAitWSIGmUwQuEASRRCMLUJAqGM4kk11b2D11FTPQKZZviJQU72D0QI4s2VoN-cIWf0Jq8evEiGtXzAJ4TYAe1kxklxOGBKEgziXGPr7Y1XkMDw_UXjG7Ks-gCukQmWj3zCRUtZcokfrRRg4DDOk0OSRteUeOckbRmKrmfUaeodeL3AAx2lTPaCN4McccJfDtKkWre8d4i43Hm0r5buyaqeWVMKsfjNOxdXFBDC1NwIqmmVpG6C0LuWO7p6QumRadS-v1up_tfywnZTP2dtrdFurzTUFXn9g4qhi8adYl6_uCV6mLS9EdansGOv5Vqae3J4cNyFdI948X39bd0FfYNz-hN8=" alt="Sequence Diagram Manage Booking" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h4>3.4.12 Biểu đồ tuần tự Use Case "Quản lý Người dùng"</h4>
+    <div style="margin-left: 20px;">
+        <p><strong>Mô hình khái niệm:</strong></p>
+        <ul>
+            <li><em>Actor:</em> Admin.</li>
+            <li><em>Lớp biên:</em> form QLNguoiDung (Quản lý người dùng).</li>
+            <li><em>Lớp điều khiển:</em> control_QLNguoiDung (Khóa/Mở khóa user).</li>
+            <li><em>Lớp thực thể:</em> auth_user (Dữ liệu tài khoản).</li>
+        </ul>
+        <p><strong>Biểu đồ tuần tự:</strong></p>
+        <div style="text-align: center;">
+            <img src="http://www.plantuml.com/plantuml/svg/fVPPS8MwGL33r_jofXj3IJsKXnQw0fPI0qwJtl9mfsiGePLgyYN4FhEPgjBweNLiqeL_kf_ENAysW7se0iZ5ee9770ujrjZEGZtnkT4TOCGK5KDNLGN-VIKGHS4SBmMpzUhO6zB2bhlSdsS0JinrZSJFoAwNU1E09ggGsU5gV7ji2sL3nSvuwVj3-YJgXLEAqxlQ4oeBX3xGyMov6Kc_b654EJCUH5jGcBmBf7yeEVRMCBqIe0kuMF5fH0uVw-Cwn1op9q0_vA6hEo2S2XAziljDh744FUdh088l2nzkbYUpNeKCGPavkuU3dHYaCoFt2OOuuEU49axAQwRnvHwnW7krHldYm300sFZaTY683IEr5gJm5asNamGcTwC5fxnfWWKsXpFtzaZZoxL_C6pyWFcYVQ1Ng90VmVq4gbzG0dlg6MTnt6DA_V26QZhKTMPxhLUzN5fd1qBjNlZMc0gIctDlE-VrAq0J1UHN3asjlrfmKuoyTKrf6xc=" alt="Sequence Diagram Manage User" style="max-width: 100%; border: 1px solid #eee; margin-top: 10px;">
+        </div>
+    </div>
+
+    <h3>3.5 THIẾT KẾ CƠ SỞ DỮ LIỆU (DATABASE SCHEMA)</h3>
+    <p>Hệ thống sử dụng các bảng chính sau:</p>
+    <ul>
+        <li><strong>Users</strong>: Mở rộng từ AbstractUser, lưu thông tin khách hàng.</li>
+        <li><strong>Tours</strong>: Lưu thông tin tour (Tên, giá, lịch trình JSON, ảnh, slot còn trống).</li>
+        <li><strong>Bookings</strong>: Lưu đơn đặt tour, trạng thái thanh toán, tổng tiền.</li>
+        <li><strong>Reviews</strong>: Lưu đánh giá, nhận xét của khách hàng.</li>
+        <li><strong>Payments</strong>: Lưu lịch sử giao dịch MoMo.</li>
+        <li><strong>ChatHistory</strong>: Lưu lịch sử hội thoại với AI để phân tích.</li>
+    </ul>
+
+    <h3>3.6 THIẾT KẾ KIẾN TRÚC HỆ THỐNG</h3>
+    <p>Mô hình Client-Server:</p>
+    <ul>
+        <li><strong>Client:</strong> Trình duyệt web (HTML5, CSS3, JS) hoặc Telegram App.</li>
+        <li><strong>Server:</strong> Django Application Server chạy trên Gunicorn.</li>
+        <li><strong>Database:</strong> PostgreSQL Database.</li>
+        <li><strong>External Services:</strong> VN-Travel kết nối với Gemini API, MoMo API, OpenStreetMap, Weather API.</li>
+    </ul>
+
+    <h2 id="chuong-4">CHƯƠNG 4: CÀI ĐẶT VÀ TRIỂN KHAI</h2>
+
+    <h3>4.1 CÁC MODULE ĐÃ HOÀN THIỆN</h3>
+    <p><strong>1. Module Quản lý Tour & Đặt Tour:</strong></p>
+    <ul>
+        <li>Hiển thị danh sách tour phân trang, lọc theo giá/địa điểm.</li>
+        <li>Chi tiết tour với bản đồ tích hợp và dự báo thời tiết.</li>
+        <li>Quy trình đặt tour và kiểm tra chỗ trống tự động (Concurrency handling).</li>
+    </ul>
+
+    <p><strong>2. Module Thanh Toán (Payments):</strong></p>
+    <ul>
+        <li>Tích hợp MoMo QR Code & ATM Card.</li>
+        <li>Xử lý IPN (Instant Payment Notification) để cập nhật trạng thái đơn hàng tự động.</li>
+        <li>Gửi email vé điện tử sau khi thanh toán thành công.</li>
+    </ul>
+
+    <p><strong>3. Module AI Travel Advisor:</strong></p>
+    <ul>
+        <li>Web Chat Widget: Giao diện chat hiện đại, hỗ trợ Markdown.</li>
+        <li>Telegram Bot: Tư vấn trực tiếp qua ứng dụng Telegram.</li>
+        <li>RAG (Retrieval-Augmented Generation): AI truy xuất dữ liệu tour từ database để trả lời chính xác, tránh "ảo giác" (hallucination).</li>
+    </ul>
+
+    <p><strong>4. Module DevOps:</strong></p>
+    <ul>
+        <li>CI/CD: Tự động deploy khi push code lên GitHub.</li>
+        <li>Monitoring: Theo dõi uptime website.</li>
+    </ul>
+
+    <h3>4.2 KẾT QUẢ KIỂM THỬ (TESTING)</h3>
+    <p>Hệ thống đã trải qua quy trình kiểm thử nghiêm ngặt:</p>
+    <ul>
+        <li><strong>Unit Testing:</strong> Đã viết 45 test cases cho Models, Views, Forms.</li>
+        <li><strong>Coverage:</strong> Đạt 87% độ bao phủ mã nguồn.</li>
+        <li><strong>Kết quả:</strong> 100% test cases Pass. Hệ thống hoạt động ổn định, xử lý tốt các trường hợp ngoại lệ (hết chỗ, lỗi thanh toán, mất mạng).</li>
+    </ul>
+
+    <h2 id="tong-ket">TỔNG KẾT</h2>
+
+    <h3>KẾT QUẢ ĐẠT ĐƯỢC</h3>
+    <p>Sau quá trình thực hiện khóa luận, em đã xây dựng thành công hệ thống <strong>VN-Travel</strong> với các ưu điểm:</p>
+    <ul>
+        <li>Ứng dụng công nghệ AI tiên tiến vào thực tế doanh nghiệp.</li>
+        <li>Quy trình đặt tour và thanh toán được tự động hóa hoàn toàn.</li>
+        <li>Hệ thống có độ ổn định cao nhờ quy trình kiểm thử và DevOps bài bản.</li>
+        <li>Giao diện người dùng hiện đại, trải nghiệm mượt mà.</li>
+    </ul>
+
+    <h3>HẠN CHẾ VÀ HƯỚNG PHÁT TRIỂN</h3>
+    <ul>
+        <li><strong>Hạn chế:</strong> Chatbot đôi khi phản hồi chậm do độ trễ API quốc tế. Tính năng gợi ý cá nhân hóa chưa sử dụng Machine Learning chuyên sâu.</li>
+        <li><strong>Hướng phát triển:</strong> Nâng cấp AI để học từ lịch sử đặt tour của khách; Phát triển Mobile App (React Native/Flutter); Tích hợp thêm các dịch vụ vé máy bay, khách sạn.</li>
+    </ul>
+
+    <hr>
+
+    <h3>TÀI LIỆU THAM KHẢO</h3>
+    <ol>
+        <li>Django Project Documentation (<a href="https://docs.djangoproject.com/">https://docs.djangoproject.com/</a>)</li>
+        <li>Google Cloud AI & Gemini API Docs.</li>
+        <li>MoMo Payment Developer Guide.</li>
+        <li>"Two Scoops of Django 3.x" - Daniel Roy Greenfeld.</li>
+    </ol>
+
+</body>
+</html>

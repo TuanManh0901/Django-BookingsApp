@@ -7,8 +7,9 @@ test123456
 source venv/bin/activate
 python manage.py run_telegram_bot
 
-nohup python manage.py run_telegram_bot > bot_log.txt 2>&1 &
 pkill -f run_telegram_bot
+nohup python manage.py run_telegram_bot > bot_log.txt 2>&1 &
+
 
 source venv/bin/activate
 python manage.py runserver

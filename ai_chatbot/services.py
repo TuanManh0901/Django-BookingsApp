@@ -10,9 +10,9 @@ from tours.utils import get_weather
 
 
 # ============================================================================
-# VIETNAMESE SYSTEM PROMPT - Tăng chất lượng phản hồi tiếng Việt
+# VIETNAMESE SYSTEM PROMPT - BASE
 # ============================================================================
-VIETNAMESE_SYSTEM_PROMPT = """
+BASE_SYSTEM_PROMPT = """
 Bạn là AI Travel Advisor chuyên nghiệp của công ty VN Travel Việt Nam.
 
 NHIỆM VỤ CHÍNH:
@@ -24,19 +24,9 @@ NHIỆM VỤ CHÍNH:
 PHONG CÁCH TRÁ LỜI:
 - LUÔN trả lời bằng tiếng Việt chuẩn, rõ ràng
 - Thân thiện, nhiệt tình, chuyên nghiệp và CỰC KỲ CHI TIẾT
-- BẮT ĐẦU bằng lời chào ngắn gọn, ấm áp (ví dụ: "Chào bạn! Rất vui khi bạn quan tâm đến...")
+- BẮT ĐẦU bằng lời chào ngắn gọn, ấm áp
 - Cung cấp câu trả lời DÀI, ĐẦY ĐỦ, CẤU TRÚC RÕ RÀNG (300-500 từ tối thiểu)
-- Kết thúc bằng câu hỏi thân thiện khuyến khích tiếp tục tương tác
-- CẬP NHẬT TÌNH HÌNH THỜI TIẾT THỰC TẾ: Dựa vào thông tin context, hãy đưa ra lời khuyên phù hợp (ví dụ: đang mưa thì gợi ý mang ô, trời nắng đẹp thì suggest hoạt động ngoài trời).
-
-CẤU TRÚC THÔNG TIN (BẮT BUỘC):
-- SỬ DỤNG DANH SÁCH CÓ SỐ THỨ TỰ (1., 2., 3., ...) cho các mục chính (VD: Tên Tour)
-- Sử dụng GẠCH ĐẦU DÒNG (-) cho các mẩu tin chi tiết bên trong
-- Mỗi điểm có TIÊU ĐỀ VIẾT HOA rõ ràng
-- Sau tiêu đề, viết MÔ TẢ CHI TIẾT 2-3 câu
-- Đưa ra VÍ DỤ CỤ THỂ về địa danh, món ăn, hoạt động
-- Thêm GIÁ CẢ, THỜI GIAN, SỐ LƯỢNG CHỖ, THỜI TIẾT khi có thông tin
-- Sử dụng emoji phù hợp: 🏖️ ✈️ 🌸 ☕ 🍜 📸 🏔️ 🌊 🎎 ☀️ 🌧️
+- CẬP NHẬT TÌNH HÌNH THỜI TIẾT THỰC TẾ: Dựa vào thông tin context, hãy đưa ra lời khuyên phù hợp.
 
 KHI GỢI Ý TOUR:
 - Hãy gợi ý CHỈ NHỮNG TOUR THỰC SỰ CÓ TRONG HỆ THỐNG (từ thông tin tours)
@@ -49,44 +39,21 @@ KHI GỢI Ý TOUR:
   + GIÁ TOUR CỤ THỂ từ dữ liệu
   + SỐ NGÀY tour
   + SỐ CHỖ còn trống
+"""
 
-KHI HỎI THÔNG TIN TOUR:
-- Tìm tour trong danh sách
-- Mô tả chi tiết: vị trí, giá, thời gian, điểm tham quan, trải nghiệm
-- THÔNG BÁO THỜI TIẾT HIỆN TẠI tại điểm đến và đưa ra lời khuyên.
-- Nếu hỏi về tour không có, gợi ý tour tương tự hoặc liên hệ trực tiếp
-
-MẪU CẤU TRÚC BẮT BUỘC:
-Chào bạn! [lời chào phù hợp với ngữ cảnh]
-
-[Tên tour/địa điểm] - Khám phá điều tuyệt vời:
-
-☀️ Tình hình thời tiết hiện tại: [Thông tin thời tiết từ context + Lời khuyên]
-
-- [TIÊU ĐỀ 1 VIẾT HOA]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
-- [TIÊU ĐỀ 2 VIẾT HOA]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
-- [TIÊU ĐỀ 3 VIẾT HOA]: [Mô tả chi tiết 2-3 câu, ví dụ cụ thể]
-[...tiếp tục đến ít nhất 5-7 điểm...]
-
-💰 Thông tin giá tour:
-[Giá cụ thể từ dữ liệu, số ngày, số chỗ]
-
-✅ Hành động tiếp theo:
-[Khuyến khích đặt tour, liên hệ, hoặc hỏi thêm thông tin]
-
-YÊU CẦU TUYỆT ĐỐI:
-✅ Luôn trả lời bằng tiếng Việt
-✅ Luôn cấu trúc rõ ràng với danh sách đánh số
-✅ Luôn bao gồm thông tin giá và thời tiết khi có
-✅ Luôn kích thích hành động cuối (đặt, hỏi, liên hệ)
-✅ Tối thiểu 300 từ trong mỗi câu trả lời
-✅ Thân thiện, chuyên nghiệp, chi tiết
+# ============================================================================
+# FORMAT INSTRUCTIONS
+# ============================================================================
+HTML_FORMAT_INSTRUCTION = """
+CẤU TRÚC THÔNG TIN (WEB/HTML):
+- SỬ DỤNG DANH SÁCH CÓ SỐ THỨ TỰ (1., 2., 3., ...) cho các mục chính
+- Sử dụng GẠCH ĐẦU DÒNG (-) cho các mẩu tin chi tiết
+- Mã màu và icon emoji phong phú.
 
 KHI KHÁCH HÀNG YÊU CẦU LÊN LỊCH TRÌNH (ITINERARY) HOẶC GỢI Ý ĐI ĐÂU:
-Thay vì trả về text thông thường, hãy trả về mã HTML CHUẨN (không cần thẻ html/body, chỉ div content) theo cấu trúc sau để hiển thị Timeline đẹp mắt:
+Thay vì trả về text thông thường, hãy trả về mã HTML CHUẨN (không cần thẻ html/body, chỉ div content) theo cấu trúc sau:
 
 <div class="itinerary-timeline">
-  <!-- Ngày 1 -->
   <div class="day-node">
     <div class="day-header">📅 Ngày 1: [Tên chủ đề ngày]</div>
     <div class="timeline-card">
@@ -97,23 +64,10 @@ Thay vì trả về text thông thường, hãy trả về mã HTML CHUẨN (kh�
           <small class="text-muted">[Mô tả ngắn/Địa chỉ/Món ăn]</small>
         </div>
       </div>
-      <!-- Thêm các activity khác -->
-      <div class="activity-item">
-        <span class="activity-time">14:00</span>
-         <div class="activity-content">
-          <strong>[Tên hoạt động/Địa điểm]</strong><br>
-          <small class="text-muted">[Mô tả ngắn]</small>
-        </div>
-      </div>
+       <!-- Thêm các activity khác -->
     </div>
   </div>
    <!-- Các ngày tiếp theo tương tự -->
-   <div class="day-node">
-    <div class="day-header">📅 Ngày 2: [Tên chủ đề ngày]</div>
-    <div class="timeline-card">
-       <!-- Activities -->
-    </div>
-  </div>
 </div>
 
 <div class="text-center mt-3">
@@ -125,25 +79,70 @@ Thay vì trả về text thông thường, hãy trả về mã HTML CHUẨN (kh�
 LƯU Ý QUAN TRỌNG:
 1. NẾU khách chỉ hỏi bâng quơ, trả lời text bình thường.
 2. NẾU khách hỏi "Lên lịch trình", "Gợi ý đi Đà Lạt 3 ngày", "Plan cho tôi chuyến đi"... -> BẮT BUỘC dùng cấu trúc HTML trên.
-3. KHÔNG được bọc HTML trong backtick (```html), hãy trả về RAW HTML để trình duyệt render được ngay.
+3. KHÔNG được bọc HTML trong backtick, hãy trả về RAW HTML.
+"""
+
+
+MARKDOWN_FORMAT_INSTRUCTION = """
+CẤU TRÚC THÔNG TIN (TELEGRAM/HTML):
+- SỬ DỤNG thẻ HTML được Telegram hỗ trợ để định dạng văn bản.
+- <b>In đậm</b> cho các tiêu đề quan trọng.
+- <i>In nghiêng</i> cho các ghi chú.
+- Sử dụng emoji phong phú: 🏖️ ✈️ 🌸 ☕ 🍜 📸 🏔️ 🌊 ☀️ 🌧️
+
+KHI KHÁCH HÀNG YÊU CẦU LÊN LỊCH TRÌNH (ITINERARY):
+Hãy trình bày theo dạng Timeline rõ ràng:
+
+📅 <b>Ngày 1: [Tên chủ đề ngày]</b>
+━━━━━━━━━━━━━━━━━━
+🕗 <b>08:00 - [Tên hoạt động]</b>
+<i>[Mô tả ngắn/Địa chỉ]</i>
+
+🕐 <b>14:00 - [Tên hoạt động]</b>
+<i>[Mô tả ngắn]</i>
+...
+
+📅 <b>Ngày 2: [Tên chủ đề ngày]</b>
+━━━━━━━━━━━━━━━━━━
+...
+
+💰 <b>Tổng chi phí dự kiến:</b> [Số tiền] VNĐ
+
+👉 <i>Gõ lệnh /book để đặt tour ngay!</i>
+
+YÊU CẦU TUYỆT ĐỐI:
+✅ KHÔNG dùng dấu sao (*) hay gạch dưới (_) để định dạng.
+✅ CHỈ dùng thẻ &lt;b&gt;, &lt;i&gt;, &lt;u&gt;, &lt;a&gt;, &lt;code&gt;.
+✅ KHÔNG dùng thẻ &lt;div&gt;, &lt;span&gt;, &lt;br&gt;, &lt;h1&gt;-&lt;h6&gt;.
+✅ Trình bày thoáng, xuống dòng rõ ràng.
 """
 
 
 class TravelAdvisor:
     """AI Travel Advisor powered by Gemini Pro"""
     
-    def __init__(self):
-        """Initialize Gemini AI với API key từ settings"""
+    def __init__(self, client_type='web'):
+        """
+        Initialize Gemini AI
+        Args:
+            client_type (str): 'web' or 'telegram' to determine output format
+        """
         api_key = getattr(settings, 'GEMINI_API_KEY', None)
         if not api_key or api_key == 'your-gemini-api-key-here':
             raise ValueError("GEMINI_API_KEY chưa được cấu hình trong settings.py hoặc .env")
         
         genai.configure(api_key=api_key)
         
+        # Select prompt based on client
+        if client_type == 'telegram':
+            system_instruction = BASE_SYSTEM_PROMPT + "\n\n" + MARKDOWN_FORMAT_INSTRUCTION
+        else:
+            system_instruction = BASE_SYSTEM_PROMPT + "\n\n" + HTML_FORMAT_INSTRUCTION
+            
         # Dùng model đã test và chắc chắn hoạt động
         self.model = genai.GenerativeModel(
-            model_name='models/gemini-2.5-flash',
-            system_instruction=VIETNAMESE_SYSTEM_PROMPT
+            model_name='models/gemini-3-flash-preview',
+            system_instruction=system_instruction
         )
     
     def get_tours_context(self, limit=None):
@@ -241,10 +240,19 @@ class TravelAdvisor:
             # Cache response (1 hour)
             cache.set(cache_key, response_text, 3600)
             
+            
             return response_text
                 
         except Exception as e:
-            error_msg = f"Lỗi AI: {str(e)}\n\nVui lòng thử lại sau hoặc liên hệ VN Travel qua hotline."
+            error_str = str(e).lower()
+            if "429" in error_str or "quota" in error_str or "resource" in error_str:
+                return (
+                    "🤖 <i>(Hệ thống đang quá tải)</i>\n\n"
+                    "Hiện tại AI đang nhận quá nhiều yêu cầu, bạn vui lòng đợi <b>1-2 phút</b> rồi hỏi lại nhé! 🙏\n"
+                    "Trong lúc chờ, bạn có thể gõ <b>/menu</b> để xem các tour du lịch có sẵn."
+                )
+            
+            error_msg = f"⚠️ Lỗi kết nối AI: {str(e)[:100]}...\nVui lòng thử lại sau."
             return error_msg
     
     def get_tour_recommendation(self, budget=None, location=None, duration=None):

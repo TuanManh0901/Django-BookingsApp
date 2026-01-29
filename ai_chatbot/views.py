@@ -37,7 +37,7 @@ def ai_chat_api(request):
             from .services import TravelAdvisor
             
             try:
-                advisor = TravelAdvisor()
+                advisor = TravelAdvisor(client_type='web')
                 # Get AI response using TravelAdvisor service
                 ai_response = advisor.get_advice(user_message, include_tours=True)
                 

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật Ký Thực Tập Tốt Nghiệp</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        h3 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #e74c3c;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fbfd;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .week-col { width: 8%; font-weight: bold; color: #2980b9; }
+        .time-col { width: 12%; color: #7f8c8d; font-size: 0.9em; }
+        .work-col { width: 35%; }
+        .result-col { width: 30%; }
+        .note-col { width: 15%; }
+        
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        strong {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>NHẬT KÝ THỰC TẬP TỐT NGHIỆP</h1>
+    <h2><strong>Đề tài:</strong> Xây dựng hệ thống gợi ý và đặt tour du lịch thông minh với AI Travel Advisor cho doanh nghiệp VN-Travel</h2>
+    <h3>(Thời gian thực tập: 13 Tuần)</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tuần</th>
+                <th>Thời gian (Dự kiến)</th>
+                <th>Công việc thực hiện</th>
+                <th>Kết quả đạt được</th>
+                <th>Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- GIAI ĐOẠN 1: TÌM HIỂU CƠ SỞ THỰC TẬP -->
+            <tr>
+                <td class="week-col">Tuần 1</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Trình diện tại đơn vị thực tập: Công ty VN-Travel.</li>
+                        <li>Gặp gỡ người hướng dẫn (Mentor) và nghe phổ biến nội quy, quy chế làm việc của công ty.</li>
+                        <li>Tìm hiểu lịch sử hình thành, cơ cấu tổ chức và lĩnh vực hoạt động chính của công ty.</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Hoàn tất thủ tục tiếp nhận thực tập.</li>
+                        <li>Nắm vững nghiệp vụ quản lý tour và booking.</li>
+                        <li>Hiểu rõ sơ đồ tổ chức và chức năng nhiệm vụ các phòng ban.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Tìm hiểu chung</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 2</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Tham quan và tìm hiểu quy trình làm việc thực tế tại phòng IT và phòng Kinh doanh du lịch.</li>
+                        <li>Nghiên cứu các sản phẩm/dịch vụ tour hiện có của công ty.</li>
+                        <li>Tìm hiểu hệ thống quản lý hiện tại (cách quản lý tour, khách hàng, booking thủ công hoặc phần mềm cũ).</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Nắm bắt được quy trình nghiệp vụ đặt tour từ lúc khách hỏi đến lúc chốt đơn.</li>
+                        <li>Nhận diện được các hạn chế của quy trình hiện tại (tốn thời gian, khó quản lý, thiếu tự động hóa).</li>
+                    </ul>
+                </td>
+                <td class="note-col">Khảo sát hiện trạng</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 3</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Đề xuất ý tưởng đề tài: "Xây dựng hệ thống đặt tour thông minh tích hợp AI".</li>
+                        <li>Thảo luận với GVHD và Mentor để chốt phạm vi đề tài (Scope).</li>
+                        <li>Lập kế hoạch thực hiện chi tiết cho 10 tuần tiếp theo.</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Đề tài được phê duyệt.</li>
+                        <li>Có bản kế hoạch thực tập chi tiết (Gantt Chart sơ bộ).</li>
+                        <li>Xác định bộ công nghệ: Python/Django, AI Gemini, PostgreSQL.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Chốt đề tài</td>
+            </tr>
+
+            <!-- GIAI ĐOẠN 2: PHÁT TRIỂN HỆ THỐNG -->
+            <tr>
+                <td class="week-col">Tuần 4</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Nghiên cứu công nghệ lõi: Django Framework, MVT Architecture.</li>
+                        <li>Thiết kế Cơ sở dữ liệu (Database Schema) chi tiết.</li>
+                        <li>Cài đặt môi trường lập trình (VS Code, Virtualenv, Git).</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Hiểu sâu về Django & PostgreSQL.</li>
+                        <li>Hoàn thiện bản vẽ ERD (Entity Relationship Diagram).</li>
+                        <li>Khởi tạo Project thành công.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Thiết kế</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 5</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Phân tích và thiết kế Giao diện người dùng (UI/UX).</li>
+                        <li>Xây dựng Models trong Django cho: User, Tour, Review.</li>
+                        <li>Tích hợp giao diện mẫu Argon Design System vào Django Templates.</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Có bộ giao diện HTML/CSS tĩnh đẹp mắt.</li>
+                        <li>Trang Admin quản lý được dữ liệu cơ bản.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Backend cơ bản</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 6</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Lập trình các chức năng phía Khách hàng (Client Side):
+                            <ul>
+                                <li>Đăng ký, Đăng nhập.</li>
+                                <li><strong>Tìm kiếm Tour:</strong> Xử lý lọc theo giá, địa điểm.</li>
+                                <li>Trang hiển thị chi tiết Tour.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Hoàn thiện luồng authentication.</li>
+                        <li>Hiển thị dữ liệu tour động từ Database lên Web mượt mà.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Frontend Client</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 7</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li><strong>Phát triển cốt lõi: Module Đặt Tour (Booking).</strong></li>
+                        <li>Xử lý logic Booking: Form nhập liệu, tính tiền.</li>
+                        <li>Giải quyết bài toán đồng thời (Concurrency) để tránh trùng vé.</li>
+                        <li>Gửi email xác nhận đặt tour tự động.</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Chức năng Booking hoạt động ổn định.</li>
+                        <li>Gửi được email SMTP thành công.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Booking Core</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 8</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li><strong>Tích hợp AI Travel Advisor:</strong>
+                            <ul>
+                                <li>Kết nối Google Gemini API.</li>
+                                <li>Huấn luyện context (RAG) để AI hiểu về dữ liệu tour của công ty.</li>
+                                <li>Xây dựng giao diện Chatbot.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Chatbot có thể trả lời: "Tôi muốn đi biển giá rẻ" bằng các tour có thật trong DB.</li>
+                        <li>Phản hồi nhanh, ngôn ngữ tự nhiên.</li>
+                    </ul>
+                </td>
+                <td class="note-col">AI Integration</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 9</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li><strong>Tích hợp Thanh toán & Bản đồ:</strong>
+                            <ul>
+                                <li>Kết nối cổng thanh toán MoMo (Môi trường Test).</li>
+                                <li>Nhúng bản đồ OpenStreetMap & Leaflet vào chi tiết tour.</li>
+                                <li>Hiển thị thời tiết OpenWeather.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Thanh toán online thành công, cập nhật trạng thái đơn hàng tự động.</li>
+                        <li>Bản đồ hiển thị đúng vị trí địa lý của tour.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Advanced Feature</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 10</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li><strong>Phát triển kênh Telegram Bot:</strong></li>
+                        <li>Xây dựng Bot Father, kết nối Webhook với Django.</li>
+                        <li>Đồng bộ dữ liệu Tour/Booking giữa Web và Telegram.</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Có thể tra cứu và đặt tour ngay trên ứng dụng Telegram.</li>
+                        <li>Hệ thống đa nền tảng (Web + App Chat).</li>
+                    </ul>
+                </td>
+                <td class="note-col">Telegram Bot</td>
+            </tr>
+
+            <!-- GIAI ĐOẠN 3: HOÀN THIỆN & BÁO CÁO -->
+            <tr>
+                <td class="week-col">Tuần 11</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Kiểm thử toàn bộ hệ thống (System Testing).</li>
+                        <li>Viết Unit Test cho các module quan trọng.</li>
+                        <li>Tối ưu hóa code, sửa lỗi giao diện và hiệu năng (SQL N+1).</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Hệ thống chạy ổn định, ít lỗi.</li>
+                        <li>Code đạt chuẩn (Clean Code).</li>
+                    </ul>
+                </td>
+                <td class="note-col">Testing & Fix</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 12</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Triển khai hệ thống (Deployment) lên server thực tế (Render/Railway).</li>
+                        <li>Cấu hình tên miền, bảo mật HTTPS.</li>
+                        <li>Viết dự thảo Báo cáo thực tập tốt nghiệp.</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Website "live" trên môi trường internet.</li>
+                        <li>Hoàn thành 80% báo cáo.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Triển khai</td>
+            </tr>
+
+            <tr>
+                <td class="week-col">Tuần 13</td>
+                <td class="time-col">.../... - .../...</td>
+                <td class="work-col">
+                    <ul>
+                        <li>Hoàn thiện Báo cáo thực tập & Khóa luận tốt nghiệp.</li>
+                        <li>Xin nhận xét, dấu xác nhận của đơn vị thực tập.</li>
+                        <li>Chuẩn bị Slide và tập dượt bảo vệ thử.</li>
+                    </ul>
+                </td>
+                <td class="result-col">
+                    <ul>
+                        <li>Hồ sơ thực tập/khóa luận hoàn chỉnh.</li>
+                        <li>Tâm lý sẵn sàng bảo vệ hội đồng.</li>
+                    </ul>
+                </td>
+                <td class="note-col">Hoàn tất</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
