@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 import requests
 import hashlib
 import hmac
@@ -383,6 +384,7 @@ def momo_callback(request):
 
     return redirect('booking_detail', pk=payment.booking.pk)
 
+@csrf_exempt
 def momo_ipn(request):
     """IPN từ MoMo"""
     # IPN từ MoMo (không yêu cầu đăng nhập)

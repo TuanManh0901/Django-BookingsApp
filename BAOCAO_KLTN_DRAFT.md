@@ -978,7 +978,33 @@ Mô hình Client-Server:
 
 ## CHƯƠNG 4: CÀI ĐẶT VÀ TRIỂN KHAI
 
-### 4.1 CÁC MODULE ĐÃ HOÀN THIỆN
+Chương 4 trình bày các môi trường, công cụ, ngôn ngữ sử dụng trong hệ thống và kết quả ứng dụng, giao diện đã thiết kế cùng với các chức năng đã phân tích ở chương 3.
+
+### 4.1 MÔI TRƯỜNG VÀ CÔNG CỤ YÊU CẦU TRONG ỨNG DỤNG
+
+#### 4.1.1 Môi trường và công cụ sử dụng phía người dùng
+*   **Môi trường sử dụng:** Trình duyệt website (Google Chrome, Firefox, Safari, Edge).
+*   **Ngôn ngữ và thư viện sử dụng:**
+    *   Ngôn ngữ: HTML5, CSS3, JavaScript.
+    *   Thư viện: Bootstrap 5 (CSS Framework), FontAwesome (Icon), jQuery (nếu có).
+*   **Phần mềm sử dụng trong hệ thống:**
+    *   Visual Studio Code (Soạn thảo mã nguồn).
+    *   Postman (Kiểm thử API).
+
+#### 4.1.2 Môi trường và công cụ sử dụng phía máy chủ
+*   **Môi trường sử dụng:** Python Virtual Environment (venv) hoặc Docker Container.
+*   **Ngôn ngữ và thư viện sử dụng:**
+    *   Ngôn ngữ: Python 3.10+.
+    *   Framework: Django 4.2 (Web Framework).
+    *   Thư viện: `google-generativeai` (AI), `requests` (HTTP Client), `pillow` (Xử lý ảnh).
+    *   External APIs: MoMo Payment API, Google Gemini AI API, OpenStreetMap API.
+*   **Phần mềm sử dụng trong hệ thống:**
+    *   Visual Studio Code.
+    *   Postman.
+    *   pgAdmin 4 (Quản lý CSDL PostgreSQL).
+    *   Docker Desktop (Triển khai).
+
+### 4.2 CÁC MODULE ĐÃ HOÀN THIỆN
 1. **Module Quản lý Tour & Đặt Tour**:
    - Hiển thị danh sách tour phân trang, lọc theo giá/địa điểm.
    - Chi tiết tour với bản đồ tích hợp và dự báo thời tiết.
@@ -998,26 +1024,99 @@ Mô hình Client-Server:
    - CI/CD: Tự động deploy khi push code lên GitHub.
    - Monitoring: Theo dõi uptime website.
 
-### 4.2 KẾT QUẢ KIỂM THỬ (TESTING)
-Hệ thống đã trải qua quy trình kiểm thử nghiêm ngặt:
-- **Unit Testing**: Đã viết 45 test cases cho Models, Views, Forms.
-- **Coverage**: Đạt 87% độ bao phủ mã nguồn.
-- **Kết quả**: 100% test cases Pass. Hệ thống hoạt động ổn định, xử lý tốt các trường hợp ngoại lệ (hết chỗ, lỗi thanh toán, mất mạng).
+### 4.3 TẠO TESTCASE VÀ CHẠY KIỂM THỬ KỊCH BẢN TEST (TESTSCRIPT) MỘT SỐ CHỨC NĂNG CỦA WEBSITE
+
+#### 4.3.1 Chức năng đăng kí
+
+**Bảng 4.1 Test case đăng kí**
+
+| Test case | Nội dung | Các bước thực hiện | Kết quả mong muốn |
+| :--- | :--- | :--- | :--- |
+| **DK_01** | Đăng kí không thành công: Bỏ trống tên đăng nhập | 1. Bỏ trống trường tên đăng nhập.<br>2. Nhập các giá trị khác hợp lệ.<br>3. Chọn nút "Đăng ký". | Đăng kí không thành công, hệ thống báo lỗi "This field is required". |
+| **DK_02** | Đăng kí không thành công: Bỏ trống trường email | 1. Bỏ trống trường email.<br>2. Nhập các giá trị khác hợp lệ.<br>3. Chọn nút "Đăng ký". | Đăng kí không thành công, hệ thống báo lỗi "This field is required". |
+| **DK_03** | Đăng kí không thành công: Bỏ trống trường mật khẩu | 1. Bỏ trống trường mật khẩu.<br>2. Nhập các giá trị khác hợp lệ.<br>3. Chọn nút "Đăng ký". | Đăng kí không thành công, hệ thống báo lỗi. |
+| **DK_04** | Đăng kí thành công: Nhập các giá trị đầu vào hợp lệ | 1. Nhập Username duy nhất.<br>2. Nhập Email đúng định dạng.<br>3. Nhập Password và Confirm Password khớp nhau.<br>4. Chọn nút "Đăng ký". | Đăng kí thành công. Hệ thống chuyển hướng về trang Đăng nhập hoặc Trang chủ. |
+
+**Cách chạy kiểm thử tự động bằng Django Unit Tests cho chức năng đăng kí**
+
+*   *Bước 1:* Tạo file test case mới tại đường dẫn `tests/test_authentication.py`.
+*   *Bước 2:* Viết kịch bản test (Test Script) sử dụng `Django TestCase`.
+    *   Import thư viện: `from django.test import TestCase, Client`.
+    *   Khởi tạo Client giả lập trình duyệt.
+    *   Định nghĩa dữ liệu đầu vào (username, email, password).
+    *   Thực hiện thao tác gửi request POST đến URL đăng ký (VD: `/accounts/signup/`).
+    *   Viết Assertions để kiểm tra kết quả:
+        +   Check Status Code (200 hoặc 302).
+        +   Check User mới đã được tạo trong Database (`User.objects.count()`).
+*   *Bước 3:* Chạy lệnh kiểm thử trên Terminal.
+    *   Lệnh: `python manage.py test tests.test_authentication`
+*   *Bước 4:* Hệ thống tự động thực thi và trả về kết quả (OK/FAIL) trên màn hình Console.
+    *   Nếu Pass: Hiển thị `OK`.
+    *   Nếu Fail: Hiển thị chi tiết lỗi `AssertionError` để debug.
+
+#### 4.3.2 Chức năng đăng nhập
+
+**Bảng 4.2 Test case chức năng Đăng nhập**
+
+| Test case | Nội dung | Các bước thực hiện | Kết quả mong muốn |
+| :--- | :--- | :--- | :--- |
+| **ĐN_01** | Đăng nhập không thành công: bỏ trống trường mail | 1. Bỏ trống trường email.<br>2. Nhập các giá trị khác hợp lệ.<br>3. Chọn nút "Đăng nhập". | Đăng nhập không thành công. Hệ thống báo lỗi. |
+| **ĐN_02** | Đăng nhập không thành công: bỏ trống trường password | 1. Bỏ trống trường mật khẩu.<br>2. Nhập các giá trị khác hợp lệ.<br>3. Chọn nút "Đăng nhập". | Đăng nhập không thành công. Hệ thống báo lỗi. |
+| **ĐN_03** | Đăng nhập không thành công: bỏ trống tất cả các trường bắt buộc | 1. Bỏ trống tất cả trường bắt buộc. | Đăng nhập không thành công. Hệ thống báo lỗi. |
+| **ĐN_04** | Đăng nhập thành công: nhập các giá trị đầu vào hợp lệ | 1. Nhập các giá trị hợp lệ.<br>2. Chọn button "Đăng nhập". | Đăng nhập thành công. |
+
+**Cách chạy kiểm thử tự động bằng Django Unit Tests cho chức năng đăng nhập**
+
+*   *Bước 1:* Tạo hoặc sử dụng file test case tại đường dẫn `tests/test_authentication.py`.
+*   *Bước 2:* Viết kịch bản test (Test Script) sử dụng `Django TestCase`.
+    *   Import thư viện: `from django.test import TestCase, Client`.
+    *   Tạo người dùng mẫu (User) trong hàm `setUp()`.
+    *   Thực hiện thao tác gửi request POST đến URL đăng nhập (VD: `/accounts/login/`).
+    *   Viết Assertions để kiểm tra kết quả:
+        +   Check Status Code (302 Redirect về trang chủ nếu thành công).
+        +   Check Session (người dùng đã được authenticate).
+*   *Bước 3:* Chạy lệnh kiểm thử trên Terminal.
+    *   Lệnh: `python manage.py test tests.test_authentication`
+*   *Bước 4:* Hệ thống tự động thực thi và trả về kết quả (OK/FAIL) trên màn hình Console.
 
 ---
 
-## TỔNG KẾT
+## CHƯƠNG 5: TỔNG KẾT
 
-### KẾT QUẢ ĐẠT ĐƯỢC
-Sau quá trình thực hiện khóa luận, em đã xây dựng thành công hệ thống **VN-Travel** với các ưu điểm:
-- Ứng dụng công nghệ AI tiên tiến vào thực tế doanh nghiệp.
-- Quy trình đặt tour và thanh toán được tự động hóa hoàn toàn.
-- Hệ thống có độ ổn định cao nhờ quy trình kiểm thử và DevOps bài bản.
-- Giao diện người dùng hiện đại, trải nghiệm mượt mà.
+### 5.1 THUẬN LỢI VÀ KHÓ KHĂN
 
-### HẠN CHẾ VÀ HƯỚNG PHÁT TRIỂN
-- **Hạn chế**: Chatbot đôi khi phản hồi chậm do độ trễ API quốc tế. Tính năng gợi ý cá nhân hóa chưa sử dụng Machine Learning chuyên sâu.
-- **Hướng phát triển**: Nâng cấp AI để học từ lịch sử đặt tour của khách; Phát triển Mobile App (React Native/Flutter); Tích hợp thêm các dịch vụ vé máy bay, khách sạn.
+#### 5.1.1 Khó khăn
+Trong quá trình thực hiện dự án, em đã gặp không ít khó khăn, đặc biệt là trong việc tiếp thu và tích lũy kiến thức mới. Việc vừa học những công nghệ chưa từng làm quen trước đó, vừa triển khai dự án thực tế đã tạo ra một khối lượng công việc đáng kể. Điều này khiến em phải cân nhắc giữa việc dành thời gian để học hỏi và đảm bảo tiến độ hoàn thành dự án.
+Một thách thức khác mà em phải đối mặt là áp lực về thời gian. Khối lượng công việc lớn trong khi thời gian có hạn đòi hỏi em phải quản lý thời gian thật hiệu quả để hoàn thành các nhiệm vụ đúng tiến độ.
+Để vượt qua những khó khăn này, em tập trung vào việc học hỏi có chọn lọc, lập kế hoạch cụ thể và rèn luyện kỹ năng kiểm thử để giảm thiểu lỗi trong quá trình lập trình. Điều này không chỉ giúp em hoàn thành dự án tốt hơn mà còn nâng cao khả năng quản lý công việc và phát triển kỹ năng cá nhân.
+
+#### 5.1.2 Thuận lợi
+Trong quá trình thực hiện dự án, em đã mở rộng vốn kiến thức của mình bằng cách học hỏi các công nghệ mới, tìm hiểu những công cụ hỗ trợ lập trình và áp dụng các phương pháp làm việc hiệu quả. Không chỉ vậy, em còn làm quen với cách quản lý mã nguồn trên GitHub, thành thạo các thao tác cơ bản để đồng bộ và kiểm soát phiên bản code một cách hiệu quả.
+Ngoài ra, em cũng nhận được sự hỗ trợ tận tình từ giảng viên hướng dẫn, **ThS. Trần Minh Thắng**. Những hướng dẫn và góp ý từ thầy không chỉ giúp em giải quyết các vấn đề cụ thể trong quá trình làm dự án mà còn giúp em nâng cao hiểu biết, rèn luyện kỹ năng lập trình và phát triển tư duy logic trong lĩnh vực này.
+
+### 5.2 KẾT QUẢ
+Sau một thời gian đầu tư lớn vào việc xây dựng dự án, em đã hoàn thành sản phẩm với mức độ hoàn thiện cao, đáp ứng đầy đủ các yêu cầu đặt ra. Mặc dù vẫn còn một số chức năng mà em đã lên ý tưởng nhưng chưa thể triển khai, em chắc chắn rằng mình sẽ tiếp tục phát triển chúng trong tương lai để nâng cao chất lượng sản phẩm.
+Trong quá trình thực hiện, em không chỉ tiếp thu được nhiều kiến thức mới mà còn đối mặt với những thử thách thực tế, giúp bản thân rèn luyện và phát triển. Đây không chỉ là cơ hội để em học hỏi mà còn giúp nâng cao kỹ năng làm việc độc lập, kỹ năng viết tài liệu, cũng như kỹ năng quản lý kế hoạch. Những kỹ năng này không chỉ hữu ích cho dự án hiện tại mà còn là nền tảng quan trọng để em phát triển sự nghiệp sau này.
+Trong quá trình phát triển website, em đã xây dựng một hệ thống ổn định, đảm bảo hiệu suất cao và đầy đủ các chức năng quan trọng. Dù vẫn còn một số ý tưởng chưa được thực hiện, em cam kết tiếp tục cải tiến và hoàn thiện sản phẩm, mang lại trải nghiệm tốt nhất cho người dùng và đáp ứng nhu cầu ngày càng đa dạng của thị trường.
+
+### 5.3 ĐÁNH GIÁ HIỆU QUẢ HỆ THỐNG
+
+#### 5.3.1 Ưu điểm:
+*   Hệ thống đã giúp tăng cường hiệu quả quản lý đặt tour cho công ty du lịch.
+*   Hệ thống đã giúp giảm thiểu thời gian và chi phí cho việc quản lý đặt tour và chăm sóc khách hàng.
+*   Hệ thống đã giúp cải thiện trải nghiệm khách hàng thông qua tích hợp Chatbot AI và thanh toán trực tuyến.
+
+#### 5.3.2 Nhược điểm:
+*   Hệ thống còn chưa được tối ưu hóa để phù hợp với quy mô lượng truy cập lớn (Big traffic).
+*   Hệ thống còn chưa có chức năng phân tích dữ liệu chuyên sâu để giúp công ty đưa ra quyết định kinh doanh thông minh.
+*   Hệ thống còn chưa được tích hợp với các hệ thống khác như CRM, hệ thống quản lý nhân sự.
+
+#### 5.3.3 Hướng Phát Triển Trong Tương Lai
+*   Tối ưu hóa hệ thống để phù hợp với quy mô lớn, sử dụng Caching (Redis) và Load Balancing.
+*   Áp dụng các công nghệ như Big Data và Cloud Computing để giúp hệ thống có thể xử lý được lượng dữ liệu lớn và phức tạp.
+*   Tích hợp hệ thống với các hệ thống khác như hệ thống quản lý khách hàng (CRM) và hệ thống quản lý nhân viên để tạo ra một hệ thống quản lý toàn diên.
+*   Phát triển chức năng phân tích dữ liệu để giúp công ty đưa ra quyết định kinh doanh thông minh.
+*   Áp dụng các công nghệ như Data Mining và Machine Learning để giúp hệ thống có thể phân tích dữ liệu và đưa ra các khuyến nghị du lịch cá nhân hóa (Personalized Recommendations).
 
 ---
 

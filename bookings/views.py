@@ -164,7 +164,16 @@ def cancel_booking_ajax(request, pk):
 
 @login_required
 def pay_booking(request, pk):
+    # Run housekeeping to cancel any expired bookings first
+    Booking.cancel_expired_bookings()
+    
     booking = get_object_or_404(Booking, pk=pk, user=request.user)
+    
+    # Check if booking is cancelled (potentially by the line above)
+    if booking.status == 'cancelled':
+        messages.error(request, "Đơn đặt tour đã bị hủy do quá hạn thanh toán.")
+        return redirect('booking_detail', pk=booking.pk)
+        
     if booking.payment_status == 'paid':
         messages.info(request, "This booking is already paid.")
         return redirect('booking_detail', pk=booking.pk)

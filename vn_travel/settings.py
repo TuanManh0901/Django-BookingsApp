@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-new-secret-key-generated-abcdef1234567890')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # ALLOWED_HOSTS
 import os
@@ -32,15 +32,21 @@ CSRF_TRUSTED_ORIGINS = [
 # Add Render domain to CSRF trusted origins
 if RENDER_EXTERNAL_HOSTNAME:
     CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_EXTERNAL_HOSTNAME}')
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_HTTPONLY = False
-CSRF_USE_SESSIONS = False
-CSRF_COOKIE_SAMESITE = 'Lax'
+
+# Cookie Security - Enable in Production (when DEBUG is False)
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SAMESITE = 'Lax'
+    SESSION_COOKIE_SAMESITE = 'Lax'
+else:
+    CSRF_COOKIE_SECURE = False
+    CSRF_COOKIE_HTTPONLY = False
+    CSRF_USE_SESSIONS = False
+    CSRF_COOKIE_SAMESITE = 'Lax'
 
 # Session Settings
-SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SAMESITE = 'Lax'
 
 # Application definition
 INSTALLED_APPS = [
@@ -259,8 +265,8 @@ ACCOUNT_ADAPTER = 'vn_travel.allauth_signals.NoMessagesAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'vn_travel.allauth_signals.NoMessagesSocialAccountAdapter'
 
 # Momo Payment Settings
-MOMO_ACCESS_KEY = config('MOMO_ACCESS_KEY', default='F8BBA842ECF85')
-MOMO_SECRET_KEY = config('MOMO_SECRET_KEY', default='K951B6PE1waDMi640xX08PD3vg6EkVlz')
+MOMO_ACCESS_KEY = config('MOMO_ACCESS_KEY', default='')
+MOMO_SECRET_KEY = config('MOMO_SECRET_KEY', default='')
 MOMO_PARTNER_CODE = config('MOMO_PARTNER_CODE', default='MOMO')
 MOMO_ENDPOINT = config('MOMO_ENDPOINT', default='https://test-payment.momo.vn/v2/gateway/api/create')
 MOMO_MOCK_ENABLED = config('MOMO_MOCK_ENABLED', default='false').lower() == 'true'
