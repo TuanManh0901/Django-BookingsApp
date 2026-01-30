@@ -1,21 +1,17 @@
-"""
-AI Chatbot Views - Web Chat Interface
-Uses TravelAdvisor service (same as Telegram bot)
-"""
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
+"""Views cho AI Chatbot - Giao diện chat web."""
 import json
-import uuid
-from .models import ChatMessage
 import logging
+import uuid
+
+from django.conf import settings
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+
+from .models import ChatMessage
 
 logger = logging.getLogger(__name__)
-
-# Note: genai configuration and model initialization are done inside the
-# request handler to allow graceful failure when the API key is missing
-# or the external service returns an error.
 
 def ai_chat_view(request):
     """Main AI chat interface - accessible to all users"""

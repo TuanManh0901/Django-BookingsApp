@@ -1,31 +1,33 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView
-from django.db.models import Q, Avg, Count
+from django.contrib import admin as django_admin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Tour, Review
-from django.contrib import admin as django_admin
+from django.db.models import Avg, Count, Q
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import DetailView, ListView
+
+from .models import Review, Tour
 from .utils import get_weather, get_weather_icon_emoji
 
+POPULAR_DESTINATIONS = [
+    {'city': 'Hà Nội', 'query_param': 'Hà Nội'},
+    {'city': 'Hạ Long', 'query_param': 'Hạ Long'},
+    {'city': 'Phú Quốc', 'query_param': 'Phú Quốc'},
+]
+
+
 def home_view(request):
-    """Homepage with featured tours and reviews"""
-    featured_reviews = Review.objects.all().select_related('user', 'tour').order_by('-created_at')[:6]
-    
-    # Fetch weather for popular destinations
-    popular_destinations = [
-        {'city': 'Hà Nội', 'query_param': 'Hà Nội'},
-        {'city': 'Hạ Long', 'query_param': 'Hạ Long'},
-        {'city': 'Phú Quốc', 'query_param': 'Phú Quốc'},
-    ]
+    """Trang chủ với tours nổi bật và đánh giá."""
+    featured_reviews = Review.objects.all().select_related(
+        'user', 'tour'
+    ).order_by('-created_at')[:6]
     
     destinations_with_weather = []
-    for dest in popular_destinations:
+    for dest in POPULAR_DESTINATIONS:
         weather_data = get_weather(dest['city'])
         dest['weather'] = weather_data
-        if weather_data:
-            dest['icon_emoji'] = get_weather_icon_emoji(weather_data.get('icon', '01d'))
-        else:
-            dest['icon_emoji'] = '🌤️'
+        dest['icon_emoji'] = get_weather_icon_emoji(
+            weather_data.get('icon', '01d')
+        ) if weather_data else '🌤️'
         destinations_with_weather.append(dest)
     
     return render(request, 'home.html', {
@@ -34,10 +36,8 @@ def home_view(request):
     })
 
 
-# Destination Pages
 def vietnam_destinations_view(request):
-    """Vietnam destinations page showing all Vietnam tours"""
-    # Get all tours - filter Vietnam tours (exclude Cambodia, Laos)
+    """Trang điểm đến Việt Nam - hiển thị tất cả tours Việt Nam."""
     vietnam_tours = Tour.objects.filter(
         is_active=True
     ).exclude(
@@ -49,7 +49,6 @@ def vietnam_destinations_view(request):
         avg_rating=Avg('reviews__rating')
     ).order_by('-created_at')
     
-    # Get unique locations for grouping
     locations = set(tour.location for tour in vietnam_tours)
     
     return render(request, 'destinations/vietnam.html', {
@@ -60,7 +59,7 @@ def vietnam_destinations_view(request):
 
 
 def cambodia_destinations_view(request):
-    """Cambodia destinations page"""
+    """Trang điểm đến Campuchia."""
     cambodia_tours = Tour.objects.filter(
         is_active=True
     ).filter(
@@ -78,7 +77,7 @@ def cambodia_destinations_view(request):
 
 
 def laos_destinations_view(request):
-    """Laos destinations page"""
+    """Trang điểm đến Lào."""
     laos_tours = Tour.objects.filter(
         is_active=True
     ).filter(
@@ -95,29 +94,29 @@ def laos_destinations_view(request):
     })
 
 
-# Content Pages
 def responsibility_view(request):
-    """Responsible tourism and sustainability page"""
+    """Trang Du lịch có trách nhiệm và Bền vững."""
     return render(request, 'pages/responsibility.html')
 
 
 def about_us_view(request):
-    """About VN Travel company page"""
+    """Trang Về chúng tôi - VN Travel."""
     return render(request, 'pages/about.html')
 
 
 def team_view(request):
-    """Team introduction page"""
+    """Trang giới thiệu đội ngũ."""
     return render(request, 'pages/team.html')
 
 
 def education_view(request):
-    """Travel education and resources page"""
+    """Trang Giáo dục du lịch và Tài nguyên."""
     return render(request, 'pages/education.html')
 
 
 class SearchToursView(ListView):
-    """Search/filter page for tours"""
+    """Tìm kiếm và lọc tours với phân trang."""
+    
     model = Tour
     template_name = 'search_tours.html'
     context_object_name = 'tours'
@@ -126,12 +125,14 @@ class SearchToursView(ListView):
     def get_queryset(self):
         queryset = Tour.objects.filter(is_active=True)
         
-        # Search query
         search_query = self.request.GET.get('q', '').strip()
         if search_query:
-            # Robust search: Handle Vietnamese case sensitivity issues (đ != Đ in some collations)
-            # We search for the original, Title Case, and Upper Case versions
-            queries = {search_query, search_query.title(), search_query.upper(), search_query.lower()}
+            queries = {
+                search_query, 
+                search_query.title(), 
+                search_query.upper(), 
+                search_query.lower()
+            }
             
             query = Q()
             for q_str in queries:
@@ -141,12 +142,10 @@ class SearchToursView(ListView):
             
             queryset = queryset.filter(query)
         
-        # Filter by location
         location = self.request.GET.get('location', '').strip()
         if location:
             queryset = queryset.filter(location__icontains=location)
         
-        # Filter by price range
         min_price = self.request.GET.get('min_price')
         max_price = self.request.GET.get('max_price')
         if min_price:
@@ -160,7 +159,6 @@ class SearchToursView(ListView):
             except ValueError:
                 pass
         
-        # Filter by duration
         duration = self.request.GET.get('duration')
         if duration:
             try:
@@ -168,7 +166,6 @@ class SearchToursView(ListView):
             except ValueError:
                 pass
         
-        # Duration range filter
         min_duration = self.request.GET.get('min_duration')
         max_duration = self.request.GET.get('max_duration')
         if min_duration:
@@ -182,12 +179,10 @@ class SearchToursView(ListView):
             except ValueError:
                 pass
         
-        # Filter by hot tours
         is_hot = self.request.GET.get('is_hot', '').lower()
         if is_hot == 'true':
             queryset = queryset.filter(is_hot=True)
         
-        # Sort by
         sort_by = self.request.GET.get('sort_by', '-created_at')
         valid_sorts = {
             'price_low': 'price',

@@ -1,24 +1,23 @@
-"""
-Django settings for vn_travel project.
-"""
-
+"""Cấu hình Django cho project vn_travel."""
+import os
 from pathlib import Path
+
 from decouple import config
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-new-secret-key-generated-abcdef1234567890')
+# CẢNH BÁO BẢO MẬT: Giữ bí mật secret key trong production!
+# KHÔNG dùng giá trị mặc định trong production - phải set SECRET_KEY trong file .env
+SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# CẢNH BÁO BẢO MẬT: Không chạy với debug=True trong production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # ALLOWED_HOSTS
-import os
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
 
-# Render.com support
+# Hỗ trợ Render.com
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
