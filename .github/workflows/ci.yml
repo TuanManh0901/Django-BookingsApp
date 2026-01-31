@@ -156,10 +156,10 @@ jobs:
       - name: Run Bandit security scan
         run: bandit -r . -ll -x ./venv,./tests
         continue-on-error: true
-Notification (only on main) ==========
+
+  # ========== Job 5: Deploy Notification (only on main) ==========
   deploy:
-    name: Deploy Notifica
-    name: Deploy to Production
+    name: Deploy Notification
     runs-on: ubuntu-latest
     needs: [test, build, security]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
