@@ -518,7 +518,7 @@ VN Travel - Khám Phá Việt Nam
             <img src="{% tour_image_url tour.images.first %}" alt="{{ tour.images.first.alt_text }}" />
           {% else %}
             {% load static %}
-            <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}\" />
+            <img src="{% static tour.get_fallback_image %}" alt="{{ tour.name }}" />
           {% endif %}
           
           <div class="image-overlay"></div>

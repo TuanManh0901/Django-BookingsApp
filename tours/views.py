@@ -45,7 +45,7 @@ def vietnam_destinations_view(request):
         Q(location__icontains='Campuchia') |
         Q(location__icontains='Laos') |
         Q(location__icontains='Lào')
-    ).annotate(
+    ).prefetch_related('images').annotate(
         avg_rating=Avg('reviews__rating')
     ).order_by('-created_at')
     
@@ -66,7 +66,7 @@ def cambodia_destinations_view(request):
         Q(location__icontains='Cambodia') | 
         Q(location__icontains='Campuchia') |
         Q(location__icontains='Angkor')
-    ).annotate(
+    ).prefetch_related('images').annotate(
         avg_rating=Avg('reviews__rating')
     ).order_by('-created_at')
     
@@ -84,7 +84,7 @@ def laos_destinations_view(request):
         Q(location__icontains='Laos') | 
         Q(location__icontains='Lào') |
         Q(location__icontains='Luang Prabang')
-    ).annotate(
+    ).prefetch_related('images').annotate(
         avg_rating=Avg('reviews__rating')
     ).order_by('-created_at')
     
@@ -200,7 +200,7 @@ class SearchToursView(ListView):
         else:
             queryset = queryset.order_by('-created_at')
         
-        return queryset
+        return queryset.prefetch_related('images')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -251,7 +251,7 @@ class TourListView(ListView):
     paginate_by = 9
     
     def get_queryset(self):
-        return Tour.objects.filter(is_active=True).order_by('-created_at')
+        return Tour.objects.filter(is_active=True).prefetch_related('images').order_by('-created_at')
     
     def get_context_data(self, **kwargs):
         """Add weather data to each tour"""

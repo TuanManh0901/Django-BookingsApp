@@ -31,12 +31,12 @@ class BookingFlowIntegrationTest(TestCase):
     def test_complete_booking_flow_browse_to_payment(self):
         """Test complete flow: browse tours → view detail → book → pay."""
         # Step 1: Browse tours (anonymous user)
-        response = self.client.get(reverse('tours:tour_list'))
+        response = self.client.get(reverse('search_tours'))
         self.assertEqual(response.status_code, 200)
         
         # Step 2: View tour detail
         response = self.client.get(
-            reverse('tours:tour_detail', kwargs={'slug': self.tour.slug})
+            reverse('tour_detail', kwargs={'pk': self.tour.pk})
         )
         self.assertEqual(response.status_code, 200)
         

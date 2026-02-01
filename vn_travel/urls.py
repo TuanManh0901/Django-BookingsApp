@@ -94,3 +94,11 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    # Force serving media files in local production simulation
+    from django.views.static import serve
+    urlpatterns += [
+        path('media/<path:path>', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]

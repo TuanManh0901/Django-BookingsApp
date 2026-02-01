@@ -208,7 +208,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # For production collectstatic
 
 # Media files - in production served from static/ via collectstatic
 # In development: /media/ folder, in production: /static/media/ folder
-MEDIA_URL = "/static/media/" if not DEBUG else "/media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
