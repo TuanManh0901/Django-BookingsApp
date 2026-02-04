@@ -41,8 +41,11 @@
           </div>
 
           {% if tour.is_full %}
-            <div class="alert alert-danger">
-              <strong>Xin lỗi!</strong> Tour này đã hết chỗ. Vui lòng chọn tour khác hoặc liên hệ chúng tôi để được hỗ trợ.
+            <div class="alert alert-danger alert-persistent d-flex align-items-center shadow" style="background-color: #ff3b3b; color: #000; border: none;">
+              <i class="fas fa-exclamation-circle me-3" style="font-size: 1.5rem;"></i>
+              <div>
+                <strong>HẾT CHỖ!</strong> Tour này hiện không thể nhận thêm khách. Vui lòng chọn ngày khác.
+              </div>
             </div>
             <a href="{% url 'tour_list' %}" class="btn btn-primary">Xem các tour khác</a>
           {% else %}

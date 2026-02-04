@@ -27,7 +27,7 @@ from tours.views import (
     about_view, contact_view, faq_view
 )
 from bookings.views import create_booking, MyBookingsView, BookingDetailView, cancel_booking, cancel_booking_ajax, pay_booking, submit_review
-from .views import user_profile, register, edit_profile
+from .views import user_profile, register, edit_profile, password_change_success, CustomPasswordChangeView, CustomPasswordSetView
 from .health import health_check_view, readiness_check_view, liveness_check_view
 from telegram_bot import views as telegram_views
 # from .admin import admin_site  # Import custom admin site
@@ -43,10 +43,16 @@ urlpatterns = [
     path('live/', liveness_check_view, name='liveness_check'),
     
     path("admin/", admin.site.urls),  # Use default admin site
+    
+    # Custom Password Change Views (Must be before allauth.urls)
+    path('accounts/password/change/', CustomPasswordChangeView.as_view(), name='account_change_password'),
+    path('accounts/password/set/', CustomPasswordSetView.as_view(), name='account_set_password'),
+    
     path('accounts/', include('allauth.urls')),
     path('register/', register, name='register'),
     path('profile/', user_profile, name='user_profile'),
     path('profile/edit/', edit_profile, name='edit_profile'),
+    path('profile/password-success/', password_change_success, name='password_change_success'),
     
     # Homepage & Search
     path('', home_view, name='home'),

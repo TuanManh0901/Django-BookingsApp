@@ -69,7 +69,13 @@ INSTALLED_APPS = [
     "payments",
     "telegram_bot",
     "ai_chatbot",
+    # Third-party
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SITE_ID = 1
 
@@ -262,6 +268,10 @@ SOCIALACCOUNT_FORMS = {}
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_ADAPTER = 'vn_travel.allauth_signals.NoMessagesAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'vn_travel.allauth_signals.NoMessagesSocialAccountAdapter'
+
+# Redirect to success page after password change
+ACCOUNT_PASSWORD_CHANGE_REDIRECT_URL = 'password_change_success'
+ACCOUNT_PASSWORD_SET_REDIRECT_URL = 'password_change_success'
 
 # Momo Payment Settings
 MOMO_ACCESS_KEY = config('MOMO_ACCESS_KEY', default='')

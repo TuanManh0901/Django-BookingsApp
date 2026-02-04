@@ -57,3 +57,21 @@ def register(request):
         form = CustomUserCreationForm()
     
     return render(request, 'registration/register.html', {'form': form})
+
+
+@login_required
+def password_change_success(request):
+    """Trang thông báo đổi mật khẩu thành công"""
+    return render(request, 'account/password_change_done.html')
+
+
+from allauth.account.views import PasswordChangeView, PasswordSetView
+from django.urls import reverse_lazy
+
+class CustomPasswordChangeView(PasswordChangeView):
+    """Custom view to force redirect to success page"""
+    success_url = reverse_lazy('password_change_success')
+
+class CustomPasswordSetView(PasswordSetView):
+    """Custom view to force redirect to success page"""
+    success_url = reverse_lazy('password_change_success')
