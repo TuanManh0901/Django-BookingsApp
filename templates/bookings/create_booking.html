@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Book Tour: {{ tour.name }}{% endblock %}
+{% block title %}Đặt Tour: {{ tour.name }}{% endblock %}
 
 {% block content %}
 <!-- Threeland Hero - Create Booking -->
@@ -8,7 +8,7 @@
   <div class="hero-overlay"></div>
   
   <div class="hero-main-content">
-    <p class="hero-subtitle">Complete Your Booking</p>
+    <p class="hero-subtitle">Hoàn tất đặt chỗ</p>
     <h1 class="hero-main-title">{{ tour.name }}</h1>
   </div>
 </div>
@@ -52,7 +52,7 @@
           <form method="post">
             {% csrf_token %}
             <div class="mb-3">
-              <label for="{{ form.booking_date.id_for_label }}" class="form-label">Booking Date</label>
+              <label for="{{ form.booking_date.id_for_label }}" class="form-label">Ngày khởi hành</label>
               {{ form.booking_date }}
               {% if form.booking_date.errors %}
                 <div class="text-danger">{{ form.booking_date.errors }}</div>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="{{ form.num_adults.id_for_label }}" class="form-label">Number of Adults</label>
+              <label for="{{ form.num_adults.id_for_label }}" class="form-label">Số người lớn</label>
               {{ form.num_adults }}
               {% if form.num_adults.errors %}
                 <div class="text-danger">{{ form.num_adults.errors }}</div>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="{{ form.num_children.id_for_label }}" class="form-label">Number of Children</label>
+              <label for="{{ form.num_children.id_for_label }}" class="form-label">Số trẻ em</label>
               {{ form.num_children }}
               {% if form.num_children.errors %}
                 <div class="text-danger">{{ form.num_children.errors }}</div>
@@ -81,8 +81,8 @@
 
             <input type="hidden" name="custom_itinerary" id="custom_itinerary">
             
-            <button type="submit" class="btn btn-primary">Book Now</button>
-            <a href="{% url 'tour_detail' tour.pk %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Đặt ngay</button>
+            <a href="{% url 'tour_detail' tour.pk %}" class="btn btn-secondary">Hủy</a>
           </form>
           {% endif %}
           

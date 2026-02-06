@@ -9,4 +9,5 @@ django-allauth
 PyJWT
 cryptography
 gunicorn
-whitenoise
+django-crispy-forms
+crispy-bootstrap5
