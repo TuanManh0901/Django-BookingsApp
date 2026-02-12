@@ -33,7 +33,7 @@ class Booking(models.Model):
     booking_date = models.DateField()
     num_adults = models.PositiveIntegerField(default=1)
     num_children = models.PositiveIntegerField(default=0)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    total_price = models.DecimalField(max_digits=15, decimal_places=2)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     payment_status = models.CharField(
         max_length=20, 
@@ -49,7 +49,7 @@ class Booking(models.Model):
         default=Decimal('0.00')
     )
     deposit_amount = models.DecimalField(
-        max_digits=10, 
+        max_digits=15, 
         decimal_places=2, 
         default=Decimal('0.00')
     )

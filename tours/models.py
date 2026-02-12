@@ -13,7 +13,7 @@ class Tour(models.Model):
     slug = models.SlugField(unique=True, max_length=200, verbose_name="Slug")
     description = models.TextField(verbose_name="Mô tả")
     location = models.CharField(max_length=100, verbose_name="Địa điểm")
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Giá")
+    price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Giá")
     duration = models.PositiveIntegerField(verbose_name="Thời gian (ngày)")
     max_people = models.PositiveIntegerField(verbose_name="Số người tối đa")
     is_active = models.BooleanField(default=True, verbose_name="Hoạt động")
@@ -181,7 +181,6 @@ class Review(models.Model):
         help_text="Hiển thị trên trang chủ"
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày tạo")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="Ngày cập nhật")
     
     class Meta:
         ordering = ['-created_at']

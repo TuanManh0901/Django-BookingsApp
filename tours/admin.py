@@ -75,7 +75,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_filter = ('rating', 'is_featured', 'created_at')
     search_fields = ('user__username', 'tour__name', 'comment')
     list_editable = ('is_featured',)
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('created_at',)
     
     def get_actions(self, request):
         actions = super().get_actions(request)
