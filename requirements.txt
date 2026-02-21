@@ -10,4 +10,5 @@ PyJWT
 cryptography
 gunicorn
 django-crispy-forms
-crispy-bootstrap5whitenoise>=6.6.0
+crispy-bootstrap5
+whitenoise>=6.6.0
