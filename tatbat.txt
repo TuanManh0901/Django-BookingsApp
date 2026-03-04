@@ -16,4 +16,3 @@ python manage.py runserver
 
 python manage.py dumpdata --natural-foreign --natural-primary --indent 2 --exclude contenttypes --exclude auth.permission > database_backup.json
 
-vậy thì đóng vai 1 senior mấy chục năm kinh nghiệm, đánh giá mọi ngóc ngách của project này xem, đã đủ để bảo vệ đồ án ra trường chưa 

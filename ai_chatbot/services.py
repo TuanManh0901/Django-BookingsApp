@@ -80,6 +80,7 @@ LƯU Ý QUAN TRỌNG:
 1. NẾU khách chỉ hỏi bâng quơ, trả lời text bình thường.
 2. NẾU khách hỏi "Lên lịch trình", "Gợi ý đi Đà Lạt 3 ngày", "Plan cho tôi chuyến đi"... -> BẮT BUỘC dùng cấu trúc HTML trên.
 3. KHÔNG được bọc HTML trong backtick, hãy trả về RAW HTML.
+4. TUYỆT ĐỐI KHÔNG dùng ký hiệu heading markdown như ##, ###, ####. Nếu cần tiêu đề, chỉ dùng tối đa 1 dấu # hoặc dùng thẻ HTML <strong>.
 """
 
 
@@ -112,9 +113,10 @@ Hãy trình bày theo dạng Timeline rõ ràng:
 
 YÊU CẦU TUYỆT ĐỐI:
 ✅ KHÔNG dùng dấu sao (*) hay gạch dưới (_) để định dạng.
-✅ CHỈ dùng thẻ &lt;b&gt;, &lt;i&gt;, &lt;u&gt;, &lt;a&gt;, &lt;code&gt;.
-✅ KHÔNG dùng thẻ &lt;div&gt;, &lt;span&gt;, &lt;br&gt;, &lt;h1&gt;-&lt;h6&gt;.
+✅ CHỈ dùng thẻ <b>, <i>, <u>, <a>, <code>.
+✅ KHÔNG dùng thẻ <div>, <span>, <br>, <h1>-<h6>.
 ✅ Trình bày thoáng, xuống dòng rõ ràng.
+✅ TUYỆT ĐỐI KHÔNG dùng ký hiệu heading markdown như ##, ###, ####. Nếu cần tiêu đề, chỉ dùng tối đa 1 dấu # hoặc dùng <b>.
 """
 
 

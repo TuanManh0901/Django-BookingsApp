@@ -112,9 +112,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "vn_travel.wsgi.application"
 
-# Database
-import os
-DATABASE_URL = os.environ.get('DATABASE_URL')
+DATABASE_URL = config('DATABASE_URL', default=None)
 
 if DATABASE_URL:
     # Parse DATABASE_URL (format: postgresql://user:pass@host:port/dbname)
@@ -136,7 +134,7 @@ if DATABASE_URL:
         DATABASES = {
             "default": {
                 "ENGINE": "django.db.backends.postgresql",
-                "NAME": config('DATABASE_NAME', default='vn_travel_db'),
+                "NAME": config('DATABASE_NAME', default='vntravel'),
                 "USER": config('DATABASE_USER', default='postgres'),
                 "PASSWORD": config('DATABASE_PASSWORD', default='1'),
                 "HOST": config('DATABASE_HOST', default='localhost'),
@@ -148,7 +146,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": config('DB_NAME', default='vn_travel_db'),
+            "NAME": config('DB_NAME', default='vntravel'),
             "USER": config('DB_USER', default='postgres'),
             "PASSWORD": config('DB_PASSWORD', default=''),
             "HOST": config('DB_HOST', default='localhost'),
