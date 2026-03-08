@@ -607,22 +607,76 @@ VN Travel - Khám Phá Việt Nam
   </div>
 
   <!-- Pagination -->
-  {% if is_paginated %} <div class="d-flex justify-content-center mt-4">
-    <nav> <ul class="pagination">
-        {% if page_obj.has_previous %} <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        </li>
-        {% endif %}
-{% for num in page_obj.paginator.page_range %}
-{% if page_obj.number == num %} <li class="page-item active"> <span class="page-link">{{ num }}</span>
-        </li>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <li class="page-item"> <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-        </li>
-        {% endif %}
-{% endfor %}
-{% if page_obj.has_next %} <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-        </li>
-        {% endif %}\n      </ul>
-    </nav>
+  {% if is_paginated %}
+  <style>
+    .vn-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .vn-page-arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #d1d5db;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .vn-page-arrow:hover {
+      border-color: #764ba2;
+      color: #764ba2;
+      box-shadow: 0 2px 8px rgba(118,75,162,0.2);
+    }
+    .vn-page-arrow.disabled {
+      opacity: 0.35;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+    .vn-page-indicator {
+      width: 64px;
+      height: 42px;
+      border-radius: 21px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    }
+  </style>
+  <div class="vn-pagination">
+    {% if page_obj.has_previous %}
+      <a class="vn-page-arrow" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.location %}&location={{ request.GET.location }}{% endif %}{% if request.GET.duration %}&duration={{ request.GET.duration }}{% endif %}" aria-label="Trang trước">
+        &#8249;
+      </a>
+    {% else %}
+      <span class="vn-page-arrow disabled" aria-label="Trang trước">&#8249;</span>
+    {% endif %}
+
+    <div class="vn-page-indicator">
+      {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </div>
+
+    {% if page_obj.has_next %}
+      <a class="vn-page-arrow" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.location %}&location={{ request.GET.location }}{% endif %}{% if request.GET.duration %}&duration={{ request.GET.duration }}{% endif %}" aria-label="Trang sau">
+        &#8250;
+      </a>
+    {% else %}
+      <span class="vn-page-arrow disabled" aria-label="Trang sau">&#8250;</span>
+    {% endif %}
   </div>
   {% endif %}
 </div>

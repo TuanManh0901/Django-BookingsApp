@@ -176,6 +176,40 @@ class TravelAdvisor:
         
         return context
     
+    def get_advice_stream(self, user_question, include_tours=True):
+        """
+        Streaming version: yield từng chunk text từ Gemini thay vì chờ toàn bộ response.
+        Dùng cho Server-Sent Events (SSE) endpoint.
+        
+        Yields:
+            str: Từng đoạn text nhỏ từ Gemini
+        """
+        try:
+            tours_context = ""
+            if include_tours:
+                tours_context = f"\n\n{self.get_tours_context()}"
+
+            simple_prompt = f"Trả lời bằng tiếng Việt: {user_question}{tours_context}"
+
+            # Dùng stream=True → Gemini trả về generator
+            response = self.model.generate_content(simple_prompt, stream=True)
+
+            import re
+            for chunk in response:
+                if chunk.text:
+                    text = chunk.text
+                    text = text.replace("*", "")      # bỏ bold/italic markdown
+                    text = re.sub(r'^#{1,6}\s*', '', text, flags=re.MULTILINE)  # bỏ ### ## #
+                    text = re.sub(r'\n{3,}', '\n\n', text)
+                    yield text
+
+        except Exception as e:
+            error_str = str(e).lower()
+            if "429" in error_str or "quota" in error_str:
+                yield "🤖 <i>(Hệ thống đang quá tải)</i>\n\nAI đang nhận quá nhiều yêu cầu, vui lòng đợi 1-2 phút rồi hỏi lại nhé! 🙏"
+            else:
+                yield f"⚠️ Lỗi kết nối AI. Vui lòng thử lại sau."
+
     def get_advice(self, user_question, include_tours=True):
         """
         Nhận tư vấn từ AI về du lịch
@@ -229,12 +263,10 @@ class TravelAdvisor:
                 response_text = response.text
                 
                 # CLEANUP FORMATTING
-                # 1. Remove asterisks
-                response_text = response_text.replace("*", "")
-                
-                # 2. Reduce multiple newlines to single
                 import re
-                response_text = re.sub(r'\n\s*\n', '\n', response_text)
+                response_text = response_text.replace("*", "")             # bỏ bold/italic
+                response_text = re.sub(r'^#{1,6}\s*', '', response_text, flags=re.MULTILINE)  # bỏ ###
+                response_text = re.sub(r'\n\s*\n', '\n', response_text)   # bỏ dòng trống thừa
                 
             else:
                 response_text = "Xin lỗi, AI không thể tạo phản hồi."

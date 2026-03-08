@@ -399,53 +399,122 @@
     }
   }
 
-  // Handle form submission
-  document.getElementById("chat-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    
-    const input = document.getElementById("user-input");
-    const message = input.value.trim();
-    
-    if (!message) return;
-    
-    // Add user message
+  // =============================================
+  // STREAMING: Tạo bubble bot rỗng, append text dần
+  // =============================================
+  function createStreamingBubble() {
+    const messagesDiv = document.getElementById("chat-messages");
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "message bot";
+
+    const now = new Date();
+    const timestamp = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+
+    messageDiv.innerHTML = `
+      <div class="message-content streaming-content"></div>
+      <div class="timestamp">${timestamp}</div>
+    `;
+
+    messagesDiv.appendChild(messageDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    return messageDiv.querySelector('.streaming-content');
+  }
+
+  async function sendStreamingMessage(message) {
+    // 1. Hiện user message
     addMessage(message, "user");
-    input.value = "";
-    
-    // Show typing indicator
+
+    // 2. Hiện typing indicator
     showTypingIndicator();
-    
+
+    const CSRF = getCSRFToken();
+    let streamBubble = null;
+    let fullText = '';
+
     try {
-      const response = await fetch("/ai-chat/api/chat/", {
+      const response = await fetch("/ai-chat/api/chat/stream/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-CSRFToken": getCSRFToken(),
+          "X-CSRFToken": CSRF,
         },
-        body: JSON.stringify({
-          message: message,
-          session_id: sessionId,
-        }),
+        body: JSON.stringify({ message, session_id: sessionId }),
       });
-      
-      const data = await response.json();
-      
-      // Remove typing indicator
-      removeTypingIndicator();
-      
-      if (response.ok) {
-        addMessage(data.response, "bot");
-        // Update sessions list to reflect new message
-        loadSessions();
-      } else {
-        addMessage("Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại.", "bot");
-      }
-    } catch (error) {
 
+      if (!response.ok) {
+        removeTypingIndicator();
+        addMessage("Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại.", "bot");
+        return;
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let buffer = '';
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop(); // giữ lại dòng chưa hoàn chỉnh
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const raw = line.slice(6).trim();
+          if (!raw) continue;
+
+          try {
+            const parsed = JSON.parse(raw);
+
+            if (parsed.done) {
+              // Xong — cập nhật sessions list
+              loadSessions();
+              break;
+            }
+
+            if (parsed.chunk) {
+              // Lần đầu có chunk: xóa typing indicator, tạo streaming bubble
+              if (!streamBubble) {
+                removeTypingIndicator();
+                streamBubble = createStreamingBubble();
+              }
+              fullText += parsed.chunk;
+              // Render HTML (AI trả về HTML/text mixed)
+              streamBubble.innerHTML = fullText;
+              // Auto scroll
+              const messagesDiv = document.getElementById("chat-messages");
+              messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
+          } catch (e) {
+            // ignore parse error
+          }
+        }
+      }
+
+    } catch (error) {
       removeTypingIndicator();
       addMessage("Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.", "bot");
     }
+  }
+
+  // Handle form submission — dùng streaming
+  document.getElementById("chat-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (!message) return;
+
+    input.value = "";
+    input.disabled = true;
+
+    await sendStreamingMessage(message);
+
+    input.disabled = false;
+    input.focus();
   });
+
 
   // Load chat history
   async function loadChatHistory() {

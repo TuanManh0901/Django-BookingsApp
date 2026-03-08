@@ -4,7 +4,7 @@ import logging
 import uuid
 
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import JsonResponse, StreamingHttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +16,75 @@ logger = logging.getLogger(__name__)
 def ai_chat_view(request):
     """Main AI chat interface - accessible to all users"""
     return render(request, 'ai_chatbot/chat.html')
+
+
+@csrf_exempt
+def ai_chat_stream_api(request):
+    """
+    Streaming SSE endpoint: push từng chunk từ Gemini xuống trình duyệt ngay lập tức.
+    Frontend nhận dữ liệu theo chuẩn Server-Sent Events (text/event-stream).
+    """
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+    try:
+        data = json.loads(request.body)
+        user_message = data.get('message', '').strip()
+        session_id = data.get('session_id', str(uuid.uuid4()))
+
+        if not user_message:
+            return JsonResponse({'error': 'Message is required'}, status=400)
+
+        from .services import TravelAdvisor
+        try:
+            advisor = TravelAdvisor(client_type='web')
+        except ValueError as ve:
+            logger.error(f"TravelAdvisor init error: {ve}")
+            return JsonResponse({'error': 'AI service not configured'}, status=503)
+
+        user = request.user if request.user.is_authenticated else None
+
+        def event_stream():
+            full_response = []
+            try:
+                for chunk in advisor.get_advice_stream(user_message, include_tours=True):
+                    full_response.append(chunk)
+                    # SSE format: "data: <payload>\n\n"
+                    payload = json.dumps({'chunk': chunk}, ensure_ascii=False)
+                    yield f"data: {payload}\n\n"
+
+                # Gửi signal [DONE] để frontend biết đã xong
+                yield f"data: {json.dumps({'done': True})}\n\n"
+
+                # Lưu full response vào DB
+                complete_text = ''.join(full_response)
+                try:
+                    ChatMessage.objects.create(
+                        user=user,
+                        session_id=session_id,
+                        message=user_message,
+                        response=complete_text,
+                        is_ai_response=True,
+                    )
+                except Exception:
+                    logger.exception('Failed to save streamed ChatMessage')
+
+            except Exception as e:
+                logger.exception('Error during streaming')
+                error_payload = json.dumps({'chunk': '⚠️ Lỗi kết nối AI. Vui lòng thử lại.'}, ensure_ascii=False)
+                yield f"data: {error_payload}\n\n"
+                yield f"data: {json.dumps({'done': True})}\n\n"
+
+        response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
+        response['Cache-Control'] = 'no-cache'
+        response['X-Accel-Buffering'] = 'no'  # Tắt buffering trên Nginx
+        return response
+
+    except Exception as e:
+        logger.exception('Unexpected error in ai_chat_stream_api')
+        return JsonResponse({'error': 'Unexpected server error'}, status=500)
+
+
 
 @csrf_exempt
 def ai_chat_api(request):
